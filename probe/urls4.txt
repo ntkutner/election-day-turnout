@@ -1,2 +1,0 @@
-tqv_js | https://tqv.vrswebapps.com/js/TQV.js
-tqv_hil | https://tqv.vrswebapps.com/?state=FL&county=HIL&election=301
