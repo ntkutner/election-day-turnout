@@ -2,7 +2,8 @@
 Parsers are split out (parse_*) so they can be tested offline against probe/raw captures."""
 from __future__ import annotations
 import base64, csv, io, json, re, html as htmllib
-from common import source, get, num, obs
+import requests
+from common import source, get, num, obs, UA
 
 # ---------------------------------------------------------------- helpers
 
@@ -356,3 +357,72 @@ def tx_dallas():
     d = get(DALLAS_FS, params={"where": "L_Crnt_Sta = 'Active' AND L_Poll_VC LIKE 'V%'", "outFields": "L_Crnt_Sta,L_Poll_VC,C_Daily_Tot,C_Wait_Tim",
                                 "returnGeometry": "false", "resultRecordCount": 2000, "f": "json"}).json()
     return parse_dallas(d)
+
+
+# ---------------------------------------------------------------- Harris County, TX: vote center wait times (HarrisVotes wait-time map)
+HARRIS_WT = "https://app.harrisvotes.com/Map/GetPollingLocations"
+
+
+def _wait_minutes(text):
+    """'15 - 29 minutes', 'Less than 15 minutes', '30+ minutes', 'No wait' -> representative minutes (lower bound)."""
+    t = (text or "").lower()
+    if not t:
+        return None
+    if "no wait" in t or "0 min" in t:
+        return 0
+    nums = [int(n) for n in re.findall(r"\d+", t)]
+    if "less than" in t or "under" in t or "<" in t:
+        return 0 if not nums else max(0, nums[0] - 1) // 2
+    if "hour" in t and nums:
+        return nums[0] * 60
+    return nums[0] if nums else None
+
+
+def parse_harris_wait(locs: list):
+    sites = []
+    for l in locs:
+        if not isinstance(l, dict) or not l.get("PollCode"):
+            continue
+        parts = [clean_text(x) for x in re.split(r"<br\s*/?>|</(?:b|strong|div|p)>", l.get("ListingContent") or "", flags=re.I)]
+        parts = [x for x in parts if x]
+        name = (parts[0] if parts else str(l.get("PollCode")))[:80]
+        addr = parts[1][:90] if len(parts) > 1 else ""
+        wt = clean_text(l.get("WaitTimeStatusText") or "")
+        sites.append({"code": l.get("PollCode"), "name": name, "lat": l.get("Latitude"), "lon": l.get("Longitude"),
+                      "addr": addr, "in_line": num(l.get("VotersInLine")), "wait_text": wt, "wait_min": _wait_minutes(wt),
+                      "icon": l.get("MapMarkerIcon")})
+    if not sites:
+        raise ValueError("Harris: no locations")
+    waits = sorted(s["wait_min"] for s in sites if s["wait_min"] is not None)
+    med = waits[len(waits) // 2] if waits else None
+    return [obs("Harris County", "wait_times", len(sites), state="TX", sites=sites,
+                median_wait=med, sites_30plus=sum(1 for w in waits if w >= 30),
+                total_in_line=sum(s["in_line"] or 0 for s in sites))]
+
+
+@source("tx_harris_wait", "Harris County – vote center wait times", "TX", "wait",
+        "https://www.harrisvotes.com/Vote-Centers",
+        "Estimated wait and voters in line at each Election Day vote center, from the HarrisVotes wait-time map. Harris posts hourly check-in totals only on social media.")
+def tx_harris_wait():
+    locs, page, total = [], 0, None
+    while page < 30:
+        r = requests.post(HARRIS_WT, timeout=40, headers={**UA, "X-Requested-With": "XMLHttpRequest",
+                          "Content-Type": "application/x-www-form-urlencoded;charset=utf-8;",
+                          "Referer": "https://app.harrisvotes.com/WaitTimes?electionCode=1126&lang=en-US"},
+                          data={"latitude": "29.7604", "longitude": "-95.3698", "zipCode": "", "isElectionDay": "true",
+                                "serviceType": "0", "electionCode": "1126", "pageIndex": str(page), "pageSize": "200",
+                                "language": "en-US"})
+        if r.status_code != 200:
+            raise RuntimeError(f"HTTP {r.status_code}: {r.text[:160]}")
+        d = r.json()
+        batch = [l for l in (d.get("locations") or []) if isinstance(l, dict) and l.get("PollCode")]
+        total = d.get("totalCount") or total
+        locs += batch
+        if not batch or (total and len(locs) >= total):
+            break
+        page += 1
+    seen, uniq = set(), []
+    for l in locs:
+        if l["PollCode"] not in seen:
+            seen.add(l["PollCode"]); uniq.append(l)
+    return parse_harris_wait(uniq)
