@@ -1,0 +1,44 @@
+{
+ "fl_dos_turnout": {
+  "url": "https://www.dos.fl.gov/elections/data-statistics/elections-data/voter-turnout/",
+  "status": 404,
+  "final_url": "https://www.dos.fl.gov/elections/data-statistics/elections-data/voter-turnout/",
+  "ctype": "text/html",
+  "bytes": 2667,
+  "data_links": []
+ },
+ "fl_dos_turnout2": {
+  "url": "https://dos.fl.gov/elections/data-statistics/elections-data/voter-turnout/",
+  "status": 200,
+  "final_url": "https://dos.fl.gov/elections/data-statistics/elections-data/voter-turnout/",
+  "ctype": "text/html; charset=utf-8",
+  "bytes": 32259,
+  "data_links": [
+   "https://dos.fl.gov/Scripts/jquery-2.2.4.js",
+   "https://dos.fl.gov/elections/data-statistics/elections-data/absentee-and-early-voting/",
+   "https://dos.fl.gov/elections/data-statistics/elections-data/voter-turnout/",
+   "https://dos.fl.gov/js/helpers.min.js",
+   "https://dos.fl.gov/js/lib/jquery.cycle2/jquery.cycle2.all.min.js",
+   "https://dos.fl.gov/js/lib/modernizr/modernizr.min.js",
+   "https://dos.fl.gov/js/navigation.min.js",
+   "https://dos.fl.gov/scripts/bootstrap.min.js",
+   "https://dos.fl.gov/scripts/js/dos.min.js",
+   "https://dos.fl.gov/scripts/modernizr-2.8.3.js",
+   "https://platform.twitter.com/widgets.js",
+   "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+  ]
+ },
+ "tx_sos_turnout": {
+  "url": "https://www.sos.state.tx.us/elections/historical/70-92.shtml",
+  "status": 403,
+  "final_url": "https://www.sos.state.tx.us/elections/historical/70-92.shtml",
+  "ctype": "text/html; charset=utf-8",
+  "bytes": 21454,
+  "data_links": [
+   "https://d2h3sz5hbsavy4.cloudfront.net/lex-web-ui-loader.min.js",
+   "https://webservices.sos.state.tx.us/forms/5-15f.pdf",
+   "https://www.sos.state.tx.us/elections/historical/statdoc/forms/2102new.pdf",
+   "https://www.sos.state.tx.us/elections/historical/statdoc/forms/2201.pdf"
+  ]
+ }
+}
