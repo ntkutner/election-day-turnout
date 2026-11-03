@@ -1,0 +1,42 @@
+$(document).ready(function () {
+
+    var params = new URLSearchParams(window.location.search);
+    var zipCode = params.get('zipCode');
+    var encodedZip = zipCode ? encodeURIComponent(zipCode) : null;
+
+    var eid = $('iframe#PLMap').data('eid');
+
+    var baseUrl = "https://app.harrisvotes.com/WaitTimes";
+    var queryParams = new URLSearchParams();
+
+    // Add electionCode only if eid exists
+    if (eid) {
+        queryParams.append("electionCode", eid);
+    }
+
+    // Add zipCode only if present
+    if (encodedZip) {
+        queryParams.append("zipCode", encodedZip);
+    }
+
+    // Determine language
+    var lang = "en-US";
+    if (window.location.href.indexOf('/es-us/') !== -1) {
+        lang = "es-MX";
+    } else if (window.location.href.indexOf('/vi-vn/') !== -1) {
+        lang = "vi-VN";
+    } else if (window.location.href.indexOf('/zh-cn/') !== -1) {
+        lang = "zh-CHT";
+    }
+
+    queryParams.append("lang", lang);
+
+    // Build final URL
+    var finalUrl = baseUrl + "?" + queryParams.toString();
+
+    console.log("Final iframe URL:", finalUrl);
+
+    // Set iframe src
+    $('iframe#PLMap').attr('src', finalUrl);
+
+});

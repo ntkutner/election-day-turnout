@@ -1,0 +1,248 @@
+
+$(document).ready(function (){
+  
+  /*$(function() {
+    var scrollLink = $("a.sidenavtitle");
+    // Smooth scrolling
+    scrollLink.click(function(e) {
+       e.preventDefault();
+       $("body,html").animate(
+       {
+          scrollTop: $(this.hash).offset().top - 203
+       },
+          500
+       );
+    });
+ });*/
+ if ($('.AlertContent').is(':empty')) {
+  $('#Alert').hide(); 
+  $('.nav-notification').hide();
+}
+  $(function() {
+
+    var chzh = "中文"
+    $(".language-object span:nth-child(4)").attr("title", chzh);
+    $(".language-object span:nth-child(4) > a > p").html(chzh);
+    $(".language-object span:nth-child(4) > p").html(chzh);
+    $(".language-object span").show();
+
+    setTimeout(function() {
+      if (window.location.href.indexOf('/es-us/')!=-1) {
+
+        $("input[name *=email_address]").attr("placeholder", "Correo Electrónico");
+        $("input[name *=custom_field_string_codigo_postal]").attr("placeholder", "Nombre Completo");
+        $("input[name *=custom_field_string_nombre]").attr("placeholder", "Código postal");
+        $(".ctct-form-button").text("¡Inscríbete!");
+        $(".ctct-inline-form").show();
+
+
+      }else if (window.location.href.indexOf('/vi-vn/')!=-1) {
+
+        $("input[name *=email_address]").attr("placeholder", "Email");
+        $("input[name *=custom_field_string_h_ten]").attr("placeholder", "Họ Tên");
+        $("input[name *=custom_field_string_ma_s_vung_b_u_di_n]").attr("placeholder", "Mã Số Vùng Bưu Điện");
+        $(".ctct-form-button").text("Ghi Danh!");
+        $(".ctct-inline-form").show();
+  
+  
+      }else if (window.location.href.indexOf('/zh-cn/')!=-1) {
+
+        $("input[name *=email_address]").attr("placeholder", "電郵地址");
+        $("input[name *=custom_field_string_name]").attr("placeholder", "姓名");
+        $("input[name *=custom_field_string_post_code]").attr("placeholder", "郵遞區號");
+        $(".ctct-form-button").text("訂閲！");
+        $(".ctct-inline-form").show();
+  
+  
+      }else  {
+
+        $("input[name *=email_address]").attr("placeholder", "Email");
+        $("input[name *=custom_field_string_full_name]").attr("placeholder", "Full Name");
+        $("input[name *=custom_field_string_postal_code]").attr("placeholder", "Postal Code");
+        //$(".ctct-form-button").text("placeholder", "Sign up!");
+        $(".ctct-inline-form").show();
+  
+      }
+
+
+    }, 1000);
+  });
+
+  if ($(".sidenavparent a[href*='#']") ) {
+    //$(".sidenavparent a[href*='#']").prepend("<i class='fas fa-angle-down sidebar-icon-hover'></i>");
+    $(function() {
+      var scrollLink = $(".sidenavparent a[href*='#']");
+      // Smooth scrolling
+      scrollLink.click(function(e) {
+         e.preventDefault();
+         $("body,html").animate(
+         {
+            scrollTop: $(this.hash).offset().top - 203
+         },
+            500
+         );
+      });
+    });
+  }
+
+/*    
+  if ( $('.sidenavparent a').not('[href*="#"]') ) {
+    $('.sidenavparent a').not('[href*="#"]').prepend("<i class='fas fa-link sidebar-icon-hover'></i>");
+  }
+*/
+    $(".language-object .Language").each(function() {
+        var newLang = $(this).attr("title");
+        newLang = newLang.replace(/ \([\s\S]*?\)/g, '');
+        $('a', this).prepend('<p style="display:inline-block;">' + newLang  + '</p> <span> |');
+    });
+    
+    $(".language-object .selected").each(function() {
+        var newLang2 = $(this).attr("title");
+        newLang2 = newLang2.replace(/ \([\s\S]*?\)/g, '');
+        $(this).append('<p style="display:inline-block;">' + newLang2  + '</p> |');
+    });
+
+    // Trent added quickfix for reveal for search section 
+
+        $('.nav-search').on('click',function(){
+          if($(this).attr('data-click-state') == 1) {
+              $(this).attr('data-click-state', 0);
+              $("#search").fadeIn();
+              $(".menuContainer > span.navCover").fadeIn();
+              $(this).removeClass("fa-search").delay(400);
+              $(this).addClass("fa-times").delay(400);
+              //$(".navbar-fixed .dnnLANGUAGEWrap").css("margin-right", "335px");
+            }
+          else {
+            $(this).attr('data-click-state', 1);
+            $("#search").fadeOut();
+            $(".menuContainer > span.navCover").fadeOut();
+            $(this).addClass("fa-search").delay(400);
+            $(this).removeClass("fa-times").delay(400);
+            //$(".navbar-fixed .dnnLANGUAGEWrap").css("margin-right", "100px");
+          }
+        });
+        $(function() {
+          if($("#SubTwo").hasClass("LRContent")){
+            console.log( "has class LRContent");
+            $('body').css('overflow', 'hidden');
+    
+          }
+          else {
+          console.log( "has no class LRContent");
+          $(window).scroll(function () {
+              //if you hard code, then use console
+              //.log to determine when you want the 
+              //nav bar to stick.  
+              //console.log($(window).scrollTop())
+            if ($(window).scrollTop() > 165) {
+              $('#nav_bar').addClass('navbar-fixed');
+              $('.breadcrumb-wrap').addClass('breadcrumb-fixed');
+            }
+            if ($(window).scrollTop() < 164) {
+              $('#nav_bar').removeClass('navbar-fixed');
+              $('.breadcrumb-wrap').removeClass('breadcrumb-fixed');
+            }
+        });
+          $(window).scroll(function(e){ 
+            var $el = $('#SubOne'); 
+            var isPositionFixed = ($el.css('position') == 'fixed');
+            if ($(this).scrollTop() > 200 && !isPositionFixed){ 
+              $el.addClass("sub-fixed"); 
+              $(".Sub-Page-Title h1").hide();
+            }
+            if ($(this).scrollTop() < 200 && isPositionFixed){
+              $el.removeClass("sub-fixed");
+              $(".Sub-Page-Title h1").fadeIn();
+            } 
+          });
+        }
+      });
+
+
+/*
+    $(function() {
+        $('.language-object span a img').remove();
+        $('.language-object span a img').remove();
+        $('.language-object span:last-child a').append("Click here for slow connection");
+        $('.language-object span:last-child a').attr('title', 'Click here for slow connection');
+    });
+  */
+   $( ".momenu" ).click(function() {
+      //$( '.Float-Menu, .MoMenuClose').css( "display", "block" );
+      //$( '.Float-Menu, .MoMenuClose').css( "opacity", "1" );
+      $( '.Float-Menu').show();
+   });
+   $( ".MoMenuClose" ).click(function() {
+      //$( '.Float-Menu, .MoMenuClose').css( "display", "none" );
+      //$( '.Float-Menu, .MoMenuClose').css( "opacity", "0" );
+      $( '.Float-Menu').hide();
+
+   });
+    
+    $(".dnnFormItem input[id *= _Login_Login_DNN_txtUsername]").attr("placeholder","User Name");
+    $(".dnnFormItem input[id *=_Login_Login_DNN_txtPassword]").attr("placeholder","Password");
+
+    $('.momenutogsub').click(function(){
+        $(this).parent().next().slideToggle("fast");
+        if ($(this).hasClass('momenuddarrow') ){
+            $(this).addClass('momenuuparrow').removeClass('momenuddarrow');
+        } else {
+            $(this).addClass('momenuddarrow').removeClass('momenuuparrow');
+        }
+    });
+
+    $(".small-fselect").click(function () {
+      $(this).next().slideToggle(function () {
+          fdropdisplay = $(this).css("display");
+          if (fdropdisplay == "block") {
+              $(this).prev().addClass('selectOpen');
+              $(this).prev().find('.arrows').addClass('small-up-arrow').removeClass('small-down-arrow');
+          } else {
+              $(this).prev().find('.arrows').addClass('small-down-arrow').removeClass('small-up-arrow');
+              $(this).prev().removeClass('selectOpen');
+          }
+      });
+  });
+
+  $(".faq-fselect").click(function () {
+    $(this).next().slideToggle(function () {
+        fdropdisplay = $(this).css("display");
+        if (fdropdisplay == "block") {
+            $(this).prev().addClass('selectOpen');
+            $(this).prev().find('.arrows').addClass('faq-up-arrow').removeClass('faq-down-arrow');
+        } else {
+            $(this).prev().find('.arrows').addClass('faq-down-arrow').removeClass('faq-up-arrow');
+            $(this).prev().removeClass('selectOpen');
+        }
+    });
+});
+$(".molangmenu").click(function () {
+  $('.language-object').toggle();
+});
+
+  $('.DNNContainer_FilterEventType-Title').on('click', function() {
+    $('.DNNContainer_FilterEventType').toggle();
+  });
+
+});
+
+  /* $("ul.dynamic-gen-tabs-cont a").each(function(i) {
+      var anchor = $(this);
+      anchor.click(function() {
+          $(".tabbed-section").each(function(i) {
+              if ((anchor.attr("data-value") == $(this).attr("data-value"))) {
+                  $(this).toggleClass("content-active");
+                  anchor.toggleClass("tab-active");
+                  console.log("MATCHES");
+              } 
+              else if ((anchor.attr("data-value") != $(this).attr("data-value"))) {
+                  $(this).removeClass("content-active");
+                  anchor.removeClass("tab-active");
+                  console.log("NO MATCH");
+              }
+          });
+      });
+  }); */
+
+// BACKUP CODE
