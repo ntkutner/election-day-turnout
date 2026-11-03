@@ -1,0 +1,41 @@
+{
+ "agol_harris_app": {
+  "url": "https://www.arcgis.com/sharing/rest/content/items/bf889408111e4213b5bb8f764f52be87/data?f=json",
+  "status": 200,
+  "final_url": "https://www.arcgis.com/sharing/rest/content/items/bf889408111e4213b5bb8f764f52be87/data?f=json",
+  "ctype": "application/json;charset=utf-8",
+  "bytes": 6588
+ },
+ "tlc_vtds": {
+  "url": "https://data.capitol.texas.gov/dataset/vtds",
+  "status": 200,
+  "final_url": "https://data.capitol.texas.gov/dataset/vtds",
+  "ctype": "text/html; charset=utf-8",
+  "bytes": 38574,
+  "data_links": [
+   "https://data.capitol.texas.gov/dataset/4d8298d0-d176-4c19-b174-42837027b73e/resource/1677dc4b-81a1-435f-95a6-38b3348b5f33/download/red605_county_vtd_22g_population.xls",
+   "https://data.capitol.texas.gov/dataset/4d8298d0-d176-4c19-b174-42837027b73e/resource/3b79a732-f8a1-4185-9bc0-44336715e9a2/download/red605_county_vtd_24p_population.xls",
+   "https://data.capitol.texas.gov/dataset/4d8298d0-d176-4c19-b174-42837027b73e/resource/4ce2de84-5d7a-469d-a657-115b81ad8da2/download/red605_county_vtd_population.xls",
+   "https://data.capitol.texas.gov/dataset/4d8298d0-d176-4c19-b174-42837027b73e/resource/8a77ec57-1939-4cb6-9759-1c321cb3afe4/download/red605_county_vtd_population.pdf",
+   "https://data.capitol.texas.gov/dataset/4d8298d0-d176-4c19-b174-42837027b73e/resource/996412c6-00be-4bac-81b3-93092f6d999c/download/red605_county_vtd_24p_population.pdf",
+   "https://data.capitol.texas.gov/dataset/4d8298d0-d176-4c19-b174-42837027b73e/resource/9c047863-8145-4fd2-ac62-2315be5fa748/download/red605_county_vtd_22p_population.pdf",
+   "https://data.capitol.texas.gov/dataset/4d8298d0-d176-4c19-b174-42837027b73e/resource/b28e6191-396c-4bbc-842a-2312deae886a/download/red605_county_vtd_22p_population.xls",
+   "https://data.capitol.texas.gov/dataset/4d8298d0-d176-4c19-b174-42837027b73e/resource/e1739e0a-6518-4761-8dfe-4cd433f263e5/download/red605_county_vtd_22g_population.pdf",
+   "https://data.capitol.texas.gov/fanstatic/base/:version:2026-05-06T08:01:36.07/:bundle:plugins/jquery.inherit.min.js;plugins/jquery.proxy-all.min.js;plugins/jquery.url-helpers.min.js;plugins/jquery.date-helpers.min.js;plugins/jquery.slug.min.js;plugins/jquery.slug-preview.min.js;plugins/jquery.truncator.min.js;plugins/jquery.masonry.min.js;plugins/jquery.form-warning.min.js;plugins/jquery.images-loaded.min.js;sandbox.min.js;module.min.js;pubsub.min.js;client.min.js;notify.min.js;i18n.min.js;main.min.js;modules/select-switch.min.js;modules/slug-preview.min.js;modules/basic-form.min.js;modules/confirm-action.min.js;modules/api-info.min.js;modules/autocomplete.min.js;modules/custom-fields.min.js;modules/data-viewer.min.js;modules/table-selectable-rows.min.js;modules/resource-form.min.js;modules/resource-upload-field.min.js;modules/resource-reorder.min.js;modules/resource-view-reorder.min.js;modules/follow.min.js;modules/activity-stream.min.js;modules/dashboard.min.js;modules/resource-view-embed.min.js;view-filters.min.js;modules/resource-view-filters-form.min.js;modules/resource-view-filters.min.js;modules/table-toggle-more.min.js;modules/dataset-visibility.min.js;modules/media-grid.min.js;modules/image-upload.min.js;modules/followers-counter.min.js",
+   "https://data.capitol.texas.gov/fanstatic/vendor/:version:2026-05-06T08:01:36.10/:bundle:bootstrap/js/bootstrap.min.js;jed.min.js;moment-with-locales.js;select2/select2.min.js",
+   "https://data.capitol.texas.gov/fanstatic/vendor/:version:2026-05-06T08:01:36.10/jquery.min.js"
+  ]
+ },
+ "tlc_elec": {
+  "url": "https://data.capitol.texas.gov/dataset/comprehensive-election-datasets-compressed-format",
+  "status": 200,
+  "final_url": "https://data.capitol.texas.gov/dataset/comprehensive-election-datasets-compressed-format",
+  "ctype": "text/html; charset=utf-8",
+  "bytes": 21491,
+  "data_links": [
+   "https://data.capitol.texas.gov/fanstatic/base/:version:2026-05-06T08:01:36.07/:bundle:plugins/jquery.inherit.min.js;plugins/jquery.proxy-all.min.js;plugins/jquery.url-helpers.min.js;plugins/jquery.date-helpers.min.js;plugins/jquery.slug.min.js;plugins/jquery.slug-preview.min.js;plugins/jquery.truncator.min.js;plugins/jquery.masonry.min.js;plugins/jquery.form-warning.min.js;plugins/jquery.images-loaded.min.js;sandbox.min.js;module.min.js;pubsub.min.js;client.min.js;notify.min.js;i18n.min.js;main.min.js;modules/select-switch.min.js;modules/slug-preview.min.js;modules/basic-form.min.js;modules/confirm-action.min.js;modules/api-info.min.js;modules/autocomplete.min.js;modules/custom-fields.min.js;modules/data-viewer.min.js;modules/table-selectable-rows.min.js;modules/resource-form.min.js;modules/resource-upload-field.min.js;modules/resource-reorder.min.js;modules/resource-view-reorder.min.js;modules/follow.min.js;modules/activity-stream.min.js;modules/dashboard.min.js;modules/resource-view-embed.min.js;view-filters.min.js;modules/resource-view-filters-form.min.js;modules/resource-view-filters.min.js;modules/table-toggle-more.min.js;modules/dataset-visibility.min.js;modules/media-grid.min.js;modules/image-upload.min.js;modules/followers-counter.min.js",
+   "https://data.capitol.texas.gov/fanstatic/vendor/:version:2026-05-06T08:01:36.10/:bundle:bootstrap/js/bootstrap.min.js;jed.min.js;moment-with-locales.js;select2/select2.min.js",
+   "https://data.capitol.texas.gov/fanstatic/vendor/:version:2026-05-06T08:01:36.10/jquery.min.js"
+  ]
+ }
+}
