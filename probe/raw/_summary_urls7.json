@@ -1,0 +1,72 @@
+{
+ "dal_fs": {
+  "url": "https://services3.arcgis.com/zqe2kwz79KUqUvxC/arcgis/rest/services/Vote_Center_Finder_view/FeatureServer?f=json",
+  "status": 200,
+  "final_url": "https://services3.arcgis.com/zqe2kwz79KUqUvxC/arcgis/rest/services/Vote_Center_Finder_view/FeatureServer?f=json",
+  "ctype": "application/json; charset=utf-8",
+  "bytes": 2922
+ },
+ "dal_l4": {
+  "url": "https://services3.arcgis.com/zqe2kwz79KUqUvxC/arcgis/rest/services/Vote_Center_Finder_view/FeatureServer/4?f=json",
+  "status": 200,
+  "final_url": "https://services3.arcgis.com/zqe2kwz79KUqUvxC/arcgis/rest/services/Vote_Center_Finder_view/FeatureServer/4?f=json",
+  "ctype": "application/json; charset=utf-8",
+  "bytes": 11736
+ },
+ "dal_q4": {
+  "url": "https://services3.arcgis.com/zqe2kwz79KUqUvxC/arcgis/rest/services/Vote_Center_Finder_view/FeatureServer/4/query?where=1%3D1&outFields=*&resultRecordCount=3&f=json",
+  "status": 200,
+  "final_url": "https://services3.arcgis.com/zqe2kwz79KUqUvxC/arcgis/rest/services/Vote_Center_Finder_view/FeatureServer/4/query?where=1%3D1&outFields=*&resultRecordCount=3&f=json",
+  "ctype": "application/json; charset=utf-8",
+  "bytes": 4186
+ },
+ "dal_q0": {
+  "url": "https://services3.arcgis.com/zqe2kwz79KUqUvxC/arcgis/rest/services/Vote_Center_Finder_view/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=2&f=json",
+  "status": 200,
+  "final_url": "https://services3.arcgis.com/zqe2kwz79KUqUvxC/arcgis/rest/services/Vote_Center_Finder_view/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=2&f=json",
+  "ctype": "application/json; charset=utf-8",
+  "bytes": 72
+ },
+ "dal_q1": {
+  "url": "https://services3.arcgis.com/zqe2kwz79KUqUvxC/arcgis/rest/services/Vote_Center_Finder_view/FeatureServer/1/query?where=1%3D1&outFields=*&resultRecordCount=2&f=json",
+  "status": 200,
+  "final_url": "https://services3.arcgis.com/zqe2kwz79KUqUvxC/arcgis/rest/services/Vote_Center_Finder_view/FeatureServer/1/query?where=1%3D1&outFields=*&resultRecordCount=2&f=json",
+  "ctype": "application/json; charset=utf-8",
+  "bytes": 72
+ },
+ "dal_q2": {
+  "url": "https://services3.arcgis.com/zqe2kwz79KUqUvxC/arcgis/rest/services/Vote_Center_Finder_view/FeatureServer/2/query?where=1%3D1&outFields=*&resultRecordCount=2&f=json",
+  "status": 200,
+  "final_url": "https://services3.arcgis.com/zqe2kwz79KUqUvxC/arcgis/rest/services/Vote_Center_Finder_view/FeatureServer/2/query?where=1%3D1&outFields=*&resultRecordCount=2&f=json",
+  "ctype": "application/json; charset=utf-8",
+  "bytes": 72
+ },
+ "dal_q3": {
+  "url": "https://services3.arcgis.com/zqe2kwz79KUqUvxC/arcgis/rest/services/Vote_Center_Finder_view/FeatureServer/3/query?where=1%3D1&outFields=*&resultRecordCount=2&f=json",
+  "status": 200,
+  "final_url": "https://services3.arcgis.com/zqe2kwz79KUqUvxC/arcgis/rest/services/Vote_Center_Finder_view/FeatureServer/3/query?where=1%3D1&outFields=*&resultRecordCount=2&f=json",
+  "ctype": "application/json; charset=utf-8",
+  "bytes": 72
+ },
+ "dal_q5": {
+  "url": "https://services3.arcgis.com/zqe2kwz79KUqUvxC/arcgis/rest/services/Vote_Center_Finder_view/FeatureServer/5/query?where=1%3D1&outFields=*&resultRecordCount=2&f=json",
+  "status": 200,
+  "final_url": "https://services3.arcgis.com/zqe2kwz79KUqUvxC/arcgis/rest/services/Vote_Center_Finder_view/FeatureServer/5/query?where=1%3D1&outFields=*&resultRecordCount=2&f=json",
+  "ctype": "application/json; charset=utf-8",
+  "bytes": 72
+ },
+ "dal_wm1": {
+  "url": "https://www.arcgis.com/sharing/rest/content/items/3b9de5125b4644ef988ac3b82357ef89/data?f=json",
+  "status": 200,
+  "final_url": "https://www.arcgis.com/sharing/rest/content/items/3b9de5125b4644ef988ac3b82357ef89/data?f=json",
+  "ctype": "application/json;charset=utf-8",
+  "bytes": 11959
+ },
+ "dal_wm2": {
+  "url": "https://www.arcgis.com/sharing/rest/content/items/b9b3f77133594684975f324417f4a14c/data?f=json",
+  "status": 200,
+  "final_url": "https://www.arcgis.com/sharing/rest/content/items/b9b3f77133594684975f324417f4a14c/data?f=json",
+  "ctype": "application/json;charset=utf-8",
+  "bytes": 7445
+ }
+}
