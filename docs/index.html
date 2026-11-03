@@ -63,6 +63,13 @@ tbody tr:hover{background:var(--surface-2)}
 .filters{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 input[type=search]{font:inherit;padding:5px 9px;border:1px solid var(--border);border-radius:6px;background:var(--surface-1);color:var(--text-primary);width:180px}
 .tip{position:fixed;pointer-events:none;background:var(--text-primary);color:var(--surface-1);font-size:12px;padding:5px 8px;border-radius:6px;opacity:0;transition:opacity .1s;z-index:10;white-space:nowrap}
+.statebar{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:0 0 14px}
+.chip{font:inherit;font-size:13px;padding:5px 11px;border-radius:999px;border:1px solid var(--border);background:var(--surface-1);color:var(--text-primary);cursor:pointer}
+.chip:hover{background:var(--surface-2)}
+.chip.on{background:var(--text-primary);color:var(--surface-1);border-color:var(--text-primary)}
+.chip .live{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--good);margin-right:5px;vertical-align:1px}
+select.stsel{font:inherit;font-size:13px;padding:5px 9px;border-radius:999px;border:1px solid var(--border);background:var(--surface-1);color:var(--text-primary)}
+.hidden{display:none!important}
 footer{font-size:12px;color:var(--text-muted);margin-top:20px}
 footer a{color:inherit}
 .empty{color:var(--text-muted);font-size:13px;padding:6px 0}
@@ -78,41 +85,42 @@ footer a{color:inherit}
     <div class="fresh"><span class="dot" id="freshdot"></span><span id="freshtxt">Loading…</span></div>
   </header>
 
+  <div class="statebar" id="statebar"></div>
   <div class="kpis" id="kpis"></div>
 
-  <section>
+  <section id="sec-live">
     <div class="secthead"><div><h2>Live: Election Day</h2>
       <div class="sub">Jurisdictions that publish election-day counts during the day. Most other places post nothing until polls close.</div></div></div>
     <div class="cards" id="live"></div>
   </section>
 
-  <section>
+  <section id="sec-fl">
     <div class="secthead"><div><h2>Florida: live by county and party</h2>
       <div class="sub">County Supervisors of Elections via VR Systems Turnout Quick View, updated through the day. Party = registration, not vote choice. "D − R" is registered Democrats minus registered Republicans among ballots cast.</div></div>
       <div class="filters"><input type="search" id="flfilter" placeholder="Filter counties…"></div></div>
     <div class="tablewrap" id="fl"></div>
   </section>
 
-  <section>
-    <div class="secthead"><div><h2>Texas: large counties</h2>
+  <section id="sec-tx">
+    <div class="secthead"><div><h2 id="tx-title">Texas: large counties</h2>
       <div class="sub">Texas SOS. Early vote is final (through Oct 30); counties report Election Day in-person votes to the SOS, mostly after polls close.</div></div></div>
     <div class="tablewrap" id="tx"></div>
   </section>
 
-  <section>
+  <section id="sec-states">
     <div class="secthead"><div><h2>Early vote by state</h2>
       <div class="sub">UF Election Lab. Early in-person votes + returned mail ballots, compared with each state's total 2022 midterm turnout. Party = registration, not vote choice.</div></div>
       <div class="filters"><input type="search" id="stfilter" placeholder="Filter states…"></div></div>
     <div class="tablewrap" id="states"></div>
   </section>
 
-  <section>
+  <section id="sec-tu">
     <div class="secthead"><div><h2>House toss-up districts: early vote</h2>
       <div class="sub">UF Election Lab's toss-up list. Early-vote counts only where the state reports by congressional district.</div></div></div>
     <div class="tablewrap" id="tossups"></div>
   </section>
 
-  <section>
+  <section id="sec-other">
     <div class="secthead"><div><h2>Other county reports</h2>
       <div class="sub">Early-vote totals and results-site ballot counts. Florida results sites fill in after 7pm ET.</div></div></div>
     <div class="tablewrap" id="other"></div>
@@ -188,7 +196,9 @@ function sparkline(points){
     <rect width="${W}" height="${H}" fill="transparent"/></svg>`;
 }
 
-let T = {};
+let T = {}, LAST = null;
+const curST = () => decodeURIComponent(location.hash.slice(1)).toUpperCase();
+window.addEventListener("hashchange", ()=>{ if (LAST) render(...LAST); window.scrollTo({top:0}); });
 async function load(){
   const bust = "?t="+Date.now();
   const latest = await fetch("data/latest.json"+bust).then(r=>r.json());
@@ -198,6 +208,9 @@ async function load(){
 }
 
 function render(L, hist){
+  LAST = [L, hist];
+  const ST = curST();
+  const inST = o => !ST || o.state === ST;
   const S = L.sources, all = Object.values(S);
   // freshness
   const ageMin = (Date.now()-new Date(L.generated_at))/60000;
@@ -208,6 +221,18 @@ function render(L, hist){
 
   const O = id => (S[id]?.observations)||[];
   const uf = O("uf_states");
+  // ---- state picker
+  const liveStates = [...new Set(all.filter(s=>s.kind==="eday").flatMap(s=>s.observations.filter(o=>o.metric==="eday_checkins").map(o=>o.state)))].filter(Boolean).sort();
+  const stNames = Object.fromEntries(uf.map(o=>[o.state, o.name]));
+  const extra = ["FL","TX","NY","NV","OH"].filter(x=>!liveStates.includes(x));
+  const chips = [["","All states"], ...liveStates.map(x=>[x, stNames[x]||x]), ...extra.map(x=>[x, stNames[x]||x])];
+  const others = Object.keys(stNames).filter(x=>!chips.some(c=>c[0]===x)).sort((a,b)=>stNames[a].localeCompare(stNames[b]));
+  document.getElementById("statebar").innerHTML = chips.map(([k,n])=>`<button class="chip ${k===ST?"on":""}" data-st="${k}">${liveStates.includes(k)?'<span class="live" title="Live Election Day data"></span>':""}${esc(n)}</button>`).join("")
+    + `<select class="stsel" id="stsel"><option value="">More states…</option>${others.map(x=>`<option value="${x}" ${x===ST?"selected":""}>${esc(stNames[x])}</option>`).join("")}</select>`;
+  document.querySelectorAll("#statebar .chip").forEach(b=>b.onclick=()=>{ location.hash = b.dataset.st ? b.dataset.st : ""; if(!b.dataset.st) history.replaceState(null,"",location.pathname); if(!b.dataset.st) render(...LAST); });
+  document.getElementById("stsel").onchange = e=>{ if(e.target.value) location.hash = e.target.value; };
+  const show = (id, on) => document.getElementById(id).classList.toggle("hidden", !on);
+
   const natEarly = uf.reduce((a,o)=>a+(o.value||0),0), nat22 = uf.reduce((a,o)=>a+(o.turnout_2022||0),0);
   const statesToday = uf.filter(o=>o.updated_today).length;
   const ufAsOf = uf.map(o=>o.as_of).filter(Boolean).sort((a,b)=>new Date(b)-new Date(a))[0];
@@ -215,16 +240,25 @@ function render(L, hist){
   const txEd = O("tx_eday").find(o=>o.jurisdiction.startsWith("Texas"));
   const flAgg = O("fl_tqv").find(o=>o.jurisdiction.startsWith("Florida"));
   const flMargin = flAgg ? (()=>{ const d=flAgg.party?.DEM?.ElectionDay||0, r=flAgg.party?.REP?.ElectionDay||0, t=flAgg.eday||1; const m=100*(d-r)/t; return (m>=0?"D +":"R +")+Math.abs(m).toFixed(1); })() : "";
-  document.getElementById("kpis").innerHTML = [
+  const u = ST ? uf.find(o=>o.state===ST) : null;
+  const stLive = ST ? live.filter(o=>o.state===ST) : [];
+  const stAgg = ST==="FL" ? flAgg : ST==="TX" ? (O("tx_counties").find(o=>o.jurisdiction.startsWith("Texas")) || txEd) : stLive.sort((a,b)=>(b.value||0)-(a.value||0))[0];
+  const kpiList = ST ? [
+    {label:`${stNames[ST]||ST}: early votes`, val:fmt(u?.value), note:u?`${fmt(u.inperson)} in person · ${fmt(u.mail_returned)} mail · as of ${u.as_of}`:"UF Election Lab has no row for this state"},
+    {label:"Early vote as % of 2022 total", val:u?pct(u.value,u.turnout_2022):"–", note:u?`2022 total turnout: ${fmt(u.turnout_2022)}`:""},
+    {label:"Election Day votes so far", val:stAgg?fmt(stAgg.value):"–", note:stAgg?`${esc(stAgg.jurisdiction)}${stAgg.as_of?" · as of "+esc(asOf(stAgg.as_of)):""}`:"No public intraday Election Day count found for this state"},
+    {label:"Party registration of early voters", val:u&&u.voted_dem?`D ${pct(u.voted_dem,(u.voted_dem||0)+(u.voted_rep||0)+(u.voted_none||0),0)} · R ${pct(u.voted_rep,(u.voted_dem||0)+(u.voted_rep||0)+(u.voted_none||0),0)}`:"–", note:u&&u.voted_dem?"Registration, not vote choice":"State doesn't report party registration"},
+  ] : null;
+  document.getElementById("kpis").innerHTML = (kpiList || [
     {label:"Early votes nationally", val:fmt(natEarly), note:`UF Election Lab, ${uf.length} states · latest ${ufAsOf||"–"}`},
     {label:"Early vote as % of 2022 total", val:pct(natEarly,nat22), note:`2022 midterm total in same states: ${fmt(nat22)}`},
     {label:"Florida Election Day votes", val:fmt(flAgg?.eday), note:flAgg?`${flAgg.counties} counties · ${pct(flAgg.total,flAgg.registered)} total turnout so far · ED reg. ${flMargin}`:"waiting for data"},
     {label:"Texas Election Day votes reported", val:fmt(txEd?.value), note:txEd?`${txEd.counties_reporting} of 254 counties reporting to SOS`:"waiting for data"},
-  ].map(k=>`<div class="kpi"><div class="label">${k.label}</div><div class="val">${k.val}</div><div class="note">${k.note}</div></div>`).join("");
+  ]).map(k=>`<div class="kpi"><div class="label">${k.label}</div><div class="val">${k.val}</div><div class="note">${k.note}</div></div>`).join("");
 
   // live cards
   const series = key => hist.filter(h=>h.key===key).map(h=>({t:h.t,value:h.value}));
-  const liveCards = live.filter(o=>!(o.state==="TX" && !o.jurisdiction.startsWith("Texas")) && !(o.source==="fl_tqv" && !o.jurisdiction.startsWith("Florida"))).map(o=>{
+  const liveCards = live.filter(inST).filter(o=>!(o.state==="TX" && !o.jurisdiction.startsWith("Texas")) && !(o.source==="fl_tqv" && !o.jurisdiction.startsWith("Florida"))).map(o=>{
     const key = `${o.source}|${o.jurisdiction}|${o.metric}`;
     const total = o.total!=null ? {...o, value:o.total} : O(o.source).find(x=>x.metric==="total_voted" && x.jurisdiction===o.jurisdiction);
     let comp = "";
@@ -244,7 +278,7 @@ function render(L, hist){
       <div class="meta" style="margin-top:4px"><a href="${esc(o.src.url)}" target="_blank" rel="noopener">${esc(o.src.name)}</a> · ${o.src.status==="ok"?"fetched "+timeAgo(o.src.fetched_at):"<span class='status-stale'>stale</span>"}</div></div>`;
   });
   // NYC: show Election Day placeholder card if BOE hasn't posted ED yet
-  if (!live.some(o=>o.state==="NY") && O("ny_nyc").length){
+  if ((!ST||ST==="NY") && !live.some(o=>o.state==="NY") && O("ny_nyc").length){
     const ev = O("ny_nyc").find(o=>o.metric==="early_inperson");
     liveCards.push(`<div class="card"><div class="jur">New York City <span class="pill">NY</span></div><div class="big muted">Not posted yet</div>
       <div class="meta">BOE posts Election Day check-ins periodically; the card fills in when they appear on vote.nyc.</div>
@@ -252,9 +286,10 @@ function render(L, hist){
       <div class="meta">${ev?.boroughs?Object.entries(ev.boroughs).map(([b,v])=>`${b} ${fmt(v)}`).join(" · "):""}</div>
       <div class="meta" style="margin-top:4px"><a href="https://vote.nyc/page/early-voting-check-ins" target="_blank" rel="noopener">NYC BOE</a></div></div>`);
   }
-  document.getElementById("live").innerHTML = liveCards.join("") || `<div class="empty">No live sources yet.</div>`;
+  document.getElementById("live").innerHTML = liveCards.join("") || `<div class="empty">${ST?"No public intraday Election Day count found for "+esc(stNames[ST]||ST)+". Results-site totals appear after polls close.":"No live sources yet."}</div>`;
   document.querySelectorAll("#live [data-tip]").forEach(n=>{ n.onmousemove=e=>showTip(e,n.dataset.tip); n.onmouseleave=hideTip; });
 
+  show("sec-fl", !ST || ST==="FL"); show("sec-tx", !ST || ST==="TX");
   // Florida table
   const flRows = O("fl_tqv").filter(o=>!o.jurisdiction.startsWith("Florida")).map(o=>{
     const P=o.party||{}, g=(p,m)=>P[p]?.[m]||0, sumP=(m)=>["DEM","REP","NPA","OTH"].reduce((a,p)=>a+g(p,m),0);
@@ -305,14 +340,15 @@ function render(L, hist){
     {key:"asof",label:"Updated",render:r=>`${esc(r.asof||"–")}${r.today?' <span class="pill">today</span>':""}`},
   ];
   const fstr = (document.getElementById("stfilter").value||"").toLowerCase();
-  const stFiltered = stRows.filter(r=>!fstr || (r.st+" "+r.ab).toLowerCase().includes(fstr));
+  const stFiltered = stRows.filter(r=>(!ST || r.ab===ST) && (!fstr || (r.st+" "+r.ab).toLowerCase().includes(fstr)));
   T.st ? T.st.set(stFiltered) : T.st = table(document.getElementById("states"), stCols, stFiltered, {key:"early"});
-  document.getElementById("stfilter").oninput = ()=>{ const f=document.getElementById("stfilter").value.toLowerCase(); T.st.set(stRows.filter(r=>(r.st+" "+r.ab).toLowerCase().includes(f))); };
+  document.getElementById("stfilter").oninput = ()=>{ const f=document.getElementById("stfilter").value.toLowerCase(); T.st.set(stRows.filter(r=>(!curST() || r.ab===curST()) && (r.st+" "+r.ab).toLowerCase().includes(f))); };
 
   // Toss-ups
-  const tu = O("uf_tossups").map(o=>{ const party=(o.voted_dem||0)+(o.voted_rep||0)+(o.voted_none||0);
+  const tu = O("uf_tossups").filter(inST).map(o=>{ const party=(o.voted_dem||0)+(o.voted_rep||0)+(o.voted_none||0);
     return {cd:o.jurisdiction, n:o.n_tossup, cook:(o.ratings?.cook||"").replaceAll("|"," "), early:o.value, req:o.mail_requested,
       dem:party?o.voted_dem/party:null, rep:party?o.voted_rep/party:null, margin:party?(o.voted_dem-o.voted_rep)/party:null}; });
+  show("sec-tu", tu.length>0);
   T.tu ? T.tu.set(tu) : T.tu = table(document.getElementById("tossups"), [
     {key:"cd",label:"District"},{key:"n",label:"Outlets rating toss-up",render:r=>fmt(r.n)},{key:"cook",label:"Cook rating"},
     {key:"early",label:"Early votes",render:r=>r.early?fmt(r.early):'<span class="muted">not reported by CD</span>'},
@@ -326,10 +362,12 @@ function render(L, hist){
     if (["uf_states","uf_tossups","tx_early","tx_eday"].includes(s.id)) continue;
     for (const o of s.observations){
       if (s.kind==="eday" && o.metric==="eday_checkins") continue;
+      if (!inST(o)) continue;
       other.push({j:o.jurisdiction, st:o.state, metric:{early_inperson:"Early in-person",total_voted:"Ballots cast (total)",early_total:"Early total"}[o.metric]||o.metric,
         v:o.value, reg:o.registered, asof:o.as_of, src:s});
     }
   }
+  show("sec-other", other.length>0);
   T.ot ? T.ot.set(other) : T.ot = table(document.getElementById("other"), [
     {key:"j",label:"Jurisdiction",render:r=>`${esc(r.j)} <span class="pill">${esc(r.st)}</span>`},{key:"metric",label:"Measure"},
     {key:"v",label:"Count",render:r=>fmt(r.v)},{key:"reg",label:"Registered",render:r=>fmt(r.reg)},
@@ -338,7 +376,7 @@ function render(L, hist){
   ], other);
 
   // sources
-  const srows = all.map(s=>({name:s.name, st:s.state, kind:s.kind, status:s.status, f:s.fetched_at, err:s.error, url:s.url, note:s.note}));
+  const srows = all.filter(s=>!ST || s.state===ST || s.state==="US").map(s=>({name:s.name, st:s.state, kind:s.kind, status:s.status, f:s.fetched_at, err:s.error, url:s.url, note:s.note}));
   T.src ? T.src.set(srows) : T.src = table(document.getElementById("sources"), [
     {key:"name",label:"Source",render:r=>`<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a>${r.note?`<div class="muted" style="white-space:normal;font-size:12px;max-width:520px">${esc(r.note)}</div>`:""}`},
     {key:"st",label:"State"},{key:"kind",label:"Type",render:r=>({eday:"Live Election Day",early:"Early vote",total:"Results site"}[r.kind]||r.kind)},
