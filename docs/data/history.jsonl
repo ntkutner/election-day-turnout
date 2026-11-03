@@ -1,0 +1,6 @@
+{"t": "2026-11-03T15:06:05-05:00", "key": "fl_broward|Broward County|eday_checkins", "source": "fl_broward", "state": "FL", "jurisdiction": "Broward County", "metric": "eday_checkins", "value": 120891, "as_of": null}
+{"t": "2026-11-03T15:06:05-05:00", "key": "fl_broward|Broward County|total_voted", "source": "fl_broward", "state": "FL", "jurisdiction": "Broward County", "metric": "total_voted", "value": 586709, "as_of": null}
+{"t": "2026-11-03T15:06:05-05:00", "key": "ny_nyc|New York City|early_inperson", "source": "ny_nyc", "state": "NY", "jurisdiction": "New York City", "metric": "early_inperson", "value": 690526, "as_of": "November 1, 2026"}
+{"t": "2026-11-03T15:06:05-05:00", "key": "nv_clark_ev|Clark County|early_inperson", "source": "nv_clark_ev", "state": "NV", "jurisdiction": "Clark County", "metric": "early_inperson", "value": 220021, "as_of": null}
+{"t": "2026-11-03T15:06:05-05:00", "key": "fl_enr_miamidade|Miami-Dade County|total_voted", "source": "fl_enr_miamidade", "state": "FL", "jurisdiction": "Miami-Dade County", "metric": "total_voted", "value": 0, "as_of": "10/20/2026 3:08:12 pm"}
+{"t": "2026-11-03T15:06:05-05:00", "key": "fl_enr_duval|Duval County|total_voted", "source": "fl_enr_duval", "state": "FL", "jurisdiction": "Duval County", "metric": "total_voted", "value": 0, "as_of": "11/03/2026 9:56:11 am"}
