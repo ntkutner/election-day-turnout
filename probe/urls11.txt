@@ -1,2 +1,0 @@
-harris_viz | https://dnnapi.com/content/assets/ef267784-f6c5-4710-a5a7-85cf13d72556/visualizers/02ef66b5-21c4-4335-831d-a78baa035887?cdv=2185
-harris_func | https://www.harrisvotes.com/Portals/harrisvotes/skins/ead-harrisvotes/assets/js/func.js?cdv=2185
