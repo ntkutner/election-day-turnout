@@ -1,0 +1,3 @@
+agol_harris_app | https://www.arcgis.com/sharing/rest/content/items/bf889408111e4213b5bb8f764f52be87/data?f=json
+tlc_vtds | https://data.capitol.texas.gov/dataset/vtds
+tlc_elec | https://data.capitol.texas.gov/dataset/comprehensive-election-datasets-compressed-format
