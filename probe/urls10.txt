@@ -1,5 +1,0 @@
-tarrant_mapjs | https://gisit.tarrantcounty.com/tcvotingwaittime/js/map.js?version=12341234
-tarrant_sitejs | https://gisit.tarrantcounty.com/tcvotingwaittime/js/site.js
-tarrant_sharedjs | https://gisit.tarrantcounty.com/tcvotingwaittime/js/shared.js
-bexar_cfg | https://maps.bexar.org/ElectionWaitTimes/config.json
-tarrant_ed_pdf2 | https://www.tarrantcountytx.gov/content/dam/main/elections/2026/1126/reports/Election_Day_Voting_Totals.pdf
