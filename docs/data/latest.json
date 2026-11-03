@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-03T15:30:30-05:00",
+ "generated_at": "2026-11-03T15:33:09-05:00",
  "sources": {
   "uf_states": {
    "id": "uf_states",
@@ -9,7 +9,7 @@
    "url": "https://election.lab.ufl.edu/early-vote/2026-early-voting/",
    "note": "Early in-person + returned mail ballots compiled by Dr. Michael McDonald, UF Election Lab (non-commercial use, attribution required). Party = party registration, not vote choice.",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:30:30-05:00",
+   "fetched_at": "2026-11-03T15:33:09-05:00",
    "observations": [
     {
      "jurisdiction": "AK",
@@ -904,7 +904,7 @@
    "url": "https://election.lab.ufl.edu/early-vote/2026-early-voting/",
    "note": "Early vote in House toss-up districts, from states that report early vote by congressional district. Ratings as compiled by UF Election Lab.",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:30:30-05:00",
+   "fetched_at": "2026-11-03T15:33:09-05:00",
    "observations": [
     {
      "jurisdiction": "AL-02",
@@ -1753,7 +1753,7 @@
    "url": "https://goelect.txelections.civixapps.com/ivis-evr-ui/evr",
    "note": "Cumulative in-person + mail early votes through the last day of early voting (Oct 30).",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:30:30-05:00",
+   "fetched_at": "2026-11-03T15:33:09-05:00",
    "observations": [
     {
      "jurisdiction": "Texas (statewide)",
@@ -1898,7 +1898,7 @@
    "url": "https://goelect.txelections.civixapps.com/ivis-evr-ui/evr",
    "note": "Counties report Election Day turnout to the SOS; often posts after polls close.",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:30:30-05:00",
+   "fetched_at": "2026-11-03T15:33:09-05:00",
    "observations": [
     {
      "jurisdiction": "Texas (statewide)",
@@ -2020,7 +2020,7 @@
    "url": "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/turnout-summary",
    "note": "",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:30:30-05:00",
+   "fetched_at": "2026-11-03T15:33:09-05:00",
    "observations": [
     {
      "jurisdiction": "Broward County",
@@ -2059,7 +2059,7 @@
    "url": "https://vote.nyc/page/early-voting-check-ins",
    "note": "BOE posts cumulative check-ins; Election Day updates appear on this page / @BOENYC when released.",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:30:30-05:00",
+   "fetched_at": "2026-11-03T15:33:09-05:00",
    "observations": [
     {
      "jurisdiction": "New York City",
@@ -2087,7 +2087,7 @@
    "url": "https://elections.clarkcountynv.gov/ElectionResultsTV/evturnout.aspx",
    "note": "",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:30:30-05:00",
+   "fetched_at": "2026-11-03T15:33:09-05:00",
    "observations": [
     {
      "jurisdiction": "Clark County",
@@ -2108,7 +2108,7 @@
    "url": "https://enr.electionsfl.org/DAD/4087/Summary/",
    "note": "Ballots cast by method from the official results site; populates after polls close (7pm ET).",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:30:30-05:00",
+   "fetched_at": "2026-11-03T15:33:09-05:00",
    "observations": [
     {
      "jurisdiction": "Miami-Dade County",
@@ -2133,7 +2133,7 @@
    "url": "https://enr.electionsfl.org/DUV/4076/Summary/",
    "note": "Ballots cast by method from the official results site; populates after polls close (7pm ET).",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:30:30-05:00",
+   "fetched_at": "2026-11-03T15:33:09-05:00",
    "observations": [
     {
      "jurisdiction": "Duval County",
@@ -2158,12 +2158,12 @@
    "url": "https://tqv.vrswebapps.com/?state=FL&county=ORA&election=301",
    "note": "Live ballots cast by method and party registration, published by each county Supervisor of Elections via VR Systems. Party = registration, not vote choice.",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:30:30-05:00",
+   "fetched_at": "2026-11-03T15:33:09-05:00",
    "observations": [
     {
      "jurisdiction": "Florida (66 counties)",
      "metric": "eday_checkins",
-     "value": 1595795,
+     "value": 1596197,
      "as_of": "2026-11-03T20:30:20.3624897+00:00",
      "state": "FL",
      "counties": 66,
@@ -2171,29 +2171,29 @@
       "OTH": {
        "Mail": 45646,
        "EarlyVoting": 80782,
-       "ElectionDay": 49773
+       "ElectionDay": 49784
       },
       "DEM": {
-       "Mail": 756988,
+       "Mail": 757000,
        "EarlyVoting": 1023623,
-       "ElectionDay": 403110
+       "ElectionDay": 403181
       },
       "NPA": {
-       "Mail": 362588,
+       "Mail": 362594,
        "EarlyVoting": 577108,
-       "ElectionDay": 328920
+       "ElectionDay": 328991
       },
       "REP": {
-       "Mail": 660569,
+       "Mail": 660598,
        "EarlyVoting": 1377738,
-       "ElectionDay": 813992
+       "ElectionDay": 814241
       }
      },
      "registered": 12195766,
-     "mail": 1825791,
+     "mail": 1825838,
      "early": 3059251,
-     "eday": 1595795,
-     "total": 6480837,
+     "eday": 1596197,
+     "total": 6481286,
      "source": "fl_tqv"
     },
     {
@@ -3315,35 +3315,35 @@
     {
      "jurisdiction": "Martin County",
      "metric": "eday_checkins",
-     "value": 17627,
-     "as_of": "2026-11-03T20:20:02.9394739+00:00",
+     "value": 17995,
+     "as_of": "2026-11-03T20:30:02.64467+00:00",
      "state": "FL",
      "county_code": "MRT",
      "registered": 117228,
-     "mail": 18534,
+     "mail": 18578,
      "early": 33326,
-     "eday": 17627,
-     "total": 69487,
+     "eday": 17995,
+     "total": 69899,
      "party": {
       "OTH": {
        "Mail": 584,
        "EarlyVoting": 1157,
-       "ElectionDay": 692
+       "ElectionDay": 703
       },
       "DEM": {
-       "Mail": 6614,
+       "Mail": 6624,
        "EarlyVoting": 7000,
-       "ElectionDay": 2730
+       "ElectionDay": 2797
       },
       "NPA": {
-       "Mail": 3018,
+       "Mail": 3024,
        "EarlyVoting": 5222,
-       "ElectionDay": 3134
+       "ElectionDay": 3199
       },
       "REP": {
-       "Mail": 8318,
+       "Mail": 8346,
        "EarlyVoting": 19947,
-       "ElectionDay": 11071
+       "ElectionDay": 11296
       }
      },
      "source": "fl_tqv"
@@ -4215,15 +4215,15 @@
     {
      "jurisdiction": "Dixie County",
      "metric": "eday_checkins",
-     "value": 1655,
-     "as_of": "2026-11-03T20:20:02.9493875+00:00",
+     "value": 1689,
+     "as_of": "2026-11-03T20:30:02.6089486+00:00",
      "state": "FL",
      "county_code": "DIX",
      "registered": 10055,
-     "mail": 1078,
+     "mail": 1081,
      "early": 2049,
-     "eday": 1655,
-     "total": 4782,
+     "eday": 1689,
+     "total": 4819,
      "party": {
       "OTH": {
        "Mail": 19,
@@ -4231,19 +4231,19 @@
        "ElectionDay": 31
       },
       "DEM": {
-       "Mail": 228,
+       "Mail": 230,
        "EarlyVoting": 261,
-       "ElectionDay": 220
+       "ElectionDay": 224
       },
       "NPA": {
        "Mail": 99,
        "EarlyVoting": 188,
-       "ElectionDay": 176
+       "ElectionDay": 182
       },
       "REP": {
-       "Mail": 732,
+       "Mail": 733,
        "EarlyVoting": 1567,
-       "ElectionDay": 1228
+       "ElectionDay": 1252
       }
      },
      "source": "fl_tqv"
@@ -4550,6 +4550,30 @@
      "total": 0,
      "party": {},
      "source": "fl_tqv"
+    }
+   ],
+   "error": null
+  },
+  "tx_dallas": {
+   "id": "tx_dallas",
+   "name": "Dallas County Elections \u2013 live vote center counts",
+   "state": "TX",
+   "kind": "eday",
+   "url": "https://experience.arcgis.com/experience/8204fc2e36cd4fac8729efcedd4fda7f/page/Page?views=Election-Day",
+   "note": "Sum of today's voter counts at every Dallas County vote center (county's Vote Center Finder map).",
+   "status": "ok",
+   "fetched_at": "2026-11-03T15:33:09-05:00",
+   "observations": [
+    {
+     "jurisdiction": "Dallas County",
+     "metric": "eday_checkins",
+     "value": 152862,
+     "as_of": null,
+     "state": "TX",
+     "vote_centers": 528,
+     "centers_reporting": 522,
+     "max_wait": 30,
+     "source": "tx_dallas"
     }
    ],
    "error": null
