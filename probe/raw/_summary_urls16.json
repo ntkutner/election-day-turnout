@@ -1,0 +1,45 @@
+{
+ "fl_prec": {
+  "url": "https://dos.fl.gov/elections/data-statistics/elections-data/precinct-level-election-results/",
+  "status": 200,
+  "final_url": "https://dos.fl.gov/elections/data-statistics/elections-data/precinct-level-election-results/",
+  "ctype": "text/html; charset=utf-8",
+  "bytes": 31349,
+  "data_links": [
+   "https://dos.fl.gov/Scripts/jquery-2.2.4.js",
+   "https://dos.fl.gov/elections/data-statistics/elections-data/absentee-and-early-voting/",
+   "https://dos.fl.gov/elections/data-statistics/elections-data/voter-turnout/",
+   "https://dos.fl.gov/js/helpers.min.js",
+   "https://dos.fl.gov/js/lib/jquery.cycle2/jquery.cycle2.all.min.js",
+   "https://dos.fl.gov/js/lib/modernizr/modernizr.min.js",
+   "https://dos.fl.gov/js/navigation.min.js",
+   "https://dos.fl.gov/media/709209/final-precinct-level-elections-data-definitions-and-field-codes_20250624.pdf",
+   "https://dos.fl.gov/scripts/bootstrap.min.js",
+   "https://dos.fl.gov/scripts/js/dos.min.js",
+   "https://dos.fl.gov/scripts/modernizr-2.8.3.js",
+   "https://platform.twitter.com/widgets.js",
+   "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+  ]
+ },
+ "fl_archive": {
+  "url": "https://dos.fl.gov/elections/data-statistics/elections-data/election-results-archive/",
+  "status": 200,
+  "final_url": "https://dos.fl.gov/elections/data-statistics/elections-data/election-results-archive/",
+  "ctype": "text/html; charset=utf-8",
+  "bytes": 25178,
+  "data_links": [
+   "https://dos.fl.gov/Scripts/jquery-2.2.4.js",
+   "https://dos.fl.gov/elections/data-statistics/elections-data/absentee-and-early-voting/",
+   "https://dos.fl.gov/elections/data-statistics/elections-data/voter-turnout/",
+   "https://dos.fl.gov/js/helpers.min.js",
+   "https://dos.fl.gov/js/lib/jquery.cycle2/jquery.cycle2.all.min.js",
+   "https://dos.fl.gov/js/lib/modernizr/modernizr.min.js",
+   "https://dos.fl.gov/js/navigation.min.js",
+   "https://dos.fl.gov/scripts/bootstrap.min.js",
+   "https://dos.fl.gov/scripts/js/dos.min.js",
+   "https://dos.fl.gov/scripts/modernizr-2.8.3.js",
+   "https://platform.twitter.com/widgets.js",
+   "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+  ]
+ }
+}
