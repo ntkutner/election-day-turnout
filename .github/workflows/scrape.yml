@@ -1,0 +1,43 @@
+name: scrape-turnout
+# Cron starts a job every 30 min; each job loops, scraping every ~5 min until it hands off.
+# (GitHub cron can lag, so the in-job loop keeps the cadence tight on Election Day.)
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["scrapers/**", ".github/workflows/scrape.yml"]
+permissions:
+  contents: write
+concurrency:
+  group: scrape
+  cancel-in-progress: true
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install requests beautifulsoup4 lxml
+      - name: Scrape loop
+        env:
+          LOOP_MINUTES: "33"
+          INTERVAL_SECONDS: "300"
+        run: |
+          git config user.name "turnout-bot"
+          git config user.email "turnout-bot@users.noreply.github.com"
+          end=$(( $(date +%s) + LOOP_MINUTES*60 ))
+          while :; do
+            git pull -q --rebase -X theirs || true
+            (cd scrapers && python run.py) || echo "run failed"
+            git add docs/data
+            if ! git diff --cached --quiet; then
+              git commit -qm "data: $(date -u +%H:%MZ) [skip ci]"
+              for i in 1 2 3; do git pull -q --rebase -X theirs && git push -q && break; sleep 3; done
+            fi
+            [ $(( $(date +%s) + INTERVAL_SECONDS )) -lt $end ] || break
+            sleep $INTERVAL_SECONDS
+          done
