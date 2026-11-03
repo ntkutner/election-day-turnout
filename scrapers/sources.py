@@ -335,7 +335,8 @@ def parse_dallas(d: dict):
     if not feats:
         raise ValueError("Dallas: no vote centers")
     a = [f["attributes"] for f in feats]
-    today = sum((x.get("C_Daily_Tot") or 0) for x in a if (x.get("L_Crnt_Sta") or "").lower() != "inactive")
+    a = [x for x in a if (x.get("L_Crnt_Sta") == "Active") and str(x.get("L_Poll_VC") or "").startswith("V")]
+    today = sum((x.get("C_Daily_Tot") or 0) for x in a)
     reporting = sum(1 for x in a if (x.get("C_Daily_Tot") or 0) > 0)
     waits = [x.get("C_Wait_Tim") for x in a if isinstance(x.get("C_Wait_Tim"), (int, float))]
     return [obs("Dallas County", "eday_checkins", today, state="TX", vote_centers=len(a), centers_reporting=reporting,
@@ -344,8 +345,8 @@ def parse_dallas(d: dict):
 
 @source("tx_dallas", "Dallas County Elections – live vote center counts", "TX", "eday",
         "https://experience.arcgis.com/experience/8204fc2e36cd4fac8729efcedd4fda7f/page/Page?views=Election-Day",
-        "Sum of today's voter counts at every Dallas County vote center (county's Vote Center Finder map).")
+        "Sum of today's voter counts at every active Election Day vote center (IDs V*), same filter as the county's wait-time map.")
 def tx_dallas():
-    d = get(DALLAS_FS, params={"where": "1=1", "outFields": "L_Crnt_Sta,L_Poll_VC,C_Daily_Tot,C_Wait_Tim",
+    d = get(DALLAS_FS, params={"where": "L_Crnt_Sta = 'Active' AND L_Poll_VC LIKE 'V%'", "outFields": "L_Crnt_Sta,L_Poll_VC,C_Daily_Tot,C_Wait_Tim",
                                 "returnGeometry": "false", "resultRecordCount": 2000, "f": "json"}).json()
     return parse_dallas(d)

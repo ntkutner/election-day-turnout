@@ -1,5 +1,0 @@
-tarrant_ed_pdf | https://www.tarrantcountytx.gov/content/dam/main/elections/2026/1126/reports/Election_Day_Voting_Totals.pdf
-tarrant_wait | https://gisit.tarrantcounty.com/tcvotingwaittime/
-bexar_wait | https://maps.bexar.org/ElectionWaitTimes/
-harris_vc | https://www.harrisvotes.com/Vote-Centers
-harris_locations | https://www.harrisvotes.com/locations

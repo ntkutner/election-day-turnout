@@ -103,7 +103,7 @@ footer a{color:inherit}
 
   <section id="sec-tx">
     <div class="secthead"><div><h2 id="tx-title">Texas: large counties</h2>
-      <div class="sub">Texas SOS. Early vote is final (through Oct 30); counties report Election Day in-person votes to the SOS, mostly after polls close.</div></div></div>
+      <div class="sub">Early vote (final, through Oct 30) from the Texas SOS. Election Day counts come from county live feeds where available (hourly vote-center counts); otherwise from the SOS file, which counties only fill in after close.</div></div></div>
     <div class="tablewrap" id="tx"></div>
   </section>
 
@@ -238,11 +238,14 @@ function render(L, hist){
   const ufAsOf = uf.map(o=>o.as_of).filter(Boolean).sort((a,b)=>new Date(b)-new Date(a))[0];
   const live = all.filter(s=>s.kind==="eday").flatMap(s=>s.observations.map(o=>({...o, src:s}))).filter(o=>o.metric==="eday_checkins");
   const txEd = O("tx_eday").find(o=>o.jurisdiction.startsWith("Texas"));
+  const txLive = live.filter(o=>o.state==="TX" && o.source!=="tx_eday");
+  const txLiveSum = txLive.reduce((a,o)=>a+(o.value||0),0);
+  const txLiveNote = txLive.length ? txLive.map(o=>`${o.jurisdiction.replace(" County","")} ${fmt(o.value)}`).join(" · ") : "";
   const flAgg = O("fl_tqv").find(o=>o.jurisdiction.startsWith("Florida"));
   const flMargin = flAgg ? (()=>{ const d=flAgg.party?.DEM?.ElectionDay||0, r=flAgg.party?.REP?.ElectionDay||0, t=flAgg.eday||1; const m=100*(d-r)/t; return (m>=0?"D +":"R +")+Math.abs(m).toFixed(1); })() : "";
   const u = ST ? uf.find(o=>o.state===ST) : null;
   const stLive = ST ? live.filter(o=>o.state===ST) : [];
-  const stAgg = ST==="FL" ? flAgg : ST==="TX" ? (O("tx_counties").find(o=>o.jurisdiction.startsWith("Texas")) || txEd) : stLive.sort((a,b)=>(b.value||0)-(a.value||0))[0];
+  const stAgg = ST==="FL" ? flAgg : ST==="TX" ? (txLive.length?{jurisdiction:txLive.length+" counties with live feeds: "+txLiveNote, value:txLiveSum}:null) : stLive.sort((a,b)=>(b.value||0)-(a.value||0))[0];
   const kpiList = ST ? [
     {label:`${stNames[ST]||ST}: early votes`, val:fmt(u?.value), note:u?`${fmt(u.inperson)} in person · ${fmt(u.mail_returned)} mail · as of ${u.as_of}`:"UF Election Lab has no row for this state"},
     {label:"Early vote as % of 2022 total", val:u?pct(u.value,u.turnout_2022):"–", note:u?`2022 total turnout: ${fmt(u.turnout_2022)}`:""},
@@ -253,12 +256,12 @@ function render(L, hist){
     {label:"Early votes nationally", val:fmt(natEarly), note:`UF Election Lab, ${uf.length} states · latest ${ufAsOf||"–"}`},
     {label:"Early vote as % of 2022 total", val:pct(natEarly,nat22), note:`2022 midterm total in same states: ${fmt(nat22)}`},
     {label:"Florida Election Day votes", val:fmt(flAgg?.eday), note:flAgg?`${flAgg.counties} counties · ${pct(flAgg.total,flAgg.registered)} total turnout so far · ED reg. ${flMargin}`:"waiting for data"},
-    {label:"Texas Election Day votes reported", val:fmt(txEd?.value), note:txEd?`${txEd.counties_reporting} of 254 counties reporting to SOS`:"waiting for data"},
+    {label:"Texas Election Day votes (live counties)", val:txLive.length?fmt(txLiveSum):"–", note:txLive.length?txLiveNote:"waiting for county feeds"},
   ]).map(k=>`<div class="kpi"><div class="label">${k.label}</div><div class="val">${k.val}</div><div class="note">${k.note}</div></div>`).join("");
 
   // live cards
   const series = key => hist.filter(h=>h.key===key).map(h=>({t:h.t,value:h.value}));
-  const liveCards = live.filter(inST).filter(o=>!(o.state==="TX" && !o.jurisdiction.startsWith("Texas")) && !(o.source==="fl_tqv" && !o.jurisdiction.startsWith("Florida"))).map(o=>{
+  const liveCards = live.filter(inST).filter(o=>o.source!=="tx_eday" && !(o.source==="fl_tqv" && !o.jurisdiction.startsWith("Florida"))).map(o=>{
     const key = `${o.source}|${o.jurisdiction}|${o.metric}`;
     const total = o.total!=null ? {...o, value:o.total} : O(o.source).find(x=>x.metric==="total_voted" && x.jurisdiction===o.jurisdiction);
     let comp = "";
@@ -314,13 +317,19 @@ function render(L, hist){
   // Texas table
   const txE = O("tx_early"), txD = O("tx_eday");
   const txRows = txE.map(e=>{ const d = txD.find(x=>x.jurisdiction===e.jurisdiction);
-    const total = (e.value||0)+(d?.value||0);
-    return {j:e.jurisdiction, reg:e.registered, ip:e.inperson, mail:e.mail, early:e.value, ed:d?.value, total, to:e.registered?total/e.registered:null}; });
+    const lv = e.jurisdiction.startsWith("Texas") ? null : txLive.find(x=>x.jurisdiction===e.jurisdiction);
+    const isState = e.jurisdiction.startsWith("Texas");
+    const ed = isState
+      ? (d?.value||0) + txLive.reduce((a,l)=>{ const sos = txD.find(x=>x.jurisdiction===l.jurisdiction)?.value||0; return a + Math.max(0,(l.value||0)-sos); },0)
+      : lv ? Math.max(lv.value||0, d?.value||0) : d?.value;
+    const src = lv ? "county live feed" : (isState ? "live counties + SOS" : "SOS, partial until close");
+    const total = (e.value||0)+(ed||0);
+    return {j:e.jurisdiction, reg:e.registered, ip:e.inperson, mail:e.mail, early:e.value, ed, src, total, to:e.registered?total/e.registered:null}; });
   const maxTo = Math.max(...txRows.map(r=>r.to||0));
   T.tx ? T.tx.set(txRows) : T.tx = table(document.getElementById("tx"), [
     {key:"j",label:"County"},{key:"reg",label:"Registered",render:r=>fmt(r.reg)},
     {key:"ip",label:"Early in-person",render:r=>fmt(r.ip)},{key:"mail",label:"Mail",render:r=>fmt(r.mail)},
-    {key:"ed",label:"Election Day (reported)",render:r=>fmt(r.ed)},{key:"total",label:"Total so far",render:r=>fmt(r.total)},
+    {key:"ed",label:"Election Day so far",render:r=>`${fmt(r.ed)} <span class="muted" style="font-size:11px">${esc(r.src)}</span>`},{key:"total",label:"Total so far",render:r=>fmt(r.total)},
     {key:"to",label:"Turnout of registered",render:r=>barCell(r.to,maxTo,pct(r.total,r.reg),`${r.j}: ${fmt(r.total)} of ${fmt(r.reg)}`)},
   ], txRows, {key:"reg"});
 
