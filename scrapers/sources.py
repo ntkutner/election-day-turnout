@@ -16,52 +16,72 @@ def clean_text(page: str) -> str:
 UF_BASE = "https://election.lab.ufl.edu/data-downloads/earlyvote/2026/"
 
 
+def _n(r, k):
+    v = (r.get(k) or "").strip()
+    return None if v in ("", "NA", "N/A") else num(v)
+
+
 def parse_uf_us(text: str):
-    rows = list(csv.DictReader(io.StringIO(text)))
     out = []
-    for r in rows:
-        st = (r.get("state") or r.get("State") or r.get("abbrv") or r.get("abbv") or "").strip()
+    for r in csv.DictReader(io.StringIO(text)):
+        st = (r.get("state_abbv") or "").strip()
         if not st:
             continue
-        rec = {k: v for k, v in r.items()}
-        def g(*names):
-            for n in names:
-                if n in r and str(r[n]).strip() not in ("", "NA", "N/A"):
-                    return num(r[n])
-            return None
-        out.append(obs(st, "uf_state_row", None, as_of=r.get("date") or r.get("last_update") or r.get("updated"),
-                       state=st,
-                       voted_all=g("voted_all", "total_voted", "voted"),
-                       voted_inperson=g("voted_inperson", "inperson", "in_person", "voted_ip"),
-                       voted_mail=g("voted_mail", "mail_returned", "returned"),
-                       requested_mail=g("requested_mail", "mail_requested", "requested"),
-                       turnout_2022=g("turnout_2022", "total_2022", "votes_2022", "vep_turnout_2022", "turnout2022"),
-                       raw=rec))
+        out.append(obs(st, "early_total", _n(r, "voted_all"), as_of=r.get("last_update"), state=st,
+                       name=r.get("state"), turnout_2022=_n(r, "turn_2022"),
+                       inperson=_n(r, "inperson_all"), mail_returned=_n(r, "accept_all"),
+                       mail_requested=_n(r, "request_all"), voted_dem=_n(r, "voted_dem"),
+                       voted_rep=_n(r, "voted_rep"), voted_none=_n(r, "voted_none"),
+                       updated_today=(r.get("updates_today") or "0").strip() not in ("0", ""),
+                       data_source=r.get("data_source")))
+    if not out:
+        raise ValueError("UF US.csv: no rows")
     return out
 
 
 @source("uf_states", "UF Election Lab – early vote by state", "US", "early",
         "https://election.lab.ufl.edu/early-vote/2026-early-voting/",
-        "Early in-person + returned mail ballots as compiled by Dr. Michael McDonald, UF Election Lab. Non-commercial use with attribution.")
+        "Early in-person + returned mail ballots compiled by Dr. Michael McDonald, UF Election Lab (non-commercial use, attribution required). Party = party registration, not vote choice.")
 def uf_states():
     return parse_uf_us(get(UF_BASE + "US.csv").text)
 
 
-def parse_uf_tossup(text: str):
-    out = []
+def parse_uf_cd(text: str, st: str):
+    """Sum county pieces to district totals."""
+    agg = {}
     for r in csv.DictReader(io.StringIO(text)):
-        key = r.get("key") or r.get("cd") or r.get("district")
-        if not key:
+        cd = (r.get("cd") or "").strip()
+        if not cd:
             continue
-        out.append(obs(key, "uf_tossup_row", None, raw=dict(r), state=(key.split("-")[0] if "-" in key else None)))
-    return out
+        key = f"{st}-{int(cd):02d}" if cd.isdigit() else f"{st}-{cd}"
+        a = agg.setdefault(key, {})
+        for k in ("voted_all", "voted_dem", "voted_rep", "voted_none", "request_all", "accept_all"):
+            v = _n(r, k)
+            if v is not None:
+                a[k] = a.get(k, 0) + v
+    return agg
 
 
 @source("uf_tossups", "UF Election Lab – House toss-up districts", "US", "early",
         "https://election.lab.ufl.edu/early-vote/2026-early-voting/",
-        "Early vote in House toss-up districts (where states report by CD).")
+        "Early vote in House toss-up districts, from states that report early vote by congressional district. Ratings as compiled by UF Election Lab.")
 def uf_tossups():
-    return parse_uf_tossup(get(UF_BASE + "house_tossup_races.csv").text)
+    rows = list(csv.DictReader(io.StringIO(get(UF_BASE + "house_tossup_races.csv").text)))
+    by_state = {}
+    for st in sorted({r["state"] for r in rows}):
+        try:
+            by_state[st] = parse_uf_cd(get(UF_BASE + f"{st}_cd.csv").text, st)
+        except Exception:
+            by_state[st] = {}
+    out = []
+    for r in rows:
+        key = r["key"]
+        d = by_state.get(r["state"], {}).get(key, {})
+        ratings = {k: r.get(k) for k in ("cook", "sabato", "ie") if r.get(k)}
+        out.append(obs(key, "early_total", d.get("voted_all"), state=r["state"], n_tossup=_n(r, "n_tossup_outlets"),
+                       ratings=ratings, voted_dem=d.get("voted_dem"), voted_rep=d.get("voted_rep"),
+                       voted_none=d.get("voted_none"), mail_requested=d.get("request_all"), mail_returned=d.get("accept_all")))
+    return out
 
 
 # ---------------------------------------------------------------- Texas SOS (civix EVR API)
@@ -74,36 +94,33 @@ def tx_decode(payload: dict):
     return json.loads(base64.b64decode(payload["upload"]).decode("utf-8", "ignore").strip())
 
 
-def parse_tx_turnout(d: dict, metric_prefix: str):
-    """EVR JSON: {turnout_by_county:[{id,name,registered?,in_person?,mail?, cumulative...}], ...}"""
-    out = []
-    rows = d.get("turnout_by_county") or d.get("counties") or []
-    as_of = d.get("early_voting_date") or d.get("date") or d.get("date_updated")
-    tot = {}
+def parse_tx_turnout(d: dict, kind: str):
+    """kind 'early': cumulative EV through date. kind 'eday': in_person_votes_on_date = Election Day in-person."""
+    rows = d.get("turnout_by_county") or []
+    as_of = d.get("early_voting_date")
+    out, tot = [], {"registered": 0, "inperson": 0, "mail": 0, "eday": 0}
     for r in rows:
-        name = str(r.get("name") or r.get("county") or "").upper()
-        fields = {k: r[k] for k in r if isinstance(r[k], (int, float, str))}
-        def pick(*cands):
-            for c in cands:
-                for k in r:
-                    if k.lower() == c:
-                        return num(r[k])
-            return None
-        reg = pick("registered_voters", "reg_voters", "registered", "total_registered_voters")
-        ip = pick("cumulative_in_person_voters", "cum_in_person", "in_person_cumulative", "cumulative_in_person", "in_person_voters", "voters")
-        mail = pick("cumulative_by_mail_voters", "cum_mail", "mail_cumulative", "cumulative_mail", "by_mail_voters")
-        allv = pick("cumulative_in_person_and_mail_voters", "cum_total", "total_cumulative", "cumulative_voters", "total_voters", "total")
-        if allv is None and (ip is not None or mail is not None):
-            allv = (ip or 0) + (mail or 0)
-        for k, v in (("registered", reg), ("inperson", ip), ("mail", mail), ("total", allv)):
-            if v is not None:
-                tot[k] = tot.get(k, 0) + v
+        reg = num(r.get("registered_voters")) or 0
+        ip_cum = num(r.get("total_in_person_votes_for_election")) or 0
+        mail = num(r.get("total_mail_votes_for_election")) or 0
+        on_date = num(r.get("in_person_votes_on_date")) or 0
+        tot["registered"] += reg; tot["inperson"] += ip_cum; tot["mail"] += mail; tot["eday"] += on_date
+        name = str(r.get("name", "")).upper()
         if name in TX_COUNTIES:
-            out.append(obs(name.title() + " County", f"{metric_prefix}_total", allv, as_of=as_of, state="TX",
-                           registered=reg, inperson=ip, mail=mail, raw=fields))
-    if tot:
-        out.insert(0, obs("Texas (statewide)", f"{metric_prefix}_total", tot.get("total"), as_of=as_of, state="TX",
-                          registered=tot.get("registered"), inperson=tot.get("inperson"), mail=tot.get("mail")))
+            if kind == "early":
+                out.append(obs(name.title() + " County", "early_total", ip_cum + mail, as_of=as_of, state="TX",
+                               registered=reg, inperson=ip_cum, mail=mail))
+            else:
+                out.append(obs(name.title() + " County", "eday_checkins", on_date, as_of=as_of, state="TX", registered=reg))
+    if not rows:
+        raise ValueError("TX: no counties")
+    if kind == "early":
+        out.insert(0, obs("Texas (statewide)", "early_total", tot["inperson"] + tot["mail"], as_of=as_of, state="TX",
+                          registered=tot["registered"], inperson=tot["inperson"], mail=tot["mail"]))
+    else:
+        out.insert(0, obs("Texas (statewide)", "eday_checkins", tot["eday"], as_of=as_of, state="TX",
+                          registered=tot["registered"],
+                          counties_reporting=sum(1 for r in rows if (num(r.get("in_person_votes_on_date")) or 0) > 0)))
     return out
 
 
