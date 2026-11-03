@@ -1,0 +1,27 @@
+name: probe-sources
+on:
+  push:
+    paths: ["probe/urls*.txt", "probe/probe.py"]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: { group: probe, cancel-in-progress: false }
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install requests
+      - name: Probe every list that changed
+        run: |
+          for f in probe/urls*.txt; do python probe/probe.py "$(basename "$f")"; done
+      - name: Commit raw captures
+        run: |
+          git config user.name "turnout-bot"
+          git config user.email "turnout-bot@users.noreply.github.com"
+          git add probe/raw
+          git commit -m "probe: raw captures [skip ci]" || exit 0
+          for i in 1 2 3; do git pull --rebase -X theirs && git push && break; sleep 5; done
