@@ -1,0 +1,151 @@
+{
+ "uf_us_csv": {
+  "url": "https://election.lab.ufl.edu/data-downloads/earlyvote/2026/US.csv",
+  "status": 200,
+  "final_url": "https://election.lab.ufl.edu/data-downloads/earlyvote/2026/US.csv",
+  "ctype": "text/csv",
+  "bytes": 22567
+ },
+ "uf_tossup_csv": {
+  "url": "https://election.lab.ufl.edu/data-downloads/earlyvote/2026/house_tossup_races.csv",
+  "status": 200,
+  "final_url": "https://election.lab.ufl.edu/data-downloads/earlyvote/2026/house_tossup_races.csv",
+  "ctype": "text/csv",
+  "bytes": 5052
+ },
+ "uf_pa_cd": {
+  "url": "https://election.lab.ufl.edu/data-downloads/earlyvote/2026/PA_cd.csv",
+  "status": 200,
+  "final_url": "https://election.lab.ufl.edu/data-downloads/earlyvote/2026/PA_cd.csv",
+  "ctype": "text/csv",
+  "bytes": 10696
+ },
+ "tx_ev_1030": {
+  "url": "https://goelect.txelections.civixapps.com/api-ivis-system/api/v1/getFile?type=EVR_EARLYVOTING&electionId=53815&electionDate=10/30/2026",
+  "status": 200,
+  "final_url": "https://goelect.txelections.civixapps.com/api-ivis-system/api/v1/getFile?type=EVR_EARLYVOTING&electionId=53815&electionDate=10/30/2026",
+  "ctype": "application/json",
+  "bytes": 82821
+ },
+ "tx_ed_1103": {
+  "url": "https://goelect.txelections.civixapps.com/api-ivis-system/api/v1/getFile?type=EVR_ELECTIONDAYTURNOUT&electionId=53815&electionDate=11/03/2026",
+  "status": 200,
+  "final_url": "https://goelect.txelections.civixapps.com/api-ivis-system/api/v1/getFile?type=EVR_ELECTIONDAYTURNOUT&electionId=53815&electionDate=11/03/2026",
+  "ctype": "application/json",
+  "bytes": 63165
+ },
+ "tx_ed_1103_iso": {
+  "url": "https://goelect.txelections.civixapps.com/api-ivis-system/api/v1/getFile?type=EVR_ELECTIONDAYTURNOUT&electionId=53815&electionDate=2026-11-03",
+  "status": 200,
+  "final_url": "https://goelect.txelections.civixapps.com/api-ivis-system/api/v1/getFile?type=EVR_ELECTIONDAYTURNOUT&electionId=53815&electionDate=2026-11-03",
+  "ctype": "",
+  "bytes": 0,
+  "data_links": []
+ },
+ "tqv_orange": {
+  "url": "https://tqv.vrswebapps.com/?state=FL&county=ORA&election=301",
+  "status": 200,
+  "final_url": "https://tqv.vrswebapps.com/?state=FL&county=ORA&election=301",
+  "ctype": "text/html",
+  "bytes": 19292,
+  "data_links": [
+   "https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.18/c3.min.js",
+   "https://code.jquery.com/jquery-3.7.1.min.js",
+   "https://d3js.org/d3.v3.min.js",
+   "https://tqv.vrswebapps.com/js/TQV.js",
+   "https://tqv.vrswebapps.com/resources/html5shiv.min.js",
+   "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+  ]
+ },
+ "broward_widget2": {
+  "url": "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/turnout-summary",
+  "status": 200,
+  "final_url": "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/turnout-summary",
+  "ctype": "text/html; charset=utf-8",
+  "bytes": 55175,
+  "data_links": [
+   "https://cdn.jsdelivr.net/npm/gridstack@10.3.1/dist/gridstack-all.js",
+   "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/TurnOutWidget/dashboard/view/precinct-turnout",
+   "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/TurnOutWidget/dashboard/view/turnout-day",
+   "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/TurnOutWidget/dashboard/view/turnout-location",
+   "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/TurnOutWidget/dashboard/view/turnout-party",
+   "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/TurnOutWidget/dashboard/view/turnout-summary",
+   "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/_content/DevExpress.Blazor.Resources/js/devextreme/dx.all.js?v=25.2.5.0",
+   "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/_content/DevExpress.Blazor.Resources/js/import-scripts.js?v=25.2.5.0",
+   "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/_content/DevExpress.Blazor.Resources/js/preload-script.js?v=25.2.5.0",
+   "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/_content/DevExpress.Blazor.RichEdit/dx-blazor-richedit.js?v=25.2.5.0",
+   "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/_content/DevExpress.Blazor.Viewer/dx-blazor-viewer.js?v=25.2.5.0",
+   "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/_content/DevExpress.Blazor/modules/dx-blazor-all.js?v=25.2.5.0",
+   "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/_content/DevExpress.Blazor/modules/dx-blazor-quill.js?v=25.2.5.0",
+   "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/_content/MudBlazor/MudBlazor.min.9ci77co5cp.js",
+   "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/_content/TEDxCommonUI/js/echarts.min.u8rc08arte.js",
+   "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/_content/TEDxCommonUI/js/statTileFit.tmimoi0b2k.js",
+   "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/_content/TEDxCommonUI/js/tedChartUpdates.zooq4nbrg1.js",
+   "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/_content/TEDxCommonUI/js/tedDashboardControls.bv6mtc97h3.js",
+   "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/_content/TEDxCommonUI/js/tedDashboardSwap.ntjat0pv0i.js",
+   "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/_content/TEDxCommonUI/js/tileInterop.9h1521adi9.js",
+   "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/_content/TEDxCommonUtilities/js/custom.jxs86hhikz.js",
+   "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/_content/TEDxDataViewUI/Header.bvk5jjopow.razor.js",
+   "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/_framework/blazor.web.js",
+   "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/js/electionlink.ibrw6ywkap.js",
+   "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/js/tedGoogleTranslate.3fuod4on2j.js",
+   "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit",
+   "https://www.google.com/recaptcha/api.js"
+  ]
+ },
+ "nyc_ev_checkins2": {
+  "url": "https://vote.nyc/page/early-voting-check-ins",
+  "status": 200,
+  "final_url": "https://vote.nyc/page/early-voting-check-ins",
+  "ctype": "text/html; charset=UTF-8",
+  "bytes": 73572,
+  "data_links": [
+   "https://cdn.jsdelivr.net/npm/inputmask@5.0.3/dist/jquery.inputmask.min.js",
+   "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit",
+   "https://vote.nyc/page/early-voting-check-ins",
+   "https://vote.nyc/sites/default/files/js/js_N50pjwfvII2DB8mAy-wKw9WIkw2VV-Zse0Yo-mUe2dU.js",
+   "https://vote.nyc/sites/default/files/js/js_UHjO0xd8yZ17B_unlCicK4xYJZxREqVVvS-7K8YlXfc.js"
+  ]
+ },
+ "dallas_ev_xlsx": {
+  "url": "https://www.dallascountyvotes.org/wp-content/uploads/2026/10/Early-Voting-Turnout-By-Date-Location-Report_10.30.26.xlsx",
+  "status": 200,
+  "final_url": "https://www.dallascountyvotes.org/wp-content/uploads/2026/10/Early-Voting-Turnout-By-Date-Location-Report_10.30.26.xlsx",
+  "ctype": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  "bytes": 261524,
+  "data_links": []
+ },
+ "enr_hil": {
+  "url": "https://enr.electionsfl.org/HIL/",
+  "status": 404,
+  "final_url": "https://enr.electionsfl.org/HIL/",
+  "ctype": "text/html",
+  "bytes": 2734,
+  "data_links": [
+   "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js?cdv=257",
+   "https://vrcdn.electionsfl.org/common/js/jquery-1.9.1.min.js"
+  ]
+ },
+ "enr_pin": {
+  "url": "https://enr.electionsfl.org/PIN/",
+  "status": 404,
+  "final_url": "https://enr.electionsfl.org/PIN/",
+  "ctype": "text/html",
+  "bytes": 2734,
+  "data_links": [
+   "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js?cdv=257",
+   "https://vrcdn.electionsfl.org/common/js/jquery-1.9.1.min.js"
+  ]
+ },
+ "enr_ora": {
+  "url": "https://enr.electionsfl.org/ORA/",
+  "status": 404,
+  "final_url": "https://enr.electionsfl.org/ORA/",
+  "ctype": "text/html",
+  "bytes": 2734,
+  "data_links": [
+   "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js?cdv=257",
+   "https://vrcdn.electionsfl.org/common/js/jquery-1.9.1.min.js"
+  ]
+ }
+}

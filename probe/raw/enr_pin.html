@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+    <meta name="author" content="Fred Schmidt" />
+    <title>404 Material Not Found</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css?cdv=257" media="all" type="text/css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css?cdv=257" media="all" type="text/css" rel="stylesheet" />
+    <script src="//vrcdn.electionsfl.org/common/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="//vrcdn.electionsfl.org/common/js/jquery-ui.theme.min.css" type="text/javascript"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js?cdv=257" type="text/javascript"></script>
+<script>
+    $(document).ready(function() {
+        var componentsToMatch = [
+            'Summary',
+            'Map',
+            'Precincts',
+            'Districts',
+            'Reports',
+            'Scrolling',
+            'Banner',
+            'ContestResults',
+            'PrecinctsReporting',
+            'DistrictsReporting',
+            'VoterTurnout'
+        ];
+        var dict = {};
+        for (var i = 0; i < componentsToMatch.length; i++) {
+            var component = componentsToMatch[i];
+            dict[component.toLocaleLowerCase()] = component;
+        }
+        var path = location.pathname.toLocaleLowerCase();
+        var regex = /^\/(\w+)\/(\d+)\/((?:summary(?:\/scrolling(?:\/banner)?)?)|(?:map(?:\/(?:precinct|district)sreporting|\/voterturnout|(?:\/contestresults(?:\/\d+)?))?)|(?:(?:precinct|district)s(?:\/\d+)?)|reports)(?:\/(?:index\.html)?)?$/;
+        var arr = regex.exec(path);
+        if (arr === null) return;
+        var pathname = '/' + arr[1].toUpperCase() + '/' + arr[2] + '/';
+        var tokens = arr[3].split('/');
+        for (var i = 0; i < tokens.length; i++) {
+            pathname = pathname + dict[tokens[i]] + '/';
+        }
+        var url = location.origin + pathname + location.search;
+        $.ajax({
+            type: 'HEAD',
+            url: url,
+            success: function(data) {
+                location.href = url;
+            },
+            error: function(data) {
+            }
+        });
+    });
+</script>
+</head>
+<body style="background: transparent none repeat scroll 0 0;">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <!-- Add hidden to class to hide the No Issues line -->
+            <div class="col-md-12 "><h1>The requested material is not published.</h1></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

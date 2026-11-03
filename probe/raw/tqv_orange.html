@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Character set, browser rendering, and viewport -->
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Title and metadata -->
+	<title>Turnout Quick View</title>
+
+	<!-- CSS styles -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.18/c3.min.css"> <!-- C3 charts -->
+	<link rel="stylesheet" href="css/TQV.css"> <!-- page styles -->
+
+	<!-- JavaScript -->
+	<!-- shiv to allow HTML5 elments for old versions of IE -->
+	<!--[if lt IE 11]>
+		<script type="text/javascript" src="resources/html5shiv.min.js"></script>
+	<![endif]-->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script> <!-- jQuery 3.7.1 from CDN -->
+	<script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script> <!-- D3 data visualization, needed for C3, from CDN -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.18/c3.min.js"></script> <!-- C3 charts -->
+	<script type="text/javascript" src="js/TQV.js"></script> <!-- script for page behavior -->
+	<script type="text/javascript">
+		function sendHeight() {
+			const height = document.body.scrollHeight;
+			parent.postMessage({ type: "setHeight", height }, "*");
+			} 
+			
+		window.addEventListener("load", sendHeight);
+		window.addEventListener("resize", sendHeight);
+		setInterval(sendHeight, 500); // Handles dynamic content changes
+	</script>
+</head>
+<body>
+
+	<!-- Accessibility -->
+	<div id="AccessibilityLinks">
+		<a id="ShowDataTablesLink" href="javascript:TQV.api.chooseDataPresentationForAll('Table')">Show data tables</a>
+		<a id="SkipToMainContentLink" href="#PageMain">Skip to main content</a>
+	</div>
+
+	<!-- Translation -->
+	<div id="TranslationWidget">
+		<div id="google_translate_element"></div><script type="text/javascript">
+			function googleTranslateElementInit() {
+			  new google.translate.TranslateElement({pageLanguage: 'en', autoDisplay: false}, 'google_translate_element');
+			}
+		</script>
+		<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+	</div>
+
+	<!-- Error Message Area -->
+	<section id="ErrorMessageArea" class="ErrorMessageArea">
+		<div class="Heading"></div>
+		<p class="Body"></p>
+	</section>
+
+	<!-- Error message for no JavaScript -->
+	<noscript>
+		<section id="NoScriptErrorMessageArea" class="ErrorMessageArea active notranslate">
+			<h1 class="Heading">JavaScript Required</h1>
+			<p class="Body">You must enable JavaScript in your browser.</p>
+		</section>
+	</noscript>
+
+	<!-- Page header, including titles and top menu -->
+	<header id="PageHeader" class="dormant">
+
+		<!-- Page title heading -->
+		<div class="PageTitleHeading">
+			<h1 class="Heading">
+				<span class="ElectionName">(loading)</span>
+			</h1>
+		</div>
+
+		<!-- Dates heading -->
+		<div class="DatesHeading">
+
+			<!-- Election date -->
+			<div class="ElectionDate"></div>
+
+			<!-- Last updated -->
+			<div class="UpdatedTimestamp">
+				<span class="Label">Last Updated</span>
+				<span class="Timestamp">(loading)</span>
+			</div>
+		</div>
+
+		<!-- Aggregate data summary -->
+		<div class="AggregateData">
+
+			<div class="Item ActiveEligibleVoters">
+				<span class="Label">Active Eligible Voters</span>
+				<span class="Value">0</span>
+			</div>
+			<div class="Item TotalBallotsCast">
+				<span class="Label">Unofficial Voter Turnout</span>
+				<span class="Value">0</span>
+			</div>
+			<div class="Item PercentTurnout">
+				<span class="Label">Percent Turnout</span>
+				<span class="Value">%</span>
+			</div>
+		</div>
+
+		<!-- Data navigation menu -->
+		<nav class="DataNavigationMenu">
+
+			<div class="ButtonMenu">
+				<button class="Item active" data-itemvalue="ByType">
+					<span class="LabelContainer"><span class="Label">By Type</span></span>
+				</button>
+				<button class="Item" data-itemvalue="ByParty">
+					<span class="LabelContainer"><span class="Label">By Party</span></span>
+				</button>
+				<button class="Item" data-itemvalue="ByPrecinctAndType">
+					<span class="LabelContainer"><span class="Label">By Precinct &amp; Type</span></span>
+				</button>
+				<button class="Item" data-itemvalue="ByPrecinctSplitAndType" title="No data" disabled>
+					<span class="LabelContainer"><span class="Label">By Precinct Split &amp; Type</span></span>
+				</button>
+				<button class="Item" data-itemvalue="ByDateAndType">
+					<span class="LabelContainer"><span class="Label">By Date &amp; Type</span></span>
+				</button>
+				<button class="Item" data-itemvalue="ByPartyAndType">
+					<span class="LabelContainer"><span class="Label">By Party &amp; Type</span></span>
+				</button>
+				<button class="Item" data-itemvalue="ByLocationAndParty">
+					<span class="LabelContainer"><span class="Label">By Location &amp; Party</span></span>
+				</button>
+				<button class="Item" data-itemvalue="ByLocationAndDay">
+					<span class="LabelContainer"><span class="Label">By Location &amp; Date</span></span>
+				</button>
+			</div>
+
+			<div class="DropdownMenu">
+				<select title="Choose data set">
+					<option value="ByType" selected>By Type</option>
+					<option value="ByParty">By Party</option>
+					<option value="ByPrecinctAndType">By Precinct &amp; Type</option>
+					<option value="ByPrecinctSplitAndType" disabled hidden>By Precinct Split &amp; Type</option>
+					<option value="ByDateAndType">By Date &amp; Type</option>
+					<option value="ByPartyAndType">By Party &amp; Type</option>
+					<option value="ByLocationAndParty">By Location &amp; Party</option>
+					<option value="ByLocationAndDay">By Location &amp; Date</option>
+				</select>
+			</div>
+		</nav>
+	</header>
+
+	<!-- Page main content, principal charts and data -->
+	<main id="PageMain" class="dormant">
+
+		<!-- Content for "By Type" -->
+		<section class="PageMainAlternateContent active" data-contentid="ByType">
+
+			<!-- Header of main/body area -->
+			<header class="PageMainHeader">
+
+				<!-- Heading/title of data area -->
+				<div class="PageMainHeading">
+					<h2 class="Heading">Total Ballots by Type</h2>
+				</div>
+
+				<!-- Data presentation menu -->
+				<nav class="DataPresentationMenu">
+
+					<button class="Item active" data-itemvalue="ChartAbsolute">
+						<span class="Label">Chart of absolute values</span>
+					</button>
+					<button class="Item" data-itemvalue="ChartPercent">
+						<span class="Label">Chart of percentage values</span>
+					</button>
+					<button class="Item" data-itemvalue="Table">
+						<span class="Label">Table of values</span>
+					</button>
+				</nav>
+			</header>
+
+			<!-- Principal data presentation -->
+			<section class="DataPresentationArea">
+
+				<div class="DataVisualization Chart ChartAbsolute active"></div>
+				<div class="DataVisualization Chart ChartPercent"></div>
+				<div class="DataVisualization Table columns-3">
+					<table class="DataTable">
+						<thead>
+							<tr>
+								<th>Type</th>
+								<th>Ballots Cast</th>
+								<th>Percent of Ballots Cast</th>
+							</tr>
+						</thead>
+						<tbody><tr><td></td></tr></tbody>
+					</table>
+					<ul class="DataList"></ul>
+				</div>
+			</section>
+		</section>
+
+		<!-- Content for "By Party" -->
+		<section class="PageMainAlternateContent" data-contentid="ByParty">
+
+			<!-- Header of main/body area -->
+			<header class="PageMainHeader">
+
+				<!-- Heading/title of data area -->
+				<div class="PageMainHeading">
+					<h2 class="Heading">Total Ballots by Party</h2>
+				</div>
+
+				<!-- Data presentation menu -->
+				<nav class="DataPresentationMenu">
+
+					<button class="Item active" data-itemvalue="ChartAbsolute">
+						<span class="Label">Chart of absolute values</span>
+					</button>
+					<button class="Item" data-itemvalue="ChartPercent">
+						<span class="Label">Chart of percentage values</span>
+					</button>
+					<button class="Item" data-itemvalue="Table">
+						<span class="Label">Table of values</span>
+					</button>
+				</nav>
+			</header>
+
+			<!-- Principal data presentation -->
+			<section class="DataPresentationArea">
+
+				<div class="DataVisualization Chart ChartAbsolute active"></div>
+				<div class="DataVisualization Chart ChartPercent"></div>
+				<div class="DataVisualization Table">
+					<table class="DataTable columns-3">
+						<thead>
+							<tr>
+								<th>Party</th>
+								<th>Ballots Cast</th>
+								<th>Percent of Ballots Cast</th>
+							</tr>
+						</thead>
+						<tbody><tr><td></td></tr></tbody>
+					</table>
+					<ul class="DataList"></ul>
+				</div>
+			</section>
+		</section>
+
+		<!-- Content for "By Precinct and Type" -->
+		<section class="PageMainAlternateContent" data-contentid="ByPrecinctAndType">
+
+			<!-- Header of main/body area -->
+			<header class="PageMainHeader">
+
+				<!-- Heading/title of data area -->
+				<div class="PageMainHeading">
+					<h2 class="Heading">Total Ballots by Precinct &amp; Type</h2>
+				</div>
+
+				<!-- Data presentation menu -->
+				<nav class="DataPresentationMenu">
+
+					<button class="Item active" data-itemvalue="ChartAbsolute">
+						<span class="Label">Chart of absolute values</span>
+					</button>
+					<button class="Item" data-itemvalue="ChartPercent">
+						<span class="Label">Chart of percentage values</span>
+					</button>
+					<button class="Item" data-itemvalue="Table">
+						<span class="Label">Table of values</span>
+					</button>
+				</nav>
+			</header>
+
+			<!-- Principal data presentation -->
+			<section class="DataPresentationArea">
+
+				<div class="DataVisualization Chart ChartAbsolute active"></div>
+				<div class="DataVisualization Chart ChartPercent"></div>
+				<div class="DataVisualization Table">
+					<table class="DataTable">
+						<thead></thead>
+						<tbody></tbody>
+					</table>
+					<ul class="DataList"></ul>
+				</div>
+			</section>
+		</section>
+
+
+		<!-- Content for "By Precinct and Type" -->
+		<section class="PageMainAlternateContent" data-contentid="ByPrecinctSplitAndType">
+
+			<!-- Header of main/body area -->
+			<header class="PageMainHeader">
+
+				<!-- Heading/title of data area -->
+				<div class="PageMainHeading">
+					<h2 class="Heading">Total Ballots by Precinct Split &amp; Type</h2>
+				</div>
+
+				<!-- Data presentation menu -->
+				<nav class="DataPresentationMenu">
+
+					<button class="Item active" data-itemvalue="ChartAbsolute">
+						<span class="Label">Chart of absolute values</span>
+					</button>
+					<button class="Item" data-itemvalue="ChartPercent">
+						<span class="Label">Chart of percentage values</span>
+					</button>
+					<button class="Item" data-itemvalue="Table">
+						<span class="Label">Table of values</span>
+					</button>
+				</nav>
+			</header>
+
+			<!-- Principal data presentation -->
+			<section class="DataPresentationArea">
+
+				<div class="DataVisualization Chart ChartAbsolute active"></div>
+				<div class="DataVisualization Chart ChartPercent"></div>
+				<div class="DataVisualization Table">
+					<table class="DataTable">
+						<thead></thead>
+						<tbody></tbody>
+					</table>
+					<ul class="DataList"></ul>
+				</div>
+			</section>
+		</section>
+
+
+		<!-- Content for "By Date and Type" -->
+		<section class="PageMainAlternateContent" data-contentid="ByDateAndType">
+
+			<!-- Header of main/body area -->
+			<header class="PageMainHeader">
+
+				<!-- Heading/title of data area -->
+				<div class="PageMainHeading">
+					<h2 class="Heading">Total Ballots by Date &amp; Type</h2>
+				</div>
+
+				<!-- Data presentation menu -->
+				<nav class="DataPresentationMenu moot">
+
+					<button class="Item active" data-itemvalue="Table">
+						<span class="Label">Table of values</span>
+					</button>
+				</nav>
+			</header>
+
+			<!-- Principal data presentation -->
+			<section class="DataPresentationArea">
+
+				<div class="DataVisualization Table active">
+					<table class="DataTable">
+						<thead><tr></tr></thead>
+						<tbody></tbody>
+					</table>
+					<ul class="DataList"></ul>
+				</div>
+			</section>
+		</section>
+
+		<!-- Content for "By Party and Type" -->
+		<section class="PageMainAlternateContent" data-contentid="ByPartyAndType">
+
+			<!-- Header of main/body area -->
+			<header class="PageMainHeader">
+
+				<!-- Heading/title of data area -->
+				<div class="PageMainHeading">
+					<h2 class="Heading">Total Ballots by Party &amp; Type</h2>
+				</div>
+
+				<!-- Data presentation menu -->
+				<nav class="DataPresentationMenu">
+
+					<button class="Item active" data-itemvalue="ChartAbsolute">
+						<span class="Label">Chart of absolute values</span>
+					</button>
+					<button class="Item" data-itemvalue="ChartPercent">
+						<span class="Label">Chart of percentage values</span>
+					</button>
+					<button class="Item" data-itemvalue="Table">
+						<span class="Label">Table of values</span>
+					</button>
+				</nav>
+			</header>
+
+			<!-- Principal data presentation -->
+			<section class="DataPresentationArea">
+
+				<div class="DataVisualization Chart ChartAbsolute active"></div>
+				<div class="DataVisualization Chart ChartPercent"></div>
+				<div class="DataVisualization Table">
+					<table class="DataTable">
+						<thead><tr></tr></thead>
+						<tbody></tbody>
+					</table>
+					<ul class="DataList"></ul>
+				</div>
+			</section>
+		</section>
+
+		<!-- Content for "By Location and Party" -->
+		<section class="PageMainAlternateContent" data-contentid="ByLocationAndParty">
+
+			<!-- Header of main/body area -->
+			<header class="PageMainHeader">
+
+				<!-- Heading/title of data area -->
+				<div class="PageMainHeading">
+					<h2 class="Heading">Total Ballots by Location &amp; Party</h2>
+				</div>
+
+				<!-- Data presentation menu -->
+				<nav class="DataPresentationMenu">
+
+					<button class="Item active" data-itemvalue="ChartAbsolute">
+						<span class="Label">Chart of absolute values</span>
+					</button>
+					<button class="Item" data-itemvalue="ChartPercent">
+						<span class="Label">Chart of percentage values</span>
+					</button>
+					<button class="Item" data-itemvalue="Table">
+						<span class="Label">Table of values</span>
+					</button>
+				</nav>
+			</header>
+
+			<!-- Principal data presentation -->
+			<section class="DataPresentationArea">
+
+				<div class="DataVisualization Chart ChartAbsolute WithAlternateDataSets active">
+
+					<div class="AlternateDataSetsContainer">
+						<div class="AlternateDataSet EarlyVoting">
+							<h2 class="DataSetHeading"><div class="Text">Early Voting</div></h2>
+							<div class="DataSetContent">
+								<div class="Chart"></div>
+							</div>
+						</div>
+						<div class="AlternateDataSet ElectionDay">
+							<h2 class="DataSetHeading"><div class="Text">Election Day</div></h2>
+							<div class="DataSetContent">
+								<div class="Chart"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="DataVisualization Chart ChartPercent WithAlternateDataSets">
+
+					<div class="AlternateDataSetsContainer">
+						<div class="AlternateDataSet EarlyVoting">
+							<h2 class="DataSetHeading"><div class="Text">Early Voting</div></h2>
+							<div class="DataSetContent">
+								<div class="Chart"></div>
+							</div>
+						</div>
+						<div class="AlternateDataSet ElectionDay">
+							<h2 class="DataSetHeading"><div class="Text">Election Day</div></h2>
+							<div class="DataSetContent">
+								<div class="Chart"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="DataVisualization Table WithAlternateDataSets">
+					<div class="AlternateDataSetsContainer">
+
+						<div class="AlternateDataSet EarlyVoting">
+							<h2 class="DataSetHeading"><div class="Text">Early Voting</div></h2>
+							<div class="DataSetContent">
+								<table class="DataTable">
+									<thead><tr></tr></thead>
+									<tbody></tbody>
+								</table>
+								<ul class="DataList"></ul>
+							</div>
+						</div>
+						<div class="AlternateDataSet ElectionDay">
+							<h2 class="DataSetHeading"><div class="Text">Election Day</div></h2>
+							<div class="DataSetContent">
+								<table class="DataTable">
+									<thead><tr></tr></thead>
+									<tbody></tbody>
+								</table>
+								<ul class="DataList"></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</section>
+
+		<!-- Content for "By Location and Day" -->
+		<section class="PageMainAlternateContent" data-contentid="ByLocationAndDay" style="min-width:300px;">
+
+			<!-- Header of main/body area -->
+			<header class="PageMainHeader">
+
+				<!-- Heading/title of data area -->
+				<div class="PageMainHeading">
+					<h2 class="Heading">Total Ballots by Location &amp; Date</h2>
+				</div>
+
+				<!-- Data presentation menu -->
+				<!-- Only showing this data in table format so do not need the Data Presentation Menu on this tab.-->
+				<nav class="DataPresentationMenu DataPresentationMenuIsInvisible ByLocationAndDateNoDataPresentationMenu" style="visibility:hidden;">
+
+					<!--<button class="Item active" data-itemvalue="ChartAbsolute">
+						<span class="Label">Chart of absolute values</span>
+					</button>
+					<button class="Item" data-itemvalue="ChartPercent">
+						<span class="Label">Chart of percentage values</span>
+					</button>-->
+					<button class="Item active" data-itemvalue="Table">
+						<span class="Label">Table of values</span>
+					</button>
+				</nav>
+			</header>
+
+			<!-- Principal data presentation -->
+			<section class="DataPresentationArea">
+
+				<div class="DataVisualization Table WithAlternateDataSets">
+					<div class="AlternateDataSetsContainer">
+
+						<div class="AlternateDataSet EarlyVoting">
+							<h2 class="DataSetHeading"><div class="Text">Early Voting</div></h2>
+							<div class="DataSetContent">
+								<table class="DataTable">
+									<thead><tr></tr></thead>
+									<tbody></tbody>
+								</table>
+								<ul class="DataList"></ul>
+							</div>
+						</div>
+						<div class="AlternateDataSet ElectionDay">
+							<h2 class="DataSetHeading"><div class="Text">Election Day</div></h2>
+							<div class="DataSetContent">
+								<table class="DataTable">
+									<thead><tr></tr></thead>
+									<tbody></tbody>
+								</table>
+								<ul class="DataList"></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</section>
+	</main>
+
+	<!-- Page Footer -->
+	<footer id="PageFooter" class="dormant">
+	</footer>
+
+	<!-- Translation-assistance elements -->
+	<div id="TranslationAssistance" aria-hidden="true">
+		<div class="Words">
+			<div id="TranslationCanary" data-english="Example">Example</div>
+		</div>
+	</div>
+
+	<!-- Debug elements -->
+	<div id="DebugArea" class="notranslate">
+		<div id="DebugNotice">
+			<span class="Text"></span>
+			<span class="Cancel">X</span>
+		</div>
+		<div id="DebugDetails"><div class="Text"></div></div>
+	</div>
+</body>
+</html>

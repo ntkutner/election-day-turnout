@@ -591,7 +591,7 @@
   "status": 200,
   "final_url": "https://www.tarrantcountytx.gov/en/elections.html",
   "ctype": "text/html;charset=utf-8",
-  "bytes": 379086,
+  "bytes": 379087,
   "data_links": [
    "https://assets.adobedtm.com/cc64b4f118558c1d7a958a890407edc6c49c6c52/satelliteLib-6d528d77be3c24f70cd109714f387e20673a5695.js",
    "https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js",
@@ -942,7 +942,7 @@
   "status": 403,
   "final_url": "https://www.nvsos.gov/sos/elections/election-turnout",
   "ctype": "text/html",
-  "bytes": 614,
+  "bytes": 613,
   "data_links": []
  },
  "ga_sos_data": {

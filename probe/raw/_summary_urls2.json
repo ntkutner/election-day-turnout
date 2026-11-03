@@ -372,7 +372,7 @@
   "status": 200,
   "final_url": "https://www.harrisvotes.com/Election-Results/Live-Results",
   "ctype": "text/html; charset=utf-8",
-  "bytes": 46974,
+  "bytes": 46997,
   "data_links": [
    "https://appfiles.harrisvotes.com/harrisvotes/prd/docs/Uploads/EVPA_unofficial.pdf",
    "https://files.harrisvotes.com/harrisvotes/prd/docs/VoterRegistration/Request-to-Remove-Personal-Information-from-HC-CCO-Website-optoutform_Sept_2023.pdf",
