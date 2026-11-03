@@ -1,0 +1,10 @@
+dal_fs | https://services3.arcgis.com/zqe2kwz79KUqUvxC/arcgis/rest/services/Vote_Center_Finder_view/FeatureServer?f=json
+dal_l4 | https://services3.arcgis.com/zqe2kwz79KUqUvxC/arcgis/rest/services/Vote_Center_Finder_view/FeatureServer/4?f=json
+dal_q4 | https://services3.arcgis.com/zqe2kwz79KUqUvxC/arcgis/rest/services/Vote_Center_Finder_view/FeatureServer/4/query?where=1%3D1&outFields=*&resultRecordCount=3&f=json
+dal_q0 | https://services3.arcgis.com/zqe2kwz79KUqUvxC/arcgis/rest/services/Vote_Center_Finder_view/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=2&f=json
+dal_q1 | https://services3.arcgis.com/zqe2kwz79KUqUvxC/arcgis/rest/services/Vote_Center_Finder_view/FeatureServer/1/query?where=1%3D1&outFields=*&resultRecordCount=2&f=json
+dal_q2 | https://services3.arcgis.com/zqe2kwz79KUqUvxC/arcgis/rest/services/Vote_Center_Finder_view/FeatureServer/2/query?where=1%3D1&outFields=*&resultRecordCount=2&f=json
+dal_q3 | https://services3.arcgis.com/zqe2kwz79KUqUvxC/arcgis/rest/services/Vote_Center_Finder_view/FeatureServer/3/query?where=1%3D1&outFields=*&resultRecordCount=2&f=json
+dal_q5 | https://services3.arcgis.com/zqe2kwz79KUqUvxC/arcgis/rest/services/Vote_Center_Finder_view/FeatureServer/5/query?where=1%3D1&outFields=*&resultRecordCount=2&f=json
+dal_wm1 | https://www.arcgis.com/sharing/rest/content/items/3b9de5125b4644ef988ac3b82357ef89/data?f=json
+dal_wm2 | https://www.arcgis.com/sharing/rest/content/items/b9b3f77133594684975f324417f4a14c/data?f=json

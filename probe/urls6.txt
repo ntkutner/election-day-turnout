@@ -1,4 +1,0 @@
-agol_dallas_exp | https://www.arcgis.com/sharing/rest/content/items/8204fc2e36cd4fac8729efcedd4fda7f/data?f=json
-agol_4b38_exp | https://www.arcgis.com/sharing/rest/content/items/4b388a0faade4fef9f6a644a72350cf4/data?f=json
-agol_dallas_item | https://www.arcgis.com/sharing/rest/content/items/8204fc2e36cd4fac8729efcedd4fda7f?f=json
-agol_4b38_item | https://www.arcgis.com/sharing/rest/content/items/4b388a0faade4fef9f6a644a72350cf4?f=json
