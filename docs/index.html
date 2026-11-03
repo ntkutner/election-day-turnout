@@ -87,6 +87,13 @@ footer a{color:inherit}
   </section>
 
   <section>
+    <div class="secthead"><div><h2>Florida: live by county and party</h2>
+      <div class="sub">County Supervisors of Elections via VR Systems Turnout Quick View, updated through the day. Party = registration, not vote choice. "D − R" is registered Democrats minus registered Republicans among ballots cast.</div></div>
+      <div class="filters"><input type="search" id="flfilter" placeholder="Filter counties…"></div></div>
+    <div class="tablewrap" id="fl"></div>
+  </section>
+
+  <section>
     <div class="secthead"><div><h2>Texas: large counties</h2>
       <div class="sub">Texas SOS. Early vote is final (through Oct 30); counties report Election Day in-person votes to the SOS, mostly after polls close.</div></div></div>
     <div class="tablewrap" id="tx"></div>
@@ -132,6 +139,7 @@ const tip = document.getElementById("tip");
 function showTip(e, html){ tip.innerHTML = html; tip.style.opacity = 1; tip.style.left = (e.clientX+12)+"px"; tip.style.top = (e.clientY-30)+"px"; }
 function hideTip(){ tip.style.opacity = 0; }
 function timeAgo(iso){ if(!iso) return "never"; const m = Math.round((Date.now()-new Date(iso))/60000); return m<1?"just now":m<60?m+" min ago":Math.round(m/60)+" hr ago"; }
+function asOf(v){ return v && /\dT\d/.test(v) ? fmtTime(v) : v; }
 function fmtTime(iso){ return new Date(iso).toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit",timeZone:"America/New_York"})+" ET"; }
 
 // Generic sortable table
@@ -205,19 +213,20 @@ function render(L, hist){
   const ufAsOf = uf.map(o=>o.as_of).filter(Boolean).sort((a,b)=>new Date(b)-new Date(a))[0];
   const live = all.filter(s=>s.kind==="eday").flatMap(s=>s.observations.map(o=>({...o, src:s}))).filter(o=>o.metric==="eday_checkins");
   const txEd = O("tx_eday").find(o=>o.jurisdiction.startsWith("Texas"));
-  const brow = O("fl_broward").find(o=>o.metric==="total_voted");
+  const flAgg = O("fl_tqv").find(o=>o.jurisdiction.startsWith("Florida"));
+  const flMargin = flAgg ? (()=>{ const d=flAgg.party?.DEM?.ElectionDay||0, r=flAgg.party?.REP?.ElectionDay||0, t=flAgg.eday||1; const m=100*(d-r)/t; return (m>=0?"D +":"R +")+Math.abs(m).toFixed(1); })() : "";
   document.getElementById("kpis").innerHTML = [
     {label:"Early votes nationally", val:fmt(natEarly), note:`UF Election Lab, ${uf.length} states · latest ${ufAsOf||"–"}`},
     {label:"Early vote as % of 2022 total", val:pct(natEarly,nat22), note:`2022 midterm total in same states: ${fmt(nat22)}`},
-    {label:"Broward Co. turnout so far", val:brow?pct(brow.value,brow.registered):"–", note:brow?`${fmt(brow.value)} ballots · ${fmt(brow.eday)} on Election Day`:"waiting for data"},
+    {label:"Florida Election Day votes", val:fmt(flAgg?.eday), note:flAgg?`${flAgg.counties} counties · ${pct(flAgg.total,flAgg.registered)} total turnout so far · ED reg. ${flMargin}`:"waiting for data"},
     {label:"Texas Election Day votes reported", val:fmt(txEd?.value), note:txEd?`${txEd.counties_reporting} of 254 counties reporting to SOS`:"waiting for data"},
   ].map(k=>`<div class="kpi"><div class="label">${k.label}</div><div class="val">${k.val}</div><div class="note">${k.note}</div></div>`).join("");
 
   // live cards
   const series = key => hist.filter(h=>h.key===key).map(h=>({t:h.t,value:h.value}));
-  const liveCards = live.filter(o=>!(o.state==="TX" && !o.jurisdiction.startsWith("Texas"))).map(o=>{
+  const liveCards = live.filter(o=>!(o.state==="TX" && !o.jurisdiction.startsWith("Texas")) && !(o.source==="fl_tqv" && !o.jurisdiction.startsWith("Florida"))).map(o=>{
     const key = `${o.source}|${o.jurisdiction}|${o.metric}`;
-    const total = O(o.source).find(x=>x.metric==="total_voted" && x.jurisdiction===o.jurisdiction);
+    const total = o.total!=null ? {...o, value:o.total} : O(o.source).find(x=>x.metric==="total_voted" && x.jurisdiction===o.jurisdiction);
     let comp = "";
     if (total && total.value){
       const parts = [["Mail",total.mail,"var(--series-1)"],["Early in-person",total.early,"var(--series-2)"],["Election Day",total.eday,"var(--series-3)"]];
@@ -226,9 +235,11 @@ function render(L, hist){
       <div class="meta" style="margin-top:4px">${fmt(total.value)} ballots cast · ${pct(total.value,total.registered)} of ${fmt(total.registered)} registered</div>`;
     }
     const extra = o.boroughs ? `<div class="meta">${Object.entries(o.boroughs).map(([b,v])=>`${b} ${fmt(v)}`).join(" · ")}</div>` : "";
-    const txnote = o.counties_reporting!=null ? `<div class="meta">${o.counties_reporting}/254 counties have reported Election Day votes</div>` : "";
+    const pp = o.party ? (()=>{ const e=k=>o.party[k]?.ElectionDay||0, t=["DEM","REP","NPA","OTH"].reduce((a,k)=>a+e(k),0);
+      return `<div class="meta" style="margin-top:4px">Election Day by party reg.: D ${pct(e("DEM"),t)} · R ${pct(e("REP"),t)} · NPA/other ${pct(e("NPA")+e("OTH"),t)}</div>`; })() : "";
+    const txnote = (o.counties!=null?`<div class="meta">${o.counties} counties publishing</div>`:"") + pp + (o.counties_reporting!=null ? `<div class="meta">${o.counties_reporting}/254 counties have reported Election Day votes</div>` : "");
     return `<div class="card"><div class="jur">${esc(o.jurisdiction)} <span class="pill">${esc(o.state)}</span></div>
-      <div class="big">${fmt(o.value)}</div><div class="meta">Election Day votes / check-ins${o.as_of?" · as of "+esc(o.as_of):""}</div>
+      <div class="big">${fmt(o.value)}</div><div class="meta">Election Day votes / check-ins${o.as_of?" · as of "+esc(asOf(o.as_of)):""}</div>
       ${comp}${extra}${txnote}${sparkline(series(key))}
       <div class="meta" style="margin-top:4px"><a href="${esc(o.src.url)}" target="_blank" rel="noopener">${esc(o.src.name)}</a> · ${o.src.status==="ok"?"fetched "+timeAgo(o.src.fetched_at):"<span class='status-stale'>stale</span>"}</div></div>`;
   });
@@ -243,6 +254,27 @@ function render(L, hist){
   }
   document.getElementById("live").innerHTML = liveCards.join("") || `<div class="empty">No live sources yet.</div>`;
   document.querySelectorAll("#live [data-tip]").forEach(n=>{ n.onmousemove=e=>showTip(e,n.dataset.tip); n.onmouseleave=hideTip; });
+
+  // Florida table
+  const flRows = O("fl_tqv").filter(o=>!o.jurisdiction.startsWith("Florida")).map(o=>{
+    const P=o.party||{}, g=(p,m)=>P[p]?.[m]||0, sumP=(m)=>["DEM","REP","NPA","OTH"].reduce((a,p)=>a+g(p,m),0);
+    const allD=g("DEM","Mail")+g("DEM","EarlyVoting")+g("DEM","ElectionDay"), allR=g("REP","Mail")+g("REP","EarlyVoting")+g("REP","ElectionDay");
+    return {j:o.jurisdiction, reg:o.registered, mail:o.mail, early:o.early, ed:o.eday, total:o.total, to:o.registered?o.total/o.registered:null,
+      edD:sumP("ElectionDay")?g("DEM","ElectionDay")/sumP("ElectionDay"):null, edR:sumP("ElectionDay")?g("REP","ElectionDay")/sumP("ElectionDay"):null,
+      edM:sumP("ElectionDay")?(g("DEM","ElectionDay")-g("REP","ElectionDay"))/sumP("ElectionDay"):null,
+      allM:o.total?(allD-allR)/o.total:null, asof:o.as_of}; });
+  const maxFl = Math.max(...flRows.map(r=>r.to||0));
+  const mfmt = m => m==null?"–":(m>=0?"D +":"R +")+Math.abs(100*m).toFixed(1);
+  const flFilter = ()=>{ const f=(document.getElementById("flfilter").value||"").toLowerCase(); return flRows.filter(r=>r.j.toLowerCase().includes(f)); };
+  T.fl ? T.fl.set(flFilter()) : T.fl = table(document.getElementById("fl"), [
+    {key:"j",label:"County"},{key:"reg",label:"Registered",render:r=>fmt(r.reg)},
+    {key:"mail",label:"Mail",render:r=>fmt(r.mail)},{key:"early",label:"Early in-person",render:r=>fmt(r.early)},
+    {key:"ed",label:"Election Day",render:r=>fmt(r.ed)},{key:"total",label:"Total",render:r=>fmt(r.total)},
+    {key:"to",label:"Turnout",render:r=>barCell(r.to,maxFl,pct(r.total,r.reg),`${r.j}: ${fmt(r.total)} of ${fmt(r.reg)} registered`)},
+    {key:"edM",label:"ED D − R",render:r=>mfmt(r.edM)},{key:"allM",label:"All ballots D − R",render:r=>mfmt(r.allM)},
+    {key:"asof",label:"County updated",render:r=>r.asof?fmtTime(r.asof):"–"},
+  ], flFilter(), {key:"reg"});
+  document.getElementById("flfilter").oninput = ()=>T.fl.set(flFilter());
 
   // Texas table
   const txE = O("tx_early"), txD = O("tx_eday");

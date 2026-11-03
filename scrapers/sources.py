@@ -254,3 +254,73 @@ def _mk_enr(county, url):
 
 for _c, _u in FL_ENR.items():
     _mk_enr(_c, _u)
+
+
+# ---------------------------------------------------------------- Florida: VR Systems Turnout Quick View (S3 JSON, ~60 counties)
+TQV = "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/"
+FL_NAMES = {"ALA": "Alachua", "BAK": "Baker", "BAY": "Bay", "BRA": "Bradford", "BRE": "Brevard", "BRO": "Broward", "CAL": "Calhoun",
+    "CHA": "Charlotte", "CIT": "Citrus", "CLA": "Clay", "CLL": "Collier", "CLM": "Columbia", "DAD": "Miami-Dade", "DES": "DeSoto",
+    "DIX": "Dixie", "DUV": "Duval", "ESC": "Escambia", "FLA": "Flagler", "FRA": "Franklin", "GAD": "Gadsden", "GIL": "Gilchrist",
+    "GLA": "Glades", "GUL": "Gulf", "HAM": "Hamilton", "HAR": "Hardee", "HEN": "Hendry", "HER": "Hernando", "HIG": "Highlands",
+    "HIL": "Hillsborough", "HOL": "Holmes", "IND": "Indian River", "JAC": "Jackson", "JEF": "Jefferson", "LAF": "Lafayette",
+    "LAK": "Lake", "LEE": "Lee", "LEO": "Leon", "LEV": "Levy", "LIB": "Liberty", "MAD": "Madison", "MAN": "Manatee", "MON": "Monroe",
+    "MRN": "Marion", "MRT": "Martin", "NAS": "Nassau", "OKA": "Okaloosa", "OKE": "Okeechobee", "ORA": "Orange", "OSC": "Osceola",
+    "PAL": "Palm Beach", "PAS": "Pasco", "PIN": "Pinellas", "POL": "Polk", "PUT": "Putnam", "SAN": "Santa Rosa", "SAR": "Sarasota",
+    "SEM": "Seminole", "STJ": "St. Johns", "STL": "St. Lucie", "SUM": "Sumter", "SUW": "Suwannee", "TAY": "Taylor", "UNI": "Union",
+    "VOL": "Volusia", "WAK": "Wakulla", "WAL": "Walton", "WAS": "Washington"}
+METHODS = ("Mail", "EarlyVoting", "ElectionDay")
+
+
+def parse_tqv(d: dict, code: str):
+    s = d.get("Summary", {})
+    party = d.get("Turnout", {}).get("PartyType", {}) or {}
+    by_m = {m: 0 for m in METHODS}
+    by_p = {}
+    for p, v in party.items():
+        grp = p if p in ("DEM", "REP", "NPA") else "OTH"
+        for m in METHODS:
+            n = v.get(m) or 0
+            by_m[m] += n
+            by_p.setdefault(grp, {mm: 0 for mm in METHODS})[m] += n
+    total = sum(by_m.values())
+    name = (FL_NAMES.get(code) or s.get("CountyName", code).title()) + " County"
+    return obs(name, "eday_checkins", by_m["ElectionDay"], as_of=s.get("LastUpdatedTime"), state="FL",
+               county_code=code, registered=s.get("TotalRegisteredVoters"), mail=by_m["Mail"], early=by_m["EarlyVoting"],
+               eday=by_m["ElectionDay"], total=total, party=by_p)
+
+
+def tqv_county(code):
+    idx = get(TQV + f"data/FL/{code}/index.json").json()
+    for eid in sorted(idx, reverse=True):
+        d = get(TQV + f"data/FL/{code}/{eid}/data.json").json()
+        if d.get("Summary", {}).get("ElectionDate") == "11/03/2026":
+            return parse_tqv(d, code)
+    return None
+
+
+@source("fl_tqv", "Florida counties – VR Systems Turnout Quick View", "FL", "eday",
+        "https://tqv.vrswebapps.com/?state=FL&county=ORA&election=301",
+        "Live ballots cast by method and party registration, published by each county Supervisor of Elections via VR Systems. Party = registration, not vote choice.")
+def fl_tqv():
+    from concurrent.futures import ThreadPoolExecutor
+    listing = get(TQV, params={"prefix": "data/FL/", "delimiter": "/"}).text
+    codes = re.findall(r"<Prefix>data/FL/([A-Z]{3})/</Prefix>", listing) or list(FL_NAMES)
+    def safe(c):
+        try:
+            return tqv_county(c)
+        except Exception:
+            return None
+    with ThreadPoolExecutor(12) as ex:
+        rows = [r for r in ex.map(safe, codes) if r]
+    if not rows:
+        raise RuntimeError("no TQV counties returned 11/03/2026 data")
+    agg = {k: sum((r.get(k) or 0) for r in rows) for k in ("registered", "mail", "early", "eday", "total")}
+    party = {}
+    for r in rows:
+        for p, v in r["party"].items():
+            for m, n in v.items():
+                party.setdefault(p, {mm: 0 for mm in METHODS})[m] += n
+    latest = max((r["as_of"] or "") for r in rows)
+    rows.sort(key=lambda r: -(r["registered"] or 0))
+    return [obs(f"Florida ({len(rows)} counties)", "eday_checkins", agg["eday"], as_of=latest, state="FL",
+                counties=len(rows), party=party, **agg)] + rows
