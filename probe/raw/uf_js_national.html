@@ -1,0 +1,1177 @@
+let USAHEXGRID_POLYGONS;  // cached {abbv, name, points, labelPoint} per state, computed once from the geojson
+let USAHEXMAP_LAST_RENDER;  // {tiledata, dataClasses, legendtitle, csvvaluefield} from the last refreshNationalHexMap() call - lets the resize handler redraw at the new container width without recomputing dataClasses/tooltip data
+
+const NATIONALMAP_COLORING_OPTIONS = [
+    ['reporting_status', "Reporting Status"],  // synthetic field; default view - which states have anything to show yet
+    ['voted_all', "2026 Total Early Vote"],
+    ['ratio_voted_all_2022', "2026 Early Vote to 2022 Total Turnout Ratio"],  // synthetic field, see Papa.parse below
+];
+
+// same accent colors as the state pages' stat tiles (2026-early-voting-state.css), so
+// "votes reported" / "requested" mean the same thing everywhere on the site. "Today" reuses
+// the "returned" blue, otherwise unused on this map - validated CVD-safe against the other
+// two (worst all-pairs normal-vision Delta E 22.7 light / 19.5 dark).
+//
+// votedTodayAgain per Michael 2026-10-09: some states now get scraped more than once a
+// day - a second (or later) same-day update gets a darker tier of the SAME blue rather
+// than a new hue, so it reads as "today, but more so" at a glance and keeps working for
+// colorblind viewers the same way a sequential ramp does (distinguishable by lightness
+// even if hue discrimination is impaired). First attempt (#163d6e) was darker than every
+// other swatch on the map, including votedEarlier's green (the previous darkest) - the
+// hexmap's state-abbreviation labels are a single fixed black (.hexmap-label in
+// 2026-early-voting-national.css, no per-color contrast logic), so a swatch much darker
+// than votedEarlier makes its own label unreadable where the others stay fine. Pulled back
+// to roughly votedEarlier's own darkness by eye, not a validated contrast ratio - check
+// live and nudge further if it's still tight. Not yet re-validated with a CVD simulator
+// the way the other three were, either - worth doing before this ships.
+const NATIONALMAP_STATUS_COLORS = {
+    none: '#c3c2b7',        // muted gray - nothing reported yet
+    requested: '#eda100',   // yellow - accent-requested
+    votedEarlier: '#0c6b46', // green - accent-total; votes reported, but not updated today
+    votedToday: '#2a78d6',  // blue - accent-returned; votes reported and updated today
+    votedTodayAgain: '#2458a0', // darker blue - votes reported, updated more than once today
+};
+
+// sentinel value for "zero or missing" on the quantitative views (Total Early Vote, ratio) -
+// never a real data value there (vote counts and ratios are never negative), so it can be
+// its own dataClass with a real legend entry, distinct from the ramp's lightest color
+const NATIONALMAP_NO_DATA_SENTINEL = -1;
+
+
+// bootstrapper: fetch the big CSV, re-parse it into a dict keyed by state with standardized fields
+jQuery(document).ready(function () {
+    // Registered up front, not inside the CSV callback below - the button and its target
+    // section are static PHP-rendered markup already in the DOM at ready(), so there's no
+    // reason to make downloading the image wait on the CSV fetch.
+    jQuery('#us-statistics-download').on('click', downloadNationalStatisticsImage);
+
+    Papa.parse(COMBINED_CSV_URL, {
+        download: true,
+        header: true,
+        skipEmptyLines: true,
+        complete: function(results) {
+            results.data.forEach((row) => {
+                INTEGER_FIELDS.forEach((fieldname) => {
+                    if (row[fieldname] !== null) row[fieldname] = parseInt(row[fieldname]);
+                });
+
+                // synthetic fields
+                row.ratio_voted_all_2022 = row.turn_2022 ? (100.0 * row.voted_all / row.turn_2022) : 0;
+                // 0 = nothing reported, 1 = mail ballots requested only,
+                // 2 = votes reported (not updated today), 3 = votes reported and updated today,
+                // 4 = votes reported and updated more than once today
+                row.reporting_status = row.voted_all
+                    ? (isUpdateToday(row.last_update) ? (row.updates_today >= 2 ? 4 : 3) : 2)
+                    : (row.request_all ? 1 : 0);
+            });
+            COMBINED_CSV_DATA = results.data;
+
+            initNationalStats();
+            initNationalHexMap();
+        },
+    });
+});
+
+
+function initNationalHexMap () {
+    // Bootstrap's btn-check pattern: a visually-hidden radio input plus a <label class="btn">
+    // that Bootstrap's own CSS styles (and toggles the active look on :checked) - no custom
+    // CSS needed, and still a real, keyboard/screen-reader-operable radio group underneath.
+    const $picker = jQuery('#hexmap-us-earlyvote-themepicker');
+    NATIONALMAP_COLORING_OPTIONS.forEach(function (option, i) {
+        const inputid = `hexmap-us-earlyvote-theme-${option[0]}`;
+        jQuery('<input>')
+            .attr({type: 'radio', name: 'hexmap-us-earlyvote-theme', id: inputid, autocomplete: 'off'})
+            .prop('checked', i === 0)
+            .addClass('btn-check')
+            .val(option[0])
+            .appendTo($picker);
+        jQuery('<label></label>')
+            .addClass('btn btn-outline-secondary rounded-pill')
+            .attr('for', inputid)
+            .text(option[1])
+            .appendTo($picker);
+    });
+
+    $picker.on('change', 'input[type="radio"]', function () {
+        refreshNationalHexMap(this.value, jQuery(`label[for="${this.id}"]`).text());
+    });
+
+    // trigger it now on startup with the default-checked option
+    const $checked = $picker.find('input:checked');
+    refreshNationalHexMap($checked.val(), jQuery(`label[for="${$checked.attr('id')}"]`).text());
+}
+
+
+function initNationalStats () {
+    let voted_all = 0;
+    let inperson_all = 0;
+    let accept_all = 0;
+    let request_all = 0;
+
+    COMBINED_CSV_DATA.forEach((row) => {
+        if (row.voted_all) voted_all += row.voted_all;
+        if (row.inperson_all) inperson_all += row.inperson_all;
+        if (row.accept_all) accept_all += row.accept_all;
+        if (row.request_all) request_all += row.request_all;
+    });
+
+    jQuery('span[data-value="voted_all"]').text(voted_all.toLocaleString());
+    jQuery('span[data-value="inperson_all"]').text(inperson_all.toLocaleString());
+    jQuery('span[data-value="accept_all"]').text(accept_all.toLocaleString());
+    jQuery('span[data-value="request_all"]').text(request_all.toLocaleString());
+
+    // {abbv, name} rather than just the abbreviation, so each one can link to its own state
+    // page below (stateDetailUrl() needs the full name, not the postal abbreviation).
+    const states_havedata_voted_all_byparty = COMBINED_CSV_DATA.filter(row => row.voted_dem || row.voted_rep || row.voted_none).map(row => ({abbv: row.state_abbv, name: row.state}));
+    const states_havedata_voted_all_byage = COMBINED_CSV_DATA.filter(row => row.voted_age_1 || row.voted_age_2 || row.voted_age_3 || row.voted_age_4).map(row => ({abbv: row.state_abbv, name: row.state}));
+    const states_havedata_voted_all_bygender = COMBINED_CSV_DATA.filter(row => row.voted_male || row.voted_female || row.voted_gender_unknown).map(row => ({abbv: row.state_abbv, name: row.state}));
+    const states_havedata_voted_all_byrace = COMBINED_CSV_DATA.filter(row => row.voted_nh_white || row.voted_nh_black || row.voted_nh_asian || row.voted_nh_native_american || row.voted_nh_other || row.voted_hispanic).map(row => ({abbv: row.state_abbv, name: row.state}));
+
+    const states_havedata_inperson_all_byparty = COMBINED_CSV_DATA.filter(row => row.inperson_dem || row.inperson_rep || row.inperson_none).map(row => ({abbv: row.state_abbv, name: row.state}));
+    const states_havedata_inperson_all_byage = COMBINED_CSV_DATA.filter(row => row.inperson_age_1 || row.inperson_age_2 || row.inperson_age_3 || row.inperson_age_4).map(row => ({abbv: row.state_abbv, name: row.state}));
+    const states_havedata_inperson_all_bygender = COMBINED_CSV_DATA.filter(row => row.inperson_male || row.inperson_female || row.inperson_gender_unknown).map(row => ({abbv: row.state_abbv, name: row.state}));
+    const states_havedata_inperson_all_byrace = COMBINED_CSV_DATA.filter(row => row.inperson_nh_white || row.inperson_nh_black || row.inperson_nh_asian || row.inperson_nh_native_american || row.inperson_nh_other || row.inperson_hispanic).map(row => ({abbv: row.state_abbv, name: row.state}));
+
+    const states_havedata_accept_all_byparty = COMBINED_CSV_DATA.filter(row => row.request_dem || row.request_rep || row.request_none).map(row => ({abbv: row.state_abbv, name: row.state}));
+    const states_havedata_accept_all_byage = COMBINED_CSV_DATA.filter(row => row.request_age_1 || row.request_age_2 || row.request_age_3 || row.request_age_4).map(row => ({abbv: row.state_abbv, name: row.state}));
+    const states_havedata_accept_all_bygender = COMBINED_CSV_DATA.filter(row => row.request_male || row.request_female || row.request_gender_unknown).map(row => ({abbv: row.state_abbv, name: row.state}));
+    const states_havedata_accept_all_byrace = COMBINED_CSV_DATA.filter(row => row.request_nh_white || row.request_nh_black || row.request_nh_asian || row.request_nh_native_american || row.request_nh_other || row.request_hispanic).map(row => ({abbv: row.state_abbv, name: row.state}));
+
+    renderStateLinks(jQuery('span[data-value="states-havedata-voted_all-byparty"]'), states_havedata_voted_all_byparty);
+    renderStateLinks(jQuery('span[data-value="states-havedata-voted_all-byage"]'), states_havedata_voted_all_byage);
+    renderStateLinks(jQuery('span[data-value="states-havedata-voted_all-bygender"]'), states_havedata_voted_all_bygender);
+    renderStateLinks(jQuery('span[data-value="states-havedata-voted_all-byrace"]'), states_havedata_voted_all_byrace);
+
+    renderStateLinks(jQuery('span[data-value="states-havedata-inperson_all-byparty"]'), states_havedata_inperson_all_byparty);
+    renderStateLinks(jQuery('span[data-value="states-havedata-inperson_all-byage"]'), states_havedata_inperson_all_byage);
+    renderStateLinks(jQuery('span[data-value="states-havedata-inperson_all-bygender"]'), states_havedata_inperson_all_bygender);
+    renderStateLinks(jQuery('span[data-value="states-havedata-inperson_all-byrace"]'), states_havedata_inperson_all_byrace);
+
+    renderStateLinks(jQuery('span[data-value="states-havedata-accept_all-byparty"]'), states_havedata_accept_all_byparty);
+    renderStateLinks(jQuery('span[data-value="states-havedata-accept_all-byage"]'), states_havedata_accept_all_byage);
+    renderStateLinks(jQuery('span[data-value="states-havedata-accept_all-bygender"]'), states_havedata_accept_all_bygender);
+    renderStateLinks(jQuery('span[data-value="states-havedata-accept_all-byrace"]'), states_havedata_accept_all_byrace);
+
+    const sumschart_voted_all_byparty = [
+        {name: "Democrat", value: COMBINED_CSV_DATA.map(row => row.voted_dem).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYPARTY.PD},
+        {name: "Republican", value: COMBINED_CSV_DATA.map(row => row.voted_rep).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYPARTY.PR},
+        {name: "None/Minor", value: COMBINED_CSV_DATA.map(row => row.voted_none).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYPARTY.PN},
+    ];
+    const sumschart_voted_all_byage = [
+        {name: "18-25", value: COMBINED_CSV_DATA.map(row => row.voted_age_1).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYAGE.A1},
+        {name: "26-40", value: COMBINED_CSV_DATA.map(row => row.voted_age_2).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYAGE.A2},
+        {name: "41-65", value: COMBINED_CSV_DATA.map(row => row.voted_age_3).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYAGE.A3},
+        {name: "Over 65", value: COMBINED_CSV_DATA.map(row => row.voted_age_4).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYAGE.A4},
+    ];
+    const sumschart_voted_all_bygender = [
+        {name: "Female", value: COMBINED_CSV_DATA.map(row => row.voted_female).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYGENDER.GF},
+        {name: "Male", value: COMBINED_CSV_DATA.map(row => row.voted_male).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYGENDER.GM},
+        {name: "Unknown", value: COMBINED_CSV_DATA.map(row => row.voted_gender_unknown).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYGENDER.GX},
+    ];
+    const sumschart_voted_all_byrace = [
+        {name: "Non-Hisp White", value: COMBINED_CSV_DATA.map(row => row.voted_nh_white).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYRACE.RW},
+        {name: "Non-Hisp Black", value: COMBINED_CSV_DATA.map(row => row.voted_nh_black).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYRACE.RB},
+        {name: "Hispanic", value: COMBINED_CSV_DATA.map(row => row.voted_hispanic).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYRACE.RH},
+        {name: "Non-Hisp Asian American", value: COMBINED_CSV_DATA.map(row => row.voted_nh_asian).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYRACE.RA},
+        {name: "Non-Hisp Native American", value: COMBINED_CSV_DATA.map(row => row.voted_nh_native_american).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYRACE.RN},
+        {name: "Other/Multiple/Unknown", value: COMBINED_CSV_DATA.map(row => row.voted_nh_other).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYRACE.RX},
+    ];
+    const sumschart_inperson_all_byparty = [
+        {name: "Democrat", value: COMBINED_CSV_DATA.map(row => row.inperson_dem).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYPARTY.PD},
+        {name: "Republican", value: COMBINED_CSV_DATA.map(row => row.inperson_rep).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYPARTY.PR},
+        {name: "None/Minor", value: COMBINED_CSV_DATA.map(row => row.inperson_none).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYPARTY.PN},
+    ];
+    const sumschart_inperson_all_byage = [
+        {name: "18-25", value: COMBINED_CSV_DATA.map(row => row.inperson_age_1).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYAGE.A1},
+        {name: "26-40", value: COMBINED_CSV_DATA.map(row => row.inperson_age_2).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYAGE.A2},
+        {name: "41-65", value: COMBINED_CSV_DATA.map(row => row.inperson_age_3).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYAGE.A3},
+        {name: "Over 65", value: COMBINED_CSV_DATA.map(row => row.inperson_age_4).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYAGE.A4},
+    ];
+    const sumschart_inperson_all_bygender = [
+        {name: "Female", value: COMBINED_CSV_DATA.map(row => row.inperson_female).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYGENDER.GF},
+        {name: "Male", value: COMBINED_CSV_DATA.map(row => row.inperson_male).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYGENDER.GM},
+        {name: "Unknown", value: COMBINED_CSV_DATA.map(row => row.inperson_gender_unknown).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYGENDER.GX},
+    ];
+    const sumschart_inperson_all_byrace = [
+        {name: "Non-Hisp White", value: COMBINED_CSV_DATA.map(row => row.inperson_nh_white).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYRACE.RW},
+        {name: "Non-Hisp Black", value: COMBINED_CSV_DATA.map(row => row.inperson_nh_black).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYRACE.RB},
+        {name: "Hispanic", value: COMBINED_CSV_DATA.map(row => row.inperson_hispanic).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYRACE.RH},
+        {name: "Non-Hisp Asian American", value: COMBINED_CSV_DATA.map(row => row.inperson_nh_asian).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYRACE.RA},
+        {name: "Non-Hisp Native American", value: COMBINED_CSV_DATA.map(row => row.inperson_nh_native_american).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYRACE.RN},
+        {name: "Other/Multiple/Unknown", value: COMBINED_CSV_DATA.map(row => row.inperson_nh_other).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYRACE.RX},
+    ];
+    // mail ballot charts get extra extracolumn1 and extracolumn2, and will pass names for these "number sent" and "percent received back" columns
+    // these must be calculated as sums and divided too form aggregate percents, then formatted as nice strings
+    const sumschart_accept_all_byparty = [
+        {
+            name: "Democrat", value: COMBINED_CSV_DATA.map(row => row.accept_dem).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYPARTY.PD,
+            extracolumn1: COMBINED_CSV_DATA.map(row => row.request_dem).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extracolumn1numer: COMBINED_CSV_DATA.map(row => row.accept_dem).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumnumer: COMBINED_CSV_DATA.map(row => row.accept_dem).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumdenom: COMBINED_CSV_DATA.map(row => row.request_dem).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+        },
+        {
+            name: "Republican", value: COMBINED_CSV_DATA.map(row => row.accept_rep).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYPARTY.PR,
+            extracolumn1: COMBINED_CSV_DATA.map(row => row.request_rep).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extracolumn1numer: COMBINED_CSV_DATA.map(row => row.accept_rep).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumnumer: COMBINED_CSV_DATA.map(row => row.accept_rep).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumdenom: COMBINED_CSV_DATA.map(row => row.request_rep).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+        },
+        {
+            name: "None/Minor", value: COMBINED_CSV_DATA.map(row => row.accept_none).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYPARTY.PN,
+            extracolumn1: COMBINED_CSV_DATA.map(row => row.request_none).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extracolumn1numer: COMBINED_CSV_DATA.map(row => row.accept_none).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumnumer: COMBINED_CSV_DATA.map(row => row.accept_none).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumdenom: COMBINED_CSV_DATA.map(row => row.request_none).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+        },
+    ];
+    const sumschart_accept_all_byage = [
+        {
+            name: "18-25", value: COMBINED_CSV_DATA.map(row => row.accept_age_1).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYAGE.A1,
+            extracolumn1: COMBINED_CSV_DATA.map(row => row.request_age_1).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extracolumn1numer: COMBINED_CSV_DATA.map(row => row.accept_age_1).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumnumer: COMBINED_CSV_DATA.map(row => row.accept_age_1).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumdenom: COMBINED_CSV_DATA.map(row => row.request_age_1).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+        },
+        {
+            name: "26-40", value: COMBINED_CSV_DATA.map(row => row.accept_age_2).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYAGE.A2,
+            extracolumn1: COMBINED_CSV_DATA.map(row => row.request_age_2).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extracolumn1numer: COMBINED_CSV_DATA.map(row => row.accept_age_2).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumnumer: COMBINED_CSV_DATA.map(row => row.accept_age_2).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumdenom: COMBINED_CSV_DATA.map(row => row.request_age_2).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+        },
+        {
+            name: "41-65", value: COMBINED_CSV_DATA.map(row => row.accept_age_3).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYAGE.A3,
+            extracolumn1: COMBINED_CSV_DATA.map(row => row.request_age_3).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extracolumn1numer: COMBINED_CSV_DATA.map(row => row.accept_age_3).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumnumer: COMBINED_CSV_DATA.map(row => row.accept_age_3).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumdenom: COMBINED_CSV_DATA.map(row => row.request_age_3).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+        },
+        {
+            name: "Over 65", value: COMBINED_CSV_DATA.map(row => row.accept_age_4).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYAGE.A4,
+            extracolumn1: COMBINED_CSV_DATA.map(row => row.request_age_4).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extracolumn1numer: COMBINED_CSV_DATA.map(row => row.accept_age_4).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumnumer: COMBINED_CSV_DATA.map(row => row.accept_age_4).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumdenom: COMBINED_CSV_DATA.map(row => row.request_age_4).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+        },
+    ];
+    const sumschart_accept_all_bygender = [
+        {
+            name: "Female", value: COMBINED_CSV_DATA.map(row => row.accept_female).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYGENDER.GF,
+            extracolumn1: COMBINED_CSV_DATA.map(row => row.request_female).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extracolumn1numer: COMBINED_CSV_DATA.map(row => row.accept_female).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumnumer: COMBINED_CSV_DATA.map(row => row.accept_female).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumdenom: COMBINED_CSV_DATA.map(row => row.request_female).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+        },
+        {
+            name: "Male", value: COMBINED_CSV_DATA.map(row => row.accept_male).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYGENDER.GM,
+            extracolumn1: COMBINED_CSV_DATA.map(row => row.request_male).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extracolumn1numer: COMBINED_CSV_DATA.map(row => row.accept_male).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumnumer: COMBINED_CSV_DATA.map(row => row.accept_male).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumdenom: COMBINED_CSV_DATA.map(row => row.request_male).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+        },
+        {
+            name: "Unknown", value: COMBINED_CSV_DATA.map(row => row.accept_gender_unknown).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYGENDER.GX,
+            extracolumn1: COMBINED_CSV_DATA.map(row => row.request_gender_unknown).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extracolumn1numer: COMBINED_CSV_DATA.map(row => row.accept_gender_unknown).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumnumer: COMBINED_CSV_DATA.map(row => row.accept_gender_unknown).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumdenom: COMBINED_CSV_DATA.map(row => row.request_gender_unknown).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+        },
+    ];
+    const sumschart_accept_all_byrace = [
+        {
+            name: "Non-Hisp White", value: COMBINED_CSV_DATA.map(row => row.accept_nh_white).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYRACE.RW,
+            extracolumn1: COMBINED_CSV_DATA.map(row => row.request_nh_white).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extracolumn1numer: COMBINED_CSV_DATA.map(row => row.accept_nh_white).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumnumer: COMBINED_CSV_DATA.map(row => row.accept_nh_white).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumdenom: COMBINED_CSV_DATA.map(row => row.request_nh_white).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+        },
+        {
+            name: "Non-Hisp Black", value: COMBINED_CSV_DATA.map(row => row.accept_nh_black).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYRACE.RB,
+            extracolumn1: COMBINED_CSV_DATA.map(row => row.request_nh_black).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extracolumn1numer: COMBINED_CSV_DATA.map(row => row.accept_nh_black).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumnumer: COMBINED_CSV_DATA.map(row => row.accept_nh_black).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumdenom: COMBINED_CSV_DATA.map(row => row.request_nh_black).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+        },
+        {
+            name: "Hispanic", value: COMBINED_CSV_DATA.map(row => row.accept_hispanic).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYRACE.RH,
+            extracolumn1: COMBINED_CSV_DATA.map(row => row.request_hispanic).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extracolumn1numer: COMBINED_CSV_DATA.map(row => row.accept_hispanic).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumnumer: COMBINED_CSV_DATA.map(row => row.accept_nh_hispanic).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumdenom: COMBINED_CSV_DATA.map(row => row.request_nh_hispanic).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+        },
+        {
+            name: "Non-Hisp Asian American", value: COMBINED_CSV_DATA.map(row => row.accept_nh_asian).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYRACE.RA,
+            extracolumn1: COMBINED_CSV_DATA.map(row => row.request_nh_asian).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extracolumn1numer: COMBINED_CSV_DATA.map(row => row.accept_nh_asian).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumnumer: COMBINED_CSV_DATA.map(row => row.accept_nh_asian).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumdenom: COMBINED_CSV_DATA.map(row => row.request_nh_asian).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+        },
+        {
+            name: "Non-Hisp Native American", value: COMBINED_CSV_DATA.map(row => row.accept_nh_native_american).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYRACE.RN,
+            extracolumn1: COMBINED_CSV_DATA.map(row => row.request_nh_native_american).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extracolumn1numer: COMBINED_CSV_DATA.map(row => row.accept_nh_native_american).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumnumer: COMBINED_CSV_DATA.map(row => row.accept_nh_native_american).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumdenom: COMBINED_CSV_DATA.map(row => row.request_nh_native_american).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+        },
+        {
+            name: "Other/Multiple/Unknown", value: COMBINED_CSV_DATA.map(row => row.accept_nh_other).filter(i => i).reduce((sum, thisone) => sum + thisone, 0), color: BARCHART_COLORS_BYRACE.RX,
+            extracolumn1: COMBINED_CSV_DATA.map(row => row.request_nh_other).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extracolumn1numer: COMBINED_CSV_DATA.map(row => row.accept_nh_other).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumnumer: COMBINED_CSV_DATA.map(row => row.accept_nh_other).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+            extra2sumdenom: COMBINED_CSV_DATA.map(row => row.request_nh_other).filter(i => i).reduce((sum, thisone) => sum + thisone, 0),
+        },
+    ];
+
+    sumschart_accept_all_byparty.forEach((row) => {
+        // extracolumn2 is extracolumn1 (accept) divided by the denominator (request); easier, more readable to do it here in the loop rather than two reduces on each line above
+        row.extracolumn2_type = 'percent';
+        row.extracolumn2 = (row.extracolumn1 ? (100 * row.extracolumn1numer / row.extracolumn1) : 0).toFixed(1);
+
+        // extracolumn1sum is the simple sum of extracolumn1
+        row.extracolumn1_type = 'integer';
+        const extracolumn1_sum = sumschart_accept_all_byparty.reduce((sum, row) => sum + row.extracolumn1, 0);
+        row.extracolumn1_sumtext = extracolumn1_sum.toLocaleString();
+
+        // extracolumn2sum is sum of A divided by sum of B, where A and B are accepted and requested in each row
+        const extracolumn2numer = sumschart_accept_all_byparty.reduce((sum, row) => sum + row.extra2sumnumer, 0);
+        const extracolumn2denom = sumschart_accept_all_byparty.reduce((sum, row) => sum + row.extra2sumdenom, 0);
+        const extracolumn2 = extracolumn2denom ? (100 * extracolumn2numer / extracolumn2denom) : 0;
+        row.extracolumn2_sumtext = `${extracolumn2.toFixed(1)} %`;
+    });
+    sumschart_accept_all_byage.forEach((row) => {
+        // extracolumn2 is extracolumn1 (accept) divided by the denominator (request); easier, more readable to do it here in the loop rather than two reduces on each line above
+        row.extracolumn2_type = 'percent';
+        row.extracolumn2 = (row.extracolumn1 ? (100 * row.extracolumn1numer / row.extracolumn1) : 0).toFixed(1);
+
+        // extracolumn1sum is the simple sum of extracolumn1
+        row.extracolumn1_type = 'integer';
+        const extracolumn1_sum = sumschart_accept_all_byage.reduce((sum, row) => sum + row.extracolumn1, 0);
+        row.extracolumn1_sumtext = extracolumn1_sum.toLocaleString();
+
+        // extracolumn2sum is sum of A divided by sum of B, where A and B are accepted and requested in each row
+        const extracolumn2numer = sumschart_accept_all_byage.reduce((sum, row) => sum + row.extra2sumnumer, 0);
+        const extracolumn2denom = sumschart_accept_all_byage.reduce((sum, row) => sum + row.extra2sumdenom, 0);
+        const extracolumn2 = extracolumn2denom ? (100 * extracolumn2numer / extracolumn2denom) : 0;
+        row.extracolumn2_sumtext = `${extracolumn2.toFixed(1)} %`;
+    });
+    sumschart_accept_all_bygender.forEach((row) => {
+        // extracolumn2 is extracolumn1 (accept) divided by the denominator (request); easier, more readable to do it here in the loop rather than two reduces on each line above
+        row.extracolumn2_type = 'percent';
+        row.extracolumn2 = (row.extracolumn1 ? (100 * row.extracolumn1numer / row.extracolumn1) : 0).toFixed(1);
+
+        // extracolumn1sum is the simple sum of extracolumn1
+        row.extracolumn1_type = 'integer';
+        const extracolumn1_sum = sumschart_accept_all_bygender.reduce((sum, row) => sum + row.extracolumn1, 0);
+        row.extracolumn1_sumtext = extracolumn1_sum.toLocaleString();
+
+        // extracolumn2sum is sum of A divided by sum of B, where A and B are accepted and requested in each row
+        const extracolumn2numer = sumschart_accept_all_bygender.reduce((sum, row) => sum + row.extra2sumnumer, 0);
+        const extracolumn2denom = sumschart_accept_all_bygender.reduce((sum, row) => sum + row.extra2sumdenom, 0);
+        const extracolumn2 = extracolumn2denom ? (100 * extracolumn2numer / extracolumn2denom) : 0;
+        row.extracolumn2_sumtext = `${extracolumn2.toFixed(1)} %`;
+    });
+    sumschart_accept_all_byrace.forEach((row) => {
+        // extracolumn2 is extracolumn1 (accept) divided by the denominator (request); easier, more readable to do it here in the loop rather than two reduces on each line above
+        row.extracolumn2_type = 'percent';
+        row.extracolumn2 = (row.extracolumn1 ? (100 * row.extracolumn1numer / row.extracolumn1) : 0).toFixed(1);
+
+        // extracolumn1sum is the simple sum of extracolumn1
+        row.extracolumn1_type = 'integer';
+        const extracolumn1_sum = sumschart_accept_all_byrace.reduce((sum, row) => sum + row.extracolumn1, 0);
+        row.extracolumn1_sumtext = extracolumn1_sum.toLocaleString();
+
+        // extracolumn2sum is sum of A divided by sum of B, where A and B are accepted and requested in each row
+        const extracolumn2numer = sumschart_accept_all_byrace.reduce((sum, row) => sum + row.extra2sumnumer, 0);
+        const extracolumn2denom = sumschart_accept_all_byrace.reduce((sum, row) => sum + row.extra2sumdenom, 0);
+        const extracolumn2 = extracolumn2denom ? (100 * extracolumn2numer / extracolumn2denom) : 0;
+        row.extracolumn2_sumtext = `${extracolumn2.toFixed(1)} %`;
+    });
+
+    // building each tab's charts is the expensive part (12 D3-drawn charts total) -
+    // defer 8 of them until their tab is actually opened, and only ever build each tab
+    // once (jQuery .one() unbinds itself after firing), so clicking back and forth between
+    // tabs costs nothing extra, and a visitor who never opens In-Person/Mail Ballots never
+    // pays for those renders at all. This also means a plain page reload - common here,
+    // since the data updates throughout the day - stays cheap no matter which tab was last
+    // active, since Bootstrap always starts back on Total Voted.
+    const buildTotalCharts = function () {
+        createSumChart('sumchart-us-voted_all-byparty', sumschart_voted_all_byparty, "Party", "Total<br/>Voted", "Percent");
+        createSumChart('sumchart-us-voted_all-byage', sumschart_voted_all_byage, "Age", "Total<br/>Voted", "Percent");
+        createSumChart('sumchart-us-voted_all-bygender', sumschart_voted_all_bygender, "Gender", "Total<br/>Voted", "Percent");
+        createSumChart('sumchart-us-voted_all-byrace', sumschart_voted_all_byrace, "Race", "Total<br/>Voted", "Percent");
+    };
+    const buildInPersonCharts = function () {
+        createSumChart('sumchart-us-inperson_all-byparty', sumschart_inperson_all_byparty, "Party", "Voted<br/>in Person", "Percent");
+        createSumChart('sumchart-us-inperson_all-byage', sumschart_inperson_all_byage, "Age", "Voted<br/>in Person", "Percent");
+        createSumChart('sumchart-us-inperson_all-bygender', sumschart_inperson_all_bygender, "Gender", "Voted<br/>in Person", "Percent");
+        createSumChart('sumchart-us-inperson_all-byrace', sumschart_inperson_all_byrace, "Race", "Voted<br/>in Person", "Percent");
+    };
+    const buildMailBallotCharts = function () {
+        createSumChart('sumchart-us-accept_all-byparty', sumschart_accept_all_byparty, "Party", "Mail Ballots<br/>Accepted", "Percent", "Ballots<br/>Requested", "Percent<br/>Returned");
+        createSumChart('sumchart-us-accept_all-byage', sumschart_accept_all_byage, "Age", "Mail Ballots<br/>Accepted", "Percent", "Ballots<br/>Requested", "Percent<br/>Returned");
+        createSumChart('sumchart-us-accept_all-bygender', sumschart_accept_all_bygender, "Gender", "Mail Ballots<br/>Accepted", "Percent", "Ballots<br/>Requested", "Percent<br/>Returned");
+        createSumChart('sumchart-us-accept_all-byrace', sumschart_accept_all_byrace, "Race", "Mail Ballots<br/>Accepted", "Percent", "Ballots<br/>Requested", "Percent<br/>Returned");
+    };
+
+    buildTotalCharts();  // Total Voted is the tab shown on load
+
+    jQuery('#us-tab-inperson').one('shown.bs.tab', buildInPersonCharts);
+    jQuery('#us-tab-mailballot').one('shown.bs.tab', buildMailBallotCharts);
+    // Fast Stats' own two sub-tabs (State/Congress, see page-2026-early-voting.php) lazy-build
+    // independently of each other, but State can't use a shown.bs.tab listener on its own tab
+    // button the way Congress does below - State starts pre-active in the static markup, and
+    // Bootstrap only fires shown.bs.tab on an actual activation, never just because a parent
+    // tab became visible (the same reason Total Voted, above, is built with a direct call
+    // rather than a listener). Hook State's build to the OUTER Fast Stats tab's own
+    // shown.bs.tab instead - that outer tab is never pre-active on page load, so it always
+    // fires exactly once, the first time Fast Stats itself is clicked.
+    jQuery('#us-tab-faststats').one('shown.bs.tab', buildFastStatsStateTable);
+    jQuery('#faststats-tab-congress').one('shown.bs.tab', buildFastStatsCongressTable);
+}
+
+
+// Fast Stats > State: mail ballot return rate by party registration, one row per state - the
+// same analysis that used to live at the bottom of the R pipeline (Early_2026_test.R) and
+// render to a standalone Quarto doc (mail_ballot_return_rate_by_party.qmd) before Michael asked
+// for it live on the dashboard instead. US.csv already holds each state's latest numbers (every
+// state's own pipeline block overwrites its one row there as soon as it runs), so this reads
+// directly off COMBINED_CSV_DATA rather than needing the per-state history files the Quarto
+// version pulled from - there's no "pick the latest date" step to do here, US.csv already is
+// that. See buildFastStatsCongressTable() below for the tab's other half.
+function buildFastStatsStateTable () {
+    // Same inclusion rule as the Quarto version: states with mail-ballot party-registration
+    // data (request_dem and request_rep both present and > 0) - excludes states with no party
+    // registration at all (GA/MI/OH/VA) and states whose source has no party breakdown
+    // (HI/IL/IN/MN/MT/ND/WI), rather than showing a meaningless 0.00% for them. Two more per
+    // Michael 2026-10-05: drop a state the moment it has party data but hasn't accepted any
+    // mail ballots yet (accept_all > 0) - a 0.00% row this early reads as "no one's voting
+    // there," not "nothing to show yet" - and drop Delaware outright, since its request_* is
+    // defined as exactly equal to accept_* (DE's source has no request data at all - see the
+    // DE notes in Early_2026_test.R), which forces every DE row to a flat, uninformative
+    // 100.00% that's more confusing than useful next to every other state's real return rate.
+    const rows = COMBINED_CSV_DATA
+        .filter((row) => row.request_dem && row.request_rep && row.accept_all && row.state !== 'Delaware')
+        .map((row) => {
+            const rateDem = 100 * row.accept_dem / row.request_dem;
+            const rateRep = 100 * row.accept_rep / row.request_rep;
+            const rateNone = row.request_none ? (100 * row.accept_none / row.request_none) : null;
+
+            // last_update ("M/D/YYYY") encoded as a plain ascending integer (e.g. 10/5/2026 ->
+            // 20261005) so the shared sortable table (numeric columns only, see
+            // createSortableTable() in 2026-early-voting.js) can sort it correctly - a bare
+            // string sort would put "10/5/2026" before "9/5/2026". The As Of column's format()
+            // below decodes this straight back to "M/D/YYYY" for display, so it's purely an
+            // internal sort key, never shown as-is.
+            const parsedDate = parseUSDate(row.last_update);
+            const asOfSort = parsedDate ? (parsedDate.year * 10000 + parsedDate.month * 100 + parsedDate.day) : 0;
+
+            return {
+                state: row.state,
+                asOfSort: asOfSort,
+                acceptAll: row.accept_all,
+                rateDem: rateDem,
+                rateRep: rateRep,
+                rateNone: rateNone,
+                diff: rateDem - rateRep,
+            };
+        })
+        .sort((a, b) => b.acceptAll - a.acceptAll);  // initial order, before any header is clicked
+
+    const $container = jQuery('#faststats-table-container');
+
+    if (! rows.length) {
+        $container.empty();
+        jQuery('<p class="text-small text-muted"></p>')
+            .text('No states with mail-ballot party-registration data are reporting yet.')
+            .appendTo($container);
+        return;
+    }
+
+    const formatPct = (value) => `${value.toFixed(2)} %`;
+    const formatDiff = (value) => {
+        const cls = value >= 0 ? 'faststats-diff-dem' : 'faststats-diff-rep';
+        const text = `${value >= 0 ? '+' : ''}${value.toFixed(2)}`;
+        return `<span class="${cls}">${text}</span>`;
+    };
+    const formatAsOf = (value) => {
+        if (! value) return 'n/a';
+        const year = Math.floor(value / 10000);
+        const month = Math.floor((value % 10000) / 100);
+        const day = value % 100;
+        return `${month}/${day}/${year}`;
+    };
+
+    const columns = [
+        {key: 'state', label: 'State', type: 'string', tooltip: 'Click a column header to sort',
+            html: (value) => `<a href="${stateDetailUrl(value)}">${escapeHTML(value)}</a>`},
+        {key: 'asOfSort', label: 'As Of', type: 'number', align: 'end', format: formatAsOf},
+        {key: 'acceptAll', label: 'Mail Ballots Accepted', type: 'number', align: 'end', format: (value) => value.toLocaleString(),
+            tooltip: 'Mail ballots received by election officials, excluding ballots identified as requiring a voter to cure a deficiency'},
+        {key: 'rateDem', label: 'Dem', type: 'number', align: 'end', format: formatPct,
+            tooltip: 'Mail ballot return rate among voters registered as Democrats'},
+        {key: 'rateRep', label: 'Rep', type: 'number', align: 'end', format: formatPct,
+            tooltip: 'Mail ballot return rate among voters registered as Republicans'},
+        {key: 'rateNone', label: 'None/Minor', type: 'number', align: 'end', format: formatPct,
+            tooltip: 'Mail ballot return rate among voters with no party registration, or a minor-party registration'},
+        {key: 'diff', label: 'Dem − Rep', type: 'number', align: 'end', html: formatDiff,
+            tooltip: 'Mail ballot return rate for Democrats minus Republicans, in percentage points'},
+    ];
+
+    createSortableTable('faststats-table-container', columns, rows);
+}
+
+
+function fetchHouseTossupRaces () {
+    // Same "resolve to empty, never reject" treatment as fetchCsvRows() in the shared
+    // 2026-early-voting.js, just without that function's filter((row) => row.county) - this
+    // file (house_tossup_races.csv, written by the Congressional Toss-Up Races section at the
+    // bottom of Early_2026_test.R) has no "county" column at all, so that filter would drop
+    // every row.
+    return new Promise((resolve) => {
+        Papa.parse('/data-downloads/earlyvote/2026/house_tossup_races.csv', {
+            download: true,
+            header: true,
+            skipEmptyLines: true,
+            dynamicTyping: true,
+            complete: (results) => resolve(results && results.data ? results.data : []),
+            error: () => resolve([]),
+        });
+    });
+}
+
+
+function normalizeCongressionalDistrict (raw) {
+    // Mirrors the stopgap normalize_house_cd() in Early_2026_test.R (keep both in sync if this
+    // logic ever changes) - but has to work harder, since house_tossup_races.csv's own "cd"
+    // column is already normalized, while each state's own <ST>_cd.csv spells its "cd" column
+    // a different way ("1", "001", "CONGRESSIONAL DISTRICT 1"). Pull out the first run of
+    // digits and zero-pad it to 2, which is the only thing all of those formats have reliably
+    // in common; a column with no digits at all (an at-large seat) normalizes to "AL",
+    // matching Wikipedia's {{ushr|STATE|AL|X}} convention. This is a stopgap, not the final
+    // word - per Michael, proper cross-state district identifiers are still pending the
+    // Associated Press's own district IDs.
+    const digits = String(raw).trim().match(/\d+/);
+    if (! digits) return 'AL';
+    return String(parseInt(digits[0], 10)).padStart(2, '0');
+}
+
+
+// Fast Stats > Congress: the subset of Wikipedia's aggregated toss-up U.S. House districts
+// (house_tossup_races.csv - see buildFastStatsStateTable() above and the Congressional
+// Toss-Up Races section at the bottom of Early_2026_test.R) that this site actually has
+// mail-ballot party-registration data for, joined against each toss-up state's own <ST>_cd.csv.
+// Same inclusion rule as the State tab (party-registration data present, at least one ballot
+// accepted, no Delaware), applied at the district level instead of the state level.
+function buildFastStatsCongressTable () {
+    const $container = jQuery('#faststats-congress-table-container');
+
+    fetchHouseTossupRaces().then((tossups) => {
+        if (! tossups.length) {
+            $container.empty();
+            jQuery('<p class="text-small text-muted"></p>')
+                .text('No toss-up congressional districts are available yet.')
+                .appendTo($container);
+            return;
+        }
+
+        const abbrvs = [...new Set(tossups.map((row) => row.state))];
+
+        Promise.all(abbrvs.map((abbrv) =>
+            fetchCsvRows(`/data-downloads/earlyvote/2026/${abbrv}_cd.csv`)
+        )).then((results) => {
+            // Collapse each state's county x district rows straight to one row per NORMALIZED
+            // district (keyed "ABBRV-NN", matching house_tossup_races.csv's own "key" column) -
+            // written out by hand rather than reusing the shared aggregateByDistrict() helper,
+            // since that helper groups by each file's raw, un-normalized "cd" value and doesn't
+            // keep the id around afterward, and a cross-state join needs the normalized id.
+            const districtTotals = {};
+            abbrvs.forEach((abbrv, i) => {
+                results[i].forEach((row) => {
+                    const key = `${abbrv}-${normalizeCongressionalDistrict(row.cd)}`;
+                    if (! districtTotals[key]) districtTotals[key] = {};
+                    Object.keys(row).forEach((field) => {
+                        if (field === 'cd' || field === 'county') return;
+                        const val = Number(row[field]);
+                        if (! isNaN(val)) districtTotals[key][field] = (districtTotals[key][field] || 0) + val;
+                    });
+                });
+            });
+
+            const statenameByAbbrv = {};
+            COMBINED_CSV_DATA.forEach((row) => { statenameByAbbrv[row.state_abbv] = row.state; });
+
+            const rows = tossups
+                .map((tossup) => {
+                    const totals = districtTotals[tossup.key];
+                    const statename = statenameByAbbrv[tossup.state];
+                    if (! totals || ! statename || statename === 'Delaware') return null;
+                    if (! totals.request_dem || ! totals.request_rep || ! totals.accept_all) return null;
+
+                    const rateDem = 100 * totals.accept_dem / totals.request_dem;
+                    const rateRep = 100 * totals.accept_rep / totals.request_rep;
+                    const rateNone = totals.request_none ? (100 * totals.accept_none / totals.request_none) : null;
+
+                    return {
+                        state: statename,
+                        district: formatDistrictLabel(tossup.cd),
+                        acceptAll: totals.accept_all,
+                        rateDem: rateDem,
+                        rateRep: rateRep,
+                        rateNone: rateNone,
+                        diff: rateDem - rateRep,
+                        nTossupOutlets: tossup.n_tossup_outlets,
+                    };
+                })
+                .filter((row) => row !== null)
+                .sort((a, b) => b.acceptAll - a.acceptAll);
+
+            if (! rows.length) {
+                $container.empty();
+                jQuery('<p class="text-small text-muted"></p>')
+                    .text('No toss-up districts with mail-ballot party-registration data are reporting yet.')
+                    .appendTo($container);
+                return;
+            }
+
+            const formatPct = (value) => `${value.toFixed(2)} %`;
+            const formatDiff = (value) => {
+                const cls = value >= 0 ? 'faststats-diff-dem' : 'faststats-diff-rep';
+                const text = `${value >= 0 ? '+' : ''}${value.toFixed(2)}`;
+                return `<span class="${cls}">${text}</span>`;
+            };
+
+            const columns = [
+                {key: 'state', label: 'State', type: 'string', tooltip: 'Click a column header to sort',
+                    html: (value) => `<a href="${stateDetailUrl(value)}">${escapeHTML(value)}</a>`},
+                {key: 'district', label: 'District', type: 'string'},
+                {key: 'acceptAll', label: 'Mail Ballots Accepted', type: 'number', align: 'end', format: (value) => value.toLocaleString(),
+                    tooltip: 'Mail ballots received by election officials, excluding ballots identified as requiring a voter to cure a deficiency'},
+                {key: 'rateDem', label: 'Dem', type: 'number', align: 'end', format: formatPct,
+                    tooltip: 'Mail ballot return rate among voters registered as Democrats'},
+                {key: 'rateRep', label: 'Rep', type: 'number', align: 'end', format: formatPct,
+                    tooltip: 'Mail ballot return rate among voters registered as Republicans'},
+                {key: 'rateNone', label: 'None/Minor', type: 'number', align: 'end', format: formatPct,
+                    tooltip: 'Mail ballot return rate among voters with no party registration, or a minor-party registration'},
+                {key: 'diff', label: 'Dem − Rep', type: 'number', align: 'end', html: formatDiff,
+                    tooltip: 'Mail ballot return rate for Democrats minus Republicans, in percentage points'},
+                {key: 'nTossupOutlets', label: 'Outlets Rating Tossup', type: 'number', align: 'end',
+                    tooltip: 'Number of handicappers (of 10 tracked) currently rating this district a toss-up'},
+            ];
+
+            createSortableTable('faststats-congress-table-container', columns, rows);
+        });
+    });
+}
+
+
+function refreshNationalHexMap (csvvaluefield, legendtitle) {
+    fetchHexGridPolygons().then((polygons) => {
+        const dataClasses = computeHexMapDataClasses(csvvaluefield);
+
+        const tiledata = polygons.map((poly) => {
+            const statedata = getDataRowByStateAbbrv(poly.abbv);
+            const rawvalue = statedata ? statedata[csvvaluefield] : null;
+
+            let value;
+            if (rawvalue === null || rawvalue === undefined) {
+                value = null;  // no row for this state at all - rendered with the "none" color, same as Highcharts' nullColor
+            } else if (csvvaluefield === 'reporting_status') {
+                value = rawvalue;  // 0/1/2/3/4 are already meaningful, correctly-labeled categories
+            } else {
+                // zero and "nothing reported" look identical on the quantitative views - give
+                // both the same explicit gray "No data" class instead of letting a zero fall
+                // into the ramp's lightest shade, which would otherwise imply a real, if tiny,
+                // measurement where there may be none at all
+                value = rawvalue ? rawvalue : NATIONALMAP_NO_DATA_SENTINEL;
+            }
+
+            return {
+                abbv: poly.abbv,
+                name: statedata ? statedata.state : poly.name,
+                points: poly.points,
+                value: value,
+                color: colorForDataClassValue(value, dataClasses),
+            };
+        });
+
+        // stash everything the resize handler needs to redraw without recomputing
+        // dataClasses/tooltip data, then draw
+        USAHEXMAP_LAST_RENDER = {tiledata, dataClasses, legendtitle, csvvaluefield};
+        renderNationalHexMap();
+    });
+}
+
+
+function colorForDataClassValue (value, dataClasses) {
+    // dataClasses is ordered ascending by "from" (see computeHexMapDataClasses); a value
+    // belongs to the last class whose "from" it meets or exceeds - the top class has no
+    // real ceiling (its own "to" is just the observed max), matching the "≥" semantics
+    // Highcharts' own dataClasses matching used, and this also naturally handles the
+    // single-point reporting_status classes (from === to) as exact matches.
+    if (value === null || value === undefined) return NATIONALMAP_STATUS_COLORS.none;
+    let match = dataClasses[0];
+    dataClasses.forEach((dc) => {
+        if (value >= dc.from) match = dc;
+    });
+    return match.color;
+}
+
+
+function renderNationalHexMap () {
+    // (re)draws the hexmap SVG + legend from USAHEXMAP_LAST_RENDER at the container's
+    // current width - called after refreshNationalHexMap() computes new data, and again
+    // (unchanged data, new width) from the debounced window resize handler below.
+    if (! USAHEXMAP_LAST_RENDER) return;
+    const {tiledata, dataClasses, legendtitle, csvvaluefield} = USAHEXMAP_LAST_RENDER;
+
+    const container = document.getElementById('hexmap-us-earlyvote');
+    if (! container) return;
+
+    const availWidth = container.clientWidth || 800;
+    const availHeight = 560;
+
+    // uniform scale (never stretch x/y independently, or the hexes stop being regular
+    // hexagons) that fits the whole grid within the available box
+    const allPoints = tiledata.flatMap((d) => d.points);
+    const minX = Math.min(...allPoints.map((p) => p[0]));
+    const maxX = Math.max(...allPoints.map((p) => p[0]));
+    const minY = Math.min(...allPoints.map((p) => p[1]));
+    const maxY = Math.max(...allPoints.map((p) => p[1]));
+    const dataWidth = maxX - minX;
+    const dataHeight = maxY - minY;
+    const scale = Math.min(availWidth / dataWidth, availHeight / dataHeight);
+    const usedWidth = dataWidth * scale;
+    const usedHeight = dataHeight * scale;
+
+    // flip y so north renders at top (Mercator y increases northward; SVG y increases downward)
+    function toScreen (p) {
+        return [(p[0] - minX) * scale, (maxY - p[1]) * scale];
+    }
+
+    container.innerHTML = '';
+
+    // rendered before the SVG (rather than after, at the end of this function) so it
+    // appears above the map instead of below it
+    renderHexMapLegend(container, dataClasses, legendtitle);
+
+    const svg = d3.select(container).append('svg')
+        .attr('class', 'hexmap-svg')
+        .attr('viewBox', `0 0 ${usedWidth} ${usedHeight}`)
+        .attr('role', 'img')
+        .attr('aria-label', `Hex map of the United States showing ${legendtitle} by state`);
+
+    // navigates via JS rather than a real href - a real href would be more accessible
+    // (native keyboard focus, middle-click, "open in new tab") but browsers also show the
+    // target URL in a status-bar-style overlay on hover, which was unwanted here; tabindex
+    // + role="link" + the keydown handler below keep it keyboard-operable without one
+    const hexes = svg.selectAll('a.hexmap-hex-link')
+        .data(tiledata)
+        .join('a')
+        .attr('class', 'hexmap-hex-link')
+        .attr('tabindex', 0)
+        .attr('role', 'link')
+        .on('click', (event, d) => { window.location.href = stateDetailUrl(d.name); })
+        .on('keydown', (event, d) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                window.location.href = stateDetailUrl(d.name);
+            }
+        });
+
+    hexes.append('title')
+        .text((d) => `${d.name}, ${hexMapValueText(d, csvvaluefield, legendtitle)}.`);
+
+    // inset each hex toward its own centroid so a small gap shows between neighbors,
+    // rather than drawing them edge-to-edge
+    const HEXMAP_GAP_SHRINK = 0.92;
+
+    hexes.append('path')
+        .attr('class', 'hexmap-hex')
+        .attr('d', (d) => {
+            const screenPoints = d.points.map(toScreen);
+            const [cx, cy] = polygonCentroid(screenPoints);
+            const inset = screenPoints.map(([x, y]) => [cx + (x - cx) * HEXMAP_GAP_SHRINK, cy + (y - cy) * HEXMAP_GAP_SHRINK]);
+            return `${d3.line()(inset)}Z`;
+        })
+        .attr('fill', (d) => d.color);
+
+    hexes.append('text')
+        .attr('class', 'hexmap-label')
+        .attr('x', (d) => toScreen(polygonCentroid(d.points))[0])
+        .attr('y', (d) => toScreen(polygonCentroid(d.points))[1])
+        .text((d) => d.abbv);
+
+    const tooltip = d3.select(container).append('div').attr('class', 'hexmap-tooltip');
+
+    hexes
+        .on('mouseenter', function (event, d) {
+            tooltip.html(formatHexMapTooltip(d, csvvaluefield, legendtitle)).classed('is-visible', true);
+            positionTooltipAtMouse(event, container, tooltip);
+        })
+        .on('mousemove', function (event) {
+            positionTooltipAtMouse(event, container, tooltip);
+        })
+        .on('mouseleave', function () {
+            tooltip.classed('is-visible', false);
+        })
+        .on('focus', function (event, d) {
+            tooltip.html(formatHexMapTooltip(d, csvvaluefield, legendtitle)).classed('is-visible', true);
+            positionTooltipAtElement(this, container, tooltip);
+        })
+        .on('blur', function () {
+            tooltip.classed('is-visible', false);
+        });
+}
+
+
+function positionTooltipAtMouse (event, container, tooltip) {
+    const rect = container.getBoundingClientRect();
+    tooltip
+        .style('left', `${event.clientX - rect.left + 12}px`)
+        .style('top', `${event.clientY - rect.top + 12}px`);
+}
+
+
+function positionTooltipAtElement (hexlink, container, tooltip) {
+    const containerRect = container.getBoundingClientRect();
+    const hexRect = hexlink.getBoundingClientRect();
+    tooltip
+        .style('left', `${hexRect.left - containerRect.left + hexRect.width / 2}px`)
+        .style('top', `${hexRect.bottom - containerRect.top + 8}px`);
+}
+
+
+function polygonCentroid (points) {
+    return [
+        points.reduce((sum, p) => sum + p[0], 0) / points.length,
+        points.reduce((sum, p) => sum + p[1], 0) / points.length,
+    ];
+}
+
+
+function renderHexMapLegend (container, dataClasses, legendtitle) {
+    const legend = d3.select(container).append('div').attr('class', 'hexmap-legend');
+    legend.append('div').attr('class', 'hexmap-legend-title').text(legendtitle);
+    const items = legend.selectAll('span.hexmap-legend-item')
+        .data(dataClasses)
+        .join('span')
+        .attr('class', 'hexmap-legend-item');
+    items.append('span')
+        .attr('class', 'hexmap-legend-swatch')
+        .style('background-color', (d) => d.color);
+    items.append('span').text((d) => d.name);
+}
+
+
+// redraw at the new width on resize/orientation change (debounced), matching Highcharts'
+// own automatic chart-resize behavior which this replaces
+window.addEventListener('resize', debounce(renderNationalHexMap, 150));
+
+
+function fetchHexGridPolygons () {
+    // the hex grid geometry never changes, so only fetch and compute it once
+    if (USAHEXGRID_POLYGONS) return Promise.resolve(USAHEXGRID_POLYGONS);
+
+    return fetch(USA_HEXGRID_GEO_URL)
+        .then((response) => response.json())
+        .then((geodata) => {
+            USAHEXGRID_POLYGONS = computeHexGridPolygons(geodata);
+            return USAHEXGRID_POLYGONS;
+        });
+}
+
+
+function computeHexGridPolygons (geodata) {
+    // the hex grid file stores each hex as a full polygon in a flat "fake lat/lng" space,
+    // constructed so that projecting it through standard Web Mercator (as any web map
+    // library does) renders a perfectly regular hex grid. Project every vertex (not just
+    // the centroid) through that same transform and keep the full polygon, so the map can
+    // be drawn directly as SVG paths (see renderNationalHexMap) instead of going through
+    // an integer grid-index abstraction the way Highcharts' tilemap series wanted.
+    function mercatorY (latDeg) {
+        const rad = latDeg * Math.PI / 180;
+        return Math.log(Math.tan(Math.PI / 4 + rad / 2));
+    }
+
+    return geodata.features.map((feature) => {
+        const coords = feature.geometry.coordinates[0].slice(0, -1);  // drop closing repeated vertex
+        return {
+            abbv: feature.properties.state_abv,
+            name: (feature.properties.google_name || feature.properties.label || '').replace(/\s*\(United States\)$/, ''),
+            // standard Web Mercator: x is longitude in radians (not raw degrees - degrees
+            // and the log-tan y below are on very different numeric scales, which would
+            // otherwise throw off the uniform x/y scale renderNationalHexMap() applies to
+            // keep the hexes regular)
+            points: coords.map((c) => [c[0] * Math.PI / 180, mercatorY(c[1])]),
+        };
+    });
+}
+
+
+function computeHexMapDataClasses (csvvaluefield) {
+    if (csvvaluefield === 'reporting_status') {
+        // Per Michael 2026-10-21: Washington was the last state with only mail-ballot
+        // REQUEST data (no accepted/voted figures yet) - now that it's reporting real
+        // voted_all, no state can land on value 1 any more, so that legend entry is
+        // dropped. row.reporting_status itself (above) still produces 1 if some future
+        // state regresses to request-only, which just won't get its own legend swatch.
+        return [
+            {from: 0, to: 0, color: NATIONALMAP_STATUS_COLORS.none, name: 'No data yet'},
+            {from: 2, to: 2, color: NATIONALMAP_STATUS_COLORS.votedEarlier, name: 'Votes reported earlier'},
+            {from: 3, to: 3, color: NATIONALMAP_STATUS_COLORS.votedToday, name: 'Votes reported today'},
+            {from: 4, to: 4, color: NATIONALMAP_STATUS_COLORS.votedTodayAgain, name: 'Updated again'},
+        ];
+    }
+
+    // zero/missing states are routed to a sentinel (see refreshNationalHexMap) so they get
+    // their own explicit gray "No data" legend entry, never the ramp's lightest color
+    const noDataClass = {from: NATIONALMAP_NO_DATA_SENTINEL, to: NATIONALMAP_NO_DATA_SENTINEL, color: NATIONALMAP_STATUS_COLORS.none, name: 'No data'};
+
+    const colorramp = USA_HEXGRID_COLOR_RAMP;
+    const useinteger = INTEGER_FIELDS.indexOf(csvvaluefield) != -1;
+    const allscores = COMBINED_CSV_DATA.map((row) => row[csvvaluefield]).filter((i) => i);
+
+    if (! allscores.length) return [noDataClass];  // nothing real reported anywhere yet
+
+    // quantile-based breaks over the sequential ramp - same approach the map has always used
+    // (thanks to buboh at https://stackoverflow.com/questions/48719873) - but capped to the
+    // number of states actually reporting a real value. With, say, only 1 or 2 states in,
+    // asking for 5 quantile classes just produces duplicate breakpoints (every "cut point"
+    // over a 1-element array is that same element) and a legend full of repeated ranges;
+    // this only ever asks for as many classes as there are real values to spread across them.
+    const numclasses = Math.min(colorramp.length, allscores.length);
+    const rampcolors = pickRampColors(colorramp, numclasses);
+    const interval = 1 / numclasses;
+
+    const quantile = (arr, q) => {
+        const sorted = arr.slice().sort((a, b) => a - b);
+        const pos = (sorted.length - 1) * q;
+        const base = Math.floor(pos);
+        const rest = pos - base;
+        return sorted[base + 1] !== undefined ? sorted[base] + rest * (sorted[base + 1] - sorted[base]) : sorted[base];
+    };
+
+    const breaks = [];
+    for (let i = 1; i <= numclasses; i++) {
+        let brk = quantile(allscores, interval * i);
+        if (useinteger) brk = Math.round(brk);
+        breaks.push(brk);
+    }
+
+    const formatBreak = (value) => csvvaluefield === 'ratio_voted_all_2022' ? `${value.toFixed(1)}%` : value.toLocaleString();
+
+    const realClasses = rampcolors.map((color, i) => {
+        const from = i === 0 ? 0 : breaks[i - 1];
+        const to = breaks[i];
+        // Highcharts treats a value at or above the top bucket's "from" as belonging to it
+        // (its own "to" is really just the observed max, not a hard ceiling), so "≥" is
+        // accurate here where "> " would wrongly exclude a state sitting right on that value.
+        // With only one class total, "0 - X" (i === 0) takes precedence and already covers
+        // the full observed range on its own.
+        const name = i === 0 ? `0 - ${formatBreak(to)}` : (i === numclasses - 1 ? `≥ ${formatBreak(from)}` : `${formatBreak(from)} - ${formatBreak(to)}`);
+        return {from: from, to: to, color: color, name: name};
+    });
+
+    return [noDataClass, ...realClasses];
+}
+
+
+function pickRampColors (ramp, n) {
+    // evenly sample n colors from the ramp, keeping both endpoints when possible, so fewer
+    // classes still span light-to-dark rather than clustering at one end of the ramp
+    if (n >= ramp.length) return ramp.slice(0, n);
+    if (n <= 1) return [ramp[ramp.length - 1]];
+
+    const picked = [];
+    for (let i = 0; i < n; i++) {
+        picked.push(ramp[Math.round(i * (ramp.length - 1) / (n - 1))]);
+    }
+    return picked;
+}
+
+
+// escapeHTML() moved to the shared 2026-early-voting.js (loaded before this file on both
+// the state and national pages) - 2026-early-voting-state.js now needs it too, to safely
+// render a note's embedded link (see renderNotesHTML() there).
+
+
+function hexMapValueText (point, csvvaluefield, legendtitle) {
+    const isNoData = point.value === null || point.value === undefined
+        || (csvvaluefield !== 'reporting_status' && point.value === NATIONALMAP_NO_DATA_SENTINEL);
+
+    if (isNoData) return 'No Data';
+    if (csvvaluefield === 'reporting_status') {
+        return ['No data yet', 'Mail ballots requested', 'Votes reported earlier', 'Votes reported today', 'Updated again'][point.value];
+    }
+    if (csvvaluefield === 'ratio_voted_all_2022') {
+        return `${point.value.toFixed(1)}% ${legendtitle}`;
+    }
+    return `${point.value.toLocaleString()} ${legendtitle}`;
+}
+
+
+function formatHexMapTooltip (point, csvvaluefield, legendtitle) {
+    const statedata = getDataRowByStateAbbrv(point.abbv);
+    if (! statedata) {
+        return `<strong>${escapeHTML(point.name)}</strong><br/>No Data`;
+    }
+
+    const valuetext = hexMapValueText(point, csvvaluefield, legendtitle);
+
+    return `
+        <strong>${escapeHTML(point.name)}</strong><br/>
+        ${escapeHTML(valuetext)}<br/>
+        Last updated ${escapeHTML(statedata.last_update || 'n/a')}
+    `;
+}
+
+
+function parseUSDate (datestring) {
+    // "9/12/2026" -> {month: 9, day: 12, year: 2026}. Deliberately not routed through the
+    // Date constructor: a bare "M/D/YYYY" string parses as local midnight in every browser,
+    // but comparing that against a differently-formatted date parsed a different way can
+    // silently land on the wrong side of midnight depending on the visitor's timezone.
+    // Splitting and comparing the three integers directly sidesteps that entirely.
+    if (! datestring) return null;
+    const parts = String(datestring).split('/').map((p) => parseInt(p, 10));
+    if (parts.length !== 3 || parts.some(isNaN)) return null;
+    return {month: parts[0], day: parts[1], year: parts[2]};
+}
+
+
+function isUpdateToday (datestring) {
+    // "today" is anchored to the server's own clock (SERVER_TODAY_DATE, set from the same
+    // filemtime() timestamp already shown on the page as "Last updated:" - see
+    // page-2026-early-voting.php) rather than each visitor's local browser clock, so this
+    // doesn't drift for visitors in other timezones or with a wrong system clock.
+    const updated = parseUSDate(datestring);
+    const today = parseUSDate(typeof SERVER_TODAY_DATE !== 'undefined' ? SERVER_TODAY_DATE : null);
+    if (! updated || ! today) return false;
+
+    return updated.year === today.year && updated.month === today.month && updated.day === today.day;
+}
+
+
+function stateUrlSlug (statename) {
+    return statename.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-+|-+$)/g, '');
+}
+
+
+function stateDetailUrl (statename) {
+    return `/early-vote/2026-early-voting/2026-general-election-early-vote-${stateUrlSlug(statename)}/`;
+}
+
+
+// Renders a "Reporting states:" list (e.g. NC, GA, PA) as comma-separated links to each
+// state's own detail page, into $span - same abbreviation text and comma-space separator as
+// the plain-text version this replaces, just with each one wrapped in an <a>. states is an
+// array of {abbv, name} (name is the full state name stateDetailUrl() needs, abbv is what's
+// actually shown).
+function renderStateLinks ($span, states) {
+    $span.empty();
+    states.forEach((state, i) => {
+        if (i > 0) $span.append(', ');
+        jQuery('<a></a>').attr('href', stateDetailUrl(state.name)).text(state.abbv).appendTo($span);
+    });
+}
+
+
+// Captures #us-statistics-capture (the National Statistics header down through the hex map -
+// see page-2026-early-voting.php) as a downloadable PNG, with a small "Created by UF Election
+// Lab" watermark stamped into the lower-right corner. Uses dom-to-image-more (already loaded
+// on this page for the [hexmap] shortcode's own "Download PNG" button - see
+// functions-hexmaps.js/.php) to render the DOM subtree to a PNG data URL, then re-draws that
+// onto a plain <canvas> to add the watermark, since dom-to-image-more's own API has no hook
+// for drawing extra content into its output.
+function downloadNationalStatisticsImage () {
+    const node = document.getElementById('us-statistics-capture');
+    if (! node) return;
+
+    // Forced white only for the moment of capture, then restored right after (see .finally()
+    // below) - a permanent white background on this element would fight the page's own dark
+    // theme (2026-early-voting-national.css). Without this, dom-to-image-more renders the
+    // node's real (transparent) background, which most image viewers show as black; bgcolor
+    // below is belt-and-suspenders for the same reason, and the canvas fill further down is a
+    // third layer of the same fix, so the final PNG is opaque white no matter which of the
+    // three actually mattered.
+    const originalBackground = node.style.background;
+    node.style.background = '#ffffff';
+
+    // #hexmap-us-earlyvote centers itself with CSS margin:0 auto (max-width:950px - see
+    // 2026-early-voting-national.css) - that resolves correctly on the live page, but
+    // dom-to-image-more clones this subtree to render it, and "auto" margins don't reliably
+    // survive that clone (observed: the map renders flush-left at its max-width instead of
+    // centered, even though the padding fix elsewhere keeps everything on the page itself
+    // looking right). Replacing "auto" with an explicit computed pixel value, just for the
+    // moment of capture, sidesteps needing the clone to resolve "auto" at all.
+    const hexmapContainer = document.getElementById('hexmap-us-earlyvote');
+    let originalHexmapMarginLeft, originalHexmapMarginRight;
+    if (hexmapContainer) {
+        originalHexmapMarginLeft = hexmapContainer.style.marginLeft;
+        originalHexmapMarginRight = hexmapContainer.style.marginRight;
+        const parentWidth = hexmapContainer.parentElement.clientWidth;
+        const ownWidth = hexmapContainer.getBoundingClientRect().width;
+        const sideMargin = Math.max(0, (parentWidth - ownWidth) / 2);
+        hexmapContainer.style.marginLeft = `${sideMargin}px`;
+        hexmapContainer.style.marginRight = `${sideMargin}px`;
+    }
+
+    domtoimage
+        .toPng(node, {bgcolor: '#ffffff'})
+        .then((dataUrl) => {
+            const img = new Image();
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.naturalWidth;
+                canvas.height = img.naturalHeight;
+                const ctx = canvas.getContext('2d');
+                ctx.fillStyle = 'white';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0);
+
+                const lines = ['Created by UF Election Lab', 'https://election.lab.ufl.edu/'];
+                const fontSize = Math.max(12, Math.round(canvas.width * 0.014));
+                const padding = Math.round(fontSize * 0.7);
+                const lineHeight = Math.round(fontSize * 1.3);
+                ctx.font = `${fontSize}px sans-serif`;
+                ctx.textAlign = 'right';
+                ctx.textBaseline = 'bottom';
+                const x = canvas.width - padding;
+                const lastLineY = canvas.height - padding;  // baseline of the URL line (bottom-most)
+
+                // light backing plate behind both lines, so they stay legible over whatever's
+                // underneath (mostly the hex map's own fill colors)
+                const textWidth = Math.max(...lines.map((line) => ctx.measureText(line).width));
+                const plateTop = lastLineY - (lines.length - 1) * lineHeight - fontSize - 4;
+                const plateHeight = (lines.length - 1) * lineHeight + fontSize + 10;
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                ctx.fillRect(x - textWidth - 8, plateTop, textWidth + 16, plateHeight);
+
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+                lines.forEach((line, i) => {
+                    ctx.fillText(line, x, lastLineY - (lines.length - 1 - i) * lineHeight);
+                });
+
+                const link = document.createElement('a');
+                link.download = 'uf-election-lab-national-early-vote-statistics.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            };
+            img.onerror = (error) => {
+                console.error('downloadNationalStatisticsImage() failed to load the rendered PNG for watermarking', error);
+            };
+            img.src = dataUrl;
+        })
+        .catch((error) => {
+            console.error('downloadNationalStatisticsImage() PNG export failed', error);
+        })
+        .finally(() => {
+            node.style.background = originalBackground;
+            if (hexmapContainer) {
+                hexmapContainer.style.marginLeft = originalHexmapMarginLeft;
+                hexmapContainer.style.marginRight = originalHexmapMarginRight;
+            }
+        });
+}

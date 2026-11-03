@@ -88,7 +88,7 @@
   "status": 403,
   "final_url": "https://www.ohiosos.gov/data/",
   "ctype": "text/html; charset=UTF-8",
-  "bytes": 1285382,
+  "bytes": 1285381,
   "data_links": []
  },
  "oh_ev": {
@@ -96,7 +96,7 @@
   "status": 403,
   "final_url": "https://www.ohiosos.gov/elections/election-results-and-data/2026/",
   "ctype": "text/html; charset=UTF-8",
-  "bytes": 1285533,
+  "bytes": 1285532,
   "data_links": []
  },
  "nyc_boe": {
@@ -617,7 +617,7 @@
   "status": 404,
   "final_url": "https://www.tarrantcountytx.gov/en/elections/election-results-and-turnout.html",
   "ctype": "text/html;charset=utf-8",
-  "bytes": 337883,
+  "bytes": 337886,
   "data_links": [
    "https://assets.adobedtm.com/cc64b4f118558c1d7a958a890407edc6c49c6c52/satelliteLib-6d528d77be3c24f70cd109714f387e20673a5695.js",
    "https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js",
@@ -813,7 +813,7 @@
   "status": 200,
   "final_url": "https://voteorangefl.gov/",
   "ctype": "text/html; charset=UTF-8",
-  "bytes": 206779,
+  "bytes": 206687,
   "data_links": [
    "https://docaccess.com/docbox.js",
    "https://voteorangefl.gov/orange-county-supervisor-of-elections-condemns-hate-symbols-near-early-voting-location/",
@@ -1255,7 +1255,7 @@
   "status": 200,
   "final_url": "https://www.michigan.gov/sos/elections/election-results-and-data",
   "ctype": "text/html; charset=utf-8",
-  "bytes": 427547,
+  "bytes": 427348,
   "data_links": [
    "https://www.googletagmanager.com/gtm.js?id=",
    "https://www.michigan.gov/sos/-/media/Base-Themes/Bing-Maps-JS-Connector/Scripts/optimized-min.js?rev=4f047e8bab6c4c58a30788b0275d5bb0&hash=565D96C83557FE3D8C5107642B3385B7",
@@ -1387,7 +1387,7 @@
   "status": 403,
   "final_url": "https://elections.wi.gov/statistics-data/absentee-ballot-reports",
   "ctype": "text/html; charset=UTF-8",
-  "bytes": 5769,
+  "bytes": 5747,
   "data_links": []
  }
 }

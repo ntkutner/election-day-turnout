@@ -1,0 +1,641 @@
+/**
+ * common shared functions and constants for the Early Vote dashboard system
+ * used by both the per-state and national dashboards
+ */
+
+let COMBINED_CSV_DATA = [];
+
+const COMBINED_CSV_URL = '/data-downloads/earlyvote/2026/US.csv';
+
+const INTEGER_FIELDS = [
+    'request_all',
+    'request_dem', 'request_rep', 'request_none',
+    'request_nh_white', 'request_nh_black', 'request_nh_asian', 'request_nh_native_american', 'request_nh_other', 'request_hispanic',
+    'request_male', 'request_female', 'request_gender_unknown',
+    'request_age_1', 'request_age_2', 'request_age_3', 'request_age_4',
+    'accept_all',
+    'accept_dem', 'accept_rep', 'accept_none',
+    'accept_age_1', 'accept_age_2', 'accept_age_3', 'accept_age_4',
+    'accept_nh_white', 'accept_nh_black', 'accept_nh_asian', 'accept_nh_native_american', 'accept_nh_other', 'accept_hispanic',
+    'accept_male', 'accept_female', 'accept_gender_unknown',
+    'inperson_all',
+    'inperson_dem', 'inperson_rep', 'inperson_none',
+    'inperson_age_1', 'inperson_age_2', 'inperson_age_3', 'inperson_age_4',
+    'inperson_nh_white', 'inperson_nh_black', 'inperson_nh_asian', 'inperson_nh_native_american', 'inperson_nh_other', 'inperson_hispanic',
+    'inperson_male', 'inperson_female', 'inperson_gender_unknown',
+    'voted_all',
+    'voted_dem', 'voted_rep', 'voted_none',
+    'voted_age_1', 'voted_age_2', 'voted_age_3', 'voted_age_4',
+    'voted_male', 'voted_female', 'voted_gender_unknown',
+    'voted_nh_white', 'voted_nh_black', 'voted_nh_asian', 'voted_nh_native_american', 'voted_nh_other', 'voted_hispanic',
+    'turn_2022',
+    'updates_today',  // how many times today's row has been written - "NA" (not yet touched by this feature) parses to NaN, which every comparison below treats the same as "not updated more than once"
+];
+
+const USA_HEXGRID_GEO_URL = '/data-downloads/aaatestdata/us_states_hexgrid.geojson';
+const USA_HEXGRID_COLOR_RAMP = ['#e5f5e0', '#c7e9c0', '#a1d99b', '#41ab5d', '#238b45'];
+
+const BARCHART_COLORS_BYPARTY = {
+    PD: "#0000ff",
+    PR: "#ff0000",
+    PN: "#00ff00",
+};
+const BARCHART_COLORS_BYAGE = {
+    A1: "#000000",
+    A2: "#303030",
+    A3: "#5e5e5e",
+    A4: "#919191",
+};
+const BARCHART_COLORS_BYGENDER = {
+    GF: "#ffff00",
+    GM: "#ffa500",
+    GX: "#00ff00",
+};
+const BARCHART_COLORS_BYRACE = {
+    RW: "#ff6347",
+    RB: "#ffff00",
+    RH: "#7fffd4",
+    RA: "#ee82ee",
+    RN: "#000080",
+    RX: "#00ff00",
+};
+
+
+function getDataRowByStateAbbrv (abbrv) {
+    return COMBINED_CSV_DATA.filter(row => row.state_abbv.toUpperCase() == abbrv.toUpperCase())[0];
+}
+
+
+function getDataRowByStateName (statename) {
+    return COMBINED_CSV_DATA.filter(row => row.state.toUpperCase() == statename.toUpperCase())[0];
+}
+
+
+// createSumChart()'s header text is always one of a fixed, known set of strings across every
+// call site in both the state and national dashboards (see their createSumChart() calls) - a
+// given header always means the same thing everywhere it's used, so a hover tooltip can be
+// looked up directly by that text rather than needing every call site to also pass one in.
+// Keyed by the exact string passed as topleftname/countname/percentname/extracolumn1name/
+// extracolumn2name; a header with no entry here just gets no tooltip.
+const SUMCHART_HEADER_TOOLTIPS = {
+    "Party": "Voter's party registration, as recorded on the voter file",
+    "Age": "Voter's age group, as recorded on the voter file",
+    "Gender": "Voter's gender, as recorded on the voter file",
+    "Race": "Voter's race and ethnicity, as recorded on the voter file",
+    "Total<br/>Voted": "Mail ballots received plus ballots cast in-person during the early-voting period",
+    "Voted<br/>In-Person": "Ballots cast in-person during the early-voting period",
+    "Mail Ballots<br/>Accepted": "Mail ballots received by election officials, excluding ballots identified as requiring a voter to cure a deficiency",
+    "Ballots<br/>Requested": "Mail ballots requested by voters, whether or not they have been returned yet",
+    "Percent<br/>Returned": "Mail Ballots Accepted as a share of Ballots Requested, for this category",
+};
+
+
+function createSumChart(divid, rows, topleftname="", countname="Count", percentname="Percent", extracolumn1name="", extracolumn2name="", showChart=true) {
+    // lay out the structure; jQuery makes it easy
+    // showChart=false renders the table alone, full-width, with no bar chart - used where a
+    // total is known (e.g. mail ballot requests) but not yet meaningful to visualize as a graph
+    const $content = showChart ? jQuery(`
+    <div class="sumchart row">
+        <div class="col-lg-6">
+            <table class="table table-sm table-striped">
+                <thead>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th class="text-end">Count</th>
+                        <th class="text-end">Percent</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-6">
+            <div class="sumchart-chart"></div>
+        </div>
+    </div>
+    `) : jQuery(`
+    <div class="sumchart sumchart-tableonly row">
+        <div class="col-12">
+            <table class="table table-sm table-striped">
+                <thead>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th class="text-end">Count</th>
+                        <th class="text-end">Percent</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    `);
+
+    const $container = jQuery(`#${divid}`);
+    $container.append($content);
+
+    // table content
+    // top-left cell (the column name)
+    // the table rows with percentage of the sum
+    // the grand total
+    // and if there are extra count & percent columns named, add them too
+    const $table = $content.find('table');
+    const $tbody = $table.children('tbody');
+    const $theadtr = $table.find('thead tr');
+
+    // Applies both the header's own text and its tooltip in one place, so every header cell -
+    // however it's built - gets the same treatment. tooltipOverride, when given, wins over a
+    // SUMCHART_HEADER_TOOLTIPS lookup by text - used below for the Percent column, whose
+    // tooltip depends on which count column it's paired with (e.g. "Total Voted share of the
+    // column total" here, "Ballots Requested share of the column total" there), so a single
+    // fixed "Percent" dictionary entry can't say it correctly across every chart that uses it.
+    function setHeader ($th, text, tooltipOverride) {
+        $th.html(text);
+        const tooltip = tooltipOverride !== undefined ? tooltipOverride : SUMCHART_HEADER_TOOLTIPS[text];
+        if (tooltip) $th.attr('title', tooltip);
+    }
+
+    const percentTooltip = countname ? `${countname.replace(/<br\s*\/?>/gi, ' ')} share of the column total` : undefined;
+
+    setHeader($theadtr.find('th').eq(0), topleftname);
+    setHeader($theadtr.find('th').eq(1), countname);
+    setHeader($theadtr.find('th').eq(2), percentname, percentTooltip);
+    if (extracolumn1name) {
+        setHeader(jQuery('<th class="text-end"></th>').appendTo($theadtr), extracolumn1name);
+    }
+    if (extracolumn2name) {
+        setHeader(jQuery('<th class="text-end"></th>').appendTo($theadtr), extracolumn2name);
+    }
+
+    const grandtotal = rows.reduce((sum, thisone) => sum + thisone.value, 0);
+
+    rows.forEach((row) => {
+        const percentage = grandtotal ? (100 * row.value / grandtotal) : 0;
+        const $tr = jQuery('<tr></tr>');
+        jQuery('<th scope="row"></th>').text(row.name).appendTo($tr);
+        jQuery('<td class="text-end text-nowrap"></td>').text(row.value.toLocaleString()).appendTo($tr);
+        jQuery('<td class="text-end text-nowrap"></td>').text(`${percentage.toFixed(1)} %`).appendTo($tr);
+
+        if (extracolumn1name) {
+            let coltext = row.extracolumn1;
+            switch (rows[0].extracolumn1_type) {
+                case 'integer':
+                    coltext = coltext.toLocaleString();
+                    break;
+                case 'percent':
+                    coltext = `${coltext} %`;
+                    break;
+            }
+            jQuery('<td class="text-end text-nowrap"></td>').text(coltext).appendTo($tr);
+        }
+        if (extracolumn2name) {
+            let coltext = row.extracolumn2;
+            switch (rows[0].extracolumn2_type) {
+                case 'integer':
+                    coltext = coltext.toLocaleString();
+                    break;
+                case 'percent':
+                    coltext = `${coltext} %`;
+                    break;
+            }
+            jQuery('<td class="text-end text-nowrap"></td>').text(coltext).appendTo($tr);
+        }
+
+        $tr.appendTo($tbody);
+    });
+
+    const $tfoot = jQuery('<tfoot></tfoot>');
+    const $tfoottr = jQuery('<tr></tr>');
+    jQuery('<th scope="row"></th>').text("TOTAL").appendTo($tfoottr);
+    jQuery('<td class="text-end text-nowrap"></td>').text(grandtotal.toLocaleString()).appendTo($tfoottr);
+    jQuery('<td class="text-end text-nowrap"></td>').text(grandtotal ? '100 %' : '0 %').appendTo($tfoottr);
+    if (extracolumn1name) {
+        jQuery('<td class="text-end text-nowrap"></td>').text(rows[0].extracolumn1_sumtext).appendTo($tfoottr);
+    }
+    if (extracolumn2name) {
+        jQuery('<td class="text-end text-nowrap"></td>').text(rows[0].extracolumn2_sumtext).appendTo($tfoottr);
+    }
+    $tfoottr.appendTo($tfoot);
+    $tfoot.appendTo($table);
+
+    if (! showChart) return;
+
+    // the chart (plain SVG via D3 - see drawPercentBarChart below; replaces Highcharts,
+    // see highcharts-backup/). Measure the real table's own header/row heights (rather
+    // than assuming fixed pixel values) so the chart's bars line up with their matching
+    // table rows - e.g. the "Democrat" bar sits level with the "Democrat" table row.
+    const $chartdiv = $content.find('div.sumchart-chart');
+    const chartdivid = `${divid}-sumchart-${parseInt(1000000*Math.random())}`;
+    $chartdiv.prop('id', chartdivid);
+    const chart_categories = rows.map(row => row.name);
+    const chart_series = rows.map(row => grandtotal ? Math.round(100 * row.value / grandtotal) : 0);
+    const chart_colors = rows.map(row => row.color)
+    const {headerHeight, rowHeight} = measureTableRowHeights($table);
+
+    drawPercentBarChart(chartdivid, chart_categories, chart_series, chart_colors, {topOffset: headerHeight, rowHeight: rowHeight});
+}
+
+
+function measureTableRowHeights ($table) {
+    // the real table may currently be inside a hidden (inactive) Bootstrap tab pane, where
+    // display:none collapses every descendant to zero size - so measure a throwaway clone
+    // appended directly to <body> instead, which lays out normally regardless. Keeps only
+    // the header and first data row (all that's needed) with the same classes/content, so
+    // multi-line headers (many of this dashboard's use a manual <br/> for a two-line label)
+    // measure at their real height rather than an assumed one.
+    const $probe = $table.clone();
+    $probe.find('tbody tr').slice(1).remove();
+    $probe.css({position: 'absolute', visibility: 'hidden', left: '-9999px', top: '0'});
+    $probe.appendTo('body');
+
+    const theadEl = $probe.find('thead')[0];
+    const rowEl = $probe.find('tbody tr')[0];
+    const headerHeight = theadEl ? theadEl.getBoundingClientRect().height : 0;
+    const rowHeight = rowEl ? rowEl.getBoundingClientRect().height : 0;
+
+    $probe.remove();
+
+    // fall back to the pre-measurement defaults if something went wrong (e.g. an empty table)
+    return {
+        headerHeight: headerHeight || 33,
+        rowHeight: rowHeight || 33,
+    };
+}
+
+
+// shared canvas 2d context for measuring rendered text width (faster than a DOM/SVG
+// round-trip); reused across every call rather than recreated each time.
+const TEXTMEASURE_CANVAS = document.createElement('canvas').getContext('2d');
+
+function measureTextWidth(text, font) {
+    TEXTMEASURE_CANVAS.font = font;
+    return TEXTMEASURE_CANVAS.measureText(text).width;
+}
+
+
+function fetchCsvRows (url) {
+    // Wraps Papa.parse in a promise so every geography file can be fetched in parallel and
+    // waited on together. A 404 or parse failure resolves to an empty array rather than
+    // rejecting - same "nothing to show, not an error" treatment the single-file version of
+    // this code used, just per-level instead of per-state.
+    return new Promise((resolve) => {
+        Papa.parse(url, {
+            download: true,
+            header: true,
+            skipEmptyLines: true,
+            dynamicTyping: true,
+            complete: (results) => resolve(results && results.data ? results.data.filter((row) => row.county) : []),
+            error: () => resolve([]),
+        });
+    });
+}
+
+
+function formatDistrictLabel (id) {
+    // Some states' district files identify a district with a bare, often zero-padded number
+    // (e.g. Georgia's "001") - fine as a join key, but awkward sitting alone in a "Geography"
+    // column with no indication of what kind of district it even is. Prefix those with
+    // "District", stripping the padding for readability ("District 1", not "District 001").
+    // States that already spell the district out (e.g. North Carolina's "CONGRESSIONAL
+    // DISTRICT 1") are left alone - they don't need, and would look wrong doubled up with,
+    // the same prefix.
+    const str = String(id).trim();
+    return /^\d+$/.test(str) ? `District ${parseInt(str, 10)}` : str;
+}
+
+
+function aggregateByDistrict (rows, idField) {
+    // The raw cd/sdl/sdu files have one row per district x county overlap (a district
+    // spanning three counties gets three rows) - collapse to one row per district by summing
+    // every numeric column, exactly the way the R pipeline already sums county-level data up
+    // to a state total. The district's own label is exposed as "county" so the same
+    // table-building functions used for the county-level file work unchanged here too.
+    const totals = {};
+    const order = [];
+    rows.forEach((row) => {
+        const id = row[idField];
+        if (id === undefined || id === null || id === '') return;
+        if (! (id in totals)) {
+            totals[id] = {county: formatDistrictLabel(id)};
+            order.push(id);
+        }
+        Object.keys(row).forEach((key) => {
+            if (key === idField || key === 'county') return;
+            const val = Number(row[key]);
+            if (! isNaN(val)) {
+                totals[id][key] = (totals[id][key] || 0) + val;
+            }
+        });
+    });
+    return order.map((id) => totals[id]);
+}
+
+
+function escapeHTML (str) {
+    // replaces Highcharts.escapeHTML (see highcharts-backup/) for hand-built HTML - used for
+    // tooltip text on the national hexmap and for a state detail page's notes field (see
+    // renderNotesHTML() in 2026-early-voting-state.js)
+    return String(str).replace(/[&<>"']/g, (ch) => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[ch]));
+}
+
+
+// Generic sortable-table builder - used by both the per-state dashboard (county/district
+// tables, with an optional expandable party-breakdown sub-row) and the national dashboard's
+// Fast Stats tab (buildFastStatsStateTable()/buildFastStatsCongressTable() in
+// 2026-early-voting-national.js, no party sub-rows).
+//
+// columns: [{key, label, type: 'string'|'number', align: 'end', tooltip, format(value),
+//   html(value, rowData)}] - format returns plain text; html, when given, returns trusted
+//   markup rendered via .html() instead (e.g. a link on the name column) and wins over format.
+// data: [{...one entry per column's key, _party?: {dem, rep, none, requestDem?, requestRep?,
+//   requestNone?}}] - a row's own key values drive both sorting and display; _party, when
+//   present, adds an expand toggle revealing three extra Democrat/Republican/None rows.
+function createSortableTable (divid, columns, data) {
+    const $container = jQuery(`#${divid}`);
+
+    let sortKey = null;
+    let sortDir = 1;  // 1 = ascending, -1 = descending
+
+    // A row carries a _party {dem, rep, none[, requestDem, requestRep, requestNone]}
+    // breakdown (see partyBreakdownFor()) when this geography has one for the metric this
+    // table shows - e.g. a state with county-level party registration data on its Mail
+    // Ballot table. Only draw the extra toggle column at all when at least one row actually
+    // has it (most states/levels won't), and track expanded rows by their first column's
+    // value (county/district name - unique within one table) rather than array index, so
+    // expanding one row and re-sorting doesn't leave the wrong row open.
+    const hasAnyPartyDetail = data.some((row) => !! row._party);
+    const expandedKeys = new Set();
+
+    // Not .table-striped: Bootstrap stripes by raw row position (nth-child), which breaks as
+    // soon as a table can grow rows in place - expanding one geography row inserts its 3 party
+    // sub-rows right after it, shifting the position (and so the stripe color) of every row
+    // below, and made the just-expanded row itself flicker too. Striped explicitly instead,
+    // below, off each geography row's own index among *geography* rows only - stable
+    // regardless of how many party sub-rows are currently expanded anywhere in the table.
+    const $table = jQuery('<table class="table table-sm sumtable-sortable"><thead><tr></tr></thead><tbody></tbody></table>');
+    const $theadtr = $table.find('thead tr');
+    const $tbody = $table.find('tbody');
+
+    if (hasAnyPartyDetail) {
+        jQuery('<th class="sumtable-expand-col" title="Expand a row for its party breakdown"></th>').text('Party').appendTo($theadtr);
+    }
+
+    columns.forEach((col) => {
+        const $th = jQuery('<th role="button" tabindex="0"></th>')
+            .toggleClass('text-end', col.align === 'end')
+            .attr('data-sort-key', col.key)
+            .attr('aria-sort', 'none')
+            .append(jQuery('<span class="sumtable-sort-label"></span>').text(col.label))
+            .append(jQuery('<span class="sumtable-sort-indicator"></span>'));
+        if (col.tooltip) $th.attr('title', col.tooltip);
+        $th.appendTo($theadtr);
+    });
+
+    // Builds one <tr> using the SAME columns array (and therefore the same table, same
+    // column grid) as every ordinary geography row - the only way values reliably line up
+    // under the right header is sharing actual <td> boundaries with them, not a visually
+    // similar but independent set of widths (e.g. a nested table). toggleContent goes in the
+    // leading expand-toggle column when the table has one at all (a real button for a
+    // geography row, a color swatch for a party sub-row, or nothing).
+    function appendRow (rowData, toggleContent, rowClass) {
+        const $tr = jQuery('<tr></tr>').addClass(rowClass || '');
+
+        if (hasAnyPartyDetail) {
+            jQuery('<td class="sumtable-expand-col"></td>').append(toggleContent).appendTo($tr);
+        }
+
+        columns.forEach((col, i) => {
+            const $cell = jQuery(i === 0 ? '<th scope="row"></th>' : '<td class="text-end text-nowrap"></td>');
+            const value = rowData[col.key];
+            // null marks "not available for this specific row" (e.g. a county with an
+            // accept_dem/rep/none split but no matching request_dem/rep/none one to compute a
+            // per-party return rate from) - distinct from a real 0, and from every other cell
+            // simply not being party-specific at all.
+            if (value === null) {
+                $cell.text('—');
+            } else if (col.html) {
+                // opt-in escape hatch for a cell that needs real markup (e.g. a link on the
+                // name column) rather than plain text - col.html is trusted to return
+                // well-formed, already-escaped HTML (see escapeHTML() in 2026-early-voting-national.js)
+                // since every caller here controls both the data and the markup it builds from it.
+                $cell.html(col.html(value, rowData));
+            } else {
+                $cell.text(col.format ? col.format(value) : value);
+            }
+            $cell.appendTo($tr);
+        });
+        $tr.appendTo($tbody);
+    }
+
+    function appendPartyDetailRows (party) {
+        // Only the Mail Ballot table's columns (county, accept_all, requested_all, percent)
+        // pair a "count" column with a "requested"/"percent-returned" pair right after it -
+        // In-Person/Total Voted's columns are just [county, count]. Reused generically here by
+        // position (columns[1] is always the metric this table is about; columns[2]/[3], when
+        // present, are always its requested count and return rate) rather than checked by
+        // name, so this doesn't need its own copy of which table is which.
+        [
+            {name: 'Democrat', value: party.dem, request: party.requestDem, color: BARCHART_COLORS_BYPARTY.PD},
+            {name: 'Republican', value: party.rep, request: party.requestRep, color: BARCHART_COLORS_BYPARTY.PR},
+            {name: 'None/Minor', value: party.none, request: party.requestNone, color: BARCHART_COLORS_BYPARTY.PN},
+        ].forEach((p) => {
+            const partyRow = {};
+            partyRow[columns[0].key] = p.name;
+            partyRow[columns[1].key] = p.value;
+            if (columns.length > 2) {
+                // p.request is undefined when this row has an accept_dem/rep/none split but no
+                // request_dem/rep/none one (see partyBreakdownFor()) - show "—", not a
+                // fabricated 0 requested / 0% returned.
+                partyRow[columns[2].key] = p.request === undefined ? null : p.request;
+                partyRow[columns[3].key] = p.request === undefined ? null : (p.request ? 100 * p.value / p.request : 0);
+            }
+
+            const $swatch = jQuery('<span class="sumtable-party-swatch"></span>').css('background-color', p.color);
+            appendRow(partyRow, $swatch, 'sumtable-party-row');
+        });
+    }
+
+    function render () {
+        $tbody.empty();
+
+        const sorted = data.slice();
+        if (sortKey) {
+            const column = columns.find((col) => col.key === sortKey);
+            sorted.sort((a, b) => {
+                if (column.type === 'string') return sortDir * String(a[sortKey]).localeCompare(String(b[sortKey]));
+                return sortDir * (a[sortKey] - b[sortKey]);
+            });
+        }
+
+        sorted.forEach((row, geoIndex) => {
+            const rowKey = row[columns[0].key];
+            let $toggle = null;
+
+            if (row._party) {
+                const isExpanded = expandedKeys.has(rowKey);
+                $toggle = jQuery('<button type="button" class="sumtable-expand-toggle"></button>')
+                    .attr('aria-expanded', isExpanded ? 'true' : 'false')
+                    .attr('aria-label', `${isExpanded ? 'Hide' : 'Show'} party breakdown for ${rowKey}`)
+                    .text(isExpanded ? '▾' : '▸')
+                    .on('click', function () {
+                        if (expandedKeys.has(rowKey)) expandedKeys.delete(rowKey); else expandedKeys.add(rowKey);
+                        render();
+                    });
+            }
+
+            // geoIndex, not the row's eventual DOM position - see the stripe-driving note on
+            // $table above. Even (0-based) matches the first, third, fifth... row, the same
+            // ones nth-child(odd) tinted under the old position-based striping - getting this
+            // backwards once already made every row swap which one was tinted.
+            appendRow(row, $toggle, geoIndex % 2 === 0 ? 'sumtable-row-alt' : '');
+
+            if (row._party && expandedKeys.has(rowKey)) {
+                appendPartyDetailRows(row._party);
+            }
+        });
+
+        $theadtr.find('th[data-sort-key]').each(function () {
+            const $th = jQuery(this);
+            const isSorted = $th.attr('data-sort-key') === sortKey;
+            const $indicator = $th.find('.sumtable-sort-indicator');
+            $indicator.text(isSorted ? (sortDir === 1 ? '▲' : '▼') : '⇅');
+            $indicator.toggleClass('sumtable-sort-indicator-active', isSorted);
+            $th.attr('aria-sort', isSorted ? (sortDir === 1 ? 'ascending' : 'descending') : 'none');
+        });
+    }
+
+    $theadtr.find('th[data-sort-key]').on('click keydown', function (e) {
+        if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
+        e.preventDefault();
+
+        const key = jQuery(this).attr('data-sort-key');
+        sortDir = (sortKey === key) ? -sortDir : 1;
+        sortKey = key;
+        render();
+    });
+
+    render();
+    $container.empty().append($table);
+}
+
+
+function debounce(fn, waitms) {
+    let timer;
+    return function (...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => fn.apply(this, args), waitms);
+    };
+}
+
+
+function drawPercentBarChart(containerId, categories, percents, colors, opts) {
+    // horizontal 0-100% bar chart, one bar per category - replaces the Highcharts 'bar'
+    // chart previously built here (see highcharts-backup/2026-early-voting.js). Static
+    // (no tooltip/legend/animation/interactivity) since the identical numbers are already
+    // in the accessible HTML table right next to this chart, which is why the SVG itself
+    // is marked aria-hidden below rather than duplicating per-bar ARIA labels (pass
+    // opts.ariaLabel instead when there's no such table, as functions-barchart.js does).
+    //
+    // opts.topOffset/opts.rowHeight (both default to 33, a plain single-line table row's
+    // height) let a caller with a real adjacent table pass its own measured header/row
+    // heights, so each bar lines up with its matching table row rather than assuming a
+    // fixed size that won't match e.g. a two-line table header.
+    opts = opts || {};
+    const topOffset = opts.topOffset || 33;
+    const rowHeight = opts.rowHeight || 33;
+    const ariaLabel = opts.ariaLabel;
+
+    const container = document.getElementById(containerId);
+    if (! container) return;
+
+    const labelFont = '12px sans-serif';
+    const leftMargin = Math.ceil(Math.max(...categories.map((c) => measureTextWidth(c, labelFont)))) + 10;
+    const rightMargin = 25;
+    const bottomMargin = 24;
+    const bandHeight = rowHeight;
+    const barHeight = Math.max(10, rowHeight - 8);
+
+    function render() {
+        const totalWidth = container.clientWidth || container.parentElement.clientWidth || 300;
+        const innerWidth = Math.max(10, totalWidth - leftMargin - rightMargin);
+        const innerHeight = bandHeight * categories.length;
+        const height = topOffset + innerHeight + bottomMargin;
+
+        const xScale = d3.scaleLinear().domain([0, 100]).range([0, innerWidth]);
+
+        const svg = d3.select(container).html('').append('svg')
+            .attr('width', totalWidth)
+            .attr('height', height);
+
+        if (ariaLabel) {
+            svg.attr('role', 'img').attr('aria-label', ariaLabel);
+        } else {
+            svg.attr('role', 'presentation').attr('aria-hidden', 'true');
+        }
+
+        const plot = svg.append('g').attr('transform', `translate(${leftMargin},${topOffset})`);
+
+        // category labels
+        plot.selectAll('text.sumchart-bar-label')
+            .data(categories)
+            .join('text')
+            .attr('class', 'sumchart-bar-label')
+            .attr('x', -8)
+            .attr('y', (d, i) => i * bandHeight + bandHeight / 2)
+            .attr('dy', '0.35em')
+            .attr('text-anchor', 'end')
+            .style('font', labelFont)
+            .style('fill', '#0b0b0b')
+            .text((d) => d);
+
+        // bars
+        plot.selectAll('rect.sumchart-bar')
+            .data(percents)
+            .join('rect')
+            .attr('class', 'sumchart-bar')
+            .attr('x', 0)
+            .attr('y', (d, i) => i * bandHeight + (bandHeight - barHeight) / 2)
+            .attr('width', (d) => xScale(d))
+            .attr('height', barHeight)
+            .attr('fill', (d, i) => colors[i]);
+
+        // bottom 0-100% axis
+        const axisY = innerHeight;
+        const ticks = xScale.ticks(5);
+        const axis = plot.append('g').attr('transform', `translate(0,${axisY})`);
+        axis.append('line')
+            .attr('x1', 0).attr('x2', innerWidth)
+            .attr('stroke', '#c3c2b7');
+        const tickG = axis.selectAll('g.sumchart-tick')
+            .data(ticks)
+            .join('g')
+            .attr('class', 'sumchart-tick')
+            .attr('transform', (d) => `translate(${xScale(d)},0)`);
+        tickG.append('line')
+            .attr('y2', 6)
+            .attr('stroke', '#c3c2b7');
+        tickG.append('text')
+            .attr('y', 18)
+            .attr('text-anchor', 'middle')
+            .style('font', '11px sans-serif')
+            .style('fill', '#52514e')
+            .text((d) => `${d}%`);
+    }
+
+    render();
+    // fires on ANY size change to this element - not just window resizes, but also the
+    // moment a chart built while its Bootstrap tab was still display:none (0 width, so
+    // render() above fell back to a hardcoded width) is actually shown for the first
+    // time, which a window-resize listener alone would never catch.
+    new ResizeObserver(debounce(render, 150)).observe(container);
+
+    // belt-and-suspenders: also redraw the moment this chart's own Bootstrap tab becomes
+    // the active one, since that's the exact real-world trigger for the scenario above
+    // (this dashboard builds every tab's charts immediately, not just the one on screen)
+    // - a native event Bootstrap 5 dispatches regardless of jQuery being on the page.
+    const tabPane = container.closest('.tab-pane');
+    if (tabPane && tabPane.id) {
+        const tabButton = document.querySelector(`[data-bs-target="#${tabPane.id}"]`);
+        if (tabButton) tabButton.addEventListener('shown.bs.tab', render);
+    }
+}

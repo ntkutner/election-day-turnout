@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en" style="height:100%;"><head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/TEDElectionLink/" />
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+    <link href="_content/SharedAssets/css/fonts.css" rel="stylesheet">
+
+    <link href="_content/SharedAssets/vendor/fontawesome/7.2.0/css/all.css" rel="stylesheet">
+    <link href="_content/DevExpress.Blazor.Themes/blazing-berry.bs5.min.css" rel="stylesheet" asp-append-version="true">
+    <link href="_content/DevExpress.Blazor.Reporting.Viewer/css/dx-blazor-reporting-components.bs5.css" rel="stylesheet">
+    <script type="text/javascript" src="./_content/DevExpress.Blazor.Resources/js/preload-script.js?v=25.2.5.0"></script><dxbl-resource-script src="./_content/DevExpress.Blazor/modules/dx-blazor-all.js?v=25.2.5.0"></dxbl-resource-script><dxbl-resource-script src="./_content/DevExpress.Blazor.Viewer/dx-blazor-viewer.js?v=25.2.5.0"></dxbl-resource-script><dxbl-resource-script src="./_content/DevExpress.Blazor/modules/dx-blazor-quill.js?v=25.2.5.0"></dxbl-resource-script><dxbl-resource-script src="./_content/DevExpress.Blazor.Resources/js/devextreme/dx.all.js?v=25.2.5.0"></dxbl-resource-script><dxbl-resource-script src="./_content/DevExpress.Blazor.RichEdit/dx-blazor-richedit.js?v=25.2.5.0"></dxbl-resource-script><script type="module" src="./_content/DevExpress.Blazor.Resources/js/import-scripts.js?v=25.2.5.0"></script>
+    <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/gridstack@10.3.1/dist/gridstack.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/gridstack@10.3.1/dist/gridstack-extra.min.css" rel="stylesheet">
+    <link href="gridstack-custom.css" rel="stylesheet">
+
+    <link href="css/site.css" rel="stylesheet">
+    <link href="TEDElectionLink.styles.css" rel="stylesheet"><script src="https://www.google.com/recaptcha/api.js" async defer></script><style>
+        .goog-te-banner-frame { display: none !important; }
+        .skiptranslate { display: none !important; }
+        #goog-gt-tt { display: none !important; }
+        .goog-tooltip, .goog-tooltip:hover { display: none !important; }
+        .goog-text-highlight { background-color: transparent !important; box-shadow: none !important; }
+        body { top: 0 !important; }
+    </style>
+
+    <style>
+        summary { list-style: none; }
+        summary::-webkit-details-marker { display: none; }
+        summary::marker { content: ""; }
+    </style>
+
+    </head>
+
+<body><div id="google_translate_element" style="display:none;"></div>
+    
+<style>
+::-webkit-scrollbar {width: 8px;height: 8px;z-index: 1;}
+::-webkit-scrollbar-track {background: transparent;}
+::-webkit-scrollbar-thumb {background: #c4c4c4;border-radius: 1px;}
+::-webkit-scrollbar-thumb:hover {background: #a6a6a6;}
+html, body * {scrollbar-color: #c4c4c4 transparent;scrollbar-width: thin;}
+</style>
+<style>
+    .mud-chart-serie:hover {
+        filter: url(#lighten);
+    }
+
+    .mud-chart-serie-hovered 
+    {
+        filter: url(#lighten);
+    }
+</style>
+
+<style class='mud-theme-provider'>
+:root{
+--mud-palette-black: rgba(39,44,52,1);
+--mud-palette-white: rgba(255,255,255,1);
+--mud-palette-primary: rgba(1,53,120,1);
+--mud-palette-primary-rgb: 1,53,120;
+--mud-palette-primary-text: rgba(255,255,255,1);
+--mud-palette-primary-darken: rgb(1,35,81);
+--mud-palette-primary-lighten: rgb(2,71,162);
+--mud-palette-primary-hover: rgba(1,53,120,0.058823529411764705);
+--mud-palette-secondary: rgba(245,122,33,1);
+--mud-palette-secondary-rgb: 245,122,33;
+--mud-palette-secondary-text: rgba(255,255,255,1);
+--mud-palette-secondary-darken: rgb(234,104,11);
+--mud-palette-secondary-lighten: rgb(246,143,70);
+--mud-palette-secondary-hover: rgba(245,122,33,0.058823529411764705);
+--mud-palette-tertiary: rgba(221,230,242,0.7019607843137254);
+--mud-palette-tertiary-rgb: 221,230,242;
+--mud-palette-tertiary-text: rgba(255,255,255,1);
+--mud-palette-tertiary-darken: rgb(196,212,233);
+--mud-palette-tertiary-lighten: rgb(248,250,252);
+--mud-palette-tertiary-hover: rgba(221,230,242,0.058823529411764705);
+--mud-palette-info: rgba(33,150,243,1);
+--mud-palette-info-rgb: 33,150,243;
+--mud-palette-info-text: rgba(255,255,255,1);
+--mud-palette-info-darken: rgb(12,128,223);
+--mud-palette-info-lighten: rgb(71,167,245);
+--mud-palette-info-hover: rgba(33,150,243,0.058823529411764705);
+--mud-palette-success: rgba(0,200,83,1);
+--mud-palette-success-rgb: 0,200,83;
+--mud-palette-success-text: rgba(255,255,255,1);
+--mud-palette-success-darken: rgb(0,163,68);
+--mud-palette-success-lighten: rgb(0,235,98);
+--mud-palette-success-hover: rgba(0,200,83,0.058823529411764705);
+--mud-palette-warning: rgba(255,152,0,1);
+--mud-palette-warning-rgb: 255,152,0;
+--mud-palette-warning-text: rgba(255,255,255,1);
+--mud-palette-warning-darken: rgb(214,129,0);
+--mud-palette-warning-lighten: rgb(255,167,36);
+--mud-palette-warning-hover: rgba(255,152,0,0.058823529411764705);
+--mud-palette-error: rgba(244,67,54,1);
+--mud-palette-error-rgb: 244,67,54;
+--mud-palette-error-text: rgba(255,255,255,1);
+--mud-palette-error-darken: rgb(242,28,13);
+--mud-palette-error-lighten: rgb(246,96,85);
+--mud-palette-error-hover: rgba(244,67,54,0.058823529411764705);
+--mud-palette-dark: rgba(66,66,66,1);
+--mud-palette-dark-rgb: 66,66,66;
+--mud-palette-dark-text: rgba(255,255,255,1);
+--mud-palette-dark-darken: rgb(46,46,46);
+--mud-palette-dark-lighten: rgb(87,87,87);
+--mud-palette-dark-hover: rgba(66,66,66,0.058823529411764705);
+--mud-palette-text-primary: rgba(40,40,40,1);
+--mud-palette-text-primary-rgb: 40,40,40;
+--mud-palette-text-secondary: rgba(0,0,0,0.5372549019607843);
+--mud-palette-text-secondary-rgb: 0,0,0;
+--mud-palette-text-disabled: rgba(0,0,0,0.3764705882352941);
+--mud-palette-text-disabled-rgb: 0,0,0;
+--mud-palette-action-default: rgba(0,0,0,0.5372549019607843);
+--mud-palette-action-default-hover: rgba(0,0,0,0.058823529411764705);
+--mud-palette-action-disabled: rgba(0,0,0,0.25882352941176473);
+--mud-palette-action-disabled-background: rgba(0,0,0,0.11764705882352941);
+--mud-palette-surface: rgba(255,255,255,1);
+--mud-palette-surface-rgb: 255,255,255;
+--mud-palette-background: rgba(250,250,250,1);
+--mud-palette-background-gray: rgba(245,245,245,1);
+--mud-palette-drawer-background: rgba(255,255,255,1);
+--mud-palette-drawer-text: rgba(66,66,66,1);
+--mud-palette-drawer-icon: rgba(97,97,97,1);
+--mud-palette-appbar-background: rgba(255,255,255,1);
+--mud-palette-appbar-text: rgba(68,68,68,1);
+--mud-palette-lines-default: rgba(0,0,0,0.11764705882352941);
+--mud-palette-lines-inputs: rgba(189,189,189,1);
+--mud-palette-table-lines: rgba(235,235,235,1);
+--mud-palette-table-striped: rgba(253,253,253,1);
+--mud-palette-table-hover: rgba(228,229,229,1);
+--mud-palette-divider: rgba(224,224,224,1);
+--mud-palette-divider-rgb: 224,224,224;
+--mud-palette-divider-light: rgba(0,0,0,0.8);
+--mud-palette-skeleton: rgba(0,0,0,0.10980392156862745);
+--mud-palette-gray-default: #9E9E9E;
+--mud-palette-gray-light: #BDBDBD;
+--mud-palette-gray-lighter: #E0E0E0;
+--mud-palette-gray-dark: #757575;
+--mud-palette-gray-darker: #616161;
+--mud-palette-overlay-dark: rgba(33,33,33,0.4980392156862745);
+--mud-palette-overlay-light: rgba(255,255,255,0.4980392156862745);
+--mud-palette-border-opacity: 1;
+--mud-ripple-color: var(--mud-palette-text-primary);
+--mud-ripple-opacity: 0.1;
+--mud-ripple-opacity-secondary: 0.2;
+--mud-elevation-0: none;
+--mud-elevation-1: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+--mud-elevation-2: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
+--mud-elevation-3: 0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12);
+--mud-elevation-4: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);
+--mud-elevation-5: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 5px 8px 0px rgba(0,0,0,0.14),0px 1px 14px 0px rgba(0,0,0,0.12);
+--mud-elevation-6: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
+--mud-elevation-7: 0px 4px 5px -2px rgba(0,0,0,0.2),0px 7px 10px 1px rgba(0,0,0,0.14),0px 2px 16px 1px rgba(0,0,0,0.12);
+--mud-elevation-8: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
+--mud-elevation-9: 0px 5px 6px -3px rgba(0,0,0,0.2),0px 9px 12px 1px rgba(0,0,0,0.14),0px 3px 16px 2px rgba(0,0,0,0.12);
+--mud-elevation-10: 0px 6px 6px -3px rgba(0,0,0,0.2),0px 10px 14px 1px rgba(0,0,0,0.14),0px 4px 18px 3px rgba(0,0,0,0.12);
+--mud-elevation-11: 0px 6px 7px -4px rgba(0,0,0,0.2),0px 11px 15px 1px rgba(0,0,0,0.14),0px 4px 20px 3px rgba(0,0,0,0.12);
+--mud-elevation-12: 0px 7px 8px -4px rgba(0,0,0,0.2),0px 12px 17px 2px rgba(0,0,0,0.14),0px 5px 22px 4px rgba(0,0,0,0.12);
+--mud-elevation-13: 0px 7px 8px -4px rgba(0,0,0,0.2),0px 13px 19px 2px rgba(0,0,0,0.14),0px 5px 24px 4px rgba(0,0,0,0.12);
+--mud-elevation-14: 0px 7px 9px -4px rgba(0,0,0,0.2),0px 14px 21px 2px rgba(0,0,0,0.14),0px 5px 26px 4px rgba(0,0,0,0.12);
+--mud-elevation-15: 0px 8px 9px -5px rgba(0,0,0,0.2),0px 15px 22px 2px rgba(0,0,0,0.14),0px 6px 28px 5px rgba(0,0,0,0.12);
+--mud-elevation-16: 0px 8px 10px -5px rgba(0,0,0,0.2),0px 16px 24px 2px rgba(0,0,0,0.14),0px 6px 30px 5px rgba(0,0,0,0.12);
+--mud-elevation-17: 0px 8px 11px -5px rgba(0,0,0,0.2),0px 17px 26px 2px rgba(0,0,0,0.14),0px 6px 32px 5px rgba(0,0,0,0.12);
+--mud-elevation-18: 0px 9px 11px -5px rgba(0,0,0,0.2),0px 18px 28px 2px rgba(0,0,0,0.14),0px 7px 34px 6px rgba(0,0,0,0.12);
+--mud-elevation-19: 0px 9px 12px -6px rgba(0,0,0,0.2),0px 19px 29px 2px rgba(0,0,0,0.14),0px 7px 36px 6px rgba(0,0,0,0.12);
+--mud-elevation-20: 0px 10px 13px -6px rgba(0,0,0,0.2),0px 20px 31px 3px rgba(0,0,0,0.14),0px 8px 38px 7px rgba(0,0,0,0.12);
+--mud-elevation-21: 0px 10px 13px -6px rgba(0,0,0,0.2),0px 21px 33px 3px rgba(0,0,0,0.14),0px 8px 40px 7px rgba(0,0,0,0.12);
+--mud-elevation-22: 0px 10px 14px -6px rgba(0,0,0,0.2),0px 22px 35px 3px rgba(0,0,0,0.14),0px 8px 42px 7px rgba(0,0,0,0.12);
+--mud-elevation-23: 0px 11px 14px -7px rgba(0,0,0,0.2),0px 23px 36px 3px rgba(0,0,0,0.14),0px 9px 44px 8px rgba(0,0,0,0.12);
+--mud-elevation-24: 0px 11px 0px -7px rgba(0,0,0,0.2),0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12);
+--mud-elevation-25: 0 5px 5px -3px rgba(0,0,0,.06), 0 8px 10px 1px rgba(0,0,0,.042), 0 3px 14px 2px rgba(0,0,0,.036);
+--mud-default-borderradius: 4px;
+--mud-drawer-width-left: 240px;
+--mud-drawer-width-right: 450px;
+--mud-drawer-width-mini-left: 56px;
+--mud-drawer-width-mini-right: 56px;
+--mud-appbar-height: 72px;
+--mud-typography-default-family: Lato, 'sans serif';
+--mud-typography-default-size: 17px;
+--mud-typography-default-weight: 400;
+--mud-typography-default-lineheight: 1.43;
+--mud-typography-default-letterspacing: 0.5px;
+--mud-typography-default-text-transform: none;
+--mud-typography-h1-family: 'DM Sans', 'sans serif';
+--mud-typography-h1-size: 64px;
+--mud-typography-h1-weight: 300;
+--mud-typography-h1-lineheight: 1.167;
+--mud-typography-h1-letterspacing: -1.5px;
+--mud-typography-h1-text-transform: none;
+--mud-typography-h2-family: 'DM Sans', 'sans serif';
+--mud-typography-h2-size: 51px;
+--mud-typography-h2-weight: 300;
+--mud-typography-h2-lineheight: 1.2;
+--mud-typography-h2-letterspacing: -0.5px;
+--mud-typography-h2-text-transform: none;
+--mud-typography-h3-family: 'DM Sans', 'sans serif';
+--mud-typography-h3-size: 36px;
+--mud-typography-h3-weight: 400;
+--mud-typography-h3-lineheight: 1.167;
+--mud-typography-h3-letterspacing: 0;
+--mud-typography-h3-text-transform: none;
+--mud-typography-h4-family: 'DM Sans', 'sans serif';
+--mud-typography-h4-size: 25px;
+--mud-typography-h4-weight: 400;
+--mud-typography-h4-lineheight: 1.235;
+--mud-typography-h4-letterspacing: 0.25px;
+--mud-typography-h4-text-transform: none;
+--mud-typography-h5-family: 'DM Sans', 'sans serif';
+--mud-typography-h5-size: 21px;
+--mud-typography-h5-weight: 400;
+--mud-typography-h5-lineheight: 1.334;
+--mud-typography-h5-letterspacing: 0;
+--mud-typography-h5-text-transform: none;
+--mud-typography-h6-family: 'DM Sans', 'sans serif';
+--mud-typography-h6-size: 18px;
+--mud-typography-h6-weight: 500;
+--mud-typography-h6-lineheight: 1.6;
+--mud-typography-h6-letterspacing: 0.15px;
+--mud-typography-h6-text-transform: none;
+--mud-typography-subtitle1-family: 'DM Sans', 'sans serif';
+--mud-typography-subtitle1-size: 17px;
+--mud-typography-subtitle1-weight: 400;
+--mud-typography-subtitle1-lineheight: 1.75;
+--mud-typography-subtitle1-letterspacing: 0.15px;
+--mud-typography-subtitle1-text-transform: none;
+--mud-typography-subtitle2-family: 'DM Sans', 'sans serif';
+--mud-typography-subtitle2-size: 15px;
+--mud-typography-subtitle2-weight: 500;
+--mud-typography-subtitle2-lineheight: 1.57;
+--mud-typography-subtitle2-letterspacing: 0.1px;
+--mud-typography-subtitle2-text-transform: none;
+--mud-typography-body1-family: Lato, 'sans serif';
+--mud-typography-body1-size: 17px;
+--mud-typography-body1-weight: 400;
+--mud-typography-body1-lineheight: 1.5;
+--mud-typography-body1-letterspacing: 0.5px;
+--mud-typography-body1-text-transform: none;
+--mud-typography-body2-family: Lato, 'sans serif';
+--mud-typography-body2-size: 15px;
+--mud-typography-body2-weight: 400;
+--mud-typography-body2-lineheight: 1.43;
+--mud-typography-body2-letterspacing: 0.25px;
+--mud-typography-body2-text-transform: none;
+--mud-typography-button-family: Lato, 'sans serif';
+--mud-typography-button-size: 15px;
+--mud-typography-button-weight: 500;
+--mud-typography-button-lineheight: 1.75;
+--mud-typography-button-letterspacing: 1.25px;
+--mud-typography-button-text-transform: uppercase;
+--mud-typography-caption-family: Lato, 'sans serif';
+--mud-typography-caption-size: 13px;
+--mud-typography-caption-weight: 400;
+--mud-typography-caption-lineheight: 1.66;
+--mud-typography-caption-letterspacing: 0.4px;
+--mud-typography-caption-text-transform: none;
+--mud-typography-overline-family: Lato, 'sans serif';
+--mud-typography-overline-size: 11px;
+--mud-typography-overline-weight: 400;
+--mud-typography-overline-lineheight: 2.66;
+--mud-typography-overline-letterspacing: 1.5px;
+--mud-typography-overline-text-transform: none;
+--mud-zindex-drawer: 1100;
+--mud-zindex-appbar: 1100;
+--mud-zindex-dialog: 1400;
+--mud-zindex-popover: 1300;
+--mud-zindex-snackbar: 1500;
+--mud-zindex-tooltip: 1600;
+--mud-native-html-color-scheme: light;
+}
+</style>
+
+
+<a href="#main-content" class="skip-to-main visually-hidden-focusable">Skip to main content</a>
+
+<div class="els-root"><input type="checkbox" id="els-drawer-toggle" class="els-drawer-toggle" hidden>
+
+    <header class="els-appbar" role="banner"><label for="els-drawer-toggle" class="els-hamburger" aria-label="Toggle navigation menu"><span></span><span></span><span></span></label>
+
+        <div class="els-appbar-spacer"></div>
+
+        <nav class="els-topnav" aria-label="Main navigation"><a href="https://my.browardvotes.gov/portals/electionlink/launchpad.aspx" class="els-navlink"><i class="fas fa-fw fa-home els-navicon" aria-hidden="true"></i><span>Home</span></a></nav></header><div class="els-image-banner"><div style='position:relative;width:100%;height:130px;overflow:hidden;'>           <img src="Images/broward_header.png" alt="Banner"                style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;" />         </div><div class="banner-logo"><div style='position:relative;width:100%;height:130px;overflow:hidden;'><img src="Images/joe_scott.png" alt="Banner"    style="inset:0;width:100%;height:100%;object-fit:cover;display:block;" /></div></div><div class="els-page-title "><h1 class="els-page-title-text"><div style="text-align: center; line-height: 1.3;">
+  <div style="font-size: 2rem; font-weight: 600;">Unofficial Vote By Mail</div>
+  <div style="font-size: 1.25rem; font-weight: 400;">11/03/2026 - 2026 General Election</div>
+</div><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" width="1" height="1" style="display:none" onload='if(!window.__elsDrawerQuickFix){window.__elsDrawerQuickFix=true;var ov=null;function mk(){if(ov)return ov;var s=document.createElement("style");s.textContent="@keyframes els-spin2{to{transform:rotate(360deg)}}";document.head.appendChild(s);ov=document.createElement("div");ov.setAttribute("role","status");ov.setAttribute("aria-label","Loading");ov.style.cssText="position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;background:rgba(255,255,255,0.75)";var sp=document.createElement("div");sp.style.cssText="width:48px;height:48px;border:4px solid #d9d9d9;border-top-color:#026ba4;border-radius:50%;animation:els-spin2 0.8s linear infinite";ov.appendChild(sp);document.body.appendChild(ov);return ov}function keep(){var o=mk();if(!o.isConnected)document.body.appendChild(o);return o}function show(){keep().style.display="flex"}function hide(){if(ov)ov.style.display="none"}function run(){var t0=Date.now(),done=false,mo=null,quiet=null;show();function fin(){if(done)return;done=true;if(mo)mo.disconnect();clearTimeout(hard);clearTimeout(quiet);var w=400-(Date.now()-t0);setTimeout(function(){var el=document.querySelector(".tile-chrome-title, .rdv-accordion-title")||document.getElementById("main-content");if(el)el.scrollIntoView({behavior:"smooth",block:"start"});hide()},w>0?w:0)}var hard=setTimeout(fin,6000);mo=new MutationObserver(function(){keep().style.display="flex";clearTimeout(quiet);quiet=setTimeout(fin,200)});mo.observe(document.body,{childList:true,subtree:true})}document.addEventListener("click",function(e){var a=e.target&&e.target.closest?e.target.closest(".els-drawer a[href], .els-sidebar a[href]"):null;if(!a)return;var t=document.getElementById("els-drawer-toggle");if(t)t.checked=false;if(window.matchMedia&&window.matchMedia("(max-width: 960px)").matches)run()})}'></h1></div></div><nav class="els-drawer" aria-label="Navigation menu"><a href="https://my.browardvotes.gov/portals/electionlink/launchpad.aspx" class="els-drawer-link"><i class="fas fa-fw fa-home els-navicon" aria-hidden="true"></i><span>Home</span></a><a href="AbsenteeTurnOut/dashboard/view/absturnout-party" class="els-drawer-link els-active" aria-current="page"><span>By Party</span></a><a href="AbsenteeTurnOut/dashboard/view/absturnout-age" class="els-drawer-link"><span>By Age Group</span></a><a href="AbsenteeTurnOut/dashboard/view/absturnout-race" class="els-drawer-link"><span>By Race</span></a><a href="AbsenteeTurnOut/dashboard/view/absturnout-gender" class="els-drawer-link"><span>By Gender</span></a></nav>
+
+    <div class="els-body"><aside class="els-sidebar" aria-label="Page navigation"><a href="AbsenteeTurnOut/dashboard/view/absturnout-party" class="els-sidebar-link els-active" aria-current="page"><span>By Party</span></a><a href="AbsenteeTurnOut/dashboard/view/absturnout-age" class="els-sidebar-link"><span>By Age Group</span></a><a href="AbsenteeTurnOut/dashboard/view/absturnout-race" class="els-sidebar-link"><span>By Race</span></a><a href="AbsenteeTurnOut/dashboard/view/absturnout-gender" class="els-sidebar-link"><span>By Gender</span></a></aside><main id="main-content" class="els-main"><!--bl:32--><!--bl:34--><!--bl:36--><!--bl:38--><!--/bl:38--><!--/bl:36-->
+
+<!--bl:37--><div class="ted-dashboard-page" style="display:contents"><div data-ted-dashboard-swap="" style="display:contents"><div class="rdv-root" b-kmdgn41e4r><div data-ted-dashboard-asof-src="2026-11-03T19:53:41Z" hidden></div><div class="registry-dashboard-view" style="flex:1;min-height:0;grid-template-columns:repeat(12,1fr);grid-template-rows:repeat(12,1fr);--rdv-gap:8px;" b-kmdgn41e4r><div class="rdv-tile" style="grid-column:1 / span 4;grid-row:1 / span 2;--rdv-h:2;" b-kmdgn41e4r><div class="tile-chrome" b-oospcx6ixb>
+    <div class="rdv-tile-body" b-kmdgn41e4r><div class="ted-html-tile" data-html-poll="/api/v1/widgets/chart?tile=party-kpi-issued&amp;dashboard=absturnout-party" data-poll-interval="60" style="height:100%;width:100%;"><a class="kpi-container pa-4" style="height: 100%; display: flex; flex-direction: column; cursor: pointer; text-decoration: none; color: inherit;" b-ejwk4opn2d><div class="d-flex justify-space-between align-center mb-2" b-ejwk4opn2d><div class="d-flex align-center gap-3" b-ejwk4opn2d><i class="kpi-icon fa-light fa-envelopes-bulk" style="font-size: 28px; color: #c17767;" b-ejwk4opn2d></i><div class="kpi-title" style="font-size: 20px;" b-ejwk4opn2d>Total Issued</div></div>
+            <div class="d-flex align-center" b-ejwk4opn2d></div></div>
+
+        <div style="flex-grow: 1;" b-ejwk4opn2d></div>
+
+        <div class="d-flex align-end" style="width: 100%; flex-grow: 1; justify-content: space-between;" b-ejwk4opn2d><div class="d-flex gap-2" style="align-items: flex-end;" b-ejwk4opn2d><div class="kpi-value" style="font-weight: 600; line-height: 0.85; padding-top: 10px; font-size: 28px;" b-ejwk4opn2d>177,531</div></div></div></a></div></div></div></div><div class="rdv-tile" style="grid-column:5 / span 4;grid-row:1 / span 2;--rdv-h:2;" b-kmdgn41e4r><div class="tile-chrome" b-oospcx6ixb>
+    <div class="rdv-tile-body" b-kmdgn41e4r><div class="ted-html-tile" data-html-poll="/api/v1/widgets/chart?tile=party-kpi-returned&amp;dashboard=absturnout-party" data-poll-interval="60" style="height:100%;width:100%;"><a class="kpi-container pa-4" style="height: 100%; display: flex; flex-direction: column; cursor: pointer; text-decoration: none; color: inherit;" b-ejwk4opn2d><div class="d-flex justify-space-between align-center mb-2" b-ejwk4opn2d><div class="d-flex align-center gap-3" b-ejwk4opn2d><i class="kpi-icon fa-light fa-inbox-in" style="font-size: 28px; color: #4a7188;" b-ejwk4opn2d></i><div class="kpi-title" style="font-size: 20px;" b-ejwk4opn2d>Total Returned</div></div>
+            <div class="d-flex align-center" b-ejwk4opn2d></div></div>
+
+        <div style="flex-grow: 1;" b-ejwk4opn2d></div>
+
+        <div class="d-flex align-end" style="width: 100%; flex-grow: 1; justify-content: space-between;" b-ejwk4opn2d><div class="d-flex gap-2" style="align-items: flex-end;" b-ejwk4opn2d><div class="kpi-value" style="font-weight: 600; line-height: 0.85; padding-top: 10px; font-size: 28px;" b-ejwk4opn2d>151,732</div></div></div></a></div></div></div></div><div class="rdv-tile" style="grid-column:9 / span 4;grid-row:1 / span 2;--rdv-h:2;" b-kmdgn41e4r><div class="tile-chrome" b-oospcx6ixb>
+    <div class="rdv-tile-body" b-kmdgn41e4r><div class="ted-html-tile" data-html-poll="/api/v1/widgets/chart?tile=party-kpi-rate&amp;dashboard=absturnout-party" data-poll-interval="60" style="height:100%;width:100%;"><a class="kpi-container pa-4" style="height: 100%; display: flex; flex-direction: column; cursor: pointer; text-decoration: none; color: inherit;" b-ejwk4opn2d><div class="d-flex justify-space-between align-center mb-2" b-ejwk4opn2d><div class="d-flex align-center gap-3" b-ejwk4opn2d><i class="kpi-icon fa-light fa-percent" style="font-size: 28px; color: #7E57C2;" b-ejwk4opn2d></i><div class="kpi-title" style="font-size: 20px;" b-ejwk4opn2d>Return Rate</div></div>
+            <div class="d-flex align-center" b-ejwk4opn2d></div></div>
+
+        <div style="flex-grow: 1;" b-ejwk4opn2d></div>
+
+        <div class="d-flex align-end" style="width: 100%; flex-grow: 1; justify-content: space-between;" b-ejwk4opn2d><div class="d-flex gap-2" style="align-items: flex-end;" b-ejwk4opn2d><div class="kpi-value" style="font-weight: 600; line-height: 0.85; padding-top: 10px; font-size: 28px;" b-ejwk4opn2d>85.47</div></div></div></a></div></div></div></div><div class="rdv-tile" style="grid-column:1 / span 12;grid-row:3 / span 4;--rdv-h:4;" b-kmdgn41e4r><div class="tile-chrome" b-oospcx6ixb><div class="tile-chrome-title" b-xhjgoh9hbs><div class="tile-chrome-title-text" b-xhjgoh9hbs>Vote By Mail Ballots by Party</div></div>
+    <div class="rdv-tile-body" b-kmdgn41e4r><div class="ted-chart-widget" b-ooeau79skp><div class="ted-chart-shell" style="flex-direction:row;" b-ooeau79skp><div class="ted-chart-legend" style="order:2;" b-ooeau79skp><div class="legend" b-gwgg9pjozw><div class="legend-body" b-gwgg9pjozw><div class="legend-row" style="" b-gwgg9pjozw>
+        <div class="legend-icon-container" b-gwgg9pjozw><div class="legend-color" style="background-color: #4a7188" b-gwgg9pjozw></div></div>
+        <div class="legend-text-container" b-gwgg9pjozw><p class="mud-typography mud-typography-body1 legend-label">Returned</p>
+            <div class="legend-text-secondary" b-gwgg9pjozw><span b-gwgg9pjozw>151,732</span>
+                &nbsp;|&nbsp;
+                <span b-gwgg9pjozw>46.08%</span></div></div>
+    </div><div class="legend-row" style="" b-gwgg9pjozw>
+        <div class="legend-icon-container" b-gwgg9pjozw><div class="legend-color" style="background-color: #c17767" b-gwgg9pjozw></div></div>
+        <div class="legend-text-container" b-gwgg9pjozw><p class="mud-typography mud-typography-body1 legend-label">Issued</p>
+            <div class="legend-text-secondary" b-gwgg9pjozw><span b-gwgg9pjozw>177,531</span>
+                &nbsp;|&nbsp;
+                <span b-gwgg9pjozw>53.92%</span></div></div>
+    </div></div></div></div><div class="ted-chart-area ted-chart-area-padded" style="order:1;" b-ooeau79skp><div class="ted-echarts" data-ec-scope="ch98c636d3758c4466b5b0a04f2c303c96" data-ec-poll="/api/v1/widgets/chart?tile=party-bar&amp;dashboard=absturnout-party" data-poll-interval="60" style="width:100%;height:100%;" b-ooeau79skp><script type="application/json" class="ted-ec-initial" b-ooeau79skp>{"option":{"animation":true,"textStyle":{"fontFamily":"Lato, sans-serif"},"color":["#4a7188","#c17767"],"xAxis":{"type":"value","axisLabel":{"hideOverlap":true}},"yAxis":{"type":"category","data":["Florida Democratic Party","No Party Affiliation","Other","Republican Party Of Florida"]},"tooltip":{"trigger":"axis","confine":true},"grid":{"left":0,"right":0,"top":0,"bottom":0},"series":[{"type":"bar","name":"Returned","data":[88431,32235,3052,28014],"label":{"show":false},"stack":"abs"},{"type":"bar","name":"Issued","data":[100552,39707,3767,33505],"label":{"show":false},"stack":"abs"}]},"extra":{"target":"_self","baseHref":null,"links":null,"labels":{"0":"Florida Democratic Party","1":"No Party Affiliation","2":"Other","3":"Republican Party Of Florida"},"forceWrap":false}}</script></div></div></div></div></div></div></div><div class="rdv-tile" style="grid-column:1 / span 12;grid-row:7 / span 6;--rdv-h:6;" b-kmdgn41e4r><div class="tile-chrome" b-oospcx6ixb>
+    <div class="rdv-tile-body" b-kmdgn41e4r><div class="ted-html-tile" data-html-poll="/api/v1/widgets/chart?tile=party-grid&amp;dashboard=absturnout-party" data-poll-interval="60" style="height:100%;width:100%;"><div class="d-flex flex-column h-100" style="overflow:hidden;" b-e6z493kzzm><div class="registry-data-switch grid-primary" b-e6z493kzzm><div class="registry-data-grid" b-e6z493kzzm><div class="tedx-grid" b-w353e2yasa><div class="grid-container" id="registryGridViewGrid_absturn-party-grid-host_Container" b-w353e2yasa>
+
+<script type="text/javascript" src="./_content/DevExpress.Blazor.Resources/js/preload-script.js?v=25.2.5.0"></script><script type="module" src="./_content/DevExpress.Blazor/modules/dx-blazor-all.js?v=25.2.5.0"></script>
+
+
+    
+                              <dxbl-grid __internal_preventDefault_oncontextmenu data-dx-grid-uid="6bf89786-e444-4956-9dd0-ecce9288b7fb" class="dxbl-grid h-100" has-row-dbl-click-event context-menus="0">
+                                  
+            <dxbl-ui-handlers-bridge class="dxbl-display-none" command-results="{&quot;RenderId&quot;:&quot;1&quot;,&quot;CommandResults&quot;:[]}"></dxbl-ui-handlers-bridge>
+
+
+            <dxbl-keyboard-navigator class="dxbl-display-none" reactivate-mode="LastActiveItem"></dxbl-keyboard-navigator>
+            <dxbl-grid-columns-info data="{&quot;header-uids&quot;:[[0,1,2,3]],&quot;leaf-uids&quot;:[0,1,2,3],&quot;indents&quot;:[],&quot;columns&quot;:[{&quot;UID&quot;:0,&quot;ParentUID&quot;:-1,&quot;AllowGroup&quot;:true,&quot;AllowReorder&quot;:true,&quot;DragRestrictions&quot;:null,&quot;FixedPosition&quot;:null,&quot;Width&quot;:&quot;46%&quot;,&quot;MinWidth&quot;:0,&quot;IsIndent&quot;:false,&quot;IsEmpty&quot;:false,&quot;IsDetail&quot;:false,&quot;IsEditable&quot;:false},{&quot;UID&quot;:1,&quot;ParentUID&quot;:-1,&quot;AllowGroup&quot;:true,&quot;AllowReorder&quot;:true,&quot;DragRestrictions&quot;:null,&quot;FixedPosition&quot;:null,&quot;Width&quot;:&quot;18%&quot;,&quot;MinWidth&quot;:0,&quot;IsIndent&quot;:false,&quot;IsEmpty&quot;:false,&quot;IsDetail&quot;:false,&quot;IsEditable&quot;:false},{&quot;UID&quot;:2,&quot;ParentUID&quot;:-1,&quot;AllowGroup&quot;:true,&quot;AllowReorder&quot;:true,&quot;DragRestrictions&quot;:null,&quot;FixedPosition&quot;:null,&quot;Width&quot;:&quot;18%&quot;,&quot;MinWidth&quot;:0,&quot;IsIndent&quot;:false,&quot;IsEmpty&quot;:false,&quot;IsDetail&quot;:false,&quot;IsEditable&quot;:false},{&quot;UID&quot;:3,&quot;ParentUID&quot;:-1,&quot;AllowGroup&quot;:true,&quot;AllowReorder&quot;:true,&quot;DragRestrictions&quot;:null,&quot;FixedPosition&quot;:null,&quot;Width&quot;:&quot;18%&quot;,&quot;MinWidth&quot;:0,&quot;IsIndent&quot;:false,&quot;IsEmpty&quot;:false,&quot;IsDetail&quot;:false,&quot;IsEditable&quot;:false}],&quot;empty-column&quot;:{&quot;UID&quot;:-1,&quot;ParentUID&quot;:-1,&quot;AllowGroup&quot;:false,&quot;AllowReorder&quot;:false,&quot;DragRestrictions&quot;:null,&quot;FixedPosition&quot;:null,&quot;Width&quot;:null,&quot;MinWidth&quot;:0,&quot;IsIndent&quot;:false,&quot;IsEmpty&quot;:true,&quot;IsDetail&quot;:false,&quot;IsEditable&quot;:false}}" class="dxbl-display-none">&#xA0;</dxbl-grid-columns-info>
+
+                <dxbl-scroll-viewer class="dxbl-scroll-viewer dxbl-skeleton-animate" header-selector=":scope &gt; .dxbl-grid-table &gt; thead" footer-selector=":scope &gt; .dxbl-grid-table &gt; tfoot" right-selector=":scope &gt; .dxbl-grid-table &gt; tbody:not(.dxbl-grid-top-fixed-body) &gt; tr:not(.dxbl-grid-empty-row, .new-object-hidden-data-row, [dxbl-bottom-virtual-spacer-element], [dxbl-top-virtual-spacer-element]) &gt; td.dxbl-grid-empty-cell" reset-v-scroll-guid="b1912e05-4e43-4b41-8bb3-0d01caa30408" request-make-element-visible="[null,null,0]">
+    <div class="dxbl-scroll-viewer-content">
+        
+            
+        
+                <table class="dxbl-grid-table" role="treegrid" aria-multiselectable="false">
+    <colgroup>
+    
+
+            <col data-dx-style="width: 46%;" />
+            <col data-dx-style="width: 18%;" />
+            <col data-dx-style="width: 18%;" />
+            <col data-dx-style="width: 18%;" />
+
+    <col class="dxbl-grid-empty-cell" aria-hidden="true" />
+</colgroup>
+    <thead class="">
+                
+<tr class="dxbl-grid-header-row" role="row">
+            
+
+<th class="dxbl-grid-header dxbl-grid-action dxbl-grid-header-sortable" scope="col">
+    <dxbl-grid-header-content class="dxbl-grid-header-content">
+    
+                <span>
+        Party
+    </span>
+
+
+
+
+
+</dxbl-grid-header-content>
+</th>
+            
+
+<th class="dxbl-grid-header dxbl-grid-action dxbl-grid-header-sortable" scope="col">
+    <dxbl-grid-header-content class="dxbl-grid-header-content dxbl-align-center">
+    
+                <span>
+        Issued
+    </span>
+
+
+
+
+
+</dxbl-grid-header-content>
+</th>
+            
+
+<th class="dxbl-grid-header dxbl-grid-action dxbl-grid-header-sortable" scope="col">
+    <dxbl-grid-header-content class="dxbl-grid-header-content dxbl-align-center">
+    
+                <span>
+        Returned
+    </span>
+
+
+
+
+
+</dxbl-grid-header-content>
+</th>
+            
+
+<th class="dxbl-grid-header dxbl-grid-action dxbl-grid-header-sortable" scope="col">
+    <dxbl-grid-header-content class="dxbl-grid-header-content dxbl-align-center">
+    
+                <span>
+        Return %
+    </span>
+
+
+
+
+
+</dxbl-grid-header-content>
+</th>
+
+<th class="dxbl-grid-empty-cell" aria-hidden="true"></th></tr>
+    </thead>
+    <tbody>
+        
+
+        
+<tr data-visible-index="0" aria-selected="false" style="background-color: var(--mud-palette-surface);" role="row">
+    
+
+
+
+<td role="gridcell" style="background-color: var(--mud-palette-surface);"><div class="data-view-content" b-i4bj9s9y9m><div id="Party0" class="data-view-content-inner" style="min-height: 30px; max-height: 60px;" b-i4bj9s9y9m><div style="justify-content: flex-start; align-items: center; width: 100%; display: flex;"><div style="display: inline-flex; align-items: center; gap: 4px; position: relative;"><p class="mud-typography mud-typography-body1" style="position: relative; padding: 0;overflow: hidden;">Florida Democratic Party</p></div></div></div></div></td><td role="gridcell" style="background-color: var(--mud-palette-surface);" class="dxbl-align-center"><div class="data-view-content" b-i4bj9s9y9m><div id="Issued0" class="data-view-content-inner" style="min-height: 30px; max-height: 60px;" b-i4bj9s9y9m><div style="justify-content: center; align-items: center; width: 100%; display: flex;"><div style="display: inline-flex; align-items: center; gap: 4px; position: relative;"><p class="mud-typography mud-typography-body1" style="position: relative; padding: 0;overflow: hidden;">100,552</p></div></div></div></div></td><td role="gridcell" style="background-color: var(--mud-palette-surface);" class="dxbl-align-center"><div class="data-view-content" b-i4bj9s9y9m><div id="Returned0" class="data-view-content-inner" style="min-height: 30px; max-height: 60px;" b-i4bj9s9y9m><div style="justify-content: center; align-items: center; width: 100%; display: flex;"><div style="display: inline-flex; align-items: center; gap: 4px; position: relative;"><p class="mud-typography mud-typography-body1" style="position: relative; padding: 0;overflow: hidden;">88,431</p></div></div></div></div></td><td role="gridcell" style="background-color: var(--mud-palette-surface);" class="dxbl-align-center"><div class="data-view-content" b-i4bj9s9y9m><div id="ReturnRate0" class="data-view-content-inner" style="min-height: 30px; max-height: 60px;" b-i4bj9s9y9m><div style="justify-content: center; align-items: center; width: 100%; display: flex;"><div style="display: inline-flex; align-items: center; gap: 4px; position: relative;"><p class="mud-typography mud-typography-body1" style="position: relative; padding: 0;overflow: hidden;">87.95%</p></div></div></div></div></td>
+
+    <td class="dxbl-grid-empty-cell" aria-hidden="true"></td>
+</tr>
+        
+<tr data-visible-index="1" aria-selected="false" style="background-color: var(--mud-palette-table-striped);" role="row">
+    
+
+
+
+<td role="gridcell" style="background-color: var(--mud-palette-table-striped);"><div class="data-view-content" b-i4bj9s9y9m><div id="Party1" class="data-view-content-inner" style="min-height: 30px; max-height: 60px;" b-i4bj9s9y9m><div style="justify-content: flex-start; align-items: center; width: 100%; display: flex;"><div style="display: inline-flex; align-items: center; gap: 4px; position: relative;"><p class="mud-typography mud-typography-body1" style="position: relative; padding: 0;overflow: hidden;">No Party Affiliation</p></div></div></div></div></td><td role="gridcell" style="background-color: var(--mud-palette-table-striped);" class="dxbl-align-center"><div class="data-view-content" b-i4bj9s9y9m><div id="Issued1" class="data-view-content-inner" style="min-height: 30px; max-height: 60px;" b-i4bj9s9y9m><div style="justify-content: center; align-items: center; width: 100%; display: flex;"><div style="display: inline-flex; align-items: center; gap: 4px; position: relative;"><p class="mud-typography mud-typography-body1" style="position: relative; padding: 0;overflow: hidden;">39,707</p></div></div></div></div></td><td role="gridcell" style="background-color: var(--mud-palette-table-striped);" class="dxbl-align-center"><div class="data-view-content" b-i4bj9s9y9m><div id="Returned1" class="data-view-content-inner" style="min-height: 30px; max-height: 60px;" b-i4bj9s9y9m><div style="justify-content: center; align-items: center; width: 100%; display: flex;"><div style="display: inline-flex; align-items: center; gap: 4px; position: relative;"><p class="mud-typography mud-typography-body1" style="position: relative; padding: 0;overflow: hidden;">32,235</p></div></div></div></div></td><td role="gridcell" style="background-color: var(--mud-palette-table-striped);" class="dxbl-align-center"><div class="data-view-content" b-i4bj9s9y9m><div id="ReturnRate1" class="data-view-content-inner" style="min-height: 30px; max-height: 60px;" b-i4bj9s9y9m><div style="justify-content: center; align-items: center; width: 100%; display: flex;"><div style="display: inline-flex; align-items: center; gap: 4px; position: relative;"><p class="mud-typography mud-typography-body1" style="position: relative; padding: 0;overflow: hidden;">81.18%</p></div></div></div></div></td>
+
+    <td class="dxbl-grid-empty-cell" aria-hidden="true"></td>
+</tr>
+        
+<tr data-visible-index="2" aria-selected="false" style="background-color: var(--mud-palette-surface);" role="row">
+    
+
+
+
+<td role="gridcell" style="background-color: var(--mud-palette-surface);"><div class="data-view-content" b-i4bj9s9y9m><div id="Party2" class="data-view-content-inner" style="min-height: 30px; max-height: 60px;" b-i4bj9s9y9m><div style="justify-content: flex-start; align-items: center; width: 100%; display: flex;"><div style="display: inline-flex; align-items: center; gap: 4px; position: relative;"><p class="mud-typography mud-typography-body1" style="position: relative; padding: 0;overflow: hidden;">Other</p></div></div></div></div></td><td role="gridcell" style="background-color: var(--mud-palette-surface);" class="dxbl-align-center"><div class="data-view-content" b-i4bj9s9y9m><div id="Issued2" class="data-view-content-inner" style="min-height: 30px; max-height: 60px;" b-i4bj9s9y9m><div style="justify-content: center; align-items: center; width: 100%; display: flex;"><div style="display: inline-flex; align-items: center; gap: 4px; position: relative;"><p class="mud-typography mud-typography-body1" style="position: relative; padding: 0;overflow: hidden;">3,767</p></div></div></div></div></td><td role="gridcell" style="background-color: var(--mud-palette-surface);" class="dxbl-align-center"><div class="data-view-content" b-i4bj9s9y9m><div id="Returned2" class="data-view-content-inner" style="min-height: 30px; max-height: 60px;" b-i4bj9s9y9m><div style="justify-content: center; align-items: center; width: 100%; display: flex;"><div style="display: inline-flex; align-items: center; gap: 4px; position: relative;"><p class="mud-typography mud-typography-body1" style="position: relative; padding: 0;overflow: hidden;">3,052</p></div></div></div></div></td><td role="gridcell" style="background-color: var(--mud-palette-surface);" class="dxbl-align-center"><div class="data-view-content" b-i4bj9s9y9m><div id="ReturnRate2" class="data-view-content-inner" style="min-height: 30px; max-height: 60px;" b-i4bj9s9y9m><div style="justify-content: center; align-items: center; width: 100%; display: flex;"><div style="display: inline-flex; align-items: center; gap: 4px; position: relative;"><p class="mud-typography mud-typography-body1" style="position: relative; padding: 0;overflow: hidden;">81.02%</p></div></div></div></div></td>
+
+    <td class="dxbl-grid-empty-cell" aria-hidden="true"></td>
+</tr>
+        
+<tr data-visible-index="3" aria-selected="false" style="background-color: var(--mud-palette-table-striped);" role="row">
+    
+
+
+
+<td role="gridcell" style="background-color: var(--mud-palette-table-striped);"><div class="data-view-content" b-i4bj9s9y9m><div id="Party3" class="data-view-content-inner" style="min-height: 30px; max-height: 60px;" b-i4bj9s9y9m><div style="justify-content: flex-start; align-items: center; width: 100%; display: flex;"><div style="display: inline-flex; align-items: center; gap: 4px; position: relative;"><p class="mud-typography mud-typography-body1" style="position: relative; padding: 0;overflow: hidden;">Republican Party Of Florida</p></div></div></div></div></td><td role="gridcell" style="background-color: var(--mud-palette-table-striped);" class="dxbl-align-center"><div class="data-view-content" b-i4bj9s9y9m><div id="Issued3" class="data-view-content-inner" style="min-height: 30px; max-height: 60px;" b-i4bj9s9y9m><div style="justify-content: center; align-items: center; width: 100%; display: flex;"><div style="display: inline-flex; align-items: center; gap: 4px; position: relative;"><p class="mud-typography mud-typography-body1" style="position: relative; padding: 0;overflow: hidden;">33,505</p></div></div></div></div></td><td role="gridcell" style="background-color: var(--mud-palette-table-striped);" class="dxbl-align-center"><div class="data-view-content" b-i4bj9s9y9m><div id="Returned3" class="data-view-content-inner" style="min-height: 30px; max-height: 60px;" b-i4bj9s9y9m><div style="justify-content: center; align-items: center; width: 100%; display: flex;"><div style="display: inline-flex; align-items: center; gap: 4px; position: relative;"><p class="mud-typography mud-typography-body1" style="position: relative; padding: 0;overflow: hidden;">28,014</p></div></div></div></div></td><td role="gridcell" style="background-color: var(--mud-palette-table-striped);" class="dxbl-align-center"><div class="data-view-content" b-i4bj9s9y9m><div id="ReturnRate3" class="data-view-content-inner" style="min-height: 30px; max-height: 60px;" b-i4bj9s9y9m><div style="justify-content: center; align-items: center; width: 100%; display: flex;"><div style="display: inline-flex; align-items: center; gap: 4px; position: relative;"><p class="mud-typography mud-typography-body1" style="position: relative; padding: 0;overflow: hidden;">83.61%</p></div></div></div></div></td>
+
+    <td class="dxbl-grid-empty-cell" aria-hidden="true"></td>
+</tr>
+
+
+
+    <tr data-vert-virtual-item-index="-1" class="dxbl-grid-empty-row" role="row">
+    <td colspan="4"></td>
+
+    <td class="dxbl-grid-empty-cell" aria-hidden="true"></td>
+</tr>
+
+
+    </tbody>
+
+</table>
+<div role="status" class="dxbl-a11y-status-helper">Data grid with 4 rows and 4 columns</div>
+
+            
+    
+        
+    </div>
+    <dxbl-scroll-bar class="dxbl-scroll-viewer-vert-scroll-bar">
+        <dxbl-thumb class="dxbl-scroll-viewer-scroll-thumb"></dxbl-thumb>
+    </dxbl-scroll-bar>
+    <dxbl-scroll-bar class="dxbl-scroll-viewer-hor-scroll-bar">
+        <dxbl-thumb class="dxbl-scroll-viewer-scroll-thumb"></dxbl-thumb>
+    </dxbl-scroll-bar>
+</dxbl-scroll-viewer>
+
+        
+
+
+    
+        <dxbl-context-menu>
+            
+            
+        <dxbl-popup-portal branch-id="id61584b5d-9fe6-40d9-8a90-397364b2c281" class="dxbl-popup-portal">
+        <dxbl-itemlist-dropdown class="dxbl-itemlist-dropdown" horizontal-offset="0" vertical-offset="0" placement="absolute" restrict="viewport" close-on-outside-click fit-to-restriction close-mode="none" z-index="0" branch-id="id61584b5d-9fe6-40d9-8a90-397364b2c281" dropdown-settings-id="idba67a3fc-ca6e-433d-b6f6-f86ddb236ac0">
+        <dxbl-popup-keyboard-navigator class="dxbl-display-none"></dxbl-popup-keyboard-navigator>
+    
+        
+    </dxbl-itemlist-dropdown>
+    </dxbl-popup-portal>
+
+
+            <dxbl-keyboard-navigator class="dxbl-display-none" reactivate-mode="LastActiveItem"></dxbl-keyboard-navigator>
+        </dxbl-context-menu>
+    
+
+        
+                              </dxbl-grid>
+                        
+
+        <dxbl-popup-portal branch-id="id49a90073-421d-4fe4-9247-0ea1ac5628b9" class="dxbl-popup-portal">
+        <dxbl-dropdown horizontal-offset="0" vertical-offset="0" placement="bottom" restrict="viewport" close-on-outside-click prevent-close-on-position-target-click fit-to-restriction close-mode="hide" width="var(--dxbl-filter-menu-dropdown-width)" min-width="var(--dxbl-filter-menu-dropdown-min-width)" max-width="var(--dxbl-filter-menu-dropdown-max-width)" height="var(--dxbl-filter-menu-dropdown-height)" min-height="var(--dxbl-filter-menu-dropdown-min-height)" max-height="var(--dxbl-filter-menu-dropdown-max-height)" z-index="0" class="dxbl-dropdown dxbl-filter-menu-dropdown-root" desired-width="" desired-height="" branch-id="id49a90073-421d-4fe4-9247-0ea1ac5628b9" dropdown-settings-id="ide412d0af-e050-4b53-a0bb-fc5114582cc9">
+                            <dxbl-popup-keyboard-navigator class="dxbl-display-none"></dxbl-popup-keyboard-navigator>
+                    
+        
+                </dxbl-dropdown>
+    </dxbl-popup-portal>
+
+
+</div></div>
+
+<style b-w353e2yasa>
+    /* Context Menu - Icon Container */
+    .dxbl-context-menu-item .dxbl-context-menu-item-icon {
+        width: 15px;
+    }
+    .dxbl-scroll-viewer-vert-scroll-bar {
+        right: 5px !important;
+        width: 14px !important;
+    }
+    .dxbl-scroll-viewer-vert-scroll-bar .dxbl-scroll-viewer-scroll-thumb {
+        width: 50% !important;
+        min-height: 120px !important;
+    }
+    .dxbl-scroll-viewer-hor-scroll-bar .dxbl-scroll-viewer-scroll-thumb {
+        min-height: 6px !important;
+    }
+
+    .dxbl-context-menu.dxbl-context-menu-dropdown {
+        --dxbl-dropdown-font-family: var(--mud-typography-default-family);
+        --dxbl-dropdown-color: var(--mud-palette-text-primary);
+        --dxbl-dropdown-bg: var(--mud-palette-surface);
+        --dxbl-context-menu-bg: var(--mud-palette-surface);
+        --dxbl-context-menu-item-hover-bg: var(--mud-palette-surface);
+        --dxbl-context-menu-item-hover-color: var(--mud-palette-text-primary);
+        --dxbl-context-menu-item-focus-outline-color: var(--mud-palette-primary);
+        --dxbl-context-menu-item-active-bg: var(--mud-palette-primary);
+    }
+
+    .dxbl-window {
+        --dxbl-window-bg: var(--mud-palette-surface);
+        --dxbl-window-color: var(--mud-palette-text-primary);
+    }
+
+    .dxbl-edit-dropdown {
+        --dxbl-edit-dropdown-bg: var(--mud-palette-surface);
+        --dxbl-edit-dropdown-color: var(--mud-palette-text-primary);
+    }
+
+    .dxbl-listbox {
+        --dxbl-listbox-color: var(--mud-palette-text-primary);
+    }
+
+    .dxbl-checkbox {
+        --dxbl-checkbox-check-element-checked-bg: var(--mud-palette-primary);
+        --dxbl-checkbox-check-element-checked-hover-bg: var(--mud-palette-primary-darken);
+        --dxbl-checkbox-check-element-unchecked-hover-border-color: var(--mud-palette-primary);
+    }
+
+    .dxbl-list-box-render-container > .dxbl-scroll-viewer > .dxbl-scroll-viewer-content > ul > li.dxbl-list-box-item-selected::before,
+    .dxbl-list-box-render-container:not(.dxbl-disabled):not(:disabled):not(.dxbl-readonly):not(.dxbl-list-box-multi-select)[data-dx-focus-hidden] >
+    .dxbl-scroll-viewer > .dxbl-scroll-viewer-content > :not(.dxbl-list-box-empty-data-container) > li:not([dxbl-top-virtual-spacer-element]):not([dxbl-bottom-virtual-spacer-element]).dxbl-list-box-item-selected:hover::before {
+        background-color: var(--mud-palette-primary);
+    }
+
+    /* Context Menu - Item - Hover */
+    .dxbl-context-menu.dxbl-context-menu-dropdown > .dxbl-dropdown-body ul li:not(.dxbl-context-menu-separator):hover >
+    .dxbl-context-menu-item:not(.dxbl-disabled):not(.dxbl-active) {
+        outline: var(--dxbl-context-menu-item-focus-outline-width) solid var(--dxbl-context-menu-item-focus-outline-color);
+        outline-offset: calc(var(--dxbl-context-menu-item-focus-outline-width)* -1);
+    }
+    /* Context Menu - Item - Focus */
+    .dxbl-context-menu.dxbl-context-menu-dropdown > .dxbl-dropdown-body ul li:not(.dxbl-context-menu-separator) .dxbl-context-menu-item:not(.dxbl-disabled):not(.dxbl-active):focus {
+        background-color: var(--dxbl-context-menu-item-active-bg, unset);
+        color: var(--dxbl-context-menu-item-active-color);
+    }
+
+    .dxbl-grid-move-cursor > div {
+        background-color: var(--mud-palette-surface);
+    }
+    .dxbl-grid-filter-row .dxbl-edit-btn-dropdown {
+        padding-left: 0 !important;
+        padding-right: 4px !important;
+    }
+
+    .dxbl-grid-filter-row .dxbl-edit-btn-clear {
+        padding-right: 0 !important;
+        padding-left: 4px !important;
+    }
+
+    .dxbl-grid-filter-row .dxbl-text-edit-input {
+        font-size: 12.5px !important;
+        margin-right: 0 !important;
+    }
+
+    .dxbl-grid-filter-row .dxbl-text-edit .dxbl-btn-group-right .dxbl-edit-btn-dropdown {
+        margin-left: 0 !important;
+    }
+
+
+</style></div>
+            <div class="registry-data-cards" b-e6z493kzzm><div class="registry-card-view" b-ue2yd7a0xd><div class="ted-card-view ted-card-view-fill" b-povyqok5ig><div id="registryGridViewGrid_absturn-party-grid-host_cards_scroll" class="ted-card-scrollable" b-povyqok5ig><div id="registryGridViewGrid_absturn-party-grid-host_cards_cards" class="ted-card-container" style="gap: 24px 24px; justify-content: flex-start; display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(max(280px, calc((100% - 32px) / 3)), 1fr));" b-povyqok5ig><div class="mud-paper mud-elevation-3 ted-card-item" style="width:100%;"><div class="ted-card-header " b-ue2yd7a0xd><div class="ted-card-header-text" b-ue2yd7a0xd><div class="data-view-content" b-i4bj9s9y9m><div id="Party0" class="data-view-content-inner" style="min-height: 30px; max-height: 60px;" b-i4bj9s9y9m><div style="justify-content: flex-start; align-items: center; width: 100%; display: flex;"><div style="display: inline-flex; align-items: center; gap: 4px; position: relative;"><p class="mud-typography mud-typography-body1" style="position: relative; padding: 0;overflow: hidden;">Florida Democratic Party</p></div></div></div></div></div></div><div class="ted-card-body" b-ue2yd7a0xd><div style='padding:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;'><div><div style='font-size:12px;color:var(--mud-palette-text-secondary);margin-bottom:4px;'>Issued</div><div style='font-size:19px;font-weight:600;'>100,552</div></div><div><div style='font-size:12px;color:var(--mud-palette-text-secondary);margin-bottom:4px;'>Returned</div><div style='font-size:19px;font-weight:600;'>88,431</div></div><div><div style='font-size:12px;color:var(--mud-palette-text-secondary);margin-bottom:4px;'>Return Rate</div><div style='font-size:19px;font-weight:700;color:var(--mud-palette-primary);'>87.95%</div></div></div></div></div><div class="mud-paper mud-elevation-3 ted-card-item" style="width:100%;"><div class="ted-card-header " b-ue2yd7a0xd><div class="ted-card-header-text" b-ue2yd7a0xd><div class="data-view-content" b-i4bj9s9y9m><div id="Party1" class="data-view-content-inner" style="min-height: 30px; max-height: 60px;" b-i4bj9s9y9m><div style="justify-content: flex-start; align-items: center; width: 100%; display: flex;"><div style="display: inline-flex; align-items: center; gap: 4px; position: relative;"><p class="mud-typography mud-typography-body1" style="position: relative; padding: 0;overflow: hidden;">No Party Affiliation</p></div></div></div></div></div></div><div class="ted-card-body" b-ue2yd7a0xd><div style='padding:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;'><div><div style='font-size:12px;color:var(--mud-palette-text-secondary);margin-bottom:4px;'>Issued</div><div style='font-size:19px;font-weight:600;'>39,707</div></div><div><div style='font-size:12px;color:var(--mud-palette-text-secondary);margin-bottom:4px;'>Returned</div><div style='font-size:19px;font-weight:600;'>32,235</div></div><div><div style='font-size:12px;color:var(--mud-palette-text-secondary);margin-bottom:4px;'>Return Rate</div><div style='font-size:19px;font-weight:700;color:var(--mud-palette-primary);'>81.18%</div></div></div></div></div><div class="mud-paper mud-elevation-3 ted-card-item" style="width:100%;"><div class="ted-card-header " b-ue2yd7a0xd><div class="ted-card-header-text" b-ue2yd7a0xd><div class="data-view-content" b-i4bj9s9y9m><div id="Party2" class="data-view-content-inner" style="min-height: 30px; max-height: 60px;" b-i4bj9s9y9m><div style="justify-content: flex-start; align-items: center; width: 100%; display: flex;"><div style="display: inline-flex; align-items: center; gap: 4px; position: relative;"><p class="mud-typography mud-typography-body1" style="position: relative; padding: 0;overflow: hidden;">Other</p></div></div></div></div></div></div><div class="ted-card-body" b-ue2yd7a0xd><div style='padding:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;'><div><div style='font-size:12px;color:var(--mud-palette-text-secondary);margin-bottom:4px;'>Issued</div><div style='font-size:19px;font-weight:600;'>3,767</div></div><div><div style='font-size:12px;color:var(--mud-palette-text-secondary);margin-bottom:4px;'>Returned</div><div style='font-size:19px;font-weight:600;'>3,052</div></div><div><div style='font-size:12px;color:var(--mud-palette-text-secondary);margin-bottom:4px;'>Return Rate</div><div style='font-size:19px;font-weight:700;color:var(--mud-palette-primary);'>81.02%</div></div></div></div></div><div class="mud-paper mud-elevation-3 ted-card-item" style="width:100%;"><div class="ted-card-header " b-ue2yd7a0xd><div class="ted-card-header-text" b-ue2yd7a0xd><div class="data-view-content" b-i4bj9s9y9m><div id="Party3" class="data-view-content-inner" style="min-height: 30px; max-height: 60px;" b-i4bj9s9y9m><div style="justify-content: flex-start; align-items: center; width: 100%; display: flex;"><div style="display: inline-flex; align-items: center; gap: 4px; position: relative;"><p class="mud-typography mud-typography-body1" style="position: relative; padding: 0;overflow: hidden;">Republican Party Of Florida</p></div></div></div></div></div></div><div class="ted-card-body" b-ue2yd7a0xd><div style='padding:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;'><div><div style='font-size:12px;color:var(--mud-palette-text-secondary);margin-bottom:4px;'>Issued</div><div style='font-size:19px;font-weight:600;'>33,505</div></div><div><div style='font-size:12px;color:var(--mud-palette-text-secondary);margin-bottom:4px;'>Returned</div><div style='font-size:19px;font-weight:600;'>28,014</div></div><div><div style='font-size:12px;color:var(--mud-palette-text-secondary);margin-bottom:4px;'>Return Rate</div><div style='font-size:19px;font-weight:700;color:var(--mud-palette-primary);'>83.61%</div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div><!--/bl:37--><!--/bl:34--><!--/bl:32--></main>
+
+        <!--bl:39--><div class="rdv-asof" data-ted-dashboard-asof hidden b-43zbk081m1><span class="rdv-asof-rel" data-asof-rel b-43zbk081m1></span>
+        <span class="rdv-asof-date" data-asof-date b-43zbk081m1></span>
+        <span class="rdv-asof-time" data-asof-time b-43zbk081m1></span></div><!--/bl:39--></div></div>
+
+<div id="blazor-error-ui" role="alert" aria-live="assertive"><p>An unhandled error has occurred.</p>
+    <a href class="reload">Reload</a>
+    <a class="dismiss" aria-label="Dismiss error">🗙</a></div>
+
+<style>
+    .els-root { width: 100%; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
+
+    /* App bar: light-gray sticky toolbar (ElectionLinkLayout renders #f1f0f0 via .mud-toolbar-appbar). */
+    .els-appbar { display: flex; align-items: center; gap: 2px; height: 55px; padding: 0 16px;
+                  background-color: #f1f0f0; position: sticky; top: 0; z-index: 1100; }
+    .els-appbar-spacer { flex: 1; }
+
+    .els-topnav { display: flex; align-items: center; gap: 2px; }
+
+    /* Nav links: primary-colored text buttons (mirror MudButton Variant.Text Color.Primary). */
+    .els-navlink { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+                   color: var(--mud-palette-primary, #026ba4); text-decoration: none; font: inherit;
+                   font-weight: 500; padding: 6px 12px; border-radius: 4px; cursor: pointer;
+                   background: none; border: none; }
+    .els-navlink:hover { background-color: #f8f9fa; }
+    .els-navlink.els-active { background-color: #f1f6fa; font-weight: 600;
+                              box-shadow: inset 0 -2px 0 0 var(--mud-palette-primary, #026ba4); }
+    .els-navicon { fill: currentColor; flex: 0 0 auto; }
+    .els-caret { font-size: .7em; opacity: .7; margin-left: 2px; line-height: 1; }
+
+    /* Dropdown submenu via the native details element (replaces MudMenu). */
+    .els-navmenu { position: relative; }
+    .els-navmenu > summary { list-style: none; }
+    .els-navmenu > summary::-webkit-details-marker { display: none; }
+    .els-submenu { position: absolute; top: 100%; right: 0; z-index: 1300; min-width: 200px; background: #fff;
+                   box-shadow: 0 2px 10px rgba(0,0,0,.18); border-radius: 4px; padding: 6px 0;
+                   display: flex; flex-direction: column; }
+    .els-submenu-link { display: flex; align-items: center; gap: 10px; padding: 8px 16px; color: #282828;
+                        text-decoration: none; font: inherit; }
+    .els-submenu-link:hover { background-color: #f8f9fa; }
+    .els-submenu-link.els-active { background-color: #f1f6fa; font-weight: 600; }
+
+    .els-lang { font: inherit; padding: 4px 8px; border: 1px solid rgba(0,0,0,.2); border-radius: 4px;
+                margin-left: 6px; background: #fff; }
+
+    /* Announcement bar (flush, full width, blue). */
+    .els-announcement { width: 100%; box-sizing: border-box; background-color: #026ba4; color: #fff;
+                        font-weight: 600; font-size: .9rem; padding: 4px 16px; }
+
+    /* Hero image banner (full width). The slot HTML supplies the image (commonly .banner-img). */
+    .els-image-banner { position: relative; width: 100%; line-height: 0; overflow: hidden; }
+    .els-image-banner img, .els-image-banner .banner-img { display: block; width: 100%; height: 200px;
+                                                            object-fit: cover; border-radius: 0 !important; }
+    .els-image-banner .banner-logo { position: absolute; left: 30px; top: 50%; transform: translateY(-50%);
+                                      z-index: 10; line-height: normal; }
+    .els-image-banner .banner-logo img { max-height: 120px; width: auto; height: auto; object-fit: contain; }
+
+    /* Static page title — mirrors ElectionLinkLayout's .page-title-overlay: a tertiary-colored pill
+       centered over the banner image. */
+    .els-page-title { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                      display: flex; align-items: center; justify-content: center;
+                      background: var(--mud-palette-tertiary); pointer-events: none; z-index: 10;
+                      -webkit-backdrop-filter: blur(12px); border-radius: 16px;
+                      border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                      padding: 6px 60px; line-height: normal; }
+    .els-page-title-text { font-weight: 500; text-align: center; margin: 0; line-height: normal;
+                           font-size: 40px; color: var(--mud-palette-primary, #026ba4); }
+    /* No banner image to overlay → full-width bar (the interactive layout's mobile treatment). */
+    .els-page-title--bar { position: relative; top: auto; left: auto; transform: none; display: block;
+                           width: 100%; border-radius: 0; border: none; box-shadow: none;
+                           -webkit-backdrop-filter: none; pointer-events: auto; z-index: auto;
+                           padding: 12px 20px; box-sizing: border-box; text-align: center; }
+
+    /* Centered content column: sidebar + main, like .page-layout-container. */
+    .els-body { flex: 1; display: flex; gap: 24px; width: 100%; max-width: 1620px; margin: 0 auto;
+                padding: 0 30px; box-sizing: border-box; min-height: 0; }
+    /* Dashboards: a 3-column grid — the dashboard (center track, capped by --els-dash-max) is
+       centered on the PAGE, with equal 1fr gutters either side; the sidebar (left gutter, hugging
+       the dashboard) and the "Data as of" card (right gutter) render in the leftover space and
+       never push the dashboard off-center. The side tracks' natural min-content floor only shifts
+       the center when the viewport is genuinely too tight to honor it (instead of overlapping). */
+    .els-body:has(.ted-dashboard-page) {
+        max-width: none;
+        padding: 0 30px;
+        display: grid;
+        grid-template-columns: 1fr minmax(0, var(--els-dash-max, 950px)) 1fr;
+    }
+    .els-body:has(.ted-dashboard-page) > .els-sidebar { grid-column: 1; justify-self: end; }
+    .els-body:has(.ted-dashboard-page) > .els-main { grid-column: 2; min-width: 0; }
+    .els-body:has(.ted-dashboard-page) > .rdv-asof { grid-column: 3; justify-self: start; }
+    .els-sidebar { flex-shrink: 0; width: 250px; border-radius: 12px; background: #fff; border: 1px solid #e0e0e0;
+                   padding: 16px 0; margin: 20px 0; align-self: flex-start; position: sticky; top: 75px;
+                   display: flex; flex-direction: column; }
+    .els-sidebar-link, .els-drawer-link { display: flex; align-items: center; gap: 12px; text-decoration: none;
+                                          color: var(--mud-palette-primary, #026ba4); font-weight: 500;
+                                          border-left: 4px solid transparent; }
+    .els-sidebar-link { padding: 12px 20px; }
+    .els-drawer-link { padding: 12px 24px; min-height: 48px; box-sizing: border-box; }
+    .els-sidebar-link:hover, .els-drawer-link:hover { background-color: #f8f9fa;
+                                                       border-left-color: var(--mud-palette-primary, #026ba4); }
+    .els-sidebar-link.els-active, .els-drawer-link.els-active { background-color: #f1f6fa;
+                                                       border-left-color: var(--mud-palette-primary, #026ba4); }
+    .els-main { flex: 1; min-width: 0; padding: 20px 0; }
+
+    /* Dashboard "Data as of" card (SectionOutlet content) — right column, pinned like the left
+       sidebar (same sticky offset). The card's look/margins live in DashboardDataAsOfShell.razor.css. */
+    .els-root .els-body > .rdv-asof { position: sticky; top: 75px; }
+
+    /* Skip-to-main link — hidden until focused. */
+    .skip-to-main { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;
+                    z-index: 9999; padding: 8px 16px; background: #026ba4; color: #fff; font-weight: 600;
+                    text-decoration: none; border-radius: 0 0 4px 4px; }
+    .skip-to-main:focus { position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: auto;
+                          height: auto; overflow: visible; }
+
+    .els-hamburger { display: none; flex-direction: column; gap: 4px; cursor: pointer; padding: 8px;
+                     color: var(--mud-palette-primary, #026ba4); }
+    .els-hamburger span { width: 22px; height: 2px; background: currentColor; display: block; }
+    .els-drawer { display: none; }
+
+    /* Mobile (≤960px, MudBlazor's Md): hamburger toggles the drawer; top nav + sidebar hide. */
+    @media (max-width: 960px) {
+        .els-hamburger { display: flex; }
+        .els-topnav, .els-sidebar { display: none; }
+        .els-drawer { display: flex; flex-direction: column; position: fixed; top: 55px; left: 0; bottom: 0;
+                      width: 280px; background: #fff; box-shadow: 2px 0 8px rgba(0,0,0,.2); padding: 12px 0;
+                      transform: translateX(-110%); transition: transform .2s ease; z-index: 1350;
+                      overflow-y: auto; }
+        .els-drawer-toggle:checked ~ .els-drawer { transform: none; }
+        .els-body { padding: 0 8px; }
+        /* Title below the banner image instead of overlaying it (matches the interactive layout). */
+        .els-page-title { position: relative; top: auto; left: auto; transform: none; display: block;
+                          width: 100%; border-radius: 0; border: none; box-shadow: none;
+                          -webkit-backdrop-filter: none; pointer-events: auto; z-index: auto;
+                          padding: 12px 20px; box-sizing: border-box; text-align: center; }
+        .els-page-title-text { font-size: 24px; }
+        /* The below-image title (rule above) grows the banner box, so the logo — absolutely
+           centered on that box (top:50%) — drifts down and overhangs the title. Pin it to the
+           top (the image band) instead so it stops overlapping. Scoped to :has(.els-page-title)
+           so a banner WITHOUT a title keeps the centered logo. */
+        .els-image-banner:has(.els-page-title) .banner-logo { top: 0; transform: none; }
+        /* Sidebar is hidden on mobile; back to flex so the column-stack rules below apply
+           (the desktop 3-column grid has no room here). */
+        .els-body:has(.ted-dashboard-page) { display: flex; padding: 0 8px; }
+
+        /* "Data as of" card: no room for a right column — stack it as a full-width strip ABOVE the
+           dashboard (column flow, order -1; main's flex:1 keeps the remaining height). Gated on the
+           card being VISIBLE — the shell is always present on dashboard pages but ships hidden. */
+        /* gap:0 clears .els-body's desktop 24px flex gap (unset in this column stack) so the card
+           butts against main; padding-top:0 on main drops the last 20px so the board sits flush under
+           the card. Bottom padding stays for end-of-page breathing room; scoped to the stacked-card
+           case so desktop and non-dashboard pages keep .els-main's normal padding. */
+        .els-body:has(.rdv-asof:not([hidden])) { flex-direction: column; gap: 0; }
+        .els-body:has(.rdv-asof:not([hidden])) > .els-main { padding-top: 0; }
+        .els-root .els-body > .rdv-asof { position: static; order: -1; align-self: stretch; margin: 12px 0 0; }
+    }
+
+    /* Desktop: taller hero, matching ElectionLinkLayout's 340px banner. */
+    @media (min-width: 960px) {
+        .els-image-banner img, .els-image-banner .banner-img { height: 340px; }
+    }
+</style>
+        <blazor-focus-on-navigate selector="h1"></blazor-focus-on-navigate><form id="frmLogout" action="authentication/logout" method="post"><input type="hidden" name="__RequestVerificationToken" value="CfDJ8ETQGkJzJ1lAvGIVXTi91227UDbdxkMB5bgjQiodv1jDr0G00kZdTzrJUC5Xp57IIEIPrMNA98SB3qQbR4qg8mCp5sCYbBTOJ-NAfpq8LGsbXbiO75xcJuH9GCpo6jXPL44Y5UmTWnZBjJYxZe938wo" />
+    <input type="hidden" name="returnUrl" value="AbsenteeTurnOut/dashboard/view/absturnout-party" /></form>
+    <script src="_content/TEDxCommonUtilities/js/custom.jxs86hhikz.js"></script>
+    <script src="_framework/blazor.web.js"></script>
+    <script src="_content/MudBlazor/MudBlazor.min.9ci77co5cp.js"></script>
+    <script src="_content/TEDxCommonUI/js/statTileFit.tmimoi0b2k.js"></script>
+    <script src="_content/TEDxCommonUI/js/echarts.min.u8rc08arte.js"></script>
+    <script src="_content/TEDxCommonUI/js/tedChartUpdates.zooq4nbrg1.js"></script>
+    <script src="_content/TEDxCommonUI/js/tedDashboardControls.bv6mtc97h3.js"></script>
+    <script src="_content/TEDxCommonUI/js/tileInterop.9h1521adi9.js"></script>
+    <script src="_content/TEDxCommonUI/js/tedDashboardSwap.ntjat0pv0i.js"></script>
+    <script type="module" src="_content/TEDxDataViewUI/Header.bvk5jjopow.razor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gridstack@10.3.1/dist/gridstack-all.js"></script>
+
+    <script src="js/electionlink.ibrw6ywkap.js"></script>
+    <script src="js/tedGoogleTranslate.3fuod4on2j.js"></script>
+    <script>
+        /*
+        * Keyboard accessibility — focus rings, card navigation, drawer nav fix.
+        *
+        * Why inline styles?
+        *   MudBlazor's CSS resets `outline: none` on buttons and anchors globally.
+        *   Inline styles have higher specificity than any stylesheet rule, so they
+        *   always win regardless of load order or MudBlazor version updates.
+        *
+        * Why capture phase (third arg = true on addEventListener)?
+        *   Capture phase fires before bubble phase, so our ring logic runs before
+        *   any component-level handlers can cancel propagation and swallow the event.
+        */
+        (function () {
+        // Fallback colour used if the MudBlazor CSS variable isn't available yet
+        // (e.g. before the stylesheet loads or in environments without theming).
+        var FALLBACK_FOCUS_COLOR = '#594AE2';
+
+        // ── Colour helper ──────────────────────────────────────────────────────────
+        // Always reads the live CSS variable so the ring automatically follows
+        // theme changes without needing a JS-side theme listener.
+        function getFocusRingColor() {
+        var cssValue = getComputedStyle(document.documentElement)
+        .getPropertyValue('--mud-palette-primary');
+        return cssValue && cssValue.trim() ? cssValue.trim() : FALLBACK_FOCUS_COLOR;
+        }
+
+        // ── Interactive-element resolver ───────────────────────────────────────────
+        // Given any element that received focus, returns the element that should
+        // display the ring. Priority order matters:
+        //   1. Expansion panel headers — full-width, checked before generic selectors
+        //      so a click on child text still highlights the whole header row.
+        //   2. Tiled-menu tiles — excluded because selectInterop.js draws their ring
+        //      on the inner tile element; drawing it here too would produce a double ring.
+        //   3. Native <a> and <button> — the standard interactive elements.
+        function findRingTarget(focusedElement) {
+        if (!focusedElement) return null;
+
+        // Panel header — match both the header itself and any child element inside it.
+        if (focusedElement.matches('.mud-expand-panel-header')) return focusedElement;
+        var panelHeader = focusedElement.closest
+        ? focusedElement.closest('.mud-expand-panel-header')
+        : null;
+        if (panelHeader) return panelHeader;
+
+        // Tiled-menu tiles have their own ring; skip them here.
+        if (focusedElement.closest && focusedElement.closest('.tedx-tiled-menu-tile-link'))
+        return null;
+
+        // Standard interactive elements.
+        if (focusedElement.matches('a, button')) return focusedElement;
+        return focusedElement.closest ? focusedElement.closest('a, button') : null;
+        }
+
+        // ── Focus ring: apply on focus, remove on blur ─────────────────────────────
+        document.addEventListener('focusin', function (e) {
+        var ringTarget = findRingTarget(e.target);
+        if (!ringTarget) return;
+
+        // Expansion panels get an inset ring (negative offset) with a larger radius
+        // so it follows the panel's rounded corners; links/buttons get a tighter ring.
+        var isExpansionPanel = ringTarget.classList.contains('mud-expand-panel-header');
+
+        ringTarget.style.outline       = '2px solid ' + getFocusRingColor();
+        ringTarget.style.outlineOffset = isExpansionPanel ? '-2px' : '-1px';
+        ringTarget.style.borderRadius  = isExpansionPanel ? '8px'  : '3px';
+        }, true);
+
+        document.addEventListener('focusout', function (e) {
+        var ringTarget = findRingTarget(e.target);
+        if (!ringTarget) return;
+        ringTarget.style.outline       = '';
+        ringTarget.style.outlineOffset = '';
+        ringTarget.style.borderRadius  = '';
+        }, true);
+
+        // ── Expansion panel tab-stop + ARIA enforcement ────────────────────────────
+        // MudBlazor 8.x renders panel headers as <div tabIndex="-1"> with no role or
+        // aria-expanded. Force tabIndex=0, stamp role="button", and reflect the
+        // expanded state via aria-expanded so screen readers can announce correctly.
+        // The MutationObserver below re-runs this after every DOM update, keeping
+        // aria-expanded in sync whenever a panel is toggled.
+        function ensureExpansionPanelsAreReachable() {
+        document.querySelectorAll('.mud-expand-panel-header').forEach(function (header) {
+        if (header.tabIndex < 0) header.tabIndex = 0;
+
+        if (header.tagName.toLowerCase() !== 'button' && !header.getAttribute('role')) {
+        header.setAttribute('role', 'button');
+        }
+
+        var panel = header.closest('.mud-expand-panel');
+        if (panel) {
+        var content = panel.querySelector('.mud-expand-panel-content');
+        var isExpanded = content ? content.offsetHeight > 0 : false;
+        header.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+        }
+        });
+        }
+
+        // ── Card roving-tabindex navigation ────────────────────────────────────────
+        // Pattern: Tab cycles between card containers (tabIndex=0 on the card itself).
+        //   Enter  → "enter" the card: remove the card from the tab order, promote
+        //            its inner actions to tabIndex=0, focus the first one.
+        //   Escape → "exit" the card: restore the card's tabIndex=0, hide inner
+        //            actions from tab order, return focus to the card container.
+        //   Blur   → auto-exit if focus leaves the card entirely (e.g. user clicks
+        //            outside or Tabs past the last inner action).
+        var CARD_SELECTOR       = '.upcoming-election-card-focusable, .wdiv-location-card';
+        var INNER_ACTION_SELECTOR = '.card-inner-action';
+
+        // The card currently in "entered" state; null when no card is active.
+        var currentlyActiveCard = null;
+
+        function getInnerActions(card) {
+        return Array.from(card.querySelectorAll(INNER_ACTION_SELECTOR));
+        }
+
+        // Reset all cards to their default state: card focusable, inner actions hidden.
+        // Skips the active card so entering/exiting doesn't fight itself.
+        function resetAllCardsToDefault() {
+        document.querySelectorAll(CARD_SELECTOR).forEach(function (card) {
+        if (card === currentlyActiveCard) return;
+        getInnerActions(card).forEach(function (action) { action.tabIndex = -1; });
+        });
+        }
+
+        // Enter a card: hide the card from tab order, show and focus its first inner action.
+        function enterCard(card) {
+        if (currentlyActiveCard && currentlyActiveCard !== card)
+        exitCard(currentlyActiveCard);
+
+        currentlyActiveCard = card;
+        card.tabIndex = -1; // Remove card from tab cycle while navigating inside it
+
+        var innerActions = getInnerActions(card);
+        innerActions.forEach(function (action) { action.tabIndex = 0; });
+        if (innerActions[0]) innerActions[0].focus();
+        }
+
+        // Exit a card: restore the card to the tab cycle, hide its inner actions.
+        function exitCard(card) {
+        if (!card) return;
+        card.tabIndex = 0;
+        getInnerActions(card).forEach(function (action) { action.tabIndex = -1; });
+        if (currentlyActiveCard === card) currentlyActiveCard = null;
+        }
+
+        // Enter on a card container → enter it. Escape inside an active card → exit it.
+        document.addEventListener('keydown', function (e) {
+        var target = e.target;
+
+        if (e.key === 'Enter' && target.matches && target.matches(CARD_SELECTOR)) {
+        var actions = getInnerActions(target);
+        if (actions.length) { e.preventDefault(); enterCard(target); }
+        return;
+        }
+
+        if (e.key === 'Escape'
+        && currentlyActiveCard
+        && currentlyActiveCard.contains(target)
+        && target !== currentlyActiveCard) {
+        e.preventDefault();
+        var cardToExit = currentlyActiveCard;
+        exitCard(cardToExit);
+        cardToExit.focus();
+        }
+        }, true);
+
+        // Auto-exit a card when focus moves completely outside it.
+        // setTimeout(0) defers the check until after the browser has moved focus,
+        // because focusout fires before the new activeElement is set.
+        document.addEventListener('focusout', function () {
+        if (!currentlyActiveCard) return;
+        var cardSnapshot = currentlyActiveCard;
+        setTimeout(function () {
+        if (!cardSnapshot.contains(document.activeElement)) exitCard(cardSnapshot);
+        }, 0);
+        }, true);
+
+        // ── Mobile-drawer Enter-key navigation fix ─────────────────────────────────
+        // MudBlazor's MudNavLink renders as <a> but keyboard-triggered Enter doesn't
+        // always fire Blazor's enhanced-navigation click handler. Explicitly calling
+        // link.click() guarantees the router intercepts it as a normal navigation.
+        // Bubble phase (false) runs after capture, avoiding conflicts with the
+        // card-navigation handler above.
+        document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter') return;
+        var target = e.target;
+        if (!target || !target.closest || !target.closest('.mobile-drawer')) return;
+
+        var navLink = target.matches && target.matches('a[href]')
+        ? target
+        : target.closest('a[href]');
+        if (!navLink) return;
+
+        e.preventDefault();
+        navLink.click();
+        }, false);
+
+        // ── DOM-change watcher ─────────────────────────────────────────────────────
+        // Blazor re-renders patch the DOM without page reloads, which can add new
+        // panel headers or card elements. The MutationObserver re-runs setup after
+        // every batch of DOM changes. The 50 ms debounce collapses rapid successive
+        // mutations (e.g. a full list re-render) into a single setup pass.
+        var debounceTimer = null;
+        new MutationObserver(function () {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function () {
+        ensureExpansionPanelsAreReachable();
+        resetAllCardsToDefault();
+        }, 50);
+        }).observe(document.documentElement, { childList: true, subtree: true });
+        })();
+    </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script></body></html><!--Blazor-Server-Component-State:CfDJ8ETQGkJzJ1lAvGIVXTi9121NrB4CC8WggkSQjLQ6SynNxZNQ5/Bf5/kePSMJaQ03iRSwu+JG5O4gl7C/Df8YWF9/Gn3cBdeYiFFdWC/DWx4eDr/wEkdrrfuW0dARk/1B3EYTZ2qWULVJDwFwqZfZy7JIap5PAfCZeuJD3PQXhHrcMOuDfVit/N35zu/YkBWgFa/EnycIfQK+VNJGDtyvUmU9cMwVjRxO3/D+mQmq68lOYIEYidUp+uXiWAXEviI4/VOAyzJxEQoRylc+lUQExVsn/MQ+jF6wbi6cdpTQxiNP5nSQTN8XTkaoTSTiwCiU2ounKsEG5zRphVv4FES2KKx/whzyKbzPJqJ5WBf5QlSvvJRtMMMc8A3njiNtuGNbSqbm8mMAgbwdSCWUab3fc3rWrtMJez5QsAmCAbkyBptDI76KFaOPwHeZ/vBxLzom1m43oZDtCO/JrW1kXwAvQl3IUG21e9hznABWUHUR7BtxCit9pTIXHDg4LuiPjlvB4BPpjcQBX2/m20aBVCsTLJ90wvJVsGg6URgrIrpZP8x2ETjP+9ppmVYLOOdLpdtAxQOaAhaEBt/BHx18J1byF11yiCacdtj+qDecRJ2RigKL8agCfYdU6NagfO6J/Exe1+CmJCHthKi4MtUdWuoXiunYmeTmKFK+/tINUDT3TFf4zHEIUNTbfJoarFrX5KreFoTsRTru79rPvEzkaPM4BuZWI8B93JC32gW9xGopVkQikrFSPtPEEzqzEBrANqeRjzKgRPd28n4qItGrPgAGi0unZm5i2deNUMUhqUmS7COVBZIc4USZVPbTnp/bDT+OeOWSbNYty03nVWu+7esFXK4nqXOpRKVHl0EDcNU4+OG9blmYL8PecR5kEdEWM82rSlVit3O4hzu1v308AGU8lojP2SWhh0TC5dzvDBCS8fBpqwH2DXts+m6OYyvi3nzX1ycXirXIsdyXvkZCoIpLNM74Rpg1IUOqBbFTW9Mzly2U+GuYBS17sN6LJAsdB1CKFE/1/aYFp4r35HO5vvAwEeHrtxLchEikAM3HJn4pEDb1H7fAuPFSuw7u898SYOaZM84YrcH3ZumRt243aZ0TFci4S5Ywi61PvWattGfi6UDZec95sn2Q/M2PHtQ30eIHjg==-->
