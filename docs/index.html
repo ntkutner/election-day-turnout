@@ -75,9 +75,9 @@ select.stsel{font:inherit;font-size:13px;padding:5px 9px;border-radius:999px;bor
 #flmap svg{width:100%;height:auto;display:block}
 #flmap path{stroke:var(--surface-1);stroke-width:1;vector-effect:non-scaling-stroke;cursor:pointer;transition:opacity .1s}
 #flmap path:hover,#flmap path.hl{stroke:var(--text-primary);stroke-width:2}
-.mapside .seg{display:inline-flex;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:12px}
-.mapside .seg button{font:inherit;font-size:13px;padding:5px 10px;border:0;background:var(--surface-1);color:var(--text-primary);cursor:pointer}
-.mapside .seg button.on{background:var(--text-primary);color:var(--surface-1)}
+.mapside .seg,#hwlayers{display:inline-flex;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:12px}
+.mapside .seg button,#hwlayers button{font:inherit;font-size:13px;padding:5px 10px;border:0;background:var(--surface-1);color:var(--text-primary);cursor:pointer}
+.mapside .seg button.on,#hwlayers button.on{background:var(--text-primary);color:var(--surface-1)}
 .maplegend{display:flex;gap:2px;margin:6px 0 2px}
 .maplegend span{flex:1;height:12px}
 .maplegend span:first-child{border-radius:4px 0 0 4px}.maplegend span:last-child{border-radius:0 4px 4px 0}
@@ -143,8 +143,7 @@ footer a{color:inherit}
     <div class="flmapwrap">
       <div id="hwmap" role="img" aria-label="Map of Harris County vote centers colored by estimated wait"></div>
       <div class="mapside">
-        <div style="font-size:12px;color:var(--text-secondary)">Estimated wait</div>
-        <div class="legend" id="hwlegend" style="margin:6px 0 10px"></div>
+        <div class="legend" id="hwlegend" style="margin:0 0 12px;display:block;font-size:12px"></div>
         <div style="font-size:12px;color:var(--text-secondary);margin-bottom:4px">Longest waits right now</div>
         <div class="tablewrap" id="hwtable" style="max-height:330px"></div>
       </div>
@@ -240,9 +239,10 @@ function sparkline(points){
     <rect width="${W}" height="${H}" fill="transparent"/></svg>`;
 }
 
-let T = {}, LAST = null, FLGEO = null, FLMETRIC = "all", HOUT = null;
+let T = {}, LAST = null, FLGEO = null, FLMETRIC = "all", HOUT = null, HPREC = undefined, HLAYERS = {prec:true, wait:true};
 const WAIT_BUCKETS = [["Under 15 min","#86b6ef",w=>w<15],["15–29 min","#3987e5",w=>w>=15&&w<30],["30–59 min","#1c5cab",w=>w>=30&&w<60],["60+ min","#0d366b",w=>w>=60]];
 const waitColor = w => w==null ? "var(--text-muted)" : WAIT_BUCKETS.find(b=>b[2](w))[1];
+const waitDot = w => w==null ? {r:2.5, fill:"#ffffff", stroke:"#52514e"} : w>=30 ? {r:7, fill:"#0b0b0b", stroke:"#ffffff"} : w>=15 ? {r:4.5, fill:"#ffffff", stroke:"#0b0b0b"} : {r:2.5, fill:"#ffffff", stroke:"#52514e"};
 async function renderHarris(o){
   if (!o) { document.getElementById("sec-hwait").classList.add("hidden"); return; }
   if (!HOUT) HOUT = await fetch("data/harris_outline.json").then(r=>r.json());
@@ -253,13 +253,27 @@ async function renderHarris(o){
     {label:"Sites with 30+ min waits", val:fmt(o.sites_30plus), note:`${pct(o.sites_30plus, known.length||1)} of sites`},
     {label:"Voters in line", val:fmt(o.total_in_line), note:"Sum of reported line counts"},
   ].map(k=>`<div class="kpi"><div class="label">${k.label}</div><div class="val">${k.val}</div><div class="note">${k.note}</div></div>`).join("");
+  if (HPREC === undefined) HPREC = await fetch("data/harris_precincts.json").then(r=>r.ok?r.json():null).catch(()=>null);
   const H = HOUT, X = lon => (lon-H.lon0)*H.k*H.s, Y = lat => (H.lat1-lat)*H.s;
-  const dots = [...sites].sort((a,b)=>(a.wait_min??-1)-(b.wait_min??-1)).filter(x=>x.lat&&x.lon).map(x=>
-    `<circle cx="${X(x.lon).toFixed(1)}" cy="${Y(x.lat).toFixed(1)}" r="${(x.wait_min??0)>=30?5.5:4}" fill="${waitColor(x.wait_min)}" stroke="var(--surface-1)" stroke-width="1.5" data-tip="${esc(`<b>${x.name}</b><br>${x.addr||""}<br>Wait: ${x.wait_text||"–"}${x.in_line!=null?" · "+x.in_line+" in line":""}`)}"/>`).join("");
-  document.getElementById("hwmap").innerHTML = `<svg viewBox="-8 -8 ${H.w+16} ${H.h+16}" style="width:100%;height:auto"><path d="${H.d}" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1"/>${dots}</svg>`;
-  document.querySelectorAll("#hwmap circle").forEach(c=>{ c.onmousemove=e=>showTip(e,c.dataset.tip); c.onmouseleave=hideTip; });
+  const mm = x => x==null?"–":(x>=0?"Allred +":"Cruz +")+Math.abs(100*x).toFixed(1);
+  const precPaths = (HPREC && HLAYERS.prec) ? Object.entries(HPREC.precincts).map(([k,p])=>{
+    const t=(p.allred||0)+(p.cruz||0)+(p.other||0), m=t?(p.allred-p.cruz)/t:null;
+    return `<path d="${p.d}" fill="${binColor(m)||"var(--surface-2)"}" stroke="var(--surface-1)" stroke-width=".4" data-tip="${esc(`<b>Precinct ${k}</b><br>2024 Senate: ${mm(m)}<br>Allred ${fmt(p.allred)} · Cruz ${fmt(p.cruz)}${p.other?" · other "+fmt(p.other):""}`)}"/>`; }).join("") : "";
+  const dots = HLAYERS.wait ? [...sites].sort((a,b)=>(a.wait_min??-1)-(b.wait_min??-1)).filter(x=>x.lat&&x.lon).map(x=>{ const st=waitDot(x.wait_min);
+    return `<circle cx="${X(x.lon).toFixed(1)}" cy="${Y(x.lat).toFixed(1)}" r="${st.r}" fill="${st.fill}" stroke="${st.stroke}" stroke-width="1.2" data-tip="${esc(`<b>${x.name}</b><br>${x.addr||""}<br>Wait: ${x.wait_text||"–"}${x.in_line!=null?" · "+x.in_line+" in line":""}`)}"/>`; }).join("") : "";
+  document.getElementById("hwmap").innerHTML = `<svg viewBox="-8 -8 ${H.w+16} ${H.h+16}" style="width:100%;height:auto">
+    <path d="${H.d}" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1"/>${precPaths}<path d="${H.d}" fill="none" stroke="var(--text-muted)" stroke-width="1"/>${dots}</svg>`;
+  document.querySelectorAll("#hwmap [data-tip]").forEach(c=>{ c.onmousemove=e=>showTip(e,c.dataset.tip); c.onmouseleave=hideTip; });
   const counts = WAIT_BUCKETS.map(b=>known.filter(x=>b[2](x.wait_min)).length);
-  document.getElementById("hwlegend").innerHTML = WAIT_BUCKETS.map((b,i)=>`<span><i style="background:${b[1]};border-radius:50%"></i>${b[0]} (${counts[i]})</span>`).join("") + (sites.length-known.length?`<span><i style="background:var(--text-muted);border-radius:50%"></i>No estimate (${sites.length-known.length})</span>`:"");
+  const dotKey = (w,label,n)=>{ const st=waitDot(w); return `<span><svg width="16" height="16" style="vertical-align:-3px;margin-right:4px"><circle cx="8" cy="8" r="${st.r}" fill="${st.fill}" stroke="${st.stroke}" stroke-width="1.2"/></svg>${label} (${n})</span>`; };
+  document.getElementById("hwlegend").innerHTML =
+    `<div class="seg" id="hwlayers" style="margin-bottom:8px"><button data-l="prec" class="${HLAYERS.prec?"on":""}">2024 Senate precincts</button><button data-l="wait" class="${HLAYERS.wait?"on":""}">Wait times</button></div>
+     <div style="display:flex;gap:12px;flex-wrap:wrap">${dotKey(0,"Under 15 min",counts[0])}${dotKey(15,"15–29 min",counts[1])}${dotKey(30,"30+ min",counts[2]+counts[3])}</div>` +
+    (HPREC ? `<div style="font-size:12px;color:var(--text-secondary);margin-top:10px">Precinct color: 2024 U.S. Senate margin (Allred − Cruz, share of votes)</div>
+     <div class="maplegend">${BIN_COLORS.map(c=>`<span style="background:${c}"></span>`).join("")}</div>
+     <div class="legendlabels" style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center"><span>Cruz 30+</span><span>15–30</span><span>5–15</span><span>±5</span><span>5–15</span><span>15–30</span><span>Allred 30+</span></div>`
+     : `<div class="muted" style="font-size:12px;margin-top:8px">Precinct layer is still building.</div>`);
+  document.querySelectorAll("#hwlayers button").forEach(b=>b.onclick=()=>{ HLAYERS[b.dataset.l]=!HLAYERS[b.dataset.l]; renderHarris(o); });
   const top = [...known].sort((a,b)=>b.wait_min-a.wait_min || (b.in_line||0)-(a.in_line||0)).slice(0,25)
     .map(x=>({n:x.name, a:x.addr, w:x.wait_min, wt:x.wait_text, l:x.in_line}));
   T.hw ? T.hw.set(top) : T.hw = table(document.getElementById("hwtable"), [
