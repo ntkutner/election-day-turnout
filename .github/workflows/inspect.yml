@@ -1,0 +1,20 @@
+name: inspect-history
+on:
+  push:
+    paths: ["scripts/inspect_history.py", ".github/workflows/inspect.yml"]
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install requests
+      - run: python scripts/inspect_history.py
+      - run: |
+          git config user.name "turnout-bot"; git config user.email "turnout-bot@users.noreply.github.com"
+          git add probe/raw/_tlc_inspect.txt; git commit -m "inspect [skip ci]" || exit 0
+          for i in 1 2 3 4; do git pull -q --rebase -X theirs && git push -q && break; sleep 5; done

@@ -1,0 +1,3 @@
+fl_dos_turnout | https://www.dos.fl.gov/elections/data-statistics/elections-data/voter-turnout/
+fl_dos_turnout2 | https://dos.fl.gov/elections/data-statistics/elections-data/voter-turnout/
+tx_sos_turnout | https://www.sos.state.tx.us/elections/historical/70-92.shtml
