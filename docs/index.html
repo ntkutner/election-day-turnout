@@ -70,6 +70,22 @@ input[type=search]{font:inherit;padding:5px 9px;border:1px solid var(--border);b
 .chip .live{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--good);margin-right:5px;vertical-align:1px}
 select.stsel{font:inherit;font-size:13px;padding:5px 9px;border-radius:999px;border:1px solid var(--border);background:var(--surface-1);color:var(--text-primary)}
 .hidden{display:none!important}
+.flmapwrap{display:grid;grid-template-columns:minmax(0,640px) minmax(220px,1fr);gap:20px;align-items:start;margin-bottom:16px}
+@media (max-width:900px){.flmapwrap{grid-template-columns:1fr}}
+#flmap svg{width:100%;height:auto;display:block}
+#flmap path{stroke:var(--surface-1);stroke-width:1;vector-effect:non-scaling-stroke;cursor:pointer;transition:opacity .1s}
+#flmap path:hover,#flmap path.hl{stroke:var(--text-primary);stroke-width:2}
+.mapside .seg{display:inline-flex;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:12px}
+.mapside .seg button{font:inherit;font-size:13px;padding:5px 10px;border:0;background:var(--surface-1);color:var(--text-primary);cursor:pointer}
+.mapside .seg button.on{background:var(--text-primary);color:var(--surface-1)}
+.maplegend{display:flex;gap:2px;margin:6px 0 2px}
+.maplegend span{flex:1;height:12px}
+.maplegend span:first-child{border-radius:4px 0 0 4px}.maplegend span:last-child{border-radius:0 4px 4px 0}
+.legendlabels{font-size:11px;color:var(--text-muted)}
+.mapdetail{margin-top:14px;font-size:13px;border-top:1px solid var(--grid);padding-top:10px;min-height:150px}
+.mapdetail .row{display:flex;justify-content:space-between;gap:10px;padding:2px 0}
+.mapdetail .row span:last-child{font-variant-numeric:tabular-nums}
+.tip .row{display:flex;justify-content:space-between;gap:14px}
 footer{font-size:12px;color:var(--text-muted);margin-top:20px}
 footer a{color:inherit}
 .empty{color:var(--text-muted);font-size:13px;padding:6px 0}
@@ -98,6 +114,17 @@ footer a{color:inherit}
     <div class="secthead"><div><h2>Florida: live by county and party</h2>
       <div class="sub">County Supervisors of Elections via VR Systems Turnout Quick View, updated through the day. Party = registration, not vote choice. "D − R" is registered Democrats minus registered Republicans among ballots cast.</div></div>
       <div class="filters"><input type="search" id="flfilter" placeholder="Filter counties…"></div></div>
+    <div class="flmapwrap">
+      <div id="flmap" role="img" aria-label="Map of Florida counties colored by party-registration margin of ballots cast"></div>
+      <div class="mapside">
+        <div class="seg" id="flmetric"><button data-m="all" class="on">All ballots</button><button data-m="ed">Election Day only</button></div>
+        <div style="font-size:12px;color:var(--text-secondary)">Registered Democrats minus registered Republicans, as a share of ballots cast</div>
+        <div class="maplegend" id="fllegend"></div>
+        <div class="legendlabels" style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center"><span>R 30+</span><span>R 15–30</span><span>R 5–15</span><span>±5</span><span>D 5–15</span><span>D 15–30</span><span>D 30+</span></div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:4px">Hatched = county doesn't publish a party breakdown (Broward).</div>
+        <div class="mapdetail" id="fldetail"><span class="muted">Hover over a county for details.</span></div>
+      </div>
+    </div>
     <div class="tablewrap" id="fl"></div>
   </section>
 
@@ -196,7 +223,49 @@ function sparkline(points){
     <rect width="${W}" height="${H}" fill="transparent"/></svg>`;
 }
 
-let T = {}, LAST = null;
+let T = {}, LAST = null, FLGEO = null, FLMETRIC = "all";
+const BINS = [-0.30,-0.15,-0.05,0.05,0.15,0.30];
+const BIN_COLORS = ["#a62c2c","#e34948","#f2a19e","#f0efec","#9ec5f4","#3987e5","#184f95"]; // R strong … even … D strong (diverging red↔blue, gray midpoint)
+const binColor = m => m==null ? null : BIN_COLORS[BINS.filter(b=>m>b).length];
+async function loadGeo(){ if(!FLGEO) FLGEO = await fetch("data/fl_counties.json").then(r=>r.json()); return FLGEO; }
+function renderFlMap(rowsByCode, broward){
+  const g = FLGEO; if(!g) return;
+  const margin = r => !r ? null : FLMETRIC==="ed" ? r.edM : r.allM;
+  const paths = Object.entries(g.counties).map(([code,c])=>{
+    const r = rowsByCode[code]; const m = margin(r);
+    const fill = binColor(m) || "url(#nodata)";
+    return `<path d="${c.d}" data-code="${code}" fill="${fill}"><title>${esc(c.name)} County</title></path>`;
+  }).join("");
+  document.getElementById("flmap").innerHTML = `<svg viewBox="0 0 ${g.w} ${g.h}" xmlns="http://www.w3.org/2000/svg">
+    <defs><pattern id="nodata" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="var(--surface-2)"/><line x1="0" y1="0" x2="0" y2="6" stroke="var(--text-muted)" stroke-width="1.2" opacity=".5"/></pattern></defs>${paths}</svg>`;
+  document.getElementById("fllegend").innerHTML = BIN_COLORS.map(c=>`<span style="background:${c}"></span>`).join("");
+  const detail = code => {
+    const c = g.counties[code], r = rowsByCode[code];
+    if (!r) {
+      const b = code==="BRO" ? broward : null;
+      return `<b>${esc(c.name)} County</b><div class="muted" style="margin:4px 0">No party breakdown published${b?"":" yet"}.</div>` +
+        (b ? `<div class="row"><span>Ballots cast</span><span>${fmt(b.value)}</span></div><div class="row"><span>Election Day</span><span>${fmt(b.eday)}</span></div><div class="row"><span>Turnout</span><span>${pct(b.value,b.registered)}</span></div>` : "");
+    }
+    const mm = x => x==null?"–":(x>=0?"D +":"R +")+Math.abs(100*x).toFixed(1);
+    return `<b>${esc(c.name)} County</b>
+      <div class="row"><span>${FLMETRIC==="ed"?"Election Day":"All ballots"} D − R</span><span><b>${mm(margin(r))}</b></span></div>
+      <div class="row"><span>Ballots cast</span><span>${fmt(r.total)}</span></div>
+      <div class="row"><span>Turnout of registered</span><span>${pct(r.total,r.reg)}</span></div>
+      <div class="row"><span>Mail · Early · Election Day</span><span>${fmt(r.mail)} · ${fmt(r.early)} · ${fmt(r.ed)}</span></div>
+      <div class="row"><span>Reg. Dem / Rep / NPA+other (all)</span><span>${pct(r.dAll,1,0)} / ${pct(r.rAll,1,0)} / ${pct(r.oAll,1,0)}</span></div>
+      <div class="row"><span>Election Day D − R</span><span>${mm(r.edM)}</span></div>
+      <div class="row"><span>County updated</span><span>${r.asof?fmtTime(r.asof):"–"}</span></div>`;
+  };
+  document.querySelectorAll("#flmap path").forEach(p=>{
+    p.onmousemove = e => { showTip(e, detail(p.dataset.code)); };
+    p.onmouseenter = () => { document.getElementById("fldetail").innerHTML = detail(p.dataset.code); };
+    p.onmouseleave = hideTip;
+  });
+  document.querySelectorAll("#flmetric button").forEach(b=>{
+    b.classList.toggle("on", b.dataset.m===FLMETRIC);
+    b.onclick = () => { FLMETRIC = b.dataset.m; renderFlMap(rowsByCode, broward); };
+  });
+}
 const curST = () => decodeURIComponent(location.hash.slice(1)).toUpperCase();
 window.addEventListener("hashchange", ()=>{ if (LAST) render(...LAST); window.scrollTo({top:0}); });
 async function load(){
@@ -300,7 +369,9 @@ function render(L, hist){
     return {j:o.jurisdiction, reg:o.registered, mail:o.mail, early:o.early, ed:o.eday, total:o.total, to:o.registered?o.total/o.registered:null,
       edD:sumP("ElectionDay")?g("DEM","ElectionDay")/sumP("ElectionDay"):null, edR:sumP("ElectionDay")?g("REP","ElectionDay")/sumP("ElectionDay"):null,
       edM:sumP("ElectionDay")?(g("DEM","ElectionDay")-g("REP","ElectionDay"))/sumP("ElectionDay"):null,
-      allM:o.total?(allD-allR)/o.total:null, asof:o.as_of}; });
+      allM:o.total?(allD-allR)/o.total:null, asof:o.as_of, code:o.county_code,
+      dAll:o.total?allD/o.total:null, rAll:o.total?allR/o.total:null, oAll:o.total?1-(allD+allR)/o.total:null}; });
+  if (!ST || ST==="FL") loadGeo().then(()=>renderFlMap(Object.fromEntries(flRows.map(r=>[r.code,r])), O("fl_broward").find(o=>o.metric==="total_voted"))).catch(()=>{});
   const maxFl = Math.max(...flRows.map(r=>r.to||0));
   const mfmt = m => m==null?"–":(m>=0?"D +":"R +")+Math.abs(100*m).toFixed(1);
   const flFilter = ()=>{ const f=(document.getElementById("flfilter").value||"").toLowerCase(); return flRows.filter(r=>r.j.toLowerCase().includes(f)); };

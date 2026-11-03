@@ -291,11 +291,17 @@ def parse_tqv(d: dict, code: str):
 
 def tqv_county(code):
     idx = get(TQV + f"data/FL/{code}/index.json").json()
+    best = None
     for eid in sorted(idx, reverse=True):
-        d = get(TQV + f"data/FL/{code}/{eid}/data.json").json()
+        try:
+            d = get(TQV + f"data/FL/{code}/{eid}/data.json").json()
+        except Exception:
+            continue
         if d.get("Summary", {}).get("ElectionDate") == "11/03/2026":
-            return parse_tqv(d, code)
-    return None
+            o = parse_tqv(d, code)  # some counties list more than one 11/03 file; keep the one with ballots
+            if best is None or (o["total"] or 0) > (best["total"] or 0):
+                best = o
+    return best
 
 
 @source("fl_tqv", "Florida counties – VR Systems Turnout Quick View", "FL", "eday",
