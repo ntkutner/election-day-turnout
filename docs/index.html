@@ -85,6 +85,8 @@ select.stsel{font:inherit;font-size:13px;padding:5px 9px;border-radius:999px;bor
 .mapdetail{margin-top:14px;font-size:13px;border-top:1px solid var(--grid);padding-top:10px;min-height:150px}
 .mapdetail .row{display:flex;justify-content:space-between;gap:10px;padding:2px 0}
 .mapdetail .row span:last-child{font-variant-numeric:tabular-nums}
+#hwtable td:first-child{white-space:normal;min-width:180px}
+#hwtable td{vertical-align:top}
 .tip .row{display:flex;justify-content:space-between;gap:14px}
 footer{font-size:12px;color:var(--text-muted);margin-top:20px}
 footer a{color:inherit}
@@ -132,6 +134,21 @@ footer a{color:inherit}
     <div class="secthead"><div><h2 id="tx-title">Texas: large counties</h2>
       <div class="sub">Early vote (final, through Oct 30) from the Texas SOS. Election Day counts come from county live feeds where available (hourly vote-center counts); otherwise from the SOS file, which counties only fill in after close.</div></div></div>
     <div class="tablewrap" id="tx"></div>
+  </section>
+
+  <section id="sec-hwait">
+    <div class="secthead"><div><h2>Harris County: vote center wait times</h2>
+      <div class="sub">HarrisVotes wait-time map, every Election Day vote center. Harris posts hourly check-in totals only on social media, so this shows lines and waits rather than votes.</div></div></div>
+    <div class="kpis" id="hwkpis" style="margin-bottom:14px"></div>
+    <div class="flmapwrap">
+      <div id="hwmap" role="img" aria-label="Map of Harris County vote centers colored by estimated wait"></div>
+      <div class="mapside">
+        <div style="font-size:12px;color:var(--text-secondary)">Estimated wait</div>
+        <div class="legend" id="hwlegend" style="margin:6px 0 10px"></div>
+        <div style="font-size:12px;color:var(--text-secondary);margin-bottom:4px">Longest waits right now</div>
+        <div class="tablewrap" id="hwtable" style="max-height:330px"></div>
+      </div>
+    </div>
   </section>
 
   <section id="sec-states">
@@ -223,7 +240,32 @@ function sparkline(points){
     <rect width="${W}" height="${H}" fill="transparent"/></svg>`;
 }
 
-let T = {}, LAST = null, FLGEO = null, FLMETRIC = "all";
+let T = {}, LAST = null, FLGEO = null, FLMETRIC = "all", HOUT = null;
+const WAIT_BUCKETS = [["Under 15 min","#86b6ef",w=>w<15],["15–29 min","#3987e5",w=>w>=15&&w<30],["30–59 min","#1c5cab",w=>w>=30&&w<60],["60+ min","#0d366b",w=>w>=60]];
+const waitColor = w => w==null ? "var(--text-muted)" : WAIT_BUCKETS.find(b=>b[2](w))[1];
+async function renderHarris(o){
+  if (!o) { document.getElementById("sec-hwait").classList.add("hidden"); return; }
+  if (!HOUT) HOUT = await fetch("data/harris_outline.json").then(r=>r.json());
+  const sites = o.sites||[], known = sites.filter(x=>x.wait_min!=null);
+  document.getElementById("hwkpis").innerHTML = [
+    {label:"Vote centers reporting", val:fmt(sites.length), note:`${fmt(known.length)} with a wait estimate`},
+    {label:"Median wait", val:o.median_wait==null?"–":(o.median_wait<15?"Under 15 min":o.median_wait+"+ min"), note:"Across vote centers"},
+    {label:"Sites with 30+ min waits", val:fmt(o.sites_30plus), note:`${pct(o.sites_30plus, known.length||1)} of sites`},
+    {label:"Voters in line", val:fmt(o.total_in_line), note:"Sum of reported line counts"},
+  ].map(k=>`<div class="kpi"><div class="label">${k.label}</div><div class="val">${k.val}</div><div class="note">${k.note}</div></div>`).join("");
+  const H = HOUT, X = lon => (lon-H.lon0)*H.k*H.s, Y = lat => (H.lat1-lat)*H.s;
+  const dots = [...sites].sort((a,b)=>(a.wait_min??-1)-(b.wait_min??-1)).filter(x=>x.lat&&x.lon).map(x=>
+    `<circle cx="${X(x.lon).toFixed(1)}" cy="${Y(x.lat).toFixed(1)}" r="${(x.wait_min??0)>=30?5.5:4}" fill="${waitColor(x.wait_min)}" stroke="var(--surface-1)" stroke-width="1.5" data-tip="${esc(`<b>${x.name}</b><br>${x.addr||""}<br>Wait: ${x.wait_text||"–"}${x.in_line!=null?" · "+x.in_line+" in line":""}`)}"/>`).join("");
+  document.getElementById("hwmap").innerHTML = `<svg viewBox="-8 -8 ${H.w+16} ${H.h+16}" style="width:100%;height:auto"><path d="${H.d}" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1"/>${dots}</svg>`;
+  document.querySelectorAll("#hwmap circle").forEach(c=>{ c.onmousemove=e=>showTip(e,c.dataset.tip); c.onmouseleave=hideTip; });
+  const counts = WAIT_BUCKETS.map(b=>known.filter(x=>b[2](x.wait_min)).length);
+  document.getElementById("hwlegend").innerHTML = WAIT_BUCKETS.map((b,i)=>`<span><i style="background:${b[1]};border-radius:50%"></i>${b[0]} (${counts[i]})</span>`).join("") + (sites.length-known.length?`<span><i style="background:var(--text-muted);border-radius:50%"></i>No estimate (${sites.length-known.length})</span>`:"");
+  const top = [...known].sort((a,b)=>b.wait_min-a.wait_min || (b.in_line||0)-(a.in_line||0)).slice(0,25)
+    .map(x=>({n:x.name, a:x.addr, w:x.wait_min, wt:x.wait_text, l:x.in_line}));
+  T.hw ? T.hw.set(top) : T.hw = table(document.getElementById("hwtable"), [
+    {key:"n",label:"Vote center",render:r=>`${esc(r.n)}<div class="muted" style="font-size:11px;white-space:normal">${esc(r.a)}</div>`},
+    {key:"w",label:"Wait",render:r=>esc(r.wt||"–")},{key:"l",label:"In line",render:r=>fmt(r.l)}], top, {key:"w"});
+}
 const BINS = [-0.30,-0.15,-0.05,0.05,0.15,0.30];
 const BIN_COLORS = ["#a62c2c","#e34948","#f2a19e","#f0efec","#9ec5f4","#3987e5","#184f95"]; // R strong … even … D strong (diverging red↔blue, gray midpoint)
 const binColor = m => m==null ? null : BIN_COLORS[BINS.filter(b=>m>b).length];
@@ -362,6 +404,9 @@ function render(L, hist){
   document.querySelectorAll("#live [data-tip]").forEach(n=>{ n.onmousemove=e=>showTip(e,n.dataset.tip); n.onmouseleave=hideTip; });
 
   show("sec-fl", !ST || ST==="FL"); show("sec-tx", !ST || ST==="TX");
+  const hw = O("tx_harris_wait")[0];
+  show("sec-hwait", (!ST || ST==="TX") && !!hw);
+  if ((!ST || ST==="TX") && hw) renderHarris(hw).catch(()=>{});
   // Florida table
   const flRows = O("fl_tqv").filter(o=>!o.jurisdiction.startsWith("Florida")).map(o=>{
     const P=o.party||{}, g=(p,m)=>P[p]?.[m]||0, sumP=(m)=>["DEM","REP","NPA","OTH"].reduce((a,p)=>a+g(p,m),0);
@@ -442,7 +487,7 @@ function render(L, hist){
     if (["uf_states","uf_tossups","tx_early","tx_eday"].includes(s.id)) continue;
     for (const o of s.observations){
       if (s.kind==="eday" && o.metric==="eday_checkins") continue;
-      if (!inST(o)) continue;
+      if (!inST(o) || o.metric==="wait_times") continue;
       other.push({j:o.jurisdiction, st:o.state, metric:{early_inperson:"Early in-person",total_voted:"Ballots cast (total)",early_total:"Early total"}[o.metric]||o.metric,
         v:o.value, reg:o.registered, asof:o.as_of, src:s});
     }
@@ -459,7 +504,7 @@ function render(L, hist){
   const srows = all.filter(s=>!ST || s.state===ST || s.state==="US").map(s=>({name:s.name, st:s.state, kind:s.kind, status:s.status, f:s.fetched_at, err:s.error, url:s.url, note:s.note}));
   T.src ? T.src.set(srows) : T.src = table(document.getElementById("sources"), [
     {key:"name",label:"Source",render:r=>`<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a>${r.note?`<div class="muted" style="white-space:normal;font-size:12px;max-width:520px">${esc(r.note)}</div>`:""}`},
-    {key:"st",label:"State"},{key:"kind",label:"Type",render:r=>({eday:"Live Election Day",early:"Early vote",total:"Results site"}[r.kind]||r.kind)},
+    {key:"st",label:"State"},{key:"kind",label:"Type",render:r=>({eday:"Live Election Day",early:"Early vote",total:"Results site",wait:"Wait times"}[r.kind]||r.kind)},
     {key:"status",label:"Status",render:r=>`<span class="status-${r.status}">${r.status==="ok"?"✓ OK":r.status==="stale"?"⚠ Stale":"✕ Error"}</span>${r.err?`<div class="muted" style="font-size:11px;white-space:normal;max-width:260px">${esc(r.err)}</div>`:""}`},
     {key:"f",label:"Last good fetch",render:r=>r.f?fmtTime(r.f):"–"},
   ], srows);
