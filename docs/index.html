@@ -245,7 +245,7 @@ function render(L, hist){
   const flMargin = flAgg ? (()=>{ const d=flAgg.party?.DEM?.ElectionDay||0, r=flAgg.party?.REP?.ElectionDay||0, t=flAgg.eday||1; const m=100*(d-r)/t; return (m>=0?"D +":"R +")+Math.abs(m).toFixed(1); })() : "";
   const u = ST ? uf.find(o=>o.state===ST) : null;
   const stLive = ST ? live.filter(o=>o.state===ST) : [];
-  const stAgg = ST==="FL" ? flAgg : ST==="TX" ? (txLive.length?{jurisdiction:txLive.length+" counties with live feeds: "+txLiveNote, value:txLiveSum}:null) : stLive.sort((a,b)=>(b.value||0)-(a.value||0))[0];
+  const stAgg = ST==="FL" ? flAgg : ST==="TX" ? (txLive.length?{jurisdiction:(txLive.length===1?"1 county":txLive.length+" counties")+" with a live feed: "+txLiveNote, value:txLiveSum}:null) : stLive.sort((a,b)=>(b.value||0)-(a.value||0))[0];
   const kpiList = ST ? [
     {label:`${stNames[ST]||ST}: early votes`, val:fmt(u?.value), note:u?`${fmt(u.inperson)} in person · ${fmt(u.mail_returned)} mail · as of ${u.as_of}`:"UF Election Lab has no row for this state"},
     {label:"Early vote as % of 2022 total", val:u?pct(u.value,u.turnout_2022):"–", note:u?`2022 total turnout: ${fmt(u.turnout_2022)}`:""},
