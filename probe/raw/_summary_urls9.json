@@ -1,0 +1,105 @@
+{
+ "tarrant_ed_pdf": {
+  "url": "https://www.tarrantcountytx.gov/content/dam/main/elections/2026/1126/reports/Election_Day_Voting_Totals.pdf",
+  "status": 200,
+  "final_url": "https://www.tarrantcountytx.gov/content/dam/main/elections/2026/1126/reports/Election_Day_Voting_Totals.pdf",
+  "ctype": "application/pdf",
+  "bytes": 78224
+ },
+ "tarrant_wait": {
+  "url": "https://gisit.tarrantcounty.com/tcvotingwaittime/",
+  "status": 200,
+  "final_url": "https://gisit.tarrantcounty.com/tcvotingwaittime/",
+  "ctype": "text/html; charset=utf-8",
+  "bytes": 9723,
+  "data_links": [
+   "https://assets.adobedtm.com/cc64b4f118558c1d7a958a890407edc6c49c6c52/satelliteLib-6d528d77be3c24f70cd109714f387e20673a5695.js",
+   "https://gisit.tarrantcounty.com/tcvotingwaittime/js/map.js?version=12341234",
+   "https://gisit.tarrantcounty.com/tcvotingwaittime/js/shared.js",
+   "https://gisit.tarrantcounty.com/tcvotingwaittime/js/site.js",
+   "https://gisit.tarrantcounty.com/tcvotingwaittime/lib/bootstrap/dist/js/bootstrap.min.js",
+   "https://gisit.tarrantcounty.com/tcvotingwaittime/lib/jquery/dist/jquery.min.js",
+   "https://gisit.tarrantcounty.com/tcvotingwaittime/vendor/chart.js/Chart.js",
+   "https://gisit.tarrantcounty.com/tcvotingwaittime/vendor/pagination/pagination.js"
+  ]
+ },
+ "bexar_wait": {
+  "url": "https://maps.bexar.org/ElectionWaitTimes/",
+  "status": 200,
+  "final_url": "https://maps.bexar.org/ElectionWaitTimes/",
+  "ctype": "text/html",
+  "bytes": 5017,
+  "data_links": [
+   "https://maps.bexar.org/ElectionWaitTimes/jimu-core/init.js"
+  ]
+ },
+ "harris_vc": {
+  "url": "https://www.harrisvotes.com/Vote-Centers",
+  "status": 200,
+  "final_url": "https://www.harrisvotes.com/Vote-Centers",
+  "ctype": "text/html; charset=utf-8",
+  "bytes": 16924,
+  "data_links": [
+   "https://kit.fontawesome.com/3240ab16ae.js",
+   "https://static.ctctcdn.com/js/signup-form-widget/current/signup-form-widget.min.js",
+   "https://www.googletagmanager.com/gtm.js?id=",
+   "https://www.harrisvotes.com/Portals/harrisvotes/skins/ead-harrisvotes/assets/Lightbox/lightbox.js?cdv=2185",
+   "https://www.harrisvotes.com/Portals/harrisvotes/skins/ead-harrisvotes/assets/jflickrfeed/jflickrfeed.min.js?cdv=2185",
+   "https://www.harrisvotes.com/Portals/harrisvotes/skins/ead-harrisvotes/assets/jflickrfeed/setup.js?cdv=2185",
+   "https://www.harrisvotes.com/Portals/harrisvotes/skins/ead-harrisvotes/assets/jplist/js/jplist.core.min.js?cdv=2185",
+   "https://www.harrisvotes.com/Portals/harrisvotes/skins/ead-harrisvotes/assets/jplist/js/jplist.pagination-bundle.min.js?cdv=2185",
+   "https://www.harrisvotes.com/Portals/harrisvotes/skins/ead-harrisvotes/assets/js/func.js?cdv=2185",
+   "https://www.harrisvotes.com/Portals/harrisvotes/skins/ead-harrisvotes/assets/livevideo/video.js?cdv=2185",
+   "https://www.harrisvotes.com/Portals/harrisvotes/skins/ead-harrisvotes/assets/owlcarousel/owl.carousel.js?cdv=2185",
+   "https://www.harrisvotes.com/Resources/libraries/jQuery-Migrate/03_02_00/jquery-migrate.js?cdv=2185",
+   "https://www.harrisvotes.com/Resources/libraries/jQuery-UI/01_12_01/jquery-ui.js?cdv=2185",
+   "https://www.harrisvotes.com/Resources/libraries/jQuery/03_05_01/jquery.js?cdv=2185",
+   "https://www.harrisvotes.com/js/dnn.js?cdv=2185",
+   "https://www.harrisvotes.com/js/dnn.modalpopup.js?cdv=2185",
+   "https://www.harrisvotes.com/js/dnn.servicesframework.js?cdv=2185",
+   "https://www.harrisvotes.com/js/dnncore.js?cdv=2185"
+  ]
+ },
+ "harris_locations": {
+  "url": "https://www.harrisvotes.com/locations",
+  "status": 404,
+  "final_url": "https://www.harrisvotes.com/locations",
+  "ctype": "text/html; charset=utf-8",
+  "bytes": 53196,
+  "data_links": [
+   "https://appfiles.harrisvotes.com/harrisvotes/prd/docs/Uploads/EVPA_unofficial.pdf",
+   "https://files.harrisvotes.com/harrisvotes/prd/docs/VoterRegistration/Request-to-Remove-Personal-Information-from-HC-CCO-Website-optoutform_Sept_2023.pdf",
+   "https://hctxdnnstg.blob.core.windows.net/harrisvotes/prd/SampleBallot/2026/11-3/1126_Yellow%20Sample%20Ballot%20ENG-SPA%20for%20Website%20Posting.pdf?sv=2017-04-17&amp;sr=b&amp;si=DNNFileManagerPolicy&amp;sig=hs1POFZK5TnbA%2BtPK4PC2dPczCggvtATNgRDkT38rl8%3D",
+   "https://hctxdnnstg.blob.core.windows.net/harrisvotes/prd/Write-Ins/2026/1126_Write-In_for_BBM.pdf?sv=2017-04-17&amp;sr=b&amp;si=DNNFileManagerPolicy&amp;sig=azVo5pcm184KqQpeMxG5gOo%2BVcoJmZCswMsgHlausCE%3D",
+   "https://hctxdnnstg.blob.core.windows.net/harrisvotes/prd/assets/1126%20Notice%20of%20Debt%20Obligations%20v1.5.pdf?sv=2017-04-17&amp;sr=b&amp;si=DNNFileManagerPolicy&amp;sig=shY6B9CRP5WTU893s32EbA41NPKR%2F68aeaGJtN8M5ms%3D",
+   "https://hctxdnnstg.blob.core.windows.net/harrisvotes/prd/docs/VotingInfo/2026-Effective-Communication-Form_EN.pdf?sv=2017-04-17&amp;sr=b&amp;si=DNNFileManagerPolicy&amp;sig=MdYWIhr0D1RDZaqZkkOLstdlcT6uj%2BIm9edZexOtm5I%3D",
+   "https://kit.fontawesome.com/3240ab16ae.js",
+   "https://static.ctctcdn.com/js/signup-form-widget/current/signup-form-widget.min.js",
+   "https://www.harrisvotes.com/Portals/harrisvotes/Documents/2026/Reports/1126 Notice of Cancellations.pdf?ver=Wpds5K2Ox8RGkTljel1l4g%3d%3d",
+   "https://www.harrisvotes.com/Portals/harrisvotes/skins/ead-harrisvotes/assets/Lightbox/lightbox.js?cdv=2185",
+   "https://www.harrisvotes.com/Portals/harrisvotes/skins/ead-harrisvotes/assets/jflickrfeed/jflickrfeed.min.js?cdv=2185",
+   "https://www.harrisvotes.com/Portals/harrisvotes/skins/ead-harrisvotes/assets/jflickrfeed/setup.js?cdv=2185",
+   "https://www.harrisvotes.com/Portals/harrisvotes/skins/ead-harrisvotes/assets/jplist/js/jplist.core.min.js?cdv=2185",
+   "https://www.harrisvotes.com/Portals/harrisvotes/skins/ead-harrisvotes/assets/jplist/js/jplist.pagination-bundle.min.js?cdv=2185",
+   "https://www.harrisvotes.com/Portals/harrisvotes/skins/ead-harrisvotes/assets/js/func.js?cdv=2185",
+   "https://www.harrisvotes.com/Portals/harrisvotes/skins/ead-harrisvotes/assets/livevideo/video.js?cdv=2185",
+   "https://www.harrisvotes.com/Portals/harrisvotes/skins/ead-harrisvotes/assets/owlcarousel/owl.carousel.js?cdv=2185",
+   "https://www.harrisvotes.com/Portals/harrisvotes/skins/ead-harrisvotes/skinFooterNavElectionDivision/simple.js?cdv=2185",
+   "https://www.harrisvotes.com/Portals/harrisvotes/skins/ead-harrisvotes/skinFooterNavGetInformed/simple.js?cdv=2185",
+   "https://www.harrisvotes.com/Portals/harrisvotes/skins/ead-harrisvotes/skinFooterNavGetInvolved/simple.js?cdv=2185",
+   "https://www.harrisvotes.com/Portals/harrisvotes/skins/ead-harrisvotes/skinNavHeader/simple.js?cdv=2185",
+   "https://www.harrisvotes.com/Portals/harrisvotes/skins/ead-harrisvotes/skinNavMobile/simple.js?cdv=2185",
+   "https://www.harrisvotes.com/Portals/harrisvotes/skins/ead-harrisvotes/skinPageNav/simple.js?cdv=2185",
+   "https://www.harrisvotes.com/Resources/Search/SearchSkinObjectPreview.js?cdv=2185",
+   "https://www.harrisvotes.com/Resources/libraries/jQuery-Migrate/03_02_00/jquery-migrate.js?cdv=2185",
+   "https://www.harrisvotes.com/Resources/libraries/jQuery-UI/01_12_01/jquery-ui.js?cdv=2185",
+   "https://www.harrisvotes.com/Resources/libraries/jQuery/03_05_01/jquery.js?cdv=2185",
+   "https://www.harrisvotes.com/Voter/Early-Voting-FAQ#voting-process",
+   "https://www.harrisvotes.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js",
+   "https://www.harrisvotes.com/js/dnn.js?cdv=2185",
+   "https://www.harrisvotes.com/js/dnn.modalpopup.js?cdv=2185",
+   "https://www.harrisvotes.com/js/dnn.servicesframework.js?cdv=2185",
+   "https://www.harrisvotes.com/js/dnncore.js?cdv=2185"
+  ]
+ }
+}

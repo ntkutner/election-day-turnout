@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+
+    <title>TC - Voting Center Lookup</title>
+
+    <script src="/tcvotingwaittime/lib/jquery/dist/jquery.min.js"></script>
+    <link href="/tcvotingwaittime/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/tcvotingwaittime/css/style.css" rel="stylesheet" />
+    <link href="/tcvotingwaittime/css/tc-branding.css" rel="stylesheet" />
+    <script src="/tcvotingwaittime/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="/tcvotingwaittime/vendor/pagination/pagination.js"></script>
+    <script src="/tcvotingwaittime/vendor/chart.js/Chart.js"></script>
+    <link rel="stylesheet" href="/tcvotingwaittime/lib/font-awesome/css/all.min.css?v=DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s-0" />
+    <link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.29/"></script>
+
+
+
+    <script src="/tcvotingwaittime/js/site.js"></script>
+    <script src="/tcvotingwaittime/js/shared.js"></script>
+    <script src="/tcvotingwaittime/js/map.js?version=12341234"></script>
+</head>
+
+<body>
+    <nav b-osoxxwah3t class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3 nav-bar-tc no-margin no-padding">
+        <div b-osoxxwah3t class="container no-margin">
+            <span b-osoxxwah3t class="navbar-brand tc-brand" href="https://www.tarrantcounty.com/en.html"><img class="imagelogo" src="/tcvotingwaittime/images/logo.png" id="imgLogo"> Voting Wait Times</span>
+        </div>
+    </nav>
+
+    <div b-osoxxwah3t class="g-0" style="height:calc(100% - 51px)">
+            
+
+
+<div id="routingPane" class="routingPane">
+    <div id="searchContainer"></div>
+</div>
+
+<script type="text/javascript">
+    $(window).on('load', function () {
+        $('#countyDisclaimer').modal('show');
+    });
+</script>
+
+<script src="//assets.adobedtm.com/cc64b4f118558c1d7a958a890407edc6c49c6c52/satelliteLib-6d528d77be3c24f70cd109714f387e20673a5695.js"></script>
+
+<script type="text/javascript">
+    var digitalData = new Object();
+    digitalData.page = {
+        pageinfo: {
+            pageName: "Elections:GIS:TCVotingWaitTime",
+        },
+        category: {
+            pageType: "GIS",
+            department: "Elections",
+            division: "",
+            hier1: "GIS|TCVotingWaitTime"
+        },
+        form: {
+            formName: "Information-Technology:TCVotingWaitTime:locationSearchForm_SearchKeyword",
+            formEvent: "Form End",
+        },
+        search: {
+            onsiteSearchResults: "",
+            onsiteKeywordResults: "",
+        },
+    }
+</script>
+
+<div class="modal alert-modal show" id="countyDisclaimer" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Voting Wait Times</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body"><p>
+                    <b>Note: Wait times will be averaged and clustered by proximity when viewing the entire County. Zoom in to see individual location times, or toggle between primary parties using the dropdown list in the left panel.</b>
+
+                    <br />
+                    <br />
+                This map was prepared by Tarrant County for general reference purposes only, and may be revised at any time without notification to any user.
+                <br />
+                <br />
+                Tarrant County does not guarantee the correctness or accuracy of any features on this map. Tarrant County assumes no responsibility in connection therewith.
+                <br />
+                <br />
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Okay</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="app-body tab-content-weird no-padding margin">
+    <div id="tab-content-weird" class="tab-content row no-padding margin">
+        <div class="tab-pane full-height no-padding no-margin main-sidebar" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab">
+            <div class="slider-div">
+                <center>
+                <div class="row no-padding align-content-center">
+                    <div class="row no-padding align-content-center">
+                            <select id="main_ActiveElectionList" class="form-select"></select>
+                    </div>
+                    <div class="row no-padding align-content-center">
+                            <h6 class="card-subtitle mb-2 text-dark" id="ElectionType"></h6>
+                            <h6 class="card-subtitle mb-2 text-muted" id="ElectionDate"></h6>
+                    </div>
+
+                </div>
+                </center>
+            </div>
+            <div id="toc-toolbars">
+                <div class="row no-margin max-width">
+
+                    <div class="col-12 g no-margin">
+                        <form id="searchForm" onsubmit="return false">
+                            <div class="input-group">
+                                <input class="form-control form-controler-sm round-form  mb-1" placeholder="Filter List By Keyword" aria-label=".form-select-lg example" id="locationSearchForm_SearchKeyword" name="SearchKeyword" />
+                                <button class="btn btn-warning round-button" type="reset">Clear Filter</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+                <hr style="margin-top: 5px; margin-bottom: 0px;" />
+
+                <div class="row toolbar-settings  no-margin max-width justify-content-between">
+                    <div class="col-auto  no-margin">
+                        <select class="form-control form-select option-select" id="optionsPerPage">
+                            <option value="10">10 per page</option>
+                            <option value="20">20 per page</option>
+                            <option value="50">50 per page</option>
+                            <option value="100">100 per page</option>
+                        </select>
+                    </div>
+                    <div class="col-auto  no-margin">
+                        <center>
+                            <h6 class="toolbar-subtitle text-muted no-padding no-margins">Filter By Map View</h6>
+                            <label class="mapfilter-switch">
+                                <input id="mapfilter-switch" type="checkbox" checked>
+                                <span class="mapfilter-slider round"></span>
+                            </label>
+                        </center>
+                    </div>
+                </div>
+                <hr style="margin-bottom: 5px; margin-top: 0px;" />
+            </div>
+            <div id="toc-items" class="no-padding toc-fill">
+            </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center" id="pagination"><li class="page-item first disabled"><a href="#" class="page-link">First</a></li><li class="page-item prev disabled"><a href="#" class="page-link">Previous</a></li><li class="page-item active"><a href="#" class="page-link">1</a></li><li class="page-item next disabled"><a href="#" class="page-link">Next</a></li><li class="page-item last disabled"><a href="#" class="page-link">Last</a></li></ul>
+            </nav>
+        </div>
+
+
+        <div class="tab-pane active col full-height no-padding margin" id="nav-map" role="tabpanel" aria-labelledby="nav-map-tab">
+            <div class="slider-div mobile-accessibility">
+                <div class="row no-padding no-margin full-height">
+                    <div class="no-padding align-content-center">
+                        <center>
+                            <h5 id="ElectionName2"></h5>
+                            <h6 class="card-subtitle mb-2 text-muted" id="ElectionType2"></h6>
+                            <h6 class="card-subtitle mb-2 text-muted" id="ElectionDate2"></h6>
+                        </center>
+                    </div>
+                </div>
+            </div>
+            <div id="viewDiv"></div>
+        </div>
+
+
+
+    </div>
+    <div class="hidden-md-up">
+        <ul class="nav nav-tabs no-list" id="myTab" role="tablist">
+            <li class="nav-item no-list half-row no-padding tab-style">
+                <button class="nav-link full-width" id="nav-list-tab" data-bs-toggle="tab" data-bs-target="#nav-list" type="button" role="tab" aria-controls="nav-list" aria-selected="true">List View</button>
+            </li>
+            <li class="nav-item no-list half-row no-padding tab-style">
+                <button class="nav-link full-width active" id="nav-map-tab" data-bs-toggle="tab" data-bs-target="#nav-map" type="button" role="tab" aria-controls="nav-map" aria-selected="false">Map View</button>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+
+
+
+    </div>
+    <script type="text/javascript">
+        var baseUrl = 'https://gisit.tarrantcounty.com/tcvotingwaittime/';
+    </script>
+    
+</body>
+</html>
