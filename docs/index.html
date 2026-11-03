@@ -70,6 +70,14 @@ input[type=search]{font:inherit;padding:5px 9px;border:1px solid var(--border);b
 .chip .live{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--good);margin-right:5px;vertical-align:1px}
 select.stsel{font:inherit;font-size:13px;padding:5px 9px;border-radius:999px;border:1px solid var(--border);background:var(--surface-1);color:var(--text-primary)}
 .hidden{display:none!important}
+.cmp{border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:14px;max-width:760px}
+.cmp-title{font-weight:600;margin-bottom:6px}
+.cmp-row{display:grid;grid-template-columns:90px 1fr 100px 110px;gap:10px;align-items:center;padding:3px 0;font-variant-numeric:tabular-nums}
+.cmp-track{height:12px;display:flex}
+.cmp-bar{height:100%;background:var(--text-muted);opacity:.45;border-radius:0 4px 4px 0}
+.cmp-bar.now{background:var(--series-1);opacity:1}
+.cmp-v{text-align:right}.cmp-p{font-size:12px}
+.cmp-foot{font-size:12px;color:var(--text-secondary);margin-top:6px}
 .flmapwrap{display:grid;grid-template-columns:minmax(0,640px) minmax(220px,1fr);gap:20px;align-items:start;margin-bottom:16px}
 @media (max-width:900px){.flmapwrap{grid-template-columns:1fr}}
 #flmap svg{width:100%;height:auto;display:block}
@@ -116,14 +124,15 @@ footer a{color:inherit}
     <div class="secthead"><div><h2>Florida: live by county and party</h2>
       <div class="sub">County Supervisors of Elections via VR Systems Turnout Quick View, updated through the day. Party = registration, not vote choice. "D − R" is registered Democrats minus registered Republicans among ballots cast.</div></div>
       <div class="filters"><input type="search" id="flfilter" placeholder="Filter counties…"></div></div>
+    <div id="flcmp"></div>
     <div class="flmapwrap">
       <div id="flmap" role="img" aria-label="Map of Florida counties colored by party-registration margin of ballots cast"></div>
       <div class="mapside">
-        <div class="seg" id="flmetric"><button data-m="all" class="on">All ballots</button><button data-m="ed">Election Day only</button></div>
-        <div style="font-size:12px;color:var(--text-secondary)">Registered Democrats minus registered Republicans, as a share of ballots cast</div>
+        <div class="seg" id="flmetric"><button data-m="all" class="on">D − R: all ballots</button><button data-m="ed">D − R: Election Day</button><button data-m="v22">% of 2022 turnout</button></div>
+        <div style="font-size:12px;color:var(--text-secondary)" id="flmetricnote">Registered Democrats minus registered Republicans, as a share of ballots cast</div>
         <div class="maplegend" id="fllegend"></div>
-        <div class="legendlabels" style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center"><span>R 30+</span><span>R 15–30</span><span>R 5–15</span><span>±5</span><span>D 5–15</span><span>D 15–30</span><span>D 30+</span></div>
-        <div style="font-size:11px;color:var(--text-muted);margin-top:4px">Hatched = county doesn't publish a party breakdown (Broward).</div>
+        <div class="legendlabels" id="fllegendlabels" style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center"></div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:4px">Hatched = no party breakdown published (Broward).</div>
         <div class="mapdetail" id="fldetail"><span class="muted">Hover over a county for details.</span></div>
       </div>
     </div>
@@ -133,6 +142,7 @@ footer a{color:inherit}
   <section id="sec-tx">
     <div class="secthead"><div><h2 id="tx-title">Texas: large counties</h2>
       <div class="sub">Early vote (final, through Oct 30) from the Texas SOS. Election Day counts come from county live feeds where available (hourly vote-center counts); otherwise from the SOS file, which counties only fill in after close.</div></div></div>
+    <div id="txcmp"></div>
     <div class="tablewrap" id="tx"></div>
   </section>
 
@@ -239,6 +249,18 @@ function sparkline(points){
     <rect width="${W}" height="${H}" fill="transparent"/></svg>`;
 }
 
+let HIST = undefined;
+async function loadHist(){ if (HIST === undefined) HIST = await fetch("data/history_2022_2024.json").then(r=>r.ok?r.json():null).catch(()=>null); return HIST; }
+const txKey = j => j.replace(/ County$/,"").toUpperCase();
+function compareBlock(title, h22, h24, nowBallots, nowReg, note){
+  if (!h22 && !h24) return "";
+  const rows = [["2022 final", h22?.ballots, h22?.reg], ["2024 final", h24?.ballots, h24?.reg], ["2026 so far", nowBallots, nowReg]];
+  const max = Math.max(...rows.map(r=>r[1]||0));
+  return `<div class="cmp"><div class="cmp-title">${title}</div>${rows.map(([l,b,rg],i)=>`
+    <div class="cmp-row"><span class="cmp-l">${l}</span><span class="cmp-track"><span class="cmp-bar${i===2?" now":""}" style="width:${max?100*(b||0)/max:0}%"></span></span>
+    <span class="cmp-v">${fmt(b)}</span><span class="cmp-p muted">${rg?pct(b,rg)+" of reg.":""}</span></div>`).join("")}
+    <div class="cmp-foot">So far: <b>${pct(nowBallots,h22?.ballots,0)}</b> of 2022's total · <b>${pct(nowBallots,h24?.ballots,0)}</b> of 2024's. ${note||""}</div></div>`;
+}
 let T = {}, LAST = null, FLGEO = null, FLMETRIC = "all", HOUT = null, HPREC = undefined, HLAYERS = {prec:true, wait:true};
 const WAIT_BUCKETS = [["Under 15 min","#86b6ef",w=>w<15],["15–29 min","#3987e5",w=>w>=15&&w<30],["30–59 min","#1c5cab",w=>w>=30&&w<60],["60+ min","#0d366b",w=>w>=60]];
 const waitColor = w => w==null ? "var(--text-muted)" : WAIT_BUCKETS.find(b=>b[2](w))[1];
@@ -287,20 +309,26 @@ async function loadGeo(){ if(!FLGEO) FLGEO = await fetch("data/fl_counties.json"
 function renderFlMap(rowsByCode, broward){
   const g = FLGEO; if(!g) return;
   const margin = r => !r ? null : FLMETRIC==="ed" ? r.edM : r.allM;
+  const SEQ = ["#cde2fb","#9ec5f4","#6da7ec","#3987e5","#256abf","#184f95","#0d366b"], SEQB=[0.6,0.7,0.8,0.9,1.0,1.1];
+  const v22 = r => (r && r.h22 && r.h22.ballots) ? r.total / r.h22.ballots : null;
+  const colorFor = r => FLMETRIC==="v22" ? (v22(r)==null?null:SEQ[SEQB.filter(b=>v22(r)>b).length]) : binColor(margin(r));
+  document.getElementById("flmetricnote").textContent = FLMETRIC==="v22" ? "Ballots cast so far as a share of the county's total 2022 turnout" : "Registered Democrats minus registered Republicans, as a share of ballots cast";
+  document.getElementById("fllegendlabels").innerHTML = (FLMETRIC==="v22" ? ["<60%","60–70","70–80","80–90","90–100","100–110","110%+"] : ["R 30+","R 15–30","R 5–15","±5","D 5–15","D 15–30","D 30+"]).map(x=>`<span>${x}</span>`).join("");
   const paths = Object.entries(g.counties).map(([code,c])=>{
-    const r = rowsByCode[code]; const m = margin(r);
-    const fill = binColor(m) || "url(#nodata)";
+    let r = rowsByCode[code];
+    if (!r && code==="BRO" && broward && FLMETRIC==="v22") r = {total: broward.value, h22: HIST?.FL?.BRO?.["2022"]};
+    const fill = colorFor(r) || "url(#nodata)";
     return `<path d="${c.d}" data-code="${code}" fill="${fill}"><title>${esc(c.name)} County</title></path>`;
   }).join("");
   document.getElementById("flmap").innerHTML = `<svg viewBox="0 0 ${g.w} ${g.h}" xmlns="http://www.w3.org/2000/svg">
     <defs><pattern id="nodata" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="var(--surface-2)"/><line x1="0" y1="0" x2="0" y2="6" stroke="var(--text-muted)" stroke-width="1.2" opacity=".5"/></pattern></defs>${paths}</svg>`;
-  document.getElementById("fllegend").innerHTML = BIN_COLORS.map(c=>`<span style="background:${c}"></span>`).join("");
+  document.getElementById("fllegend").innerHTML = (FLMETRIC==="v22"?SEQ:BIN_COLORS).map(c=>`<span style="background:${c}"></span>`).join("");
   const detail = code => {
     const c = g.counties[code], r = rowsByCode[code];
     if (!r) {
       const b = code==="BRO" ? broward : null;
       return `<b>${esc(c.name)} County</b><div class="muted" style="margin:4px 0">No party breakdown published${b?"":" yet"}.</div>` +
-        (b ? `<div class="row"><span>Ballots cast</span><span>${fmt(b.value)}</span></div><div class="row"><span>Election Day</span><span>${fmt(b.eday)}</span></div><div class="row"><span>Turnout</span><span>${pct(b.value,b.registered)}</span></div>` : "");
+        (b ? `<div class="row"><span>2022 · 2024 totals</span><span>${fmt(HIST?.FL?.BRO?.["2022"]?.ballots)} · ${fmt(HIST?.FL?.BRO?.["2024"]?.ballots)}</span></div><div class="row"><span>So far vs 2022</span><span>${pct(b.value,HIST?.FL?.BRO?.["2022"]?.ballots,0)}</span></div><div class="row"><span>Ballots cast</span><span>${fmt(b.value)}</span></div><div class="row"><span>Election Day</span><span>${fmt(b.eday)}</span></div><div class="row"><span>Turnout</span><span>${pct(b.value,b.registered)}</span></div>` : "");
     }
     const mm = x => x==null?"–":(x>=0?"D +":"R +")+Math.abs(100*x).toFixed(1);
     return `<b>${esc(c.name)} County</b>
@@ -310,6 +338,9 @@ function renderFlMap(rowsByCode, broward){
       <div class="row"><span>Mail · Early · Election Day</span><span>${fmt(r.mail)} · ${fmt(r.early)} · ${fmt(r.ed)}</span></div>
       <div class="row"><span>Reg. Dem / Rep / NPA+other (all)</span><span>${pct(r.dAll,1,0)} / ${pct(r.rAll,1,0)} / ${pct(r.oAll,1,0)}</span></div>
       <div class="row"><span>Election Day D − R</span><span>${mm(r.edM)}</span></div>
+      <div class="row"><span>2022 total · turnout</span><span>${fmt(r.h22?.ballots)} · ${pct(r.h22?.ballots,r.h22?.reg,0)}</span></div>
+      <div class="row"><span>2024 total · turnout</span><span>${fmt(r.h24?.ballots)} · ${pct(r.h24?.ballots,r.h24?.reg,0)}</span></div>
+      <div class="row"><span>So far vs 2022 · 2024</span><span><b>${pct(r.total,r.h22?.ballots,0)}</b> · ${pct(r.total,r.h24?.ballots,0)}</span></div>
       <div class="row"><span>County updated</span><span>${r.asof?fmtTime(r.asof):"–"}</span></div>`;
   };
   document.querySelectorAll("#flmap path").forEach(p=>{
@@ -326,7 +357,7 @@ const curST = () => decodeURIComponent(location.hash.slice(1)).toUpperCase();
 window.addEventListener("hashchange", ()=>{ if (LAST) render(...LAST); window.scrollTo({top:0}); });
 async function load(){
   const bust = "?t="+Date.now();
-  const latest = await fetch("data/latest.json"+bust).then(r=>r.json());
+  const [latest] = await Promise.all([fetch("data/latest.json"+bust).then(r=>r.json()), loadHist()]);
   let hist = [];
   try { hist = (await fetch("data/history.jsonl"+bust).then(r=>r.text())).trim().split("\n").filter(Boolean).map(l=>JSON.parse(l)); } catch(e){}
   render(latest, hist);
@@ -373,7 +404,9 @@ function render(L, hist){
   const stAgg = ST==="FL" ? flAgg : ST==="TX" ? (txLive.length?{jurisdiction:(txLive.length===1?"1 county":txLive.length+" counties")+" with a live feed: "+txLiveNote, value:txLiveSum}:null) : stLive.sort((a,b)=>(b.value||0)-(a.value||0))[0];
   const kpiList = ST ? [
     {label:`${stNames[ST]||ST}: early votes`, val:fmt(u?.value), note:u?`${fmt(u.inperson)} in person · ${fmt(u.mail_returned)} mail · as of ${u.as_of}`:"UF Election Lab has no row for this state"},
-    {label:"Early vote as % of 2022 total", val:u?pct(u.value,u.turnout_2022):"–", note:u?`2022 total turnout: ${fmt(u.turnout_2022)}`:""},
+    (ST==="FL"||ST==="TX") && HIST ? (()=>{ const h=HIST[ST]._STATE, now = ST==="FL" ? (flAgg?.total||0)+(O("fl_broward").find(o=>o.metric==="total_voted")?.value||0) : (O("tx_early").find(o=>o.jurisdiction.startsWith("Texas"))?.value||0)+(txLiveSum||0);
+      return {label:"Ballots so far vs 2022 / 2024", val:`${pct(now,h["2022"].ballots,0)} · ${pct(now,h["2024"].ballots,0)}`, note:`${fmt(now)} so far · 2022: ${fmt(h["2022"].ballots)} · 2024: ${fmt(h["2024"].ballots)}`}; })()
+    : {label:"Early vote as % of 2022 total", val:u?pct(u.value,u.turnout_2022):"–", note:u?`2022 total turnout: ${fmt(u.turnout_2022)}`:""},
     {label:"Election Day votes so far", val:stAgg?fmt(stAgg.value):"–", note:stAgg?`${esc(stAgg.jurisdiction)}${stAgg.as_of?" · as of "+esc(asOf(stAgg.as_of)):""}`:"No public intraday Election Day count found for this state"},
     {label:"Party registration of early voters", val:u&&u.voted_dem?`D ${pct(u.voted_dem,(u.voted_dem||0)+(u.voted_rep||0)+(u.voted_none||0),0)} · R ${pct(u.voted_rep,(u.voted_dem||0)+(u.voted_rep||0)+(u.voted_none||0),0)}`:"–", note:u&&u.voted_dem?"Registration, not vote choice":"State doesn't report party registration"},
   ] : null;
@@ -429,9 +462,19 @@ function render(L, hist){
       edD:sumP("ElectionDay")?g("DEM","ElectionDay")/sumP("ElectionDay"):null, edR:sumP("ElectionDay")?g("REP","ElectionDay")/sumP("ElectionDay"):null,
       edM:sumP("ElectionDay")?(g("DEM","ElectionDay")-g("REP","ElectionDay"))/sumP("ElectionDay"):null,
       allM:o.total?(allD-allR)/o.total:null, asof:o.as_of, code:o.county_code,
-      dAll:o.total?allD/o.total:null, rAll:o.total?allR/o.total:null, oAll:o.total?1-(allD+allR)/o.total:null}; });
+      dAll:o.total?allD/o.total:null, rAll:o.total?allR/o.total:null, oAll:o.total?1-(allD+allR)/o.total:null,
+      h22:HIST?.FL?.[o.county_code]?.["2022"], h24:HIST?.FL?.[o.county_code]?.["2024"]}; });
+  flRows.forEach(r=>{ r.p22 = r.h22?.ballots ? r.total/r.h22.ballots : null; r.p24 = r.h24?.ballots ? r.total/r.h24.ballots : null; r.to22 = r.h22?.reg ? r.h22.ballots/r.h22.reg : null; r.to24 = r.h24?.reg ? r.h24.ballots/r.h24.reg : null; });
   if (!ST || ST==="FL") loadGeo().then(()=>renderFlMap(Object.fromEntries(flRows.map(r=>[r.code,r])), O("fl_broward").find(o=>o.metric==="total_voted"))).catch(()=>{});
   const maxFl = Math.max(...flRows.map(r=>r.to||0));
+  if (HIST?.FL) {
+    const bro = O("fl_broward").find(o=>o.metric==="total_voted");
+    const codes = flRows.map(r=>r.code).concat(bro?["BRO"]:[]);
+    const sumH = y => codes.reduce((a,c)=>({ballots:a.ballots+(HIST.FL[c]?.[y]?.ballots||0), reg:a.reg+(HIST.FL[c]?.[y]?.reg||0)}),{ballots:0,reg:0});
+    const nowB = flRows.reduce((a,r)=>a+(r.total||0),0) + (bro?.value||0), nowR = flRows.reduce((a,r)=>a+(r.reg||0),0) + (bro?.registered||0);
+    document.getElementById("flcmp").innerHTML = compareBlock(`Florida turnout vs. 2022 and 2024 (${codes.length} counties)`, sumH("2022"), sumH("2024"), nowB, nowR,
+      "2022/2024 = ballots cast in the governor / presidential race, Florida Division of Elections.");
+  }
   const mfmt = m => m==null?"–":(m>=0?"D +":"R +")+Math.abs(100*m).toFixed(1);
   const flFilter = ()=>{ const f=(document.getElementById("flfilter").value||"").toLowerCase(); return flRows.filter(r=>r.j.toLowerCase().includes(f)); };
   T.fl ? T.fl.set(flFilter()) : T.fl = table(document.getElementById("fl"), [
@@ -439,6 +482,8 @@ function render(L, hist){
     {key:"mail",label:"Mail",render:r=>fmt(r.mail)},{key:"early",label:"Early in-person",render:r=>fmt(r.early)},
     {key:"ed",label:"Election Day",render:r=>fmt(r.ed)},{key:"total",label:"Total",render:r=>fmt(r.total)},
     {key:"to",label:"Turnout",render:r=>barCell(r.to,maxFl,pct(r.total,r.reg),`${r.j}: ${fmt(r.total)} of ${fmt(r.reg)} registered`)},
+    {key:"to22",label:"2022 turnout",render:r=>pct(r.to22,1,0)},{key:"to24",label:"2024 turnout",render:r=>pct(r.to24,1,0)},
+    {key:"p22",label:"% of 2022 total",render:r=>pct(r.p22,1,0)},{key:"p24",label:"% of 2024 total",render:r=>pct(r.p24,1,0)},
     {key:"edM",label:"ED D − R",render:r=>mfmt(r.edM)},{key:"allM",label:"All ballots D − R",render:r=>mfmt(r.allM)},
     {key:"asof",label:"County updated",render:r=>r.asof?fmtTime(r.asof):"–"},
   ], flFilter(), {key:"reg"});
@@ -454,13 +499,20 @@ function render(L, hist){
       : lv ? Math.max(lv.value||0, d?.value||0) : d?.value;
     const src = lv ? "county live feed" : (isState ? "live counties + SOS" : "SOS, partial until close");
     const total = (e.value||0)+(ed||0);
-    return {j:e.jurisdiction, reg:e.registered, ip:e.inperson, mail:e.mail, early:e.value, ed, src, total, to:e.registered?total/e.registered:null}; });
+    const hk = isState ? "_STATE" : txKey(e.jurisdiction), h22 = HIST?.TX?.[hk]?.["2022"], h24 = HIST?.TX?.[hk]?.["2024"];
+    return {j:e.jurisdiction, reg:e.registered, ip:e.inperson, mail:e.mail, early:e.value, ed, src, total, to:e.registered?total/e.registered:null,
+      h22, h24, p22:h22?.ballots?total/h22.ballots:null, p24:h24?.ballots?total/h24.ballots:null, to22:h22?.reg?h22.ballots/h22.reg:null, to24:h24?.reg?h24.ballots/h24.reg:null}; });
+  const txState = txRows.find(r=>r.j.startsWith("Texas"));
+  document.getElementById("txcmp").innerHTML = txState ? compareBlock("Texas turnout vs. 2022 and 2024 (statewide)", txState.h22, txState.h24, txState.total, txState.reg,
+    "Election Day so far counts only counties with a live feed (Dallas) plus SOS partials, so this understates today. 2022/2024 from the Texas Legislative Council.") : "";
   const maxTo = Math.max(...txRows.map(r=>r.to||0));
   T.tx ? T.tx.set(txRows) : T.tx = table(document.getElementById("tx"), [
     {key:"j",label:"County"},{key:"reg",label:"Registered",render:r=>fmt(r.reg)},
     {key:"ip",label:"Early in-person",render:r=>fmt(r.ip)},{key:"mail",label:"Mail",render:r=>fmt(r.mail)},
     {key:"ed",label:"Election Day so far",render:r=>`${fmt(r.ed)} <span class="muted" style="font-size:11px">${esc(r.src)}</span>`},{key:"total",label:"Total so far",render:r=>fmt(r.total)},
     {key:"to",label:"Turnout of registered",render:r=>barCell(r.to,maxTo,pct(r.total,r.reg),`${r.j}: ${fmt(r.total)} of ${fmt(r.reg)}`)},
+    {key:"to22",label:"2022 turnout",render:r=>pct(r.to22,1,0)},{key:"to24",label:"2024 turnout",render:r=>pct(r.to24,1,0)},
+    {key:"p22",label:"% of 2022 total",render:r=>pct(r.p22,1,0)},{key:"p24",label:"% of 2024 total",render:r=>pct(r.p24,1,0)},
   ], txRows, {key:"reg"});
 
   // States table
