@@ -1,0 +1,179 @@
+{
+ "tqv_ora_data": {
+  "url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/ORA/301/data.json",
+  "status": 200,
+  "final_url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/ORA/301/data.json",
+  "ctype": "application/json",
+  "bytes": 182699
+ },
+ "tqv_ora_index": {
+  "url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/ORA/index.json",
+  "status": 200,
+  "final_url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/ORA/index.json",
+  "ctype": "application/json",
+  "bytes": 5
+ },
+ "tqv_bucket": {
+  "url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org?prefix=data/FL/&delimiter=/",
+  "status": 200,
+  "final_url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org?prefix=data/FL/&delimiter=/",
+  "ctype": "application/xml",
+  "bytes": 4444,
+  "data_links": []
+ },
+ "tqv_idx_HIL": {
+  "url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/HIL/index.json",
+  "status": 200,
+  "final_url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/HIL/index.json",
+  "ctype": "application/json",
+  "bytes": 5
+ },
+ "tqv_idx_PIN": {
+  "url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/PIN/index.json",
+  "status": 200,
+  "final_url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/PIN/index.json",
+  "ctype": "application/json",
+  "bytes": 5
+ },
+ "tqv_idx_PAL": {
+  "url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/PAL/index.json",
+  "status": 200,
+  "final_url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/PAL/index.json",
+  "ctype": "application/json",
+  "bytes": 5
+ },
+ "tqv_idx_DAD": {
+  "url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/DAD/index.json",
+  "status": 200,
+  "final_url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/DAD/index.json",
+  "ctype": "application/json",
+  "bytes": 5
+ },
+ "tqv_idx_DUV": {
+  "url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/DUV/index.json",
+  "status": 200,
+  "final_url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/DUV/index.json",
+  "ctype": "application/json",
+  "bytes": 5
+ },
+ "tqv_idx_LEE": {
+  "url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/LEE/index.json",
+  "status": 200,
+  "final_url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/LEE/index.json",
+  "ctype": "application/json",
+  "bytes": 5
+ },
+ "tqv_idx_POL": {
+  "url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/POL/index.json",
+  "status": 200,
+  "final_url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/POL/index.json",
+  "ctype": "application/json",
+  "bytes": 5
+ },
+ "tqv_idx_SEM": {
+  "url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/SEM/index.json",
+  "status": 200,
+  "final_url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/SEM/index.json",
+  "ctype": "application/json",
+  "bytes": 5
+ },
+ "tqv_idx_VOL": {
+  "url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/VOL/index.json",
+  "status": 200,
+  "final_url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/VOL/index.json",
+  "ctype": "application/json",
+  "bytes": 9
+ },
+ "tqv_idx_BRE": {
+  "url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/BRE/index.json",
+  "status": 200,
+  "final_url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/BRE/index.json",
+  "ctype": "application/json",
+  "bytes": 5
+ },
+ "tqv_idx_PAS": {
+  "url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/PAS/index.json",
+  "status": 200,
+  "final_url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/PAS/index.json",
+  "ctype": "application/json",
+  "bytes": 5
+ },
+ "tqv_idx_SAR": {
+  "url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/SAR/index.json",
+  "status": 200,
+  "final_url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/SAR/index.json",
+  "ctype": "application/json",
+  "bytes": 5
+ },
+ "tqv_idx_MAN": {
+  "url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/MAN/index.json",
+  "status": 200,
+  "final_url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/MAN/index.json",
+  "ctype": "application/json",
+  "bytes": 5
+ },
+ "tqv_idx_OSC": {
+  "url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/OSC/index.json",
+  "status": 200,
+  "final_url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/OSC/index.json",
+  "ctype": "application/json",
+  "bytes": 5
+ },
+ "tqv_idx_LAK": {
+  "url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/LAK/index.json",
+  "status": 200,
+  "final_url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/LAK/index.json",
+  "ctype": "application/json",
+  "bytes": 5
+ },
+ "tqv_idx_COL": {
+  "url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/COL/index.json",
+  "status": 404,
+  "final_url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/COL/index.json",
+  "ctype": "application/xml",
+  "bytes": 313,
+  "data_links": []
+ },
+ "tqv_idx_LEO": {
+  "url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/LEO/index.json",
+  "status": 200,
+  "final_url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/LEO/index.json",
+  "ctype": "application/json",
+  "bytes": 4
+ },
+ "tqv_idx_ESC": {
+  "url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/ESC/index.json",
+  "status": 200,
+  "final_url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/ESC/index.json",
+  "ctype": "application/json",
+  "bytes": 5
+ },
+ "tqv_idx_STL": {
+  "url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/STL/index.json",
+  "status": 200,
+  "final_url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/STL/index.json",
+  "ctype": "application/json",
+  "bytes": 4
+ },
+ "tqv_idx_SUM": {
+  "url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/SUM/index.json",
+  "status": 200,
+  "final_url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/SUM/index.json",
+  "ctype": "application/json",
+  "bytes": 5
+ },
+ "tqv_idx_ALA": {
+  "url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/ALA/index.json",
+  "status": 200,
+  "final_url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/ALA/index.json",
+  "ctype": "application/json",
+  "bytes": 5
+ },
+ "tqv_idx_MRT": {
+  "url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/MRT/index.json",
+  "status": 200,
+  "final_url": "https://s3.amazonaws.com/turnoutquickview.electionsfl.org/data/FL/MRT/index.json",
+  "ctype": "application/json",
+  "bytes": 5
+ }
+}
