@@ -1,0 +1,2 @@
+fl_prec | https://dos.fl.gov/elections/data-statistics/elections-data/precinct-level-election-results/
+fl_archive | https://dos.fl.gov/elections/data-statistics/elections-data/election-results-archive/
