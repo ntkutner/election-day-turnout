@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> &raquo; Data Archive UF Election Lab</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- our own awesomesauce -->
+    <link rel="stylesheet" href="https://election.lab.ufl.edu/wp-content/themes/electionlab2023/style.css" />
+    <script src="https://election.lab.ufl.edu/wp-content/themes/electionlab2023/sitewide.js"></script>
+
+    <meta name='robots' content='max-image-preview:large' />
+<link rel='dns-prefetch' href='//static.addtoany.com' />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://election.lab.ufl.edu/wp-json/oembed/1.0/embed?url=https%3A%2F%2Felection.lab.ufl.edu%2Fdata-archive%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://election.lab.ufl.edu/wp-json/oembed/1.0/embed?url=https%3A%2F%2Felection.lab.ufl.edu%2Fdata-archive%2F&#038;format=xml" />
+<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<link rel='stylesheet' id='stateface-css' href='https://election.lab.ufl.edu/wp-content/themes/electionlab2023/stateface/stateface.css?ver=7.1.4' media='all' />
+<style id="wp-emoji-styles-inline-css">
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+/*# sourceURL=wp-emoji-styles-inline-css */
+</style>
+<style id="wp-block-library-inline-css">
+:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}:root .has-text-align-center{text-align:center}:root .has-text-align-left{text-align:left}:root .has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{word-wrap:normal!important;border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-break:normal!important}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style^=border-color],[style*=";border-color"],[style*="; border-color"]){border-style:solid}html :where([style^=border-top-color],[style*=";border-top-color"],[style*="; border-top-color"]){border-top-style:solid}html :where([style^=border-right-color],[style*=";border-right-color"],[style*="; border-right-color"]){border-right-style:solid}html :where([style^=border-bottom-color],[style*=";border-bottom-color"],[style*="; border-bottom-color"]){border-bottom-style:solid}html :where([style^=border-left-color],[style*=";border-left-color"],[style*="; border-left-color"]){border-left-style:solid}html :where([style^=border-width],[style*=";border-width"],[style*="; border-width"]){border-style:solid}html :where([style^=border-top-width],[style*=";border-top-width"],[style*="; border-top-width"]){border-top-style:solid}html :where([style^=border-right-width],[style*=";border-right-width"],[style*="; border-right-width"]){border-right-style:solid}html :where([style^=border-bottom-width],[style*=";border-bottom-width"],[style*="; border-bottom-width"]){border-bottom-style:solid}html :where([style^=border-left-width],[style*=";border-left-width"],[style*="; border-left-width"]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
+
+/*# sourceURL=/wp-includes/css/dist/block-library/common.min.css */
+</style>
+<style id="classic-theme-styles-inline-css">
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+
+<style id="global-styles-inline-css">
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}.wp-block-button{--wp--preset--dimension--25: 25%;--wp--preset--dimension--50: 50%;--wp--preset--dimension--75: 75%;--wp--preset--dimension--100: 100%;}:where(body) { margin: 0; }:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+
+<link rel='stylesheet' id='smart-tabs-shared-fontawesome-css-css' href='https://election.lab.ufl.edu/wp-content/plugins/wp-expand-tabs-free/src/Shared/Assets/font-awesome.min.css?ver=3.1.8' media='all' />
+<link rel='stylesheet' id='addtoany-css' href='https://election.lab.ufl.edu/wp-content/plugins/add-to-any/addtoany.min.css?ver=1.16' media='all' />
+<style id="addtoany-inline-css">
+@media screen and (max-width:980px){
+.a2a_floating_style.a2a_vertical_style{display:none;}
+}
+/*# sourceURL=addtoany-inline-css */
+</style>
+<script id="jquery-js" src="https://election.lab.ufl.edu/wp-includes/js/jquery/jquery.js"></script>
+<script id="addtoany-core-js-before">
+window.a2a_config=window.a2a_config||{};a2a_config.callbacks=[];a2a_config.overlays=[];a2a_config.templates={};
+
+//# sourceURL=addtoany-core-js-before
+</script>
+<script id="addtoany-core-js" defer src="https://static.addtoany.com/menu/page.js"></script>
+<script id="addtoany-jquery-js" defer src="https://election.lab.ufl.edu/wp-content/plugins/add-to-any/addtoany.min.js?ver=1.1"></script>
+<link rel="https://api.w.org/" href="https://election.lab.ufl.edu/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://election.lab.ufl.edu/wp-json/wp/v2/pages/3" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://election.lab.ufl.edu/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress 7.1.4" />
+<link rel="canonical" href="https://election.lab.ufl.edu/data-archive/" />
+<link rel='shortlink' href='https://election.lab.ufl.edu/?p=3' />
+<style id="ur-dynamic-colors">:root {
+	--ur-primary-color: #475bb2;
+	--ur-primary-dark: #4052a0;
+	--ur-primary-light: #ffffff;
+	--ur-button-text-normal-color: #FFFFFF;
+	--ur-button-text-hover-color: #FFFFFF;
+	--ur-button-background-normal-color: #475bb2;
+	--ur-button-background-hover-color: #38488e;
+}</style></head>
+<body class="d-flex flex-column min-vh-100">
+    <a class="sr-only sr-only-focusable" href="#main-content">Skip to main content</a>
+
+    <div class="flex-shrink-0">
+        <header>
+            <div class="container-fluid bg-darkblue text-white">
+                <div class="row">
+                    <div class="col-auto">
+                        <img src="https://election.lab.ufl.edu/wp-content/themes/electionlab2023/images/uflogo.png" alt="University of Florida" />
+                    </div>
+                    <div class="col d-flex align-items-center" style="font-size: 23px; font-family: IBM Plex bold;">
+                        <div>
+                            Election Lab
+                        </div>
+                    </div>
+                    <div class="col-auto d-block d-xl-none">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu-header-menu" aria-controls="menu-header-menu" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar navbar-expand-xl">
+                <div class="container-fluid px-5">
+                    <div class="collapse navbar-collapse" id="menu-header-menu">
+                        <ul id="menu-main-menu" class="navbar-nav ms-auto "><li  id="menu-item-453" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home nav-item nav-item-453"><a href="https://election.lab.ufl.edu/" class="nav-link ">Welcome to the UF Election Lab</a></li>
+<li  id="menu-item-33" class="menu-item menu-item-type-post_type menu-item-object-page nav-item nav-item-33"><a href="https://election.lab.ufl.edu/what-we-do/" class="nav-link ">What We Do</a></li>
+<li  id="menu-item-35" class="menu-item menu-item-type-post_type menu-item-object-page nav-item nav-item-35"><a href="https://election.lab.ufl.edu/people/" class="nav-link ">People</a></li>
+<li  id="menu-item-439" class="menu-item menu-item-type-post_type menu-item-object-page nav-item nav-item-439"><a href="https://election.lab.ufl.edu/giving-opportunities/" class="nav-link ">Giving Opportunities</a></li>
+<li  id="menu-item-29" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-3 current_page_item nav-item nav-item-29"><a href="https://election.lab.ufl.edu/data-archive/" class="nav-link active">Data Archive</a></li>
+<li  id="menu-item-1579" class="menu-item menu-item-type-post_type menu-item-object-page nav-item nav-item-1579"><a href="https://election.lab.ufl.edu/news/" class="nav-link ">News</a></li>
+<li  id="menu-item-383" class="menu-item menu-item-type-custom menu-item-object-custom nav-item nav-item-383"><a href="/sign-in/" class="nav-link ">Sign In</a></li>
+</ul>                    </div>
+                    <script>
+                                        jQuery('#menu-main-menu li a').filter('[href*="/user-logout/"]').remove();
+                    jQuery('#menu-main-menu li a').filter('[href*="/sign-in/"]').addClass('btn btn-secondary btn-sm py-1');
+                                        </script>
+                </div>
+            </nav>
+        </header>
+
+        <main id="main-content" class="pb-5">
+
+<script src="https://election.lab.ufl.edu/wp-content/themes/electionlab2023/page-data-archive.js"></script>
+<!-- <link rel="stylesheet" href="https://election.lab.ufl.edu/wp-content/themes/electionlab2023/page-data-archive.css" /> -->
+
+
+<div class="breadcrumb-container">
+    <nav aria-label="breadcrumb" class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/" class="text-darkblue">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Data Archive</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="container">
+        
+    <h1>Data Archive</h1>
+
+    <section class="mb-5">
+        
+        <p>Through the links below, you will have access to election results, turnout rates, and election early voting statistics. National and state data can be accessed through the “All States (National)” link below, and precinct-level data can be accessed through individual state pages.</p>
+<p>To access most datasets, you must first <a href="https://election.lab.ufl.edu/sign-in/">login to your free Election Science Lab account</a>. This account provides access to most datasets in our archive. The 2022 and 2024 state precinct maps and statewide election results are available only to paid subscribers. Contact us at <a href="mailto:election-lab@ufl.edu">election-lab@ufl.edu</a> for subscription information.</p>
+<p><strong>License</strong></p>
+<p>We provide all non-subscription data on this archive free for public use under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a> (external links may have different licenses). Generally, this license means you are free to use these data for any non-commercial purpose as long as you provide proper citation and notify your users they must also abide by this license. We generally interpret non-commercial purposes to include academic work, creating maps and similar social media usage or blogging about our data (not behind a paywall), and reports authored by non-profit organizations. You are granted permission to use data or graphs on this site for some commercial products, such as for a book. If you have any questions about use of these data, please contact Prof. McDonald (michael.mcdonald@ufl.edu).</p>
+    </section>
+
+    <form method="GET" class="mb-5" id="searchform" autocomplete="off">
+        <div class="row mb-3">
+            <div class="col-12 col-lg-5">
+                <label for="input-keyword" class="fw-bold d-block">Search the data archive</label>
+                <div class="input-group">
+                    <input type="text" name="search-keyword" class="form-control" placeholder="Keyword search" value="" id="input-keyword" />
+                    <div class="input-group-append ms-3">
+                        <button class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="row mb-5">
+            <div class="col-12 col-lg-3">
+                <!-- LEFT SIDE -->
+
+                <div class="mb-3">
+                    <button class="btn btn-primary w-100">Apply Filters</button>
+                </div>
+
+                <div class="mb-3">
+                    <button type="button" class="btn btn-red-secondary w-100" name="clearbutton-filters"><i class="fa-solid fa-xmark"></i> Clear Filters</button>
+                </div>
+
+                <div class="mb-3">
+                    <div class="form-group">
+                        <label for="input-year" class="fw-bold">Year (four digits)</label>
+                        <input type="text" name="search-year" class="form-control" placeholder="e.g. 2020" value="" id="input-year" pattern="^\d\d\d\d$" />
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div>
+                        <label class="fw-bold">Geography</label>
+                        <fieldset>
+                            <div class="form-check">
+                                <input type="checkbox" name="search-geography[]" class="form-check-input" value="national" id="input-geography-national" >
+                                <label class="form-check-label" for="input-geography-national">National</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" name="search-geography[]" class="form-check-input" value="state" id="input-geography-state" >
+                                <label class="form-check-label" for="input-geography-state">State</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" name="search-geography[]" class="form-check-input" value="locality" id="input-geography-locality" >
+                                <label class="form-check-label" for="input-geography-locality">Locality</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div>
+                        <label class="fw-bold">Type of Data</label>
+                        <fieldset>
+                            <legend class="d-none"></legend>
+                            <div class="form-check">
+                                <input type="checkbox" name="search-datatype[]" class="form-check-input" value="results" id="input-datatype-results" >
+                                <label class="form-check-label" for="input-datatype-results">Election Results</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" name="search-datatype[]" class="form-check-input" value="statistics" id="input-datatype-statistics" >
+                                <label class="form-check-label" for="input-datatype-statistics">Election Statistics</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" name="search-datatype[]" class="form-check-input" value="turnout" id="input-datatype-turnout" >
+                                <label class="form-check-label" for="input-datatype-turnout">Turnout Rates</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" name="search-datatype[]" class="form-check-input" value="maps" id="input-datatype-maps" >
+                                <label class="form-check-label" for="input-datatype-maps">Boundary Map</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" name="search-datatype[]" class="form-check-input" value="census" id="input-datatype-census" >
+                                <label class="form-check-label" for="input-datatype-census">Census Data</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" name="search-datatype[]" class="form-check-input" value="roster" id="input-datatype-roster" >
+                                <label class="form-check-label" for="input-datatype-roster">Voter Rosters</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div>
+                        <label class="fw-bold">State</label>
+                        <fieldset>
+                                                                                    <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="81" id="input-state-81" >
+                                <label class="form-check-label" for="input-state-81">All States (National)</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="73" id="input-state-73" >
+                                <label class="form-check-label" for="input-state-73">Alabama</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="77" id="input-state-77" >
+                                <label class="form-check-label" for="input-state-77">Alaska</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="91" id="input-state-91" >
+                                <label class="form-check-label" for="input-state-91">Arizona</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="89" id="input-state-89" >
+                                <label class="form-check-label" for="input-state-89">Arkansas</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="87" id="input-state-87" >
+                                <label class="form-check-label" for="input-state-87">California</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="85" id="input-state-85" >
+                                <label class="form-check-label" for="input-state-85">Colorado</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="93" id="input-state-93" >
+                                <label class="form-check-label" for="input-state-93">Connecticut</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="105" id="input-state-105" >
+                                <label class="form-check-label" for="input-state-105">Delaware</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="1225" id="input-state-1225" >
+                                <label class="form-check-label" for="input-state-1225">District of Columbia</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="107" id="input-state-107" >
+                                <label class="form-check-label" for="input-state-107">Florida</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="109" id="input-state-109" >
+                                <label class="form-check-label" for="input-state-109">Georgia</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="111" id="input-state-111" >
+                                <label class="form-check-label" for="input-state-111">Hawaii</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="113" id="input-state-113" >
+                                <label class="form-check-label" for="input-state-113">Idaho</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="125" id="input-state-125" >
+                                <label class="form-check-label" for="input-state-125">Illinois</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="127" id="input-state-127" >
+                                <label class="form-check-label" for="input-state-127">Indiana</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="129" id="input-state-129" >
+                                <label class="form-check-label" for="input-state-129">Iowa</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="131" id="input-state-131" >
+                                <label class="form-check-label" for="input-state-131">Kansas</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="133" id="input-state-133" >
+                                <label class="form-check-label" for="input-state-133">Kentucky</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="145" id="input-state-145" >
+                                <label class="form-check-label" for="input-state-145">Louisiana</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="147" id="input-state-147" >
+                                <label class="form-check-label" for="input-state-147">Maine</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="149" id="input-state-149" >
+                                <label class="form-check-label" for="input-state-149">Maryland</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="151" id="input-state-151" >
+                                <label class="form-check-label" for="input-state-151">Massachusetts</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="153" id="input-state-153" >
+                                <label class="form-check-label" for="input-state-153">Michigan</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="175" id="input-state-175" >
+                                <label class="form-check-label" for="input-state-175">Minnesota</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="165" id="input-state-165" >
+                                <label class="form-check-label" for="input-state-165">Mississippi</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="167" id="input-state-167" >
+                                <label class="form-check-label" for="input-state-167">Missouri</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="169" id="input-state-169" >
+                                <label class="form-check-label" for="input-state-169">Montana</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="171" id="input-state-171" >
+                                <label class="form-check-label" for="input-state-171">Nebraska</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="173" id="input-state-173" >
+                                <label class="form-check-label" for="input-state-173">Nevada</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="197" id="input-state-197" >
+                                <label class="form-check-label" for="input-state-197">New Hampshire</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="189" id="input-state-189" >
+                                <label class="form-check-label" for="input-state-189">New Jersey</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="191" id="input-state-191" >
+                                <label class="form-check-label" for="input-state-191">New Mexico</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="193" id="input-state-193" >
+                                <label class="form-check-label" for="input-state-193">New York</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="195" id="input-state-195" >
+                                <label class="form-check-label" for="input-state-195">North Carolina</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="209" id="input-state-209" >
+                                <label class="form-check-label" for="input-state-209">North Dakota</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="211" id="input-state-211" >
+                                <label class="form-check-label" for="input-state-211">Ohio</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="213" id="input-state-213" >
+                                <label class="form-check-label" for="input-state-213">Oklahoma</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="215" id="input-state-215" >
+                                <label class="form-check-label" for="input-state-215">Oregon</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="217" id="input-state-217" >
+                                <label class="form-check-label" for="input-state-217">Pennsylvania</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="235" id="input-state-235" >
+                                <label class="form-check-label" for="input-state-235">Rhode Island</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="229" id="input-state-229" >
+                                <label class="form-check-label" for="input-state-229">South Carolina</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="231" id="input-state-231" >
+                                <label class="form-check-label" for="input-state-231">South Dakota</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="233" id="input-state-233" >
+                                <label class="form-check-label" for="input-state-233">Tennessee</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="237" id="input-state-237" >
+                                <label class="form-check-label" for="input-state-237">Texas</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="249" id="input-state-249" >
+                                <label class="form-check-label" for="input-state-249">Utah</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="251" id="input-state-251" >
+                                <label class="form-check-label" for="input-state-251">Vermont</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="253" id="input-state-253" >
+                                <label class="form-check-label" for="input-state-253">Virginia</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="255" id="input-state-255" >
+                                <label class="form-check-label" for="input-state-255">Washington</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="261" id="input-state-261" >
+                                <label class="form-check-label" for="input-state-261">West Virginia</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="263" id="input-state-263" >
+                                <label class="form-check-label" for="input-state-263">Wisconsin</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="265" id="input-state-265" >
+                                <label class="form-check-label" for="input-state-265">Wyoming</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="8783" id="input-state-8783" >
+                                <label class="form-check-label" for="input-state-8783">American Samoa</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="8777" id="input-state-8777" >
+                                <label class="form-check-label" for="input-state-8777">Guam</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="8781" id="input-state-8781" >
+                                <label class="form-check-label" for="input-state-8781">Northern Mariana Islands</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="8785" id="input-state-8785" >
+                                <label class="form-check-label" for="input-state-8785">Puerto Rico</label>
+                            </div>
+                                                        <div class="form-check">
+                                <input type="checkbox" name="search-state[]" class="form-check-input" value="8779" id="input-state-8779" >
+                                <label class="form-check-label" for="input-state-8779">U.S. Virgin Islands</label>
+                            </div>
+                                                    </fieldset>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <button class="btn btn-primary w-100">Apply Filters</button>
+                </div>
+
+                <div class="mb-3">
+                    <button type="button" class="btn btn-red-secondary w-100" name="clearbutton-filters"><i class="fa-solid fa-xmark"></i> Clear Filters</button>
+                </div>
+            </div>
+            <div class="col">
+                <!-- RIGHT SIDE -->
+
+                <div class="row mb-3">
+                    <div class="col-12 col-lg-4">
+                        <div class="d-flex align-items-center h-100">
+                            <div class="fw-bold pt-3">
+                                Showing 1-24 of 1,354                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <div class="form-group">
+                            <label for="input-orderby" class="fw-bold">Sort by</label>
+                            <select class="form-select" name="search-orderby" id="input-orderby">
+                                <option value="title" >Title A-Z</option>
+                                <option value="-title" >Title Z-A</option>
+                                <option value="lastdataupdate" selected>Last Data Update</option>
+                                <option value="state" >State A-Z</option>
+                                <option value="-state" >State Z-A</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <label class="fw-bold">Data views</label>
+                        <fieldset>
+                            <legend class="d-none"></legend>
+
+                            <input type="radio" class="btn-check" name="search-view" value="list" id="input-view-list" checked>
+                            <label class="btn btn-secondary" for="input-view-list"><i class="fa-solid fa-list"></i> List View</label>
+
+                            <input type="radio" class="btn-check" name="search-view" value="card" id="input-view-card" >
+                            <label class="btn btn-secondary" for="input-view-card"><i class="fa-solid fa-square"></i> Card View</label>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <!--
+                the results
+                in either card format or table format
+                -->
+                                <section>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>State</th>
+                                <th>Title</th>
+                                <th class="text-end">Last Data Update</th>
+                                <th class="text-end">Geography</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                                        <tr>
+                                <td class="text-nowrap">
+                                    Utah                                </td>
+                                <td>
+                                    <a href="https://election.lab.ufl.edu/dataset/city-of-alpine/">City of Alpine</a>
+                                </td>
+                                <td class="text-nowrap text-end">
+                                    November 2, 2026                                </td>
+                                <td class="text-nowrap text-end">
+                                                                        Locality
+                                                                    </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-nowrap">
+                                    Utah                                </td>
+                                <td>
+                                    <a href="https://election.lab.ufl.edu/dataset/city-of-castle-valley/">City of Castle Valley</a>
+                                </td>
+                                <td class="text-nowrap text-end">
+                                    November 2, 2026                                </td>
+                                <td class="text-nowrap text-end">
+                                                                        Locality
+                                                                    </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-nowrap">
+                                    Utah                                </td>
+                                <td>
+                                    <a href="https://election.lab.ufl.edu/dataset/town-of-elsinore/">Town of Elsinore</a>
+                                </td>
+                                <td class="text-nowrap text-end">
+                                    November 2, 2026                                </td>
+                                <td class="text-nowrap text-end">
+                                                                        Locality
+                                                                    </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-nowrap">
+                                    Utah                                </td>
+                                <td>
+                                    <a href="https://election.lab.ufl.edu/dataset/city-of-fayette/">City of Fayette</a>
+                                </td>
+                                <td class="text-nowrap text-end">
+                                    November 2, 2026                                </td>
+                                <td class="text-nowrap text-end">
+                                                                        Locality
+                                                                    </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-nowrap">
+                                    Utah                                </td>
+                                <td>
+                                    <a href="https://election.lab.ufl.edu/dataset/city-of-garland/">City of Garland</a>
+                                </td>
+                                <td class="text-nowrap text-end">
+                                    November 2, 2026                                </td>
+                                <td class="text-nowrap text-end">
+                                                                        Locality
+                                                                    </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-nowrap">
+                                    Utah                                </td>
+                                <td>
+                                    <a href="https://election.lab.ufl.edu/dataset/city-of-gunnison-2/">City of Gunnison</a>
+                                </td>
+                                <td class="text-nowrap text-end">
+                                    November 2, 2026                                </td>
+                                <td class="text-nowrap text-end">
+                                                                        Locality
+                                                                    </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-nowrap">
+                                    Utah                                </td>
+                                <td>
+                                    <a href="https://election.lab.ufl.edu/dataset/city-of-herriman/">City of Herriman</a>
+                                </td>
+                                <td class="text-nowrap text-end">
+                                    November 2, 2026                                </td>
+                                <td class="text-nowrap text-end">
+                                                                        Locality
+                                                                    </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-nowrap">
+                                    Utah                                </td>
+                                <td>
+                                    <a href="https://election.lab.ufl.edu/dataset/town-of-independence/">Town of Independence</a>
+                                </td>
+                                <td class="text-nowrap text-end">
+                                    November 2, 2026                                </td>
+                                <td class="text-nowrap text-end">
+                                                                        Locality
+                                                                    </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-nowrap">
+                                    Utah                                </td>
+                                <td>
+                                    <a href="https://election.lab.ufl.edu/dataset/town-of-laketown/">Town of Laketown</a>
+                                </td>
+                                <td class="text-nowrap text-end">
+                                    November 2, 2026                                </td>
+                                <td class="text-nowrap text-end">
+                                                                        Locality
+                                                                    </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-nowrap">
+                                    Utah                                </td>
+                                <td>
+                                    <a href="https://election.lab.ufl.edu/dataset/city-of-layton/">City of Layton</a>
+                                </td>
+                                <td class="text-nowrap text-end">
+                                    November 2, 2026                                </td>
+                                <td class="text-nowrap text-end">
+                                                                        Locality
+                                                                    </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-nowrap">
+                                    Utah                                </td>
+                                <td>
+                                    <a href="https://election.lab.ufl.edu/dataset/town-of-levan/">Town of Levan</a>
+                                </td>
+                                <td class="text-nowrap text-end">
+                                    November 2, 2026                                </td>
+                                <td class="text-nowrap text-end">
+                                                                        Locality
+                                                                    </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-nowrap">
+                                    Utah                                </td>
+                                <td>
+                                    <a href="https://election.lab.ufl.edu/dataset/city-of-nephi/">City of Nephi</a>
+                                </td>
+                                <td class="text-nowrap text-end">
+                                    November 2, 2026                                </td>
+                                <td class="text-nowrap text-end">
+                                                                        Locality
+                                                                    </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-nowrap">
+                                    Utah                                </td>
+                                <td>
+                                    <a href="https://election.lab.ufl.edu/dataset/city-of-riverdale-2/">City of Riverdale</a>
+                                </td>
+                                <td class="text-nowrap text-end">
+                                    November 2, 2026                                </td>
+                                <td class="text-nowrap text-end">
+                                                                        Locality
+                                                                    </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-nowrap">
+                                    Utah                                </td>
+                                <td>
+                                    <a href="https://election.lab.ufl.edu/dataset/city-of-south-salt-lake/">City of South Salt Lake</a>
+                                </td>
+                                <td class="text-nowrap text-end">
+                                    November 2, 2026                                </td>
+                                <td class="text-nowrap text-end">
+                                                                        Locality
+                                                                    </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-nowrap">
+                                    Utah                                </td>
+                                <td>
+                                    <a href="https://election.lab.ufl.edu/dataset/city-of-tremonton/">City of Tremonton</a>
+                                </td>
+                                <td class="text-nowrap text-end">
+                                    November 2, 2026                                </td>
+                                <td class="text-nowrap text-end">
+                                                                        Locality
+                                                                    </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-nowrap">
+                                    Utah                                </td>
+                                <td>
+                                    <a href="https://election.lab.ufl.edu/dataset/city-of-washington/">City of Washington</a>
+                                </td>
+                                <td class="text-nowrap text-end">
+                                    November 2, 2026                                </td>
+                                <td class="text-nowrap text-end">
+                                                                        Locality
+                                                                    </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-nowrap">
+                                    Utah                                </td>
+                                <td>
+                                    <a href="https://election.lab.ufl.edu/dataset/city-of-west-bountiful/">City of West Bountiful</a>
+                                </td>
+                                <td class="text-nowrap text-end">
+                                    November 2, 2026                                </td>
+                                <td class="text-nowrap text-end">
+                                                                        Locality
+                                                                    </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-nowrap">
+                                    Utah                                </td>
+                                <td>
+                                    <a href="https://election.lab.ufl.edu/dataset/city-of-west-valley-city/">City of West Valley City</a>
+                                </td>
+                                <td class="text-nowrap text-end">
+                                    November 2, 2026                                </td>
+                                <td class="text-nowrap text-end">
+                                                                        Locality
+                                                                    </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-nowrap">
+                                    Utah                                </td>
+                                <td>
+                                    <a href="https://election.lab.ufl.edu/dataset/city-of-white-city/">City of White City</a>
+                                </td>
+                                <td class="text-nowrap text-end">
+                                    November 2, 2026                                </td>
+                                <td class="text-nowrap text-end">
+                                                                        Locality
+                                                                    </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-nowrap">
+                                    Texas                                </td>
+                                <td>
+                                    <a href="https://election.lab.ufl.edu/dataset/city-of-alto/">City of Alto</a>
+                                </td>
+                                <td class="text-nowrap text-end">
+                                    November 2, 2026                                </td>
+                                <td class="text-nowrap text-end">
+                                                                        Locality
+                                                                    </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-nowrap">
+                                    Texas                                </td>
+                                <td>
+                                    <a href="https://election.lab.ufl.edu/dataset/town-of-bayside/">Town of Bayside</a>
+                                </td>
+                                <td class="text-nowrap text-end">
+                                    November 2, 2026                                </td>
+                                <td class="text-nowrap text-end">
+                                                                        Locality
+                                                                    </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-nowrap">
+                                    Texas                                </td>
+                                <td>
+                                    <a href="https://election.lab.ufl.edu/dataset/city-of-cotulla/">City of Cotulla</a>
+                                </td>
+                                <td class="text-nowrap text-end">
+                                    November 2, 2026                                </td>
+                                <td class="text-nowrap text-end">
+                                                                        Locality
+                                                                    </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-nowrap">
+                                    Texas                                </td>
+                                <td>
+                                    <a href="https://election.lab.ufl.edu/dataset/city-of-crosbyton/">City of Crosbyton</a>
+                                </td>
+                                <td class="text-nowrap text-end">
+                                    November 2, 2026                                </td>
+                                <td class="text-nowrap text-end">
+                                                                        Locality
+                                                                    </td>
+                            </tr>
+                                                        <tr>
+                                <td class="text-nowrap">
+                                    Texas                                </td>
+                                <td>
+                                    <a href="https://election.lab.ufl.edu/dataset/city-of-ladonia/">City of Ladonia</a>
+                                </td>
+                                <td class="text-nowrap text-end">
+                                    November 2, 2026                                </td>
+                                <td class="text-nowrap text-end">
+                                                                        Locality
+                                                                    </td>
+                            </tr>
+                                                                                </tbody>
+                    </table>
+                </section>
+                
+                                <!--
+                end of table/cards
+                -->
+
+                <!--
+                after table÷cards, page selector
+                -->
+                <div class="row mb-3">
+                    <div class="col-auto">
+                        <div class="form-group">
+                            <label for="input-pagenumber" class="fw-bold">Showing page 1 of 57</label>
+                            <select class="form-select" name="search-pagenumber" id="input-pagenumber" aria-label="Select page">
+                                                                <option value="1" selected>Page 1</option>
+                                                                <option value="2" >Page 2</option>
+                                                                <option value="3" >Page 3</option>
+                                                                <option value="4" >Page 4</option>
+                                                                <option value="5" >Page 5</option>
+                                                                <option value="6" >Page 6</option>
+                                                                <option value="7" >Page 7</option>
+                                                                <option value="8" >Page 8</option>
+                                                                <option value="9" >Page 9</option>
+                                                                <option value="10" >Page 10</option>
+                                                                <option value="11" >Page 11</option>
+                                                                <option value="12" >Page 12</option>
+                                                                <option value="13" >Page 13</option>
+                                                                <option value="14" >Page 14</option>
+                                                                <option value="15" >Page 15</option>
+                                                                <option value="16" >Page 16</option>
+                                                                <option value="17" >Page 17</option>
+                                                                <option value="18" >Page 18</option>
+                                                                <option value="19" >Page 19</option>
+                                                                <option value="20" >Page 20</option>
+                                                                <option value="21" >Page 21</option>
+                                                                <option value="22" >Page 22</option>
+                                                                <option value="23" >Page 23</option>
+                                                                <option value="24" >Page 24</option>
+                                                                <option value="25" >Page 25</option>
+                                                                <option value="26" >Page 26</option>
+                                                                <option value="27" >Page 27</option>
+                                                                <option value="28" >Page 28</option>
+                                                                <option value="29" >Page 29</option>
+                                                                <option value="30" >Page 30</option>
+                                                                <option value="31" >Page 31</option>
+                                                                <option value="32" >Page 32</option>
+                                                                <option value="33" >Page 33</option>
+                                                                <option value="34" >Page 34</option>
+                                                                <option value="35" >Page 35</option>
+                                                                <option value="36" >Page 36</option>
+                                                                <option value="37" >Page 37</option>
+                                                                <option value="38" >Page 38</option>
+                                                                <option value="39" >Page 39</option>
+                                                                <option value="40" >Page 40</option>
+                                                                <option value="41" >Page 41</option>
+                                                                <option value="42" >Page 42</option>
+                                                                <option value="43" >Page 43</option>
+                                                                <option value="44" >Page 44</option>
+                                                                <option value="45" >Page 45</option>
+                                                                <option value="46" >Page 46</option>
+                                                                <option value="47" >Page 47</option>
+                                                                <option value="48" >Page 48</option>
+                                                                <option value="49" >Page 49</option>
+                                                                <option value="50" >Page 50</option>
+                                                                <option value="51" >Page 51</option>
+                                                                <option value="52" >Page 52</option>
+                                                                <option value="53" >Page 53</option>
+                                                                <option value="54" >Page 54</option>
+                                                                <option value="55" >Page 55</option>
+                                                                <option value="56" >Page 56</option>
+                                                                <option value="57" >Page 57</option>
+                                                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+            </div>
+
+        </main>
+    </div><!--/.flex-shrink-0-->
+
+    <footer class="mt-auto pt-5 pb-5">
+                <div class="container-fluid mb-5">
+            <a href="https://clas.ufl.edu/">
+                <div class="row">
+                    <div class="col-auto">
+                        <img src="https://election.lab.ufl.edu/wp-content/themes/electionlab2023/images/uflogo.png" alt="University of Florida" />
+                    </div>
+                    <div class="col d-flex align-items-center" style="font-size: 23px; font-family: IBM Plex bold;">
+                        <div>
+                            College of Liberal Arts
+                            <br />
+                            and Sciences
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <h2>Contact the Election Lab</h2>
+
+                    <div class="mb-3">
+                        <div>
+                            Michael McDonald<br />
+Professor, University of Florida                        </div>
+                        <div>
+                            P.O. Box 117325<br />
+Gainesville, FL 32611                        </div>
+                        <div>
+                            <a href="tel:13522732371">+1 (352) 273-2371 (office)</a>
+                        </div>
+                        <div>
+                            <a href="mailto:election-lab@ufl.edu">election-lab@ufl.edu</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+        <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z72QCVSMCG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-Z72QCVSMCG');
+    </script>
+    
+    <script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/electionlab2023/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<div class="a2a_kit a2a_kit_size_30 a2a_floating_style a2a_vertical_style" style="right:0px;top:150px;background-color:transparent"><a class="a2a_button_facebook" href="https://www.addtoany.com/add_to/facebook?linkurl=https%3A%2F%2Felection.lab.ufl.edu%2Fdata-archive%2F&amp;linkname=Data%20Archive" title="Facebook" rel="nofollow noopener" target="_blank"></a><a class="a2a_button_twitter" href="https://www.addtoany.com/add_to/twitter?linkurl=https%3A%2F%2Felection.lab.ufl.edu%2Fdata-archive%2F&amp;linkname=Data%20Archive" title="Twitter" rel="nofollow noopener" target="_blank"></a><a class="a2a_button_linkedin" href="https://www.addtoany.com/add_to/linkedin?linkurl=https%3A%2F%2Felection.lab.ufl.edu%2Fdata-archive%2F&amp;linkname=Data%20Archive" title="LinkedIn" rel="nofollow noopener" target="_blank"></a><a class="a2a_button_copy_link" href="https://www.addtoany.com/add_to/copy_link?linkurl=https%3A%2F%2Felection.lab.ufl.edu%2Fdata-archive%2F&amp;linkname=Data%20Archive" title="Copy Link" rel="nofollow noopener" target="_blank"></a><a class="a2a_dd addtoany_share_save addtoany_share" href="https://www.addtoany.com/share"></a></div><script id="wp-emoji-settings" type="application/json">
+{"baseUrl":"https://s.w.org/images/core/emoji/17.0.2/72x72/","ext":".png","svgUrl":"https://s.w.org/images/core/emoji/17.0.2/svg/","svgExt":".svg","source":{"concatemoji":"https://election.lab.ufl.edu/wp-includes/js/wp-emoji-release.min.js?ver=7.1.4"}}
+</script>
+<script type="module">
+/*! This file is auto-generated */
+var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof HTMLScriptElement))throw new Error("Element missing: "+e);const r=JSON.parse(t.text),s=(window._wpemojiSettings=r,"wpEmojiSettingsSupports"),o=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(s,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const r=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===r[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,r){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!r(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,r){let a;const s=(a="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),o=(s.textBaseline="top",s.font="600 32px Arial",{});return e.forEach(e=>{o[e]=t(s,e,n,r)}),o}function a(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}r.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(s));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(o),u.toString(),c.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"});const a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=e=>{i(n=e.data),a.terminate(),t(n)})}catch(e){}i(n=f(o,u,c,p))}t(n)}).then(e=>{for(const n in e)r.supports[n]=e[n],r.supports.everything=r.supports.everything&&r.supports[n],"flag"!==n&&(r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&r.supports[n]);var t;r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&!r.supports.flag,r.supports.everything||((t=r.source||{}).concatemoji?a(t.concatemoji):t.wpemoji&&t.twemoji&&(a(t.twemoji),a(t.wpemoji)))});
+//# sourceURL=https://election.lab.ufl.edu/wp-includes/js/wp-emoji-loader.min.js
+</script>
+
+</body>
+</html>

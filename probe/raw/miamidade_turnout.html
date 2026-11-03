@@ -1,0 +1,721 @@
+<!DOCTYPE HTML><html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title></title>
+      <!--grid-layout--><!--ls:begin[stylesheet]-->
+      <style type="text/css">
+          
+          .iw_container
+          {
+            max-width:800px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
+          .iw_stretch
+          {
+            min-width: 100% !important;
+          }
+        </style><script type="text/javascript">
+	// script to add keyup event and make escape functional to exit from preview
+	// only if it is a preview environment.
+	var frame = window.frameElement;
+	if (frame && frame.src.indexOf("/iw-preview") != -1) {
+		document.addEventListener("DOMContentLoaded", function () {
+			document.body.addEventListener("keyup", function (event) {
+				var key = event.keyCode;
+				if (key === 27) {
+					frame.parentElement.ownerDocument.dispatchEvent(new KeyboardEvent('keyup', {keyCode: key}));
+				}
+			});
+		});
+	}
+	</script><script type="text/javascript">
+    // A simplified version of AjaxRequest.class.js
+    // So component events doesn't require to add AjaxRequest.class.js as resources
+    // TODO: Keep it in the same files as embedded-layout.page.xml in POC, we can consider to move it to another file or not later
+    // TODO: Need to maintain a dependency to the extenal files it references
+    
+    AjaxCall.METHOD_POST = 'POST';
+    AjaxCall.METHOD_GET  = 'GET';
+    AjaxCall.ACTIVEX_MSXML2_XMLHTTP = 'Msxml2.XMLHTTP';
+    AjaxCall.ACTIVEX_LEGACY_XMLHTTP = 'Microsoft.XMLHTTP';
+    AjaxCall.CONTENT_TYPE_URL_ENCODED = 'application/x-www-form-urlencoded';
+    AjaxCall.CONTENT_TYPE = 'Content-Type';
+    AjaxCall.DELIM_QS = '?';
+    AjaxCall.DELIM_PARAM = '&';
+    AjaxCall.DELIM_KEY_VALUE = '=';
+    AjaxCall.READY_STATE_COMPLETE      = 4;
+    AjaxCall.STATUS_OK        = 200;
+    AjaxCall.STATUS_NOT_FOUND = 404;
+    AjaxCall.ERROR_CREATE_REQUEST = 'Unable to create ActiveX XMLHttpRequest.'
+    AjaxCall.ERROR_REQUEST_STATE = 'Error in XMLHttpRequest [$code/$text]';
+
+    /**
+     * Constructor creates an encapsulated XMLHttpRequest object. Both parameters
+     * to the constructor are optional, and may be configured later.
+     *
+     * @param url             the url to which the request is sent
+     * @param handlerFunction the function to invoke and pass the response
+     *                        xml dom and the response text
+     * @param errorHandlerFunction the function to invoke and pass as argument errorHandlerFunction(request) the entire HTTPXMLRequest instance to
+     *                        when the AJAX request failed, for most cases
+     * @param method          HTTP method: POST or GET
+     * @param isDebugMode     indicator for debug mode
+     */
+    function AjaxCall(url, handlerFunction, errorHandlerFunction, method, isDebugMode)
+    {
+      this.mUrl          = url;
+      this.mHandler      = handlerFunction;
+      this.mErrorHandler = errorHandlerFunction;
+      this.mMethod       = method;
+      this.mDebug        = isDebugMode;
+      
+      this.mMethod = (this.mMethod == null) ? this.mMethod = AjaxCall.METHOD_POST : this.mMethod;
+      this.mDebug = (this.mDebug == null) ? this.mDebug = false : this.mDebug;
+
+      this.mAsynchronous = true;
+
+      this.mContentType = null;
+      this.mRequestBody = null;
+
+      this.mParams = new Array();
+      this.mComponentId = null;
+    }
+
+   /**
+    * Sets a request parameter. The key and value are automatically url-encoded.
+    *
+    * @param key   the request parameter key
+    * @param value the request parameter value
+    * @return a self-reference for method chaining
+    */
+    AjaxCall.prototype.setParameter = function(key, value)
+    {
+      this.mParams[this.mParams.length] = encodeURIComponent(key)
+          + AjaxCall.DELIM_KEY_VALUE + encodeURIComponent(value);
+      return this;
+    }
+
+   /**
+    * Sets a request body
+    *
+    * @param value the request body value
+    * @return a self-reference for method chaining
+    */
+    AjaxCall.prototype.setBody = function(value)
+    {
+      this.mRequestBody = value;
+      return this;
+    }
+
+   /**
+    * Sets a component id
+    *
+    * @param componentId   the component id
+    * @return a self-reference for method chaining
+    */
+    AjaxCall.prototype.setComponentId = function(componentId)
+    {
+      this.mComponentId = componentId;
+      return this;
+    }
+
+    /**
+     * Submits the request to the url using the data configured in the object.
+     */
+    AjaxCall.prototype.submit = function()
+    {
+      var request = null;
+
+      // INSTANTIATE THE XMLHttpRequest
+      if (window.XMLHttpRequest)
+      {
+        request = new XMLHttpRequest();
+      }
+
+      // SET THE READY STATE CHANGE HANDLER
+
+      // cannot reference object member from the anonymous function
+      var handlerFunction  = this.mHandler;
+      var errorHandlerFunction = this.mErrorHandler;
+      var showResponseText = this.mDebug;
+      var componentId  = this.mComponentId;
+      
+      
+      /**
+       * Triggered when there is a handler for the response
+       */
+      var readyStateChangeFunction = function() {
+        if (AjaxCall.READY_STATE_COMPLETE == request.readyState)
+        {
+          if (AjaxCall.STATUS_OK == request.status)
+          {
+            if (showResponseText)
+            {
+              window.open().document.write('<xmp>' + request.responseText + '</xmp>');
+            }
+
+            if (handlerFunction) // only invoke if defined
+            {
+              handlerFunction(request.responseXML, request.responseText, request, componentId);
+            }
+          }
+          else
+          {
+            if(errorHandlerFunction)
+            {
+              errorHandlerFunction(request);
+            }
+            else
+            {
+              alert(AjaxCall.ERROR_REQUEST_STATE
+                .replace(/\$code/, request.status)
+                .replace(/\$text/, request.statusText));
+            }
+          }
+        }
+      }
+
+      // PREPARE THE REQUEST PROPERTIES AND ANY DEFAULTS
+      
+      var url    = this.mUrl;
+      var body   = this.mRequestBody;
+      var type   = this.mContentType;
+      var params = this.mParams.join(AjaxCall.DELIM_PARAM);
+
+      // if no parameters are set, then there is no need to dispatch them
+      if (params.length > 0)
+      {
+        var paramDelim = (0 > url.indexOf("?"))   // if a url already has a query
+                       ? AjaxCall.DELIM_QS     // string delimiter (?), use an
+                       : AjaxCall.DELIM_PARAM  // ampersand (&) instead
+
+        if (body != null)      // User-set request body, all params go in
+        {                      // the query string for both POST and GET.
+          url += paramDelim + params;
+        }
+        else                   // no request body
+        {
+          if (this.mMethod == AjaxCall.METHOD_GET)
+          {
+            url += paramDelim + params;
+          }
+          else
+          {
+            body = params;
+
+            if (type == null)  // assign default if no type is set
+            {
+              type = AjaxCall.CONTENT_TYPE_URL_ENCODED;
+            }
+          }
+        }
+      }
+
+      // SUBMIT THE REQUEST
+      if(this.mAsynchronous)
+      {
+        if(this.mHandler != null || ( this.mHandler == null && this.mDebug == true) ) // no need to fire a handler if it was null in the first place. FF issue.
+        {
+          request.onreadystatechange = readyStateChangeFunction;
+        }
+      }
+
+      request.open(this.mMethod, url, this.mAsynchronous);
+
+      if (type != null)
+      {
+        request.setRequestHeader(AjaxCall.CONTENT_TYPE, type);
+      }
+
+      request.send(body);
+
+      return request;
+    }
+    </script><script type="text/javascript">
+    // Scripts to handle the flow to update components based on the action
+    // TODO: Keep it in the same files as embedded-layout.page.xml in POC, we can consider to move it to another file or not later
+    // TODO: Need to maintain a dependency to the extenal files it references
+
+    const IW_PREVIEW_HOST_NAME = "iw-preview";
+    const INSTRUCTION_TYPE_UPDATE_PAGE_PARAMETER = "update_page_parameter";
+    const INSTRUCTION_TYPE_REFRESH_COMPONENT = "refresh_component";
+    const INSTRUCTION_TYPE_NAVIGATE_TO_PAGE = "navigate_to_page";
+    
+    var invokeActionURL = "/site/global/page/404/component/$componentId/datum/$datumId/eventAction/$eventActionId/invokeAction.action";
+    var componentRenderURL = "/global/404/$componentId.async.RENDER";
+    var variantId = "";
+    var siteApplicationType = "java";
+    var updatePageParameterMap = [];
+    var eventTriggerID = "";
+    var eventDataJson;
+    // An array of events that are already executed
+    var eventsExecuted = [];
+
+    //boolean to check if valid json string
+    function parseJSON(str) {
+      try 
+      {
+        var parsedJSON = JSON.parse(str.trim());
+        if (parsedJSON) {
+		      if (typeof parsedJSON === "object") {
+			      return parsedJSON;
+		      }
+        }
+      }
+      catch (e) 
+      {
+        return null;
+      }
+
+      return null;
+    }
+
+    // currently it only support in runtime server
+    // and it always return all componentId from the page
+    // this is called from component, and needs to pass in the 
+    // componentId(it can its id or other component id) and 
+    // datumId (the datum id of a ComponentEventAction datum)
+    function invokeAction(componentId, datumId, eventActionId, eventData) {
+
+      eventDataJson = eventData;
+      // ex: eventTriggerID: 1702053980345:INTERACTION:onClick
+      eventTriggerID = componentId+":"+datumId+":"+eventActionId;
+      //If the Site is .NET type, do not trigger invokeAction call
+      if(siteApplicationType != null && siteApplicationType == "dotnet")
+      {
+        return;
+      }
+      var url = invokeActionURL.replace(/\$componentId/, componentId).replace(/\$datumId/, datumId).replace(/\$eventActionId/, eventActionId);
+      var request = new AjaxCall(url, handleComponentList, handleAjaxError, AjaxCall.METHOD_POST, false);
+      var requestBody = {};
+
+      if(variantId)
+      {
+        request.setParameter("variantId", variantId);
+      }
+
+      if(!eventsExecuted.includes(eventTriggerID))
+      {
+        //flag to tell if we need to evaluate event trigger variants for ComponentEventTrigger datums
+        //We should not be evaluating event trigger variants when an event is invoked for first time
+        requestBody.evaluateEventTrigger = false;
+        eventsExecuted.push(eventTriggerID);
+      }
+
+      var pageParametersMapJson = {};
+      for (var key in updatePageParameterMap ) {
+        pageParametersMapJson[key] = updatePageParameterMap[key];
+      }
+
+      if (eventData) 
+      {
+        requestBody = parseJSON(eventData);
+        if (requestBody !== null) {
+          requestBody.PageParameters = pageParametersMapJson;
+          request.setBody(JSON.stringify(requestBody));
+          request.submit();
+        }
+        else {
+          console.error("Invalid JSON for EventData");
+        }
+      }
+      else {
+        requestBody.EventData = {};
+        requestBody.PageParameters = pageParametersMapJson;
+        request.setBody(JSON.stringify(requestBody));
+        request.submit();
+      }
+
+    }
+    
+    // Handler for the response returned from invokeAction.action Ajax call
+    // retrieve the information from the response and trigger another Ajax call to refresh the component
+    function handleComponentList(xmlDoc, text) {
+      var invokeActionResponse = JSON.parse(text);      
+      
+      if(invokeActionResponse.actionResults && Array.isArray(invokeActionResponse.actionResults)) {
+        var componentIdList = [];
+        
+        for (var actionResult of invokeActionResponse.actionResults ) {
+          if(actionResult.instructionType && actionResult.instructionType === INSTRUCTION_TYPE_UPDATE_PAGE_PARAMETER) {
+            updatePageParameterMap = [];
+            if(actionResult.objects) {
+              var keys = Object.keys(actionResult.objects);
+              if(keys && Array.isArray(keys)) {
+                for (var key of keys ) {
+                  updatePageParameterMap[key] = actionResult.objects[key];
+                }
+              }
+            }
+          } else if(actionResult.instructionType && actionResult.instructionType === INSTRUCTION_TYPE_REFRESH_COMPONENT) {
+            if(actionResult.objects && actionResult.objects.objectIds && Array.isArray(actionResult.objects.objectIds)) {
+              for (var componentId of actionResult.objects.objectIds ) {
+                componentIdList.push(componentId);
+              }
+            }
+          } else if(actionResult.instructionType && actionResult.instructionType === INSTRUCTION_TYPE_NAVIGATE_TO_PAGE) {
+            if(actionResult.objects.objectIds) {
+              // Navigate to the first page from the action results
+              window.location.href = actionResult.objects.objectIds[0];
+            }
+          }
+        }
+        
+        if(componentIdList.length > 0) {
+          for (var componentId of componentIdList ) {
+            var url = componentRenderURL.replace(/\$componentId/, componentId);
+            var request = new AjaxCall(url, handleComponentRefresh, handleAjaxError, AjaxCall.METHOD_GET, false);
+            request.setComponentId(componentId);
+            request.setParameter("eventTriggerID",eventTriggerID);
+            if(eventDataJson)
+            {
+            request.setParameter("eventData",eventDataJson);
+            }
+            if(url.includes(IW_PREVIEW_HOST_NAME)){
+              request.setParameter("variantId", variantId);
+            }
+            for (var key in updatePageParameterMap ) {
+              request.setParameter(key, updatePageParameterMap[key]);
+            }
+        
+            request.submit();
+          }
+        }
+      }
+    }
+    
+    // Handler for the response returned from component .async.render Ajax call
+    // retrieve the response and updated the div containing the componendid
+    function handleComponentRefresh(xmlDoc, text, request, componentId) {
+      var componentElem = document.getElementById("iw_comp" + componentId);      
+      componentElem.innerHTML = text;
+      // explicitly recreate script elements to ensure they are executed
+      const sources = componentElem.querySelectorAll("script");
+      sources.forEach(source => {
+        const target = document.createElement('script');
+        // add contents of element if it exists
+        if(source.innerHTML) target.innerHTML = source.innerHTML;
+        // copy all attributes
+        [...source.attributes].forEach(attr => { target.setAttribute(attr.nodeName ,attr.nodeValue) });
+        source.after(target);
+        // remove original element when done
+        source.remove();
+      });
+    }
+    
+    // Error handler for Ajax call
+    function handleAjaxError(request) {
+      var url = new URL(request.responseURL);
+      
+      // temporary show mssage as the service is not available in iw-preview yet
+      if(url.pathname.includes(IW_PREVIEW_HOST_NAME)){
+        alert("The service is not available in /iw-preview");
+      } else {
+        alert(AjaxCall.ERROR_REQUEST_STATE
+          .replace(/\$code/, request.status)
+          .replace(/\$text/, request.statusText));
+      }      
+    }
+    
+    </script><link rel="stylesheet" type="text/css" href="/iwov-resources/grid/materialize.min.css">
+      <!--ls:end[stylesheet]--><!--ls:begin[canonical]--><!--ls:end[canonical]--><!--ls:begin[script]--><!--ls:end[script]--><!--ls:begin[meta-keywords]-->
+      <meta name="keywords" content="">
+      <!--ls:end[meta-keywords]--><!--ls:begin[meta-description]-->
+      <meta name="description" content="">
+      <!--ls:end[meta-description]--><!--ls:begin[custom-meta-data]-->
+      <meta name="og:image" content="https://www.miamidade.gov/resources/images/banners/main-banner.jpg">
+      <meta name="og:type" content="website">
+      <meta name="Organization" content="None">
+      <meta name="ContentType" content="Permits">
+      <meta name="Audience" content="all-residents">
+      <meta name="robots" content="noindex">
+      <meta name="og:url" content="https://www.miamidade.gov/global/404.page">
+      <meta name="permitCategory" content="building/building">
+      <!--ls:end[custom-meta-data]--><!--ls:begin[meta-vpath]-->
+      <meta name="vpath" content="">
+      <!--ls:end[meta-vpath]--><!--ls:begin[meta-page-locale-name]-->
+      <meta name="page-locale-name" content="">
+      <!--ls:end[meta-page-locale-name]--><!--ls:begin[stylesheet]-->
+      <link rel="stylesheet" href="/resources/css/js-slider.css" type="text/css" data-ocde-desktop_or_tablet_or_phone="show">
+      <!--ls:end[stylesheet]--><!--ls:begin[stylesheet]-->
+      <link rel="stylesheet" href="/resources/css/materialize.min.css" type="text/css" data-ocde-desktop_or_tablet_or_phone="show">
+      <!--ls:end[stylesheet]--><!--ls:begin[stylesheet]-->
+      <link rel="stylesheet" href="/resources/css/global-styles.css" type="text/css" data-ocde-desktop_or_tablet_or_phone="show">
+      <!--ls:end[stylesheet]--><!--ls:begin[stylesheet]-->
+      <link rel="stylesheet" href="/resources/css/font-awesome.min.css" type="text/css" data-ocde-desktop_or_tablet_or_phone="show">
+      <!--ls:end[stylesheet]--><!--ls:begin[script]--><script src="/resources/js/1.8.2.jquery.min.js" type="text/javascript" data-ocde-desktop_or_tablet_or_phone="show"></script>
+      <!--ls:end[script]--><!--ls:begin[script]--><script src="/resources/js/jquery.visible.min.js" type="text/javascript" data-ocde-desktop_or_tablet_or_phone="show"></script>
+      <!--ls:end[script]--><!--ls:begin[script]--><script src="/resources/js/md-global.js" type="text/javascript" data-ocde-desktop_or_tablet_or_phone="show"></script>
+      <!--ls:end[script]--><!--ls:begin[script]--><script src="/resources/js/materialize.min.js" type="text/javascript" data-ocde-desktop_or_tablet_or_phone="show"></script>
+      <!--ls:end[script]--><!--ls:begin[script]--><script src="/resources/js/flexMenu.min.js" type="text/javascript" data-ocde-desktop_or_tablet_or_phone="show"></script>
+      <!--ls:end[script]--><!--ls:begin[script]--><script src="/resources/js/global-scripts.js" type="text/javascript" data-ocde-desktop_or_tablet_or_phone="show"></script>
+      <!--ls:end[script]--><!--ls:begin[script]--><script src="/resources/js/components/number-polyfill.min.js" type="text/javascript" data-ocde-desktop_or_tablet_or_phone="show"></script>
+      <!--ls:end[script]--><!--ls:begin[script]--><script src="/resources/js/popper.min.js" type="text/javascript" data-ocde-desktop_or_tablet_or_phone="show"></script>
+      <!--ls:end[script]--><!--ls:begin[head-injection]--><!-- appendToHead -->
+<!-- MDC script injection -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MTLB43');</script>
+<!-- End Google Tag Manager -->
+
+<!-- BEGIN QUALTRICS SITE INTERCEPT -->
+<script type='text/javascript'>
+(function(){var g=function(e,h,f,g){
+this.get=function(a){for(var a=a+"=",c=document.cookie.split(";"),b=0,e=c.length;b<e;b++){for(var d=c[b];" "==d.charAt(0);)d=d.substring(1,d.length);if(0==d.indexOf(a))return d.substring(a.length,d.length)}return null};
+this.set=function(a,c){var b="",b=new Date;b.setTime(b.getTime()+6048E5);b="; expires="+b.toGMTString();document.cookie=a+"="+c+b+"; path=/; "};
+this.check=function(){var a=this.get(f);if(a)a=a.split(":");else if(100!=e)"v"==h&&(e=Math.random()>=e/100?0:100),a=[h,e,0],this.set(f,a.join(":"));else return!0;var c=a[1];if(100==c)return!0;switch(a[0]){case "v":return!1;case "r":return c=a[2]%Math.floor(100/c),a[2]++,this.set(f,a.join(":")),!c}return!0};
+this.go=function(){if(this.check()){var a=document.createElement("script");a.type="text/javascript";a.src=g+ "&t=" + (new Date()).getTime();document.body&&document.body.appendChild(a)}};
+this.start=function(){var a=this;window.addEventListener?window.addEventListener("load",function(){a.go()},!1):window.attachEvent&&window.attachEvent("onload",function(){a.go()})}};
+try{(new g(100,"r","QSI_S_ZN_a8zTa7cUf00EjMF","//zna8zta7cuf00ejmf-miamidadecounty.siteintercept.qualtrics.com/WRSiteInterceptEngine/?Q_ZID=ZN_a8zTa7cUf00EjMF&Q_LOC="+encodeURIComponent(window.location.href))).start()}catch(i){}})();
+</script>
+<!-- END QUALTRICS SITE INTERCEPT -->
+
+<!-- End of injection -->
+<!--ls:end[head-injection]--><!--ls:begin[tracker-injection]--><!--ls:end[tracker-injection]--><!--ls:begin[script]--><!--ls:end[script]--><!--ls:begin[script]--><!--ls:end[script]--></head>
+   <body><!--ls:begin[body]--><!-- MDC body injection -->
+
+<!-- BEGIN QUALTRICS SITE INTERCEPT -->
+<div id='ZN_a8zTa7cUf00EjMF'><!--DO NOT REMOVE-CONTENTS PLACED HERE--></div>
+<!-- END QUALTRICS SITE INTERCEPT -->
+
+
+<!-- End of injection -->
+
+      <div class="iw_viewport-wrapper"><div class="mdc-template-1-2-1-2-layout" id="main-container">
+ <main role="main" class="main-body-content-container" id="main-content">
+  <div data-fid="nest-col-1-row-1-area-1"><!-- Row 01 - Column 01 -->
+   <div class="iw_placeholder" id="iw_placeholder1596804983225">
+    <div class="iw_component" id="iw_comp1622248827047">
+     <!--ls:begin[component-1622248827047]--><style>#iw_comp1622248827047{}</style><link rel="stylesheet" type="text/css" href="/resources/css/404-styles.css"><script type="text/javascript">
+        (function () {
+          try {
+            var href = '/resources/css/404-styles.css';
+            // Walk up to the top-most document we can touch (handles the
+            // editor wrapping the component in one or more iframes).
+            var doc = document;
+            try {
+              while (doc.defaultView &&
+                     doc.defaultView.parent &&
+                     doc.defaultView.parent !== doc.defaultView) {
+                doc = doc.defaultView.parent.document;
+              }
+            } catch (e) { /* cross-origin: stop where we are */ }
+
+            var head = doc.getElementsByTagName('head')[0] || doc.documentElement;
+            var existing = doc.getElementsByTagName('link');
+            for (var i = 0; i < existing.length; i++) {
+              if (existing[i].href &&
+                  existing[i].href.indexOf(href) !== -1) { return; }
+            }
+            var l = doc.createElement('link');
+            l.rel = 'stylesheet';
+            l.type = 'text/css';
+            l.href = href;
+            l.setAttribute('data-injected-by', 'css-link-component');
+            head.appendChild(l);
+          } catch (e) { /* swallow — never break the editor */ }
+        })();
+      </script><!--ls:end[component-1622248827047]-->
+    </div>
+    <div class="iw_component" id="iw_comp1612397648936">
+     <style>#iw_comp1612397648936{}</style><style>
+
+    .d-flex {
+      display: flex;
+    }
+
+    .align-item-center {
+      align-items: center;
+    }
+
+    .site-banner-search__background {
+      background-color: rgba(96,125,139,0.8);
+      padding: 20px;
+      border-radius: 5px;
+    }
+    
+    .site-banner-404{
+    background-color:#0f6191;
+    }
+
+    @media (min-width: 1269px) {
+      .site-banner-search__background {
+        width: 65%;
+        margin: 0 auto;
+      }
+    }
+
+
+    @media (max-width: 1268px) {
+      .site-banner-search__background {
+        width: 100%;
+      }
+    }
+
+
+    
+    
+    
+
+
+    .site-banner-search__input-group-search {
+      display: table;
+      width: 100%;
+    }
+
+    .site-banner-search__input-group-search__column {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    .site-banner-search__input-group-search__column:first-child {
+      width: 90%;
+    }
+
+    .site-banner-search__input-group-search__column:last-child {
+      width: 10%;
+    }
+
+    .site-banner-search__input-group-search__column:last-child i {
+      font-size: 18px;
+      margin: 0 auto;
+    }
+
+    .site-banner-search__input-group-search input[type=search].form-control {
+      margin-bottom: 0;
+      border-radius: 0;
+      border: 2px solid transparent;
+      padding: 0 10px;
+      box-sizing: border-box;
+      background-color: #fff;
+      color: #606975;
+      font-size: 16px;
+      height: 55px;
+
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+
+    .site-banner-search__input-group-search__column .btn {
+      box-shadow: none;
+      display: flex;
+      height: 55px;
+      align-items: center;
+    }
+
+    .site-banner-search__input-group-search__column .btn:hover,
+    .site-banner-search__input-group-search__column .btn:focus {
+      background-color: #03a9f4 !important;
+    }
+
+    .site-banner-search__input-group-search__column button {
+      width: 100%; 
+      border-width: 1px 1px 1px 0;
+      border-style: solid;
+      border-color: #cecece;
+
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    .site-banner-search__input-group-search__column button:hover,
+    .site-banner-search__input-group-search__column button:focus {
+      border-color: #03a9f4;
+    }
+
+
+    .site-banner-search__input-group-search input[type=search]:focus:not([readonly]).form-control {
+      border-color: #03a9f4;
+    }
+
+    .site-banner-search__title {
+      color: #fff;
+      font-size: 18px;
+      text-transform: uppercase;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+  </style><script>
+    $(document).ready(function(){
+
+      //checking to see where the user is; Employee or Global
+      var pathArray = window.location.pathname.split('/');
+      var employeeLevelLocation = pathArray[1];
+
+      if(employeeLevelLocation.indexOf('employee') != -1){
+        //the action needs to be added with JavaScript, if not, LiveSite will replace it
+        $(".site-banner-search__background form").attr("action", "https://secure.miamidade.gov/employee/search.page");
+      } else {
+        //the action needs to be added with JavaScript, if not, LiveSite will replace it
+        $(".site-banner-search__background form").attr("action", "https://www.miamidade.gov/global/navigation/global-search.page");
+      }
+
+    });
+  </script><section class="site-banner-search__container site-banner-404 " style="background-image: url();" aria-labelledby="bannerSearchTitle">
+   <div class="logo-404 d-flex flex-column"><a href="https://www.miamidade.gov/global/home.page"><img alt="Miami-Dade County Home" class="md-logo-404" src="/resources/images/md-logo.png"></a></div>
+   <div class="container d-flex align-item-center">
+      <div class="site-banner-search__background">
+         <h3 class="site-banner-search__title" id="bannerSearchTitle">Search Miami-Dade.gov</h3>
+         <form action="/global/404.pagesubmit=true&amp;componentID=1612397648936" method="GET" onsubmit="return q.value!=''">
+            <div class="site-banner-search__input-group-search">
+               <div class="site-banner-search__input-group-search__column"><input type="search" class="browser-default form-control form-control-rounded auto-complete ui-autocomplete-input" aria-label="input search" placeholder="" autocomplete="off" name="q"></div>
+               <div class="site-banner-search__input-group-search__column"><button class="waves-effect waves-light btn blue" type="submit"><i class="material-icons">search</i></button></div>
+            </div>
+         </form>
+      </div>
+   </div>
+</section>
+    </div>
+    <div class="iw_component" id="iw_comp1612805229346">
+     <!--ls:begin[component-1612805229346]--><style>#iw_comp1612805229346{}</style><section class="ad banner-404 spacing mobile-position-Center" style="background-image: url(/resources/images/banners/miami-skyline-bg7.jpg);" id=""><span class="section-overlay-mask"></span><div class="container">
+      <div clas="row">
+         <div class="col-md-12">
+            <div class="content">
+               <h1>PAGE NOT FOUND</h1>
+               <h2 class="sub-titles">404</h2>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div style="opacity:0" class="img-tint"></div>
+</section><!--ls:end[component-1612805229346]-->
+    </div>
+   </div>
+  </div>
+  <div class="container template-two-column">
+   <div class="row">
+    <div class="col s12 m7 template-content-container" data-fid="nest-col-2-row-2-area-2"><!-- Row 02 - Column 01 -->
+     <div class="iw_placeholder" id="iw_placeholder1553655066006"></div>
+    </div>
+    <div class="col s12 m4 offset-m1 right-content template-right-content-container" data-fid="nest-col-2-row-2-area-3"><!-- Row 02 - Column 02 -->
+     <div class="iw_placeholder" id="iw_placeholder1553655066007"></div>
+    </div>
+   </div>
+  </div>
+  <div data-fid="nest-col-3-row-3-area-4"><!-- Row 03 -->
+   <div class="iw_placeholder" id="iw_placeholder1553655066008"></div>
+  </div>
+  <div class="container template-two-column">
+   <div class="row">
+    <div class="col s12 m7 template-content-container" data-fid="nest-col-4-row-4-area-5"><!-- Row 04 - Column 01 -->
+     <div class="iw_placeholder" id="iw_placeholder1553655066009"></div>
+    </div>
+    <div class="col s12 m4 offset-m1 right-content template-right-content-container" data-fid="nest-col-2-row-2-area-6"><!-- Row 04 - Column 02 -->
+     <div class="iw_placeholder" id="iw_placeholder1553655066010"></div>
+    </div>
+   </div>
+  </div>
+  <div data-fid="nest-col-5-row-5-area-7"><!-- Row 05 -->
+   <div class="iw_placeholder" id="iw_placeholder1553655066011"></div>
+  </div>
+ </main>
+</div></div><!--ls:end[body]--><!--ls:begin[page_track]--><!--ls:end[page_track]--></body>
+</html>
