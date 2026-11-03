@@ -1,6 +1,0 @@
-pbi_route | https://api.powerbigov.us/public/routing/cluster/86fc21f4-a511-4f82-b4d1-36f7d1e8a9ea
-pbi_travis_models | https://wabi-us-gov-virginia-api.analysis.usgovcloudapi.net/public/reports/5242d688-f512-4766-8451-414709213e29/modelsAndExploration?preferReadOnlySession=true | X-PowerBI-ResourceKey: 5242d688-f512-4766-8451-414709213e29
-pbi_travis_conceptual | https://wabi-us-gov-virginia-api.analysis.usgovcloudapi.net/public/reports/5242d688-f512-4766-8451-414709213e29/conceptualschema | X-PowerBI-ResourceKey: 5242d688-f512-4766-8451-414709213e29
-harris_ev_reports | https://www.harrisvotes.com/Election-Results/Election-Reports?filter=EV%20Report
-bexar_elections | https://elections.bexar.gov/
-tarrant_elections_cur | https://www.tarrantcountytx.gov/en/elections/current-election-information.html
