@@ -101,3 +101,7 @@
 {"t": "2026-11-03T15:10:17-05:00", "key": "tx_eday|Williamson County|eday_checkins", "source": "tx_eday", "state": "TX", "jurisdiction": "Williamson County", "metric": "eday_checkins", "value": 0, "as_of": "2026-11-03"}
 {"t": "2026-11-03T15:10:17-05:00", "key": "fl_broward|Broward County|eday_checkins", "source": "fl_broward", "state": "FL", "jurisdiction": "Broward County", "metric": "eday_checkins", "value": 122250, "as_of": null}
 {"t": "2026-11-03T15:10:17-05:00", "key": "fl_broward|Broward County|total_voted", "source": "fl_broward", "state": "FL", "jurisdiction": "Broward County", "metric": "total_voted", "value": 588068, "as_of": null}
+{"t": "2026-11-03T15:15:58-05:00", "key": "uf_states|ME|early_total", "source": "uf_states", "state": "ME", "jurisdiction": "ME", "metric": "early_total", "value": 309351, "as_of": "11/3/2026"}
+{"t": "2026-11-03T15:15:58-05:00", "key": "uf_tossups|ME-02|early_total", "source": "uf_tossups", "state": "ME", "jurisdiction": "ME-02", "metric": "early_total", "value": 122347, "as_of": null}
+{"t": "2026-11-03T15:15:58-05:00", "key": "fl_broward|Broward County|eday_checkins", "source": "fl_broward", "state": "FL", "jurisdiction": "Broward County", "metric": "eday_checkins", "value": 123602, "as_of": null}
+{"t": "2026-11-03T15:15:58-05:00", "key": "fl_broward|Broward County|total_voted", "source": "fl_broward", "state": "FL", "jurisdiction": "Broward County", "metric": "total_voted", "value": 589428, "as_of": null}

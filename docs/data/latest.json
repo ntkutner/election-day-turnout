@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-03T15:10:17-05:00",
+ "generated_at": "2026-11-03T15:15:58-05:00",
  "sources": {
   "uf_states": {
    "id": "uf_states",
@@ -9,7 +9,7 @@
    "url": "https://election.lab.ufl.edu/early-vote/2026-early-voting/",
    "note": "Early in-person + returned mail ballots compiled by Dr. Michael McDonald, UF Election Lab (non-commercial use, attribution required). Party = party registration, not vote choice.",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:10:17-05:00",
+   "fetched_at": "2026-11-03T15:15:58-05:00",
    "observations": [
     {
      "jurisdiction": "AK",
@@ -338,17 +338,17 @@
     {
      "jurisdiction": "ME",
      "metric": "early_total",
-     "value": 300491,
-     "as_of": "11/2/2026",
+     "value": 309351,
+     "as_of": "11/3/2026",
      "state": "ME",
      "name": "Maine",
      "turnout_2022": 680909,
      "inperson": 0,
-     "mail_returned": 300491,
-     "mail_requested": 320474,
-     "voted_dem": 140212,
-     "voted_rep": 68886,
-     "voted_none": 91393,
+     "mail_returned": 309351,
+     "mail_requested": 320878,
+     "voted_dem": 143814,
+     "voted_rep": 70773,
+     "voted_none": 94764,
      "updated_today": true,
      "data_source": "https://www.maine.gov/sos/cec/elec/data/index.html",
      "source": "uf_states"
@@ -904,7 +904,7 @@
    "url": "https://election.lab.ufl.edu/early-vote/2026-early-voting/",
    "note": "Early vote in House toss-up districts, from states that report early vote by congressional district. Ratings as compiled by UF Election Lab.",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:10:17-05:00",
+   "fetched_at": "2026-11-03T15:15:58-05:00",
    "observations": [
     {
      "jurisdiction": "AL-02",
@@ -1194,7 +1194,7 @@
     {
      "jurisdiction": "ME-02",
      "metric": "early_total",
-     "value": 119085,
+     "value": 122347,
      "as_of": null,
      "state": "ME",
      "n_tossup": 3,
@@ -1203,11 +1203,11 @@
       "sabato": "Lean|R|Flip",
       "ie": "Lean|R|Flip"
      },
-     "voted_dem": 49058,
-     "voted_rep": 33856,
-     "voted_none": 36171,
-     "mail_requested": 126579,
-     "mail_returned": 119085,
+     "voted_dem": 50212,
+     "voted_rep": 34725,
+     "voted_none": 37410,
+     "mail_requested": 126916,
+     "mail_returned": 122347,
      "source": "uf_tossups"
     },
     {
@@ -1753,7 +1753,7 @@
    "url": "https://goelect.txelections.civixapps.com/ivis-evr-ui/evr",
    "note": "Cumulative in-person + mail early votes through the last day of early voting (Oct 30).",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:10:17-05:00",
+   "fetched_at": "2026-11-03T15:15:58-05:00",
    "observations": [
     {
      "jurisdiction": "Texas (statewide)",
@@ -1898,7 +1898,7 @@
    "url": "https://goelect.txelections.civixapps.com/ivis-evr-ui/evr",
    "note": "Counties report Election Day turnout to the SOS; often posts after polls close.",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:10:17-05:00",
+   "fetched_at": "2026-11-03T15:15:58-05:00",
    "observations": [
     {
      "jurisdiction": "Texas (statewide)",
@@ -2020,32 +2020,32 @@
    "url": "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/turnout-summary",
    "note": "",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:10:17-05:00",
+   "fetched_at": "2026-11-03T15:15:58-05:00",
    "observations": [
     {
      "jurisdiction": "Broward County",
      "metric": "eday_checkins",
-     "value": 122250,
+     "value": 123602,
      "as_of": null,
      "state": "FL",
      "registered": 1366692,
-     "mail": 151709,
+     "mail": 151717,
      "early": 314109,
-     "eday": 122250,
-     "provisional": 97,
+     "eday": 123602,
+     "provisional": 98,
      "source": "fl_broward"
     },
     {
      "jurisdiction": "Broward County",
      "metric": "total_voted",
-     "value": 588068,
+     "value": 589428,
      "as_of": null,
      "state": "FL",
      "registered": 1366692,
-     "mail": 151709,
+     "mail": 151717,
      "early": 314109,
-     "eday": 122250,
-     "provisional": 97,
+     "eday": 123602,
+     "provisional": 98,
      "source": "fl_broward"
     }
    ],
@@ -2059,7 +2059,7 @@
    "url": "https://vote.nyc/page/early-voting-check-ins",
    "note": "BOE posts cumulative check-ins; Election Day updates appear on this page / @BOENYC when released.",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:10:17-05:00",
+   "fetched_at": "2026-11-03T15:15:58-05:00",
    "observations": [
     {
      "jurisdiction": "New York City",
@@ -2087,7 +2087,7 @@
    "url": "https://elections.clarkcountynv.gov/ElectionResultsTV/evturnout.aspx",
    "note": "",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:10:17-05:00",
+   "fetched_at": "2026-11-03T15:15:58-05:00",
    "observations": [
     {
      "jurisdiction": "Clark County",
@@ -2108,7 +2108,7 @@
    "url": "https://enr.electionsfl.org/DAD/4087/Summary/",
    "note": "Ballots cast by method from the official results site; populates after polls close (7pm ET).",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:10:17-05:00",
+   "fetched_at": "2026-11-03T15:15:58-05:00",
    "observations": [
     {
      "jurisdiction": "Miami-Dade County",
@@ -2133,7 +2133,7 @@
    "url": "https://enr.electionsfl.org/DUV/4076/Summary/",
    "note": "Ballots cast by method from the official results site; populates after polls close (7pm ET).",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:10:17-05:00",
+   "fetched_at": "2026-11-03T15:15:58-05:00",
    "observations": [
     {
      "jurisdiction": "Duval County",
