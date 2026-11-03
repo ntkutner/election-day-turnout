@@ -1,0 +1,30 @@
+{
+ "agol_dallas_exp": {
+  "url": "https://www.arcgis.com/sharing/rest/content/items/8204fc2e36cd4fac8729efcedd4fda7f/data?f=json",
+  "status": 200,
+  "final_url": "https://www.arcgis.com/sharing/rest/content/items/8204fc2e36cd4fac8729efcedd4fda7f/data?f=json",
+  "ctype": "application/json;charset=utf-8",
+  "bytes": 18586
+ },
+ "agol_4b38_exp": {
+  "url": "https://www.arcgis.com/sharing/rest/content/items/4b388a0faade4fef9f6a644a72350cf4/data?f=json",
+  "status": 200,
+  "final_url": "https://www.arcgis.com/sharing/rest/content/items/4b388a0faade4fef9f6a644a72350cf4/data?f=json",
+  "ctype": "application/json;charset=utf-8",
+  "bytes": 348377
+ },
+ "agol_dallas_item": {
+  "url": "https://www.arcgis.com/sharing/rest/content/items/8204fc2e36cd4fac8729efcedd4fda7f?f=json",
+  "status": 200,
+  "final_url": "https://www.arcgis.com/sharing/rest/content/items/8204fc2e36cd4fac8729efcedd4fda7f?f=json",
+  "ctype": "application/json;charset=utf-8",
+  "bytes": 3609
+ },
+ "agol_4b38_item": {
+  "url": "https://www.arcgis.com/sharing/rest/content/items/4b388a0faade4fef9f6a644a72350cf4?f=json",
+  "status": 200,
+  "final_url": "https://www.arcgis.com/sharing/rest/content/items/4b388a0faade4fef9f6a644a72350cf4?f=json",
+  "ctype": "application/json;charset=utf-8",
+  "bytes": 1272
+ }
+}
