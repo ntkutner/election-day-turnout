@@ -88,7 +88,7 @@
   "status": 403,
   "final_url": "https://www.ohiosos.gov/data/",
   "ctype": "text/html; charset=UTF-8",
-  "bytes": 1285381,
+  "bytes": 1285382,
   "data_links": []
  },
  "oh_ev": {
@@ -96,7 +96,7 @@
   "status": 403,
   "final_url": "https://www.ohiosos.gov/elections/election-results-and-data/2026/",
   "ctype": "text/html; charset=UTF-8",
-  "bytes": 1285532,
+  "bytes": 1285533,
   "data_links": []
  },
  "nyc_boe": {
@@ -229,7 +229,7 @@
   "status": 200,
   "final_url": "https://www.harrisvotes.com/",
   "ctype": "text/html; charset=utf-8",
-  "bytes": 64709,
+  "bytes": 64645,
   "data_links": [
    "https://appfiles.harrisvotes.com/harrisvotes/prd/docs/Uploads/EVPA_unofficial.pdf",
    "https://files.harrisvotes.com/harrisvotes/prd/docs/VoterRegistration/Request-to-Remove-Personal-Information-from-HC-CCO-Website-optoutform_Sept_2023.pdf",
@@ -370,7 +370,7 @@
   "status": 404,
   "final_url": "https://www.dallascountyvotes.org/election-day-voting/",
   "ctype": "text/html; charset=UTF-8",
-  "bytes": 146996,
+  "bytes": 147064,
   "data_links": [
    "https://experience.arcgis.com/experience/8204fc2e36cd4fac8729efcedd4fda7f/page/Page?views=Early-Voting",
    "https://www.dallascountyvotes.org/election-results/historical/november-3-2026-general-and-joint-election/#EarlyVoting",
@@ -591,7 +591,7 @@
   "status": 200,
   "final_url": "https://www.tarrantcountytx.gov/en/elections.html",
   "ctype": "text/html;charset=utf-8",
-  "bytes": 379087,
+  "bytes": 379084,
   "data_links": [
    "https://assets.adobedtm.com/cc64b4f118558c1d7a958a890407edc6c49c6c52/satelliteLib-6d528d77be3c24f70cd109714f387e20673a5695.js",
    "https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js",
@@ -617,7 +617,7 @@
   "status": 404,
   "final_url": "https://www.tarrantcountytx.gov/en/elections/election-results-and-turnout.html",
   "ctype": "text/html;charset=utf-8",
-  "bytes": 337886,
+  "bytes": 337883,
   "data_links": [
    "https://assets.adobedtm.com/cc64b4f118558c1d7a958a890407edc6c49c6c52/satelliteLib-6d528d77be3c24f70cd109714f387e20673a5695.js",
    "https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js",
@@ -942,7 +942,7 @@
   "status": 403,
   "final_url": "https://www.nvsos.gov/sos/elections/election-turnout",
   "ctype": "text/html",
-  "bytes": 613,
+  "bytes": 614,
   "data_links": []
  },
  "ga_sos_data": {
@@ -1387,7 +1387,7 @@
   "status": 403,
   "final_url": "https://elections.wi.gov/statistics-data/absentee-ballot-reports",
   "ctype": "text/html; charset=UTF-8",
-  "bytes": 5747,
+  "bytes": 5769,
   "data_links": []
  }
 }

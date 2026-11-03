@@ -175,7 +175,7 @@
   "status": 200,
   "final_url": "https://voteorangefl.gov/voter-turnout/",
   "ctype": "text/html; charset=UTF-8",
-  "bytes": 138758,
+  "bytes": 138666,
   "data_links": [
    "https://docaccess.com/docbox.js",
    "https://voteorangefl.gov/voter-turnout/",
@@ -946,7 +946,7 @@
   "status": 403,
   "final_url": "https://www.ohiosos.gov/elections/election-results-and-data/",
   "ctype": "text/html; charset=UTF-8",
-  "bytes": 1285517,
+  "bytes": 1285518,
   "data_links": []
  }
 }
