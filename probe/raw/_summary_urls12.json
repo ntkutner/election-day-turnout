@@ -1,0 +1,32 @@
+{
+ "harris_wt": {
+  "url": "https://app.harrisvotes.com/WaitTimes?lang=en-US",
+  "status": 200,
+  "final_url": "https://app.harrisvotes.com/WaitTimes?lang=en-US",
+  "ctype": "text/html; charset=utf-8",
+  "bytes": 47029,
+  "data_links": [
+   "https://app.harrisvotes.com/js/angular-cookies.js",
+   "https://app.harrisvotes.com/js/angular-sanitize.min.js?nocache=639293140572668158",
+   "https://app.harrisvotes.com/js/angular.min.js",
+   "https://app.harrisvotes.com/js/bootbox.min.js",
+   "https://app.harrisvotes.com/js/bootstrap.js",
+   "https://app.harrisvotes.com/js/esri-leaflet-geocoder.js",
+   "https://app.harrisvotes.com/js/esri-leaflet-vector.js",
+   "https://app.harrisvotes.com/js/esri-leaflet.js",
+   "https://app.harrisvotes.com/js/leaflet.js",
+   "https://app.harrisvotes.com/js/polling-map.js?nocache=639293140572668122",
+   "https://app.harrisvotes.com/js/site.js",
+   "https://app.harrisvotes.com/lib/bootstrap-geocoder/bootstrap-geocoder.js?nocache=639293140572668187",
+   "https://app.harrisvotes.com/lib/jquery/dist/jquery.min.js",
+   "https://appfiles.harrisvotes.com/harrisvotes/prd/docs/VotingInfo/EarlyVotingPDFMaps/EarlyVotingMap.pdf",
+   "https://appfiles.harrisvotes.com/harrisvotes/prd/docs/VotingInfo/VoteCenters_en-US.pdf",
+   "https://az416426.vo.msecnd.net/scripts/b/ai.2.min.js",
+   "https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js",
+   "https://code.jquery.com/ui/1.13.2/jquery-ui.js",
+   "https://kit.fontawesome.com/3240ab16ae.js",
+   "https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js",
+   "https://www.googletagmanager.com/gtm.js?id="
+  ]
+ }
+}
