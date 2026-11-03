@@ -15,15 +15,16 @@ def lines(path):
         ln = ln.strip()
         if not ln or ln.startswith("#"):
             continue
-        ident, url = [p.strip() for p in ln.split("|", 1)]
-        yield ident, url
+        parts = [p.strip() for p in ln.split("|")]
+        hdrs = dict(h.split(":", 1) for h in parts[2:]) if len(parts) > 2 else {}
+        yield parts[0], parts[1], {k.strip(): v.strip() for k, v in hdrs.items()}
 
 def main(list_file):
     summary = {}
-    for ident, url in lines(ROOT / list_file):
+    for ident, url, hdrs in lines(ROOT / list_file):
         rec = {"url": url}
         try:
-            r = requests.get(url, headers=UA, timeout=30, allow_redirects=True)
+            r = requests.get(url, headers={**UA, **hdrs}, timeout=30, allow_redirects=True)
             rec.update(status=r.status_code, final_url=r.url, ctype=r.headers.get("content-type", ""), bytes=len(r.content))
             ext = ".json" if "json" in rec["ctype"] else ".csv" if "csv" in rec["ctype"] else ".pdf" if "pdf" in rec["ctype"] else ".html"
             (OUT / f"{ident}{ext}").write_bytes(r.content[:3_000_000])

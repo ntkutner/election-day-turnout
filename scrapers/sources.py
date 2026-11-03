@@ -324,3 +324,28 @@ def fl_tqv():
     rows.sort(key=lambda r: -(r["registered"] or 0))
     return [obs(f"Florida ({len(rows)} counties)", "eday_checkins", agg["eday"], as_of=latest, state="FL",
                 counties=len(rows), party=party, **agg)] + rows
+
+
+# ---------------------------------------------------------------- Texas counties: live Election Day check-ins from county dashboards
+DALLAS_FS = "https://services3.arcgis.com/zqe2kwz79KUqUvxC/arcgis/rest/services/Vote_Center_Finder_view/FeatureServer/4/query"
+
+
+def parse_dallas(d: dict):
+    feats = d.get("features") or []
+    if not feats:
+        raise ValueError("Dallas: no vote centers")
+    a = [f["attributes"] for f in feats]
+    today = sum((x.get("C_Daily_Tot") or 0) for x in a if (x.get("L_Crnt_Sta") or "").lower() != "inactive")
+    reporting = sum(1 for x in a if (x.get("C_Daily_Tot") or 0) > 0)
+    waits = [x.get("C_Wait_Tim") for x in a if isinstance(x.get("C_Wait_Tim"), (int, float))]
+    return [obs("Dallas County", "eday_checkins", today, state="TX", vote_centers=len(a), centers_reporting=reporting,
+                max_wait=max(waits) if waits else None)]
+
+
+@source("tx_dallas", "Dallas County Elections – live vote center counts", "TX", "eday",
+        "https://experience.arcgis.com/experience/8204fc2e36cd4fac8729efcedd4fda7f/page/Page?views=Election-Day",
+        "Sum of today's voter counts at every Dallas County vote center (county's Vote Center Finder map).")
+def tx_dallas():
+    d = get(DALLAS_FS, params={"where": "1=1", "outFields": "L_Crnt_Sta,L_Poll_VC,C_Daily_Tot,C_Wait_Tim",
+                                "returnGeometry": "false", "resultRecordCount": 2000, "f": "json"}).json()
+    return parse_dallas(d)
