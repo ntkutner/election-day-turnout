@@ -1,0 +1,1261 @@
+﻿var mapFunctions = {};
+var mapSymbols = {}
+
+var lasthover;
+var addressParameter;
+var graphiccollection = [];
+var facilityLayerFeatureLayerlarge;
+var polyLineLocation;
+
+var charts = {};
+var chartsCanvas = {};
+var waitTimeHistory = [];
+
+var showChart = false;
+function formatTime(timeString) {
+    const [hourString, minute] = timeString.split(":");
+    const hour = +hourString % 24;
+    return (hour % 12 || 12) + ":" + minute + (hour < 12 ? "AM" : "PM");
+}
+function msieversion() {
+
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf("MSIE ");
+
+    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))  // If Internet Explorer, return version number
+    {
+        alert("Internet Explorer is not supported. Please use a modern browser (Chrome, FireFox, Edge) to use this application");
+    }
+}
+
+var parameterValues = {}
+
+$(document).ready(function () {
+    queryString = window.location.search;
+    urlParams = new URLSearchParams(queryString);
+    parameterValues['ElectionType'] = urlParams.get('ElectionType');
+    parameterValues['ElectionCode'] = urlParams.get('ElectionCode');
+    loadDropDown();
+    msieversion();
+    loadAttributes();
+    loadEventListeners();
+    loadmap();
+});
+function loadEventListeners() {
+
+    $("#locationSearchForm_SearchKeyword").keyup(function (e) {
+        mapFunctions.queryFeaturesInExtent();
+    });
+
+    $("#locationSearchForm_SearchKeyword").change(function (e) {
+        //console.log($("#locationSearchForm_SearchKeyword").val())
+        mapFunctions.queryFeaturesInExtent();
+    });
+
+    $('#searchForm').on('reset', function (e) {
+        $("#locationSearchForm_SearchKeyword").val('')
+        mapFunctions.queryFeaturesInExtent();
+    });
+
+    $("#optionsPerPage").change(function (e) {
+        mapFunctions.queryFeaturesInExtent();
+    });
+
+    $("#main_ActiveElectionList").change(function (e) {
+
+        parameterValues['ElectionCode'] = $("#main_ActiveElectionList").val();
+
+        mapFunctions.loadWaitTime();
+    });
+
+
+}
+
+function loadAttributes() {
+    var pathname = window.location.pathname;
+
+    pathname = pathname.split("/Administration")[0]
+
+    //////////////////console.log(pathname)
+    if (pathname == '/') {
+        VirtualDirectory = "";
+    }
+    else {
+        VirtualDirectory = pathname;
+        if (pathname.substr(-1) != "/") {
+            VirtualDirectory += '/';
+        }
+    }
+}
+
+function loadDropDown() {
+    CallWebMethod(null, 'Home/GetWaitTimes', function (returnData) {
+        if (returnData.ElectionInformation && returnData.ElectionInformation.length > 0) {
+
+            loadFormDropDowns("main_", returnData, false)
+
+            //console.log(parameterValues)
+
+            var hasElectionCode = !!$('#main_ActiveElectionList > option[value="' + parameterValues['ElectionCode'] + '"]').length;
+
+
+            if (parameterValues['ElectionCode'] == null || hasElectionCode == false) {
+                parameterValues['ElectionCode'] = $("#main_ActiveElectionList").val();
+            }
+            //console.log(parameterValues['ElectionCode'])
+
+            $("#main_ActiveElectionList").val(parameterValues['ElectionCode'])
+        }
+    });
+}
+
+function loadmap() {
+    require([
+        "esri/Map",
+        "esri/views/MapView",
+        "esri/Graphic",
+        "esri/layers/GraphicsLayer",
+        "esri/layers/FeatureLayer",
+        "esri/geometry/SpatialReference",
+        "esri/widgets/Search",
+        "esri/symbols/WebStyleSymbol",
+        "esri/geometry/geometryEngine",
+        "esri/core/reactiveUtils",
+    ], function (
+        Map,
+        MapView,
+        Graphic,
+        GraphicsLayer,
+        FeatureLayer,
+        SpatialReference,
+        Search,
+        WebStyleSymbol,
+        geometryEngine,
+        reactiveUtils,
+    ) {
+        //Setup Layers
+        var layerView;
+        var map = new Map({
+            basemap: "streets-navigation-vector",
+            showAttribution: false
+        });
+
+        var view = new MapView({
+            container: "viewDiv", // Reference to the scene div created in step 5
+            map: map, // Reference to the map object created before the scene
+            center: [-97.3517, 32.7732],
+            zoom: 10
+        });
+
+        view.when(function () {
+            setUpMapSymbols();
+            setUpMapLabel();
+            setUpMapView();
+            mapFunctions.loadWaitTime();
+        });
+
+
+        mapFunctions.loadWaitTime = function () {
+
+            if (parameterValues) {
+                data = parameterValues
+            } else {
+                data = null
+            }
+
+            CallWebMethod(data, 'Home/GetWaitTimes', function (returnData) {
+                if (returnData.ElectionInformation && returnData.ElectionInformation.length > 0) {
+
+
+                    //console.log(returnData.ElectionInformation[0])
+                    //#$("#ElectionName").text(returnData.ElectionInformation[0].Election_Name);
+                    //$("#ElectionName2").text(returnData.ElectionInformation[0].Election_Name);
+
+
+
+                    if (returnData.ElectionInformation[0].ElectionType == 'ED') {
+                        $("#ElectionType").text("Election Day");
+                        $("#ElectionDate").text("(" + returnData.ElectionInformation[0].VoterElectionDate.trim() + ")");
+                        $("#ElectionType2").text("Election Day");
+                        $("#ElectionDate2").text("(" + returnData.ElectionInformation[0].VoterElectionDate.trim() + ")");
+
+                    } else {
+                        $("#ElectionType").text("Early Voting");
+                        $("#ElectionDate").text(returnData.ElectionInformation[0].EarlyVoteStartDate + " - " + returnData.ElectionInformation[0].EarlyVoteEndDate);
+                        $("#ElectionType2").text("Early Voting");
+                        $("#ElectionDate2").text(returnData.ElectionInformation[0].EarlyVoteStartDate + " - " + returnData.ElectionInformation[0].EarlyVoteEndDate);
+                    }
+                } else {
+                    $("#ElectionName").html('&nbsp');
+                    $("#ElectionName2").html('&nbsp');
+
+                    $("#ElectionType").text("No Election Available");
+                    $("#ElectionType2").text("No Election Available");
+
+                    $("#ElectionDate").html("&nbsp");
+                    $("#ElectionDate2").html("&nbsp");
+
+                }
+
+                if (facilityLayerFeatureLayerlarge) {
+                    map.remove(facilityLayerFeatureLayerlarge);
+                    graphiccollection = [];
+                    facilityLayerFeatureLayerlarge = null
+                }
+
+                if (polyLineLocation) {
+                    map.remove(polyLineLocation);
+                    polyLineLocation = null
+                }
+
+                view.graphics.removeAll();
+
+
+                if (returnData.ElectionLocations && returnData.ElectionLocations.length > 0) {
+
+                    setupPollingLocationLayer(returnData.ElectionLocations);
+
+                    //setupPollingWaitTimeCharts(returnData.Table2, returnData.ElectionLocations);
+                } else {
+                    $("#toc-items").html("<br><center><h5>Voting locations not available yet.</h5></center>")
+                }
+            });
+
+        }
+
+        mapFunctions.zoomToFeature = function (input) {
+            $("#nav-map-tab").click();
+
+            //////console.log(input)
+            var query = facilityLayerFeatureLayerlarge.createQuery();
+            query.where = "POLLING_PL=" + "'" + input + "'";
+            query.outSpatialReference = new SpatialReference({ wkid: 3857 });
+
+            graphiccollection = []
+
+            facilityLayerFeatureLayerlarge.queryFeatures(query)
+                .then(function (response) {
+                    view.goTo({
+                        target: response.features[0].geometry,
+                        zoom: 15
+                    });
+                });
+
+        }
+
+        function setupPollingWaitTimeCharts(waitTimeHistory, electionLocations) {
+
+
+            var options = {
+                responsive: true,
+                maintainAspectRatio: false,
+                title: {
+                    display: false,
+                },
+                legend: {
+                    display: false,
+                },
+                maintainAspectRatio: true,
+                responsive: true,
+                hover: {
+                    mode: 'index',
+                    intersect: true
+                },
+                layout: {
+                    padding: {
+                        left: 0,
+                        right: 0,
+                        top: 0,
+                        bottom: 0
+                    }
+                },
+                scales: {
+                    min: 0,    // minimum will be 0, unless there is a lower value.
+                    max: 60,    // minimum will be 0, unless there is a lower value.
+                    x: {
+                        type: 'time',
+                        time: {
+                            // Luxon format string
+                            tooltipFormat: 'DD T'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Date'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Minutes'
+                        },
+                        ticks: {
+                            min: 0,    // minimum will be 0, unless there is a lower value.
+                            max: 60,    // minimum will be 0, unless there is a lower value.
+                            // OR //
+                        }
+                    }
+                },
+
+            }
+            var timeNow = new Date();
+
+            timeNow = timeNow.toLocaleString('en-US', { hour: 'numeric', hour12: true });
+
+            timeNow = timeNow.split(" ")[0] + ":00" + timeNow.split(" ")[1]
+
+            $.each(electionLocations, function (i, feature) {
+
+                var averageWaitTimes = waitTimeHistory.filter(function (waitTimes) {
+                    return waitTimes.PollingPlaceCode == feature.PollingPlaceCode
+                });
+
+                chartLabels = []
+                chartData = []
+
+                nowData = []
+
+                $.each(averageWaitTimes, function (i2, waitTimes2) {
+                    chartLabels.push(formatTime(waitTimes2.hour));
+                    chartData.push(waitTimes2.WaitTime);
+
+                    if (formatTime(waitTimes2.hour) == timeNow) {
+                        if (feature.WaitTime) {
+                            nowData.push(feature.WaitTime)
+                        } else {
+                            nowData.push(0)
+
+                        }
+                    } else {
+                        nowData.push(null)
+                    }
+                });
+
+
+                ctx_id = feature.PollingPlaceCode + "_chart"
+
+                ctx = $('<canvas/>', { id: ctx_id, class: 'chart-js-canvas' });
+
+                charts[feature.PollingPlaceCode] = new Chart(ctx, {
+                    type: "line",
+                    data: {
+                        labels: chartLabels,
+                        datasets: [{
+                            label: 'Avg Wait Time',
+                            data: chartData
+                        },
+                        {
+                            backgroundColor: "green",
+                            label: 'Current Wait Time',
+                            data: nowData
+                        }]
+                    },
+                    options: options
+                });
+
+
+                chartsCanvas[feature.PollingPlaceCode] = ctx;
+            });
+
+        }
+
+        function dataTableToGraphicCollection(data) {
+
+            $.each(data, function (i, feature) {
+                //////console.log(feature)
+                if (feature.WaitTime >= 0 & feature.WaitTime != null) {
+                    feature.WaitTime = feature.WaitTime / 60
+                    feature.WaitTimeLastUpdated = feature.LastUpdated
+                } else {
+                    feature.WaitTime = null
+                    feature.WaitTimeLastUpdated = feature.LastUpdated
+                }
+
+                if (feature.Note.split("--").length > 1) {
+                    feature.SubLocation = feature.Note.split("--")[0]
+                    feature.Date = feature.Note.split("--")[1].split(" - ")[0]
+                    feature.Time = feature.Note.split("--")[1].split(" - ")[1]
+                } else {
+                    feature.SubLocation = feature.Note
+                    feature.Date = "TBD"
+                    feature.Time = "TBD"
+                }
+
+                feature.waitTimeUnit = "Hour"
+                feature.waitTimeUnitMin = "Min"
+
+                var point = { //Create a point
+                    type: "point",
+                    x: feature.X,
+                    y: feature.Y,
+                    spatialReference: 2276
+                };
+
+                var stop = new Graphic({
+                    geometry: point,
+                    attributes: feature
+                });
+
+                graphiccollection.push(stop);
+            });
+
+            return graphiccollection;
+        }
+
+        function setupPollingLocationLayer(locationData) {
+            facilityLayerFeatureLayerlarge = new FeatureLayer({
+                source: dataTableToGraphicCollection(locationData),
+                objectIdField: "PollingLocationCode",
+                fields: [{
+                    name: "POLLING_PL",
+                    alias: "POLLING_PL",
+                    type: "string"
+                },
+                {
+                    name: "DistanceFromLocation",
+                    alias: "DistanceFromLocation",
+                    type: "double"
+                },
+                {
+                    name: "WaitTime",
+                    alias: "WaitTime",
+                    type: "double"
+                },
+                {
+                    name: "LastUpdated",
+                    alias: "LastUpdated",
+                    type: "string"
+                },
+                {
+                    name: "POLLING_LO",
+                    alias: "POLLING_LO",
+                    type: "string"
+                },
+                {
+                    name: "PollingPlaceCode",
+                    alias: "PollingPlaceCode",
+                    type: "string"
+                },
+                {
+                    name: "SubLocation",
+                    alias: "SubLocation",
+                    type: "string"
+                },
+                {
+                    name: "Date",
+                    alias: "Date",
+                    type: "string"
+                },
+                {
+                    name: "Time",
+                    alias: "Time",
+                    type: "string"
+                },
+                {
+                    name: "CITY",
+                    alias: "CITY",
+                    type: "string"
+                }],
+                geometryType: "point",
+                popupTemplate: {
+                    content: generateVotingCenterCard,
+                    outFields: ["*"]
+                },
+                labelingInfo: [mapSymbols.locationNameLabelClass, mapSymbols.waitTimeLabelClass],
+                renderer: mapSymbols.renderer,
+                popupEnabled: true,
+            });
+
+            var featureReduction = {
+                type: "cluster",
+                clusterRadius: "100px",
+                // You should adjust the clusterMinSize to properly fit labels
+                clusterMinSize: "70px",
+                clusterMaxSize: "70px",
+                fields: [{
+                    name: "aggregateCount",
+                    statisticType: "count"
+                },
+                {
+                    name: "AVG_WaitTime",
+                    onStatisticField: "WaitTime",
+                    statisticType: "avg"
+                }],
+                labelingInfo: {
+                    // turn off deconfliction to ensure all clusters are labeled
+                    deconflictionStrategy: "none",
+                    labelExpressionInfo: {
+                        expression: `Iif($feature.AVG_WaitTime >= 0 && !IsEmpty($feature.AVG_WaitTime), Text($feature.AVG_WaitTime, '#,###') + TextFormatting.NewLine + Text('min'), '--')`
+                    },
+                    symbol: {
+                        type: "text",
+                        color: "#1D2856",
+                        font: {
+                            weight: "bold",
+                            family: "Noto Sans",
+                            size: "12px"
+                        }
+                    },
+                    labelPlacement: "center-center",
+                },
+                renderer: mapSymbols.renderer
+            }
+
+            facilityLayerFeatureLayerlarge.featureReduction = featureReduction;
+
+            map.add(facilityLayerFeatureLayerlarge);
+
+
+
+            facilityLayerFeatureLayerlarge.when(() => {
+                view.goTo(facilityLayerFeatureLayerlarge.fullExtent);
+
+                view.whenLayerView(facilityLayerFeatureLayerlarge)
+                    .then(function (view) {
+                        layerView = view;
+                    })
+            });
+
+            mapFunctions.queryFeaturesInExtent();
+
+            setUpLocationEventListeners()
+
+        }
+
+        function setUpLocationEventListeners() {
+            view.on("pointer-move", function (event) {
+                view.hitTest(event, { include: facilityLayerFeatureLayerlarge }).then(function (response) {
+                    if (response.results.length > 0) {
+                        feature = response.results[0].graphic;
+
+                        if (feature.attributes.cluster_count > 1) {
+                            if (feature.attributes.aggregateId != lasthover) {
+
+                                bufferLayer.removeAll();
+
+                                lasthover = feature.attributes.aggregateId
+                                buffer = geometryEngine.geodesicBuffer(response.results[0].graphic.geometry, view.scale / (view.zoom), "feet");
+
+                                var query = facilityLayerFeatureLayerlarge.createQuery();
+                                query.geometry = response.results[0].graphic.geometry;  // the point location of the pointer
+                                query.distance = view.scale / (view.zoom + 8);
+                                query.units = "feet";
+                                query.spatialRelationship = "intersects";  // this is the default
+                                query.returnGeometry = true;
+                                query.outFields = ["*"];
+                                query.outSpatialReference = new SpatialReference({ wkid: 3857 });
+
+                                facilityLayerFeatureLayerlarge.queryFeatures(query)
+                                    .then(function (response) {
+
+                                        paths = []
+
+                                        response.features.forEach(function (feature) {
+                                            paths.push([feature.geometry.x, feature.geometry.y])
+                                            paths.push([query.geometry.x, query.geometry.y])
+                                        });
+
+                                        var polyline = {
+                                            type: "polyline",  // autocasts as new Polyline()
+                                            paths: paths,
+                                            spatialReference: new SpatialReference({ wkid: 3857 })
+                                        };
+
+                                        var polygonGraphic = new Graphic({
+                                            geometry: polyline,
+                                        });
+
+                                        var geometry = geometryEngine.convexHull(polygonGraphic.geometry);
+
+                                        var polygonGraphic = new Graphic({
+                                            geometry: geometry,
+                                            symbol: mapSymbols.polySym
+                                        });
+
+                                        bufferLayer.removeAll();
+
+                                        bufferLayer.add(polygonGraphic);
+                                        //clusterToSpiderQuery(feature);
+
+                                    });
+                            }
+
+                        }
+                    } else {
+                        bufferLayer.removeAll();
+                        lasthover = "";
+                    }
+                });
+            });
+
+            view.on("click", function (event) {
+                bufferLayer.removeAll();
+
+                view.hitTest(event, { include: facilityLayerFeatureLayerlarge }).then(function (response) {
+                    if (response.results.length > 0) {
+
+                        feature = response.results[0].graphic;
+
+                        if (feature.attributes.aggregateId) {
+                            view.goTo({
+                                target: feature,
+                                zoom: view.zoom + 2
+                            });
+                        } else {
+                            view.goTo({
+                                target: feature
+                            });
+                        }
+                    }
+                });
+            });
+
+            bufferLayer = new GraphicsLayer();
+
+            map.add(bufferLayer);
+
+            reactiveUtils.watch(() => view.stationary, () => {
+                ////console.log("query")
+                mapFunctions.queryFeaturesInExtent()
+            });
+        }
+
+        function clusterToSpiderQuery(feature) {
+            // displays all features from a given cluster in the view
+            //////console.log(view.zoom)
+            buffer = geometryEngine.geodesicBuffer(feature.geometry, view.scale / (view.zoom + 2), "feet");
+            nearestVertex = geometryEngine.nearestVertex(buffer, feature.geometry)
+
+            paths = []
+
+            paths.push([nearestVertex.coordinate.x, nearestVertex.coordinate.y])
+            paths.push([feature.geometry.x, feature.geometry.y])
+
+
+            const query = layerView.createQuery();
+
+            //////console.log(feature.getObjectId())
+            query.aggregateIds = [feature.getObjectId()];
+
+            var polyline = {
+                type: "polyline",  // autocasts as new Polyline()
+                paths: paths,
+                spatialReference: new SpatialReference({ wkid: 3857 })
+            };
+
+            var polylineGraphic = new Graphic({
+                geometry: polyline
+            });
+
+            layerView.queryFeatures(query)
+                .then(function (response) {
+                    //////console.log(response)
+                    response.features.forEach(function (feature2) {
+
+                        polyline = geometryEngine.rotate(polylineGraphic.geometry, 45, feature.geometry)
+
+                        polylineGraphic = new Graphic({
+                            geometry: polyline
+                        });
+
+                        view.graphics.add(polylineGraphic);
+
+
+                        feature2.geometry.x = polyline.paths[0][0][0]
+                        feature2.geometry.y = polyline.paths[0][0][1]
+
+                        feature2.popupTemplate = {
+                            content: generateVotingCenterCard,
+                            outFields: ["*"]
+                        }
+                        feature2.labelingInfo = [mapSymbols.locationNameLabelClass, mapSymbols.waitTimeLabelClass]
+
+                        feature2.style = mapSymbols.renderer
+                        feature2.popupEnabled = true
+
+                        view.graphics.add(feature2);
+
+                    });
+                });
+
+        }
+
+        mapFunctions.queryFeaturesInExtent = function () {
+
+
+            var query = facilityLayerFeatureLayerlarge.createQuery();
+
+            if ($("#mapfilter-switch").is(':checked')) {
+                query.geometry = view.extent;  // the point location of the pointer
+                query.spatialRelationship = "intersects";  // this is the default
+            }
+
+            keyword = $("#locationSearchForm_SearchKeyword").val().toUpperCase()
+
+            //console.log(keyword)
+            if (keyword) {
+                query.where = "UPPER(POLLING_PL) like '%" + keyword.toUpperCase() + "%' ";
+                query.where += "OR Upper(POLLING_LO) like '%" + keyword.toUpperCase() + "%' ";
+                query.where += "OR Upper(SubLocation) like '%" + keyword.toUpperCase() + "%' ";
+                query.where += "OR Upper(CITY) like '%" + keyword.toUpperCase() + "%' ";
+            }
+
+            query.returnGeometry = true;
+            query.outFields = ["*"];
+            query.outSpatialReference = new SpatialReference({ wkid: 3857 });
+
+            facilityLayerFeatureLayerlarge.queryFeatures(query)
+                .then(function (response) {
+                    featureQueryToSideBar(response.features)
+                });
+
+
+        }
+
+        function generateLinesToPollingLocations(currentLocation, features) {
+
+            features = features.sort(function (a, b) {
+                if (a.attributes.DistanceFromLocation < b.attributes.DistanceFromLocation) { return -1; }
+                if (a.attributes.DistanceFromLocation > b.attributes.DistanceFromLocation) { return 1; }
+                return 0;
+            });
+
+            var lineLayer = []
+
+            features.slice(0, 5).forEach(function (feature) {
+                paths = []
+
+                paths.push([currentLocation.x, currentLocation.y])
+                paths.push([feature.geometry.x, feature.geometry.y])
+
+                var polyline = {
+                    type: "polyline",  // autocasts as new Polyline()
+                    paths: paths,
+                    spatialReference: new SpatialReference({ wkid: 3857 })
+                };
+
+                var polygonGraphic = new Graphic({
+                    geometry: polyline,
+                    attributes: feature.attributes
+                });
+
+                lineLayer.push(polygonGraphic);
+            });
+
+            if (polyLineLocation) {
+                map.remove(polyLineLocation);
+            }
+
+            polyLineLocation = new FeatureLayer({
+                source: lineLayer,
+                objectIdField: "PollingLocationCode",
+                geometryType: "polyline",
+                renderer: mapSymbols.lineLocationSymbol,
+
+            });
+
+
+            map.add(polyLineLocation, 0)
+
+            polyLineLocation.when(() => {
+                view.goTo(polyLineLocation.fullExtent);
+            });
+
+
+        }
+
+        function queryDistanceToVotingPolls(currentLocation) {
+            var query = facilityLayerFeatureLayerlarge.createQuery();
+            query.where = '1=1'
+            query.returnGeometry = true;
+            query.outFields = ["*"];
+            query.outSpatialReference = new SpatialReference({ wkid: 3857 });
+
+            facilityLayerFeatureLayerlarge.queryFeatures(query)
+                .then(function (response) {
+                    response.features.forEach(function (feature) {
+                        distanceFromLocation = geometryEngine.distance(currentLocation, feature.geometry, "miles");
+                        feature.attributes.DistanceFromLocation = +distanceFromLocation.toFixed(2);
+                    });
+
+                    facilityLayerFeatureLayerlarge.applyEdits({ updateFeatures: response.features });
+
+
+                    generateLinesToPollingLocations(currentLocation, response.features);
+
+                });
+        }
+
+        function resetDistanceToVotingPolls() {
+            var query = facilityLayerFeatureLayerlarge.createQuery();
+            query.where = '1=1'
+            query.returnGeometry = true;
+            query.outFields = ["*"];
+            query.outSpatialReference = new SpatialReference({ wkid: 3857 });
+
+            facilityLayerFeatureLayerlarge.queryFeatures(query)
+                .then(function (response) {
+                    response.features.forEach(function (feature) {
+                        delete feature.attributes.DistanceFromLocation
+                    });
+
+                });
+        }
+
+        function setUpMapSymbols() {
+            mapSymbols.stopSymbol = new WebStyleSymbol({
+                name: "embassy",
+                styleName: "Esri2DPointSymbolsStyle"
+            });
+
+            // Define the symbology used to display the route
+            mapSymbols.routeSymbol = {
+                type: "simple-line", // autocasts as SimpleLineSymbol()
+                color: [0, 0, 255, 0.5],
+                width: 5
+            };
+            // Define the symbology used to display the route
+            mapSymbols.lineLocationSymbol = {
+                type: "simple",  // autocasts as new SimpleRenderer()
+                symbol: {
+                    type: "simple-line",  // autocasts as new SimpleFillSymbol()
+                    color: "#284E5F",
+                    width: 2,
+                    style: "short-dot"
+
+                },
+            };
+            mapSymbols.polySym = {
+                type: "simple-fill", // autocasts as new SimpleFillSymbol()
+                color: [140, 140, 222, 0.2],
+                outline: {
+                    color: [0, 0, 0, 0.5],
+                    width: 2
+                }
+            };
+
+            //clusterexpression = "$feature.WaitTime >= 45, 4,"
+            clusterexpression = "$feature.WaitTime > 30, 3,"
+            clusterexpression += "$feature.WaitTime > 15, 2,"
+            clusterexpression += "$feature.WaitTime > 0, 1,"
+            clusterexpression += "$feature.WaitTime == 0 && !IsEmpty($feature.WaitTime), 0, 99"
+            //nonclusterexpression = "$feature.AVG_WaitTime >= 45 && $feature.aggregateCount > 1, 5,"
+            nonclusterexpression = "$feature.AVG_WaitTime > 30 && $feature.aggregateCount > 1, 6,"
+            nonclusterexpression += "$feature.AVG_WaitTime >= 16 && $feature.aggregateCount > 1, 7,"
+            nonclusterexpression += "$feature.AVG_WaitTime > 0 && $feature.aggregateCount > 1, 8,"
+            nonclusterexpression += "$feature.AVG_WaitTime == 0 && $feature.aggregateCount > 1, 9,"
+
+            ////console.log(VirtualDirectory + "/images/TimeIconWhite.png")
+            mapSymbols.renderer = {
+                type: "class-breaks", // autocasts as new ClassBreaksRenderer()
+                field: "Attr_TraveTimeMin", // total number of adults (25+) with a college degree
+                valueExpression: "When(" + nonclusterexpression + clusterexpression + ")",
+                classBreakInfos: [
+                    {
+                        minValue: 0,
+                        maxValue: 0,
+                        symbol: {
+                            type: "picture-marker",  // autocasts as new PictureMarkerSymbol()
+                            url: VirtualDirectory + "/images/TimeIconWhite.png",
+                            width: "70px",
+                            height: "70px",
+                            opacity: .5
+                        },
+                        label: "No Wait" // label for symbol in legend
+                    },
+                    {
+                        minValue: 1,
+                        maxValue: 1,
+                        symbol: {
+                            type: "picture-marker",  // autocasts as new PictureMarkerSymbol()
+                            url: VirtualDirectory + "/images/TimeIconGreen.png",
+                            width: "70px",
+                            height: "70px",
+                            opacity: .5
+                        },
+                        label: "< 15 min" // label for symbol in legend
+                    },
+                    {
+                        minValue: 2,
+                        maxValue: 2,
+                        symbol: {
+                            type: "picture-marker",  // autocasts as new PictureMarkerSymbol()
+                            url: VirtualDirectory + "/images/TimeIconYellow.png",
+                            width: "70px",
+                            height: "70px",
+                            opacity: .5
+                        },
+                        label: "15 - 30 min" // label for symbol in legend
+                    },
+                    {
+                        minValue: 3,
+                        maxValue: 3,
+                        symbol: {
+                            type: "picture-marker",  // autocasts as new PictureMarkerSymbol()
+                            url: VirtualDirectory + "/images/TimeIconRed.png",
+                            width: "70px",
+                            height: "70px",
+                            opacity: .5
+                        },
+                        label: "> 45 min" // label for symbol in legend
+                    },
+                    {
+                        minValue: 5,
+                        maxValue: 5,
+                        symbol: {
+                            type: "picture-marker",  // autocasts as new PictureMarkerSymbol()
+                            url: VirtualDirectory + "/images/ClusterTimeIconOrange.png",
+                            width: "70px",
+                            height: "70px",
+                            opacity: .5
+                        },
+                        label: "Over 1 Hour" // label for symbol in legend
+                    },
+                    {
+                        minValue: 5,
+                        maxValue: 5,
+                        symbol: {
+                            type: "picture-marker",  // autocasts as new PictureMarkerSymbol()
+                            url: VirtualDirectory + "/images/ClusterTimeIconRed.png",
+                            width: "70px",
+                            height: "70px",
+                            opacity: .5
+                        },
+                        label: "Over 1 Hour" // label for symbol in legend
+                    },
+                    {
+                        minValue: 6,
+                        maxValue: 6,
+                        symbol: {
+                            type: "picture-marker",  // autocasts as new PictureMarkerSymbol()
+                            url: VirtualDirectory + "/images/ClusterTimeIconOrange.png",
+                            width: "70px",
+                            height: "70px",
+                            opacity: .5
+                        },
+                        label: "Over 1 Hour" // label for symbol in legend
+                    },
+                    {
+                        minValue: 7,
+                        maxValue: 7,
+                        symbol: {
+                            type: "picture-marker",  // autocasts as new PictureMarkerSymbol()
+                            url: VirtualDirectory + "/images/ClusterTimeIconYellow.png",
+                            width: "70px",
+                            height: "70px",
+                            opacity: .5
+                        },
+                        label: "Over 1 Hour" // label for symbol in legend
+                    },
+                    {
+                        minValue: 8,
+                        maxValue: 8,
+                        symbol: {
+                            type: "picture-marker",  // autocasts as new PictureMarkerSymbol()
+                            url: VirtualDirectory + "/images/ClusterTimeIconGreen.png",
+                            width: "70px",
+                            height: "70px",
+                            opacity: .5
+                        },
+                        label: "Over 1 Hour" // label for symbol in legend
+                    },
+                    {
+                        minValue: 9,
+                        maxValue: 9,
+                        symbol: {
+                            type: "picture-marker",  // autocasts as new PictureMarkerSymbol()
+                            url: VirtualDirectory + "/images/ClusterTimeIconWhite.png",
+                            width: "70px",
+                            height: "70px",
+                            opacity: .5
+                        },
+                        label: "Over 1 Hour" // label for symbol in legend
+                    },
+                    {
+                        minValue: 99,
+                        maxValue: 99,
+                        symbol: {
+                            type: "picture-marker",  // autocasts as new PictureMarkerSymbol()
+                            url: VirtualDirectory + "/images/TimeIconGray.png",
+                            width: "70px",
+                            height: "70px",
+                            opacity: .5
+                        },
+                        label: "Over 1 Hour" // label for symbol in legend
+                    }
+                ]
+            };
+        }
+
+        function setUpMapLabel() {
+            mapSymbols.waitTimeLabelClass = {  // autocasts as new LabelClass()
+                symbol: {
+                    type: "text",
+                    color: "#004a5d",
+                    yoffset: 2,
+                    font: {
+                        weight: "bold",
+                        family: "Noto Sans",
+                        size: "12px"
+                    }
+                },
+                labelPlacement: "center-center",
+                labelExpressionInfo: {
+                    expression: `Iif($feature.WaitTime >= 0 && !IsEmpty($feature.WaitTime), Text($feature.WaitTime, '#,###') + Iif($feature.WaitTime >= 45 && !IsEmpty($feature.WaitTime), Text('+'), '') + TextFormatting.NewLine + Text('min'), '--')`
+                },
+            };
+
+            mapSymbols.locationNameLabelClass = {  // autocasts as new LabelClass()
+                symbol: {
+                    type: "text",
+                    color: "#004a5d",
+                    haloColor: "white",
+                    haloSize: 6,
+                    yoffset: -10,
+                    font: {
+                        weight: "bold",
+                        family: "Noto Sans",
+                        size: "12px"
+                    }
+                },
+                labelPlacement: "above-center",
+                labelExpressionInfo: {
+                    expression: "Text($feature.POLLING_PL)"
+                },
+                maxScale: 0,
+                minScale: 30000,
+            };
+        }
+
+        function setUpMapView() {
+            view.popup = {
+                viewModel: {
+                    includeDefaultActions: false
+                },
+                includeDefaultActions: false,
+                dockEnabled: false,
+                dockOptions: {
+                    buttonEnabled: false,
+                }
+            };
+
+
+
+            var serachContainer = document.getElementById("searchContainer");
+
+            searchWidget = new Search({
+                view: view,
+                includeDefaultSources: false,
+                container: serachContainer,
+                popupEnabled: false,
+                sources: [
+                    {
+                        url: "https://mapit.tarrantcounty.com/arcgis/rest/services/Geocode/CompositeLocator/GeocodeServer",
+                        name: "Tarrant County",
+                        singleLineFieldName: "SingleLine",
+                        placeholder: "Find locations by address",
+                        resultSymbol: new WebStyleSymbol({
+                            name: "tear-pin-1",
+                            styleName: "Esri2DPointSymbolsStyle"
+                        }),
+                    }
+                ]
+            });
+
+            searchWidget.goToOverride = function (view, goToParams) {
+                queryDistanceToVotingPolls(goToParams.target.target.geometry.centroid)
+            };
+
+
+            searchWidget.on("search-clear", function (event) {
+                if (polyLineLocation) {
+                    map.remove(polyLineLocation);
+                    resetDistanceToVotingPolls();
+                }
+            });
+
+            var routingWidget = document.getElementById("routingPane");
+
+            view.ui.add(routingWidget, "top-left");
+            view.ui.move(["zoom"], "bottom-right");
+
+
+        }
+
+        function generateVotingCenterCard(feature) {
+            feature = feature.graphic;
+            var div = document.createElement("div")
+
+            html += '<div class="card m-2">'
+            html += '<div class="card-body">'
+            html += '<div class="row">'
+            html += '<div class="col-9">'
+            html += '<h5 class="card-title" > ' + feature.attributes.POLLING_PL + '</h5 >'
+            html += '<h6 class="card-subtitle mb-2 text-muted">' + feature.attributes.POLLING_LO + ", " + feature.attributes.CITY + '</h6>'
+            if (feature.attributes.DistanceFromLocation) {
+                html += '<h6 class="card-subtitle mb-2 text-muted">' + feature.attributes.DistanceFromLocation + ' miles away</h6>'
+            }
+            html += '</div>';
+            //////console.log(feature.attributes.WaitTime)
+            if (feature.attributes.WaitTime >= 0 & feature.attributes.WaitTime != null) {
+                html += '<div class="col-3 wait-time-' + getColorFromTime(feature.attributes.WaitTime) + '" >' + feature.attributes.WaitTime + '<br>min<br><br></div>'
+            } else {
+                html += '<div class="col-3 wait-time-gray" ><br>--<br><br></div>'
+            }
+            html += '</div>'
+            html += '<div class="card-text">'
+            html += '<div class="row">'
+            //html += '<div class="col-12"><b>Sub-Location:</b> ' + feature.attributes.SubLocation
+            //html += '<br><b>Date:</b> ' + feature.attributes.Note
+            //html += '<br><b>Time:</b> ' + feature.attributes.Time + '</div>'
+            //html += '</div>'
+            html += '</div>'
+            html += '<hr style="margin: 5px;">'
+            html += '<button onclick="window.open(' + "'" + "https://www.google.com/maps/dir//" + feature.attributes.POLLING_LO + " " + feature.attributes.CITY + "'" + ')" class="btn btn-primary tc-button"><i class="fa-solid fa-route"></i> Directions</button>'
+            html += '<hr style="margin: 5px;">'
+
+            if (feature.attributes.LastUpdated != null) {
+                html += '<div class="row max-width justify-content-end lastupdatedtext text-muted">'
+                html += 'Last Updated: ' + feature.attributes.LastUpdated
+                html += '</div>'
+            }
+            html += '</div>'
+
+            html += '</div>'
+                                                                 
+            div.innerHTML = html
+            //////////////console.log(html)
+            return div
+        }
+
+        function getColorFromTime(time) {
+            if (time >= 45) return 'red';
+            if (time > 15) return 'yellow';
+            if (time > 0) return 'green';
+            else return 'white';
+        }
+
+        function fixNull(input) {
+            if (input) {
+                ////console.log(input)
+                return input
+            } else {
+                if (input == 0) {
+                    return input
+                } else {
+                    return 9999999999999999
+                }
+            }
+        }
+        function featureQueryToSideBar(features) {
+
+            pagination = [];
+            if (features.length > 0) {
+                if (features[0].attributes.DistanceFromLocation) {
+                    features = features.sort(function (a, b) { return a.attributes.DistanceFromLocation - b.attributes.DistanceFromLocation });    // Sort the numbers in the array in descending order
+                } else {
+                    ////console.log("sort")
+
+                    features = features.sort(function (a, b) { return fixNull(a.attributes.WaitTime) - fixNull(b.attributes.WaitTime) });    // Sort the numbers in the array in descending order
+
+                }
+            }
+
+            // Sort the numbers in the array in descending order
+            html = '';
+            pagecount = 0;
+            features.forEach(function (feature) {
+                ////////////////console.log(feature)
+                html += '<div class="card card-shadow m-2">'
+                html += '<div class="card-body">'
+                html += '<div class="row">'
+                html += '<div class="col-9">'
+                html += '<h5 class="card-title" > ' + feature.attributes.POLLING_PL + '</h5 >'
+                html += '<h6 class="card-subtitle mb-2 text-muted">' + feature.attributes.POLLING_LO + ", " + feature.attributes.CITY + '</h6>'
+                if (feature.attributes.DistanceFromLocation) {
+                    html += '<h6 class="card-subtitle mb-2 text-muted">' + feature.attributes.DistanceFromLocation + ' miles away</h6>'
+                }
+                html += '</div>';
+                //////console.log(feature.attributes.WaitTime)
+                if (feature.attributes.WaitTime >= 0 & feature.attributes.WaitTime != null) {
+                    html += '<div class="col-3 wait-time-' + getColorFromTime(feature.attributes.WaitTime) + '" >' + feature.attributes.WaitTime + '<br>min<br><br></div>'
+                } else {
+                    html += '<div class="col-3 wait-time-gray" ><br>--<br><br></div>'
+                }
+                html += '</div>'
+                //html += '<div class="chart-js-canvas-holder"><div id="' + feature.attributes.PollingPlaceCode + '_chartJSHolder" class="card-text">'
+                //html += '<button onclick="window.open(' + "'" + 'https://www.tarrantcountytx.gov/content/dam/main/elections/2026/0126/locations/0126_EV_Sched.pdf' + "'" + ')" class="btn btn-primary tc-button">Hours of Operations</button>'
+
+                if (feature.attributes.Note) {
+                    html += '<br>' + feature.attributes.Note
+                }
+                //html += '</div>'
+                //html += '</div>'
+                html += '<hr style="margin: 5px;">'
+                html += '<button onclick="mapFunctions.zoomToFeature(' + "'" + feature.attributes.POLLING_PL + "'" + ')" class="btn btn-warning tc-button"><i class="fa-solid fa-map-pin"></i> Zoom To</button>'
+                html += '<button onclick="window.open(' + "'" + "https://www.google.com/maps/dir//" + feature.attributes.POLLING_LO + " " + feature.attributes.CITY + "'" + ')" class="btn btn-primary tc-button"><i class="fa-solid fa-route"></i> Directions</button>'
+
+                html += '<hr style="margin: 5px;">'
+
+                if (feature.attributes.LastUpdated != null) {
+                    html += '<div class="row max-width justify-content-end lastupdatedtext text-muted">'
+                    html += 'Last Updated ' + feature.attributes.LastUpdated
+                    html += '</div>'
+                }
+                html += '</div>'
+
+                html += '</div>'
+
+                pagecount += 1;
+
+                if (pagecount == $("#optionsPerPage").val()) {
+                    pagination.push('<table>' + html + '</table>')
+                    html = "";
+                    pagecount = 0
+                }
+            });
+
+            $('#pagination').empty();
+            $('#pagination').removeData("twbs-pagination");
+
+            if (features.length > 0) {
+                pagination.push('<table>' + html + '</table>')
+                html = "";
+                pagecount = 0
+
+                defaultOpts = {
+                    totalPages: pagination.length,
+                    visiblePages: 3,
+                    onPageClick: function (event, page) {
+                        $('#toc-items').html(pagination[page - 1]);
+
+                        if (showChart) {
+                            features.forEach(function (feature) {
+                                $("#" + feature.attributes.PollingPlaceCode + "_chartJSHolder").append('<hr><center><h6>Historical Avg Voting Wait Times</h6></center>')
+
+                                $("#" + feature.attributes.PollingPlaceCode + "_chartJSHolder").append(chartsCanvas[feature.attributes.PollingPlaceCode]);
+
+                            });
+                        }
+                    }
+                };
+
+                $('#pagination').twbsPagination(defaultOpts);
+
+                $('#toc-items').html(pagination[0]);
+            } else {
+                $('#toc-items').html("<center><h5>No voting locations found<h5></center>");
+            }
+
+            if (showChart) {
+                features.forEach(function (feature) {
+                    $("#" + feature.attributes.PollingPlaceCode + "_chartJSHolder").append('<hr><center><h6>Historical Avg Voting Wait Times</h6></center>')
+
+                    $("#" + feature.attributes.PollingPlaceCode + "_chartJSHolder").append(chartsCanvas[feature.attributes.PollingPlaceCode]);
+
+                });
+            }
+
+        }
+
+    });
+}

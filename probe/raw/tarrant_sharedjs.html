@@ -1,0 +1,852 @@
+﻿var VirtualDirectory;
+var savedFormValues = [];
+
+$(document).ready(function () {
+    SharedFunctions();
+    $('#confirmModal, #alertModal').on('hide.bs.modal', function () {
+        $(this).prev($('.modal-backdrop')).remove();
+    });
+
+    //JsGridCustomConfig();
+});
+
+var lastScroll = [];
+
+
+function fieldListToJSGridHeaders(fieldList) {
+
+    var jdGridFields = [];
+    var hiddenFields = ["ID", "X", "Y", "MasterContactID", "LocationID", "Election_Precinct_List_ID", "Master_Poll_Worker_ID", "Election_Polling_Location_List_ID", "LU_Role_ID", "LU_Worker_Event_ID", "Election_ID", "LU_Language_ID", "LanguageRuleStatus", "LU_Party_ID", "AssignmentRuleStatus"];
+
+    $.each(fieldList[0], function (i, field) {
+
+        const largestValue = Math.max.apply(Math, fieldList.map(function (o) {
+            let string = String(o[i]).length
+            return string;
+        }
+        ));
+
+        let rowLength = (i.length * 10);
+
+        if (largestValue > i.length) {
+            rowLength = (largestValue + 80);
+        }
+
+        ////////console.log(i, i.length, largestValue)
+        visible = true
+
+        if (hiddenFields.includes(i)) {
+            visible = false
+        }
+
+        jdGridFields.push({
+            name: i,
+            type: "text",
+            title: i,
+            width: rowLength,
+            visible: visible,
+            align: "left"
+        });
+    });
+
+    return jdGridFields;
+}
+
+function setupPhoneFormater(id) {
+    $("#" + id).attr('maxlength', '12');
+    $("#" + id).attr('pattern', '[0-9]{3}-[0-9]{3}-[0-9]{4}');
+
+    $("#" + id).on('paste', function (e) {
+        ////console.log("PASTE")
+        tempValue = e.originalEvent.clipboardData.getData('Text');
+        var tempValue = tempValue.replace(/\D/g, '');
+
+        tempValue = tempValue.replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '$1-$2-$3');
+        ////console.log(tempValue)
+
+        $("#" + id).val('');
+        $("#" + id).val(tempValue);
+    });
+
+    $("#" + id).on('keyup', function (e) {
+        if (event.key != 'Backspace' && ($("#" + id).val().length === 3 || $("#" + id).val().length === 7)) {
+            $("#" + id).val($("#" + id).val() + '-');
+        }
+    });
+
+    $("#" + id).on('keydown', function (e) {
+        if (event.key != 'Backspace' && !event.ctrlKey && ($("#" + id).val().length === 3 || $("#" + id).val().length === 7)) {
+            $("#" + id).val($("#" + id).val() + '-');
+        }
+    });
+
+
+    var phone_input = document.getElementById(id);
+
+    phone_input.addEventListener('input', () => {
+        phone_input.setCustomValidity('');
+        phone_input.checkValidity();
+    });
+
+    phone_input.addEventListener('invalid', () => {
+        if (phone_input.value === '') {
+            phone_input.setCustomValidity('Enter phone number!');
+        } else {
+            phone_input.setCustomValidity('Enter phone number in this format: 123-456-7890 or 1234567890');
+        }
+    });
+}
+
+function goToByScroll(id, scrollID) {
+    var scrollTop = $('#' + id).offset().top;
+    var scrollTopDiv = $('#' + scrollID).offset().top;
+
+    var scrollPos = $('#' + scrollID).scrollTop();
+
+    $('#' + scrollID).scrollTop(scrollTop - scrollTopDiv + scrollPos - 120);
+}
+
+function setActiveScroll(activeID, id) {
+    if (lastScroll[id].activeID != activeID) {
+
+        ids = document.getElementsByClassName("list-scroll");
+/*        alert(JSON.stringify(ids));*/
+        $.each(ids, function (k, v) {
+            $("#" + ids[k].id).removeClass("active");
+        });
+
+        $("#" + activeID + "-list").addClass("active");
+       
+        lastScroll[id].activeID = activeID;
+    }
+
+}
+
+function scrollSpySetup(id) {
+    var slider = document.getElementById(id)
+
+    var values = {};
+    values["activeID"] = "TEST";
+    lastScroll[id] = values;
+
+    slider.addEventListener('scroll', function (e) {
+        currentlist = [];                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+        canvaslist = slider.getElementsByClassName("list-accordian");
+
+        $.each(canvaslist, function (k, v) {
+            var top_of_element = $("#" + canvaslist[k].id).offset().top
+            var bottom_of_element = $("#" + canvaslist[k].id).offset().top + $("#" + canvaslist[k].id).outerHeight();
+            var bottom_of_screen = $(window).scrollTop() + $(window).height() - 400;
+            var top_of_screen = $(window).scrollTop();
+
+            if ((bottom_of_screen > top_of_element) && (top_of_screen <= bottom_of_element)) {
+                setActiveScroll(canvaslist[k].id, id);
+            } else {
+
+            }
+        });
+
+    });
+
+}
+
+function getBaseURL() {
+
+}
+function delay(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+}
+function JsGridCustomConfig() {
+    //----Customize grid behavior to include current row IDs for validation----//
+    function CustomValidation(config) {
+        jsGrid.Validation.call(this, config);
+    }
+    CustomValidation.prototype = new jsGrid.Validation();
+    CustomValidation.prototype.validate = function (args) {
+        var errors = [];
+        var currentRowData = this.grid.option("data")[((this.grid.pageIndex - 1) * this.grid.pageSize) + args.itemIndex];//get current row on validation
+
+        $.each(this._normalizeRules(args.rules), function (_, rule) {
+            if (rule.validator(args.value, args.item, rule.param, currentRowData))
+                return;
+            var errorMessage = $.isFunction(rule.message) ? rule.message(args.value, args.item) : rule.message;
+            errors.push(errorMessage);
+        });
+
+        return errors;
+    };
+    jsGrid.CustomValidation = CustomValidation;
+    //------------------------------------------------------------------------------------//
+
+    jsGrid.SelectField.prototype.editValue = function () { //collect disabled options
+        var val = this.editControl.children("option:selected").val();
+        return this.valueType === "number" ? parseInt(val || 0, 10) : val;
+    }
+
+    jsGrid.CheckboxField.prototype.insertTemplate = function () { //default to checked on insert
+        if (!this.inserting)
+            return "";
+
+        return this.insertControl = this._createCheckbox().prop('checked', true);
+    };
+
+    jsGrid.TextField.prototype.insertTemplate = function () {
+        if (!this.inserting)
+            return "";
+
+        return this.insertControl = $("<input>").attr("type", "text").prop("readonly", false);
+    };
+
+    jsGrid.sortStrategies.dateString = function (date1, date2) {
+        return new Date(date1) - new Date(date2);
+    };
+
+    jsGrid.validators.phoneVal = {
+        message: "Phone number must be 7 or 10 digits long.",
+        validator: function (value, item) {
+            var num = value.replace(/\D/g, '');
+            if (num.length === 7 || num.length === 10) {
+                item.Phone = FormatPhone(num);
+                return true;
+            } else {
+                return false;
+            }
+        }
+    };
+
+    jsGrid.validators.uniqueAdmin = {
+        message: "Name must be unique.",
+        validator: function (value, item, param, currRow) {
+            var propname;
+            /*  alert($("#jsgrid-TableAdministration-List").data);*/
+            for (var prop in item) {
+                if (item[prop] === value) {
+                    propname = prop;
+                }
+            }
+            return IsUnique(propname, value, currRow, "ID", $("#jsgrid-TableAdministration-List").data);
+        }
+    };
+
+    jsGrid.validators.currency = {
+        message: "Amount must be a number.",
+        validator: function (value, item, param, currRow) {
+            return $.isNumeric(item.CondemnationCost.replace(/\$|,/g, ''));
+        }
+    };
+}
+
+function IsUnique(testField, value, currRow, idField, data) {
+    var val = true;
+    $.each(data, function (i, row) {
+        if (row[testField].toLowerCase() === value.toLowerCase()) {
+            val = false;
+            if (currRow) {
+                if (row[idField] === currRow[idField]) {
+                    val = true;
+                }
+            }
+        }
+    });
+    return val;
+}
+
+function SharedFunctions() {
+    //$('#LogoutButton').on("click", function () {
+    //    $('[data-toggle="tooltip"]').tooltip();
+    //});
+
+    //$('#LogoutButton').on("click", function () {
+    //    $.ajax({
+    //        type: 'POST',
+    //        url: 'Authentication/LogOut',
+    //        success: function (raw) {
+    //            window.location.href = ''
+    //        },
+    //        error: function (e) {
+    //            alert('Error: No Results dsfsdafsdaf. Please try again.' + e);
+    //        }
+    //    });
+    //});
+
+    var pathname = window.location.pathname;
+
+    //////////////////////console.log(location.hostname)
+    if (pathname == '/') {
+        VirtualDirectory = "";
+    }
+    else {
+        VirtualDirectory = pathname;
+        if (pathname.substr(-1) != "/") {
+            VirtualDirectory += '/';
+        }
+    }
+
+    //////////////////////console.log(VirtualDirectory);
+}
+
+function showToast(header, body, duration = 700) {
+
+    //////console.log("Show toast")
+    $("#messageToast").toast({
+        delay: duration
+    });
+
+    $("#messageHeader").html(header);
+    $("#messageBody").html(body);
+    $("#messageToast").toast("show");
+}
+
+function customAlert(msg, title) {
+    $('#customPopUp .modal-title').html(title || "");
+    $('#customPopUp .modal-body').html(msg);
+    $('#customPopUp').modal('show');
+}
+
+function customConfirm(msg, callback) {
+    $("#confirmModal .modal-body").html(msg);
+    $("#confirmModal").modal('show');
+    $backdrop = $(document.createElement('div'))
+        .addClass('modal-backdrop fade show custom-modal-backdrop')
+        .insertBefore($("#confirmModal"));
+
+    $("#btnDeleteConfirmed").off('click');
+    $("#btnDeleteConfirmed").on('click', function () {
+        if (callback) { callback(); }
+    });
+}
+
+function CallWebMethodDownloadFile(data, method, callback) { //if no parameters, set data = null
+
+
+    ////////////////console.log("")
+    $.ajax({
+        type: 'POST',
+        url: baseUrl + method,
+        data: data,
+        contentType: "application/x-www-form-urlencoded",
+        xhrFields: {
+            // make sure the response knows we're expecting a binary type in return.
+            // this is important, without it the excel file is marked corrupted.
+            responseType: 'arraybuffer'
+        }
+    })
+        .done(function (data, status, xmlHeaderRequest) {
+            time = 1200;
+            timeEnd = new Date(Date.now() + 10 * 120000);
+            callback(data);
+        });
+}
+
+function CallWebMethod(data, method, callback) { //if no parameters, set data = null
+    $.ajax({
+        type: 'POST',
+        url: baseUrl + method,
+        data: data,
+        contentType: "application/x-www-form-urlencoded",
+        dataType: "json",
+        async: "true",
+        cache: "false",
+        success: function (raw) {
+            time = 1200;
+            timeEnd = new Date(Date.now() + 20 * 60000);
+
+            ////////////////console.log(method)
+            if (method == "Reports/GetReportDownload") {
+                return callback(raw);
+            }
+            if (raw) {
+                json = JSON.parse(raw);
+
+                //////console.log(json)
+                if (json.StatusID == 1) {
+                    callback(json);
+                    if (json.Message) {
+                        showToast("Success", json.Message, duration = 1000)
+                    }
+                } else if (json.StatusID == -1) {
+                    if (json.Message) {
+                        /*  alert(json.Message);*/
+                        customAlert(json.Message, "Error")
+                        //callback(null);
+                    }
+                } else if (json.StatusID == -2) {
+                    if (json.Message) {
+                        customConfirm(json.Message, function () {
+                            data.isSecondClick = 1;
+                            CallWebMethod(data, method, callback);
+                        });
+                    }
+                } else if (json.StatusID == -3) {
+                    if (json.Message) {
+                        customAlert(json.Message, "Duplicate Validation");
+
+                        //customConfirm(json.Message, function () {
+                        //    customAlert(json.Message, "Duplicate Validation")
+                        //    //callback(null);
+                        //    /*CallWebMethod(data, method, callback);*/
+                        //});
+                    }
+                } else if (json.StatusID == -999) {
+                    showToast("Login Session Expired.", "Your login session has expired. You will be redirected to the login page in 10 seconds.", duration = 3000)
+
+                    delay(3000).then(() => document.location.href = baseUrl);
+
+                } else {
+                    callback(json);
+                }
+            } else {
+                console.error("Server did not return data for " + method);
+            }
+        },
+        error: function (e) {
+            ////////////////////console.log(e);
+        }
+    });
+}
+
+function CallWebMethodJSON(data, method, callback) { //if no parameters, set data = null
+    //////////////////console.log(data)
+    $.ajax({
+        type: 'POST',
+        url: baseUrl + method,
+        data: data,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: "true",
+        cache: "false",
+        success: function (raw) {
+            time = 600;
+            timeEnd = new Date(Date.now() + 10 * 60000);
+
+            //////////////////console.log(method)
+
+            //if (raw) {
+            //    callback(JSON.parse(raw));
+            //} else {
+            //    console.error("Server did not return data for " + method);
+            //}
+            if (raw) {
+                json = JSON.parse(raw);
+
+                if (json.StatusID > 0) {
+                    if (json.Message) {
+                        showToast("Success", json.Message, duration = 1700)
+                    }
+                    callback(json);
+                } else if (json.StatusID == -1) {
+                    if (json.Message) {
+                        customAlert(json.Message, "Error")
+                        callback(null);
+                    }
+                } else if (json.StatusID == -2) {
+                    if (json.Message) {
+                        customConfirm(json.Message, function () {
+                            data.isSecondClick = 1;
+                            CallWebMethod(data, method, callback);
+                        });
+                    }
+                } else if (json.StatusID == -3) {
+                    if (json.Message) {
+                        customAlert(json.Message, "Duplicate Validation")
+                        callback(JSON.parse(raw));
+                    }
+                } else if (json.StatusID == -999) {
+                    showToast("Login Session Expired.", "Your login session has expired. You will be redirected to the login page in 10 seconds.", duration = 3000)
+
+                    delay(3000).then(() => document.location.href = baseUrl);
+
+                } else {
+                    callback(JSON.parse(raw));
+                }
+            } else {
+                console.error("Server did not return data for " + method);
+            }
+        },
+        error: function (e) {
+            ////////////////////console.log(e);
+        }
+    });
+}
+
+function CallWebMethodFile(fdata, method, callback) { //if no parameters, set data = null
+    //////////////////console.log(data)
+    $.ajax({
+        type: "POST",
+        url: method,
+        data: fdata,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        contentType: false,
+        processData: false,
+        success: function (raw) {
+            time = 600;
+            timeEnd = new Date(Date.now() + 10 * 60000);
+
+            if (raw) {
+                json = JSON.parse(raw);
+                if (json.StatusID > 0) {
+                    if (json.Message) {
+                        showToast("Success", json.Message, duration = 5000)
+                        callback(json);
+                    }
+                    callback(json);
+                } else if (json.StatusID == 0) {
+                    if (json.Message) {
+                        customAlert(json.Message, "File Already Present")
+                        callback(json);
+                    }
+                } else if (json.StatusID == -1) {
+                    if (json.Message) {
+                        customAlert(json.Message, "Error")
+                        callback(json);
+                    }
+                } else if (json.StatusID == -2) {
+                    callback(json);
+                } else if (json.StatusID == -999) {
+                    showToast("Login Session Expired.", "Your login session has expired. You will be redirected to the login page in 10 seconds.", duration = 3000)
+
+                    delay(3000).then(() => document.location.href = baseUrl);
+
+                } else {
+                    callback(json);
+                }
+            } else {
+                console.error("Server did not return data for " + method);
+            }
+        },
+        error: function (e) {
+            // alert(JSON.stringify(e));
+            ////////////////////console.log(e);
+        }
+    });
+}
+
+function CollectForm(formcontrols) {
+    //each item must have a data-property attribute
+    //add 'double' class to parseFloat an input value
+    var object = {};
+    $.each(formcontrols, function (i, item) {
+        if (item.type === 'checkbox') {
+            object[$(item).data('property')] = +$(item).prop('checked');
+
+        } else if (item.type === 'select-one' || (item.type === 'number' && $(item).hasClass('double') === false)) {
+            object[$(item).data('property')] = parseInt($(item).val()) || -1;
+
+        } else if (item.type === 'number' && $(item).hasClass('double')) {
+            object[$(item).data('property')] = parseFloat($(item).val()) || -1;
+
+        } else if (item.type === 'submit' || item.type === 'button') {
+            object[$(item).data('property')] = parseInt($(item).data('id')) || -1;
+
+        } else if (item.type === 'file') {
+            object[$(item).data('property')] = item.files;
+        }
+        else {
+            object[$(item).data('property')] = $(item).val();
+        }
+    });
+
+    return object;
+}
+
+function ValidateForm(inputs) {
+    var isFormValid = true;
+    $.each(inputs, function (i, input) {
+        var isFieldValid = true;
+
+        if ($(input).hasClass('military-time')) {
+            var isValidTime = /^([01]\d|2[0-3]):?([0-5]\d)$/.test($(input).val().trim());
+            if ($(input).val().trim() !== "" && !isValidTime) {
+                isFieldValid = false;
+            }
+        }
+        //if ($(input).hasClass('datepicker')) {
+        //    var isValidDate = /^(0?[1-9]|1[0-2])\/(0?[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/.test($(input).val().trim());
+        //    if ($(input).val().trim() !== "" && !isValidDate) {
+        //        isFieldValid = false;
+        //    }
+        //}
+        if ($(input).hasClass('email')) {
+            var isValidEmail = /^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$/.test($(input).val().trim());
+            if ($(input).val().trim() !== "" && !isValidEmail) {
+                isFieldValid = false;
+            }
+        }
+        if ($(input).hasClass('zip')) {
+            var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test($(input).val().trim());
+            if ($(input).val().trim() !== "" && !isValidZip) {
+                isFieldValid = false;
+            }
+        }
+        if ($(input).hasClass('phone')) {
+            if (!validatePhone($(input).val().trim(), $(input))) {
+                isFieldValid = false;
+            }
+        }
+        if ($(input).hasClass('required-select')) {
+            if (parseInt($(input).val().trim()) < 0) {
+                isFieldValid = false;
+            }
+        }
+        if ($(input).hasClass('required-text')) {
+            if ($(input).val().trim() === '') {
+                isFieldValid = false;
+            }
+        }
+
+        if (isFieldValid) {
+            $(input).removeClass('is-invalid')
+        } else {
+            $(input).addClass('is-invalid');
+            isFormValid = false;
+        }
+    });
+    return isFormValid;
+}
+
+function FillForm(obj, formDiv, callback) {
+    //selects must have data-property and data-name-field attributes
+    //btns w/ ids need data-property and data-id attribute
+
+    var g = 1;
+    $.each(obj, function (key, value) {
+        var input = $(formDiv + " :input[data-property='" + key + "']");
+        if (input.length > 0) {
+            if (input[0].type === 'select-one') {
+                if ($(formDiv + ' #' + input[0].id + ' option[value="' + value + '"]').length > 0) { //Select option 
+                    input.val(value);
+                } else { //Add option
+                    var option = '<option value="' + value + '">' + obj[input.data('name-field')] + '</option>';
+                    input.append(option);
+                    input.val(value);
+                }
+
+            } else if (input[0].type === 'checkbox') {
+                input.prop('checked', !!value);
+
+            } else if (input[0].type === 'button' || input[0].type === 'submit') {
+                input.data('id', value);
+            } else {
+                input.val(value);
+            }
+        }
+    });
+    if (callback) { callback(); }
+}
+
+function noResultsDIV(icon, text) {
+    return '<h5 class="noresults centerdash"><center><i class="' + icon + '" aria-hidden="true"></i></center>' + text + '</h5>';
+}
+
+function serializeForm(formID) {
+
+    var values = {};
+    $.each($('#' + formID).serializeArray(), function (i, field) {
+        values[field.name] = field.value;
+    });
+
+    return values
+}
+
+function saveEditFormToVariable(formID) {
+
+    var values = {};
+    $.each($('#' + formID).serializeArray(), function (i, field) {
+        values[field.name] = field.value;
+    });
+
+    savedFormValues[formID] = values;
+}
+
+function loadSavedFormValues(formID, formPrefix) {
+
+    ////////////console.log(savedFormValues[formID])
+    $.each(savedFormValues[formID], function (k, v) {
+        ////////////console.log(k,v)
+        if (v == null) {
+            $("#" + formPrefix + k).val()
+        } else {
+            $("#" + formPrefix + k).attr("checked", numToTF(v));
+
+            $("#" + formPrefix + k).val(v)
+
+            $("#" + formPrefix + k + " > option[value='" + v + "']").attr("disabled", false);
+        }
+    });
+
+    switch (formID) {
+        case "trap-details-information-form":
+            SetUpTrapMap(savedFormValues[formID]["Lat"], savedFormValues[formID]["Lon"]);
+
+    }
+
+    delete savedFormValues[formID];
+}
+
+function numToTF(num) {
+    switch (num) {
+        case 1:
+            return true;
+            break;
+        case 0:
+            return false;
+            break;
+        default:
+            return false;
+            break;
+    }
+}
+
+function loadDataToForm(formPrefix, data) {
+    //$("#" + formPrefix.replace('_', ''))[0].reset();
+
+    $.each(data, function (k, v) {
+        ////////console.log(data);
+        if (v == null) {
+            $("#" + formPrefix + k).val("");
+        } else {
+            $("#" + formPrefix + k).attr("checked", numToTF(v)).trigger('change');;
+
+            $("#" + formPrefix + k).val(v).trigger('change');
+    
+            $("#" + formPrefix + k + " > option[value='" + String(v).replace("'", "&#039;") + "']").attr("disabled", false).trigger('change');;
+        }
+    });
+}
+
+function isNull(input) {
+    if (input == null) {
+        return "None";
+    } else {
+        return input
+    }
+}
+
+function loadFormAutoComplete(formField, data, parentDiv, callback) {
+    $("#" + formField).autocomplete({
+        appendTo: "#" + parentDiv,
+        source: function (request, response) {
+            var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(request.term), "i");
+            response($.grep(data, function (item) {
+                return matcher.test(item.label);
+            }));
+        },
+        minLength: 2,
+        select: function (event, ui) {
+            ////////////console.log(ui.item)
+            $.ajax({
+                url: "https://mapit.tarrantcounty.com/arcgis/rest/services/Geocode/CompositeLocator/GeocodeServer/findAddressCandidates?SingleLine=" + ui.item.value + "&outFields=*&outSR=4326&f=json",
+                success: function (data) {
+                    ////////////console.log(data.candidates[0])
+                    callback(data);
+                }
+            });
+        },
+        open: function () {
+            $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+        },
+        close: function () {
+            $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+        }
+    });
+}
+
+function loadFormDropDowns(formPrefix, data, showSelect = true,callback) {
+    $.each(data, function (tableName, values) {
+        //////////////////console.log("#" + formPrefix + tableName)
+        $("#" + formPrefix + tableName).empty()
+
+        if (showSelect) {
+            //var f = '';
+            $("#" + formPrefix + tableName).append($('<option>', {
+                value: "",
+                text: "--Select--"
+            }));
+        }
+
+        $.each(data[tableName], function (k, v) {
+            if (v.active > -1) {
+                if (v.active == 1) {
+                    $("#" + formPrefix + tableName).append($('<option>', {
+                        value: v.value,
+                        text: v.name,
+                    }));
+                } else {
+                    $("#" + formPrefix + tableName).append($('<option>', {
+                        value: v.value,
+                        text: v.name,
+                    }).prop("disabled", true));
+                }
+            }
+            else {
+                $("#" + formPrefix + tableName).append($('<option>', {
+                    value: v.value,
+                    text: v.name,
+                }));
+            }
+        })
+
+    });
+
+    if (callback) {
+        callback(true);
+    }
+}
+
+function saveEditFormToVariable(formID) {
+
+    var values = {};
+    $.each($('#' + formID).serializeArray(), function (i, field) {
+        values[field.name] = field.value;
+    });
+
+    savedFormValues[formID] = values;
+}
+
+function loadSavedFormValues(formID, formPrefix) {
+
+    ////////////console.log(savedFormValues[formID])
+    $.each(savedFormValues[formID], function (k, v) {
+        ////////////console.log(k,v)
+        if (v == null) {
+            $("#" + formPrefix + k).val()
+        } else {
+            $("#" + formPrefix + k).attr("checked", numToTF(v));
+
+            $("#" + formPrefix + k).val(v)
+
+            $("#" + formPrefix + k + " > option[value='" + v + "']").attr("disabled", false);
+        }
+    });
+
+    switch (formID) {
+        case "trap-details-information-form":
+            SetUpTrapMap(savedFormValues[formID]["Lat"], savedFormValues[formID]["Lon"]);
+
+    }
+
+    delete savedFormValues[formID];
+}
+
+function getAgeShared(DOB) {
+    var today = new Date();
+    var birthDate = new Date(DOB);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+}
+
+function todaysDate() {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+
+    return today;
+}

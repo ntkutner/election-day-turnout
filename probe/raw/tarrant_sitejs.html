@@ -1,0 +1,70 @@
+﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+// for details on configuring this project to bundle and minify static web assets.
+
+// Write your JavaScript code.
+function CallWebMethod(data, method, callback) { //if no parameters, set data = null
+    $.ajax({
+        type: 'POST',
+        url: baseUrl + method,
+        data: data,
+        contentType: "application/x-www-form-urlencoded",
+        dataType: "json",
+        async: "true",
+        cache: "false",
+        success: function (raw) {
+            time = 1200;
+            timeEnd = new Date(Date.now() + 20 * 60000);
+
+            ////////////////console.log(method)
+            if (method == "Reports/GetReportDownload") {
+                return callback(raw);
+            }
+            if (raw) {
+                json = JSON.parse(raw);
+
+                //////console.log(json)
+                if (json.StatusID == 1) {
+                    callback(json);
+                    if (json.Message) {
+                        showToast("Success", json.Message, duration = 1000)
+                    }
+                } else if (json.StatusID == -1) {
+                    if (json.Message) {
+                        /*  alert(json.Message);*/
+                        customAlert(json.Message, "Error")
+                        //callback(null);
+                    }
+                } else if (json.StatusID == -2) {
+                    if (json.Message) {
+                        customConfirm(json.Message, function () {
+                            data.isSecondClick = 1;
+                            CallWebMethod(data, method, callback);
+                        });
+                    }
+                } else if (json.StatusID == -3) {
+                    if (json.Message) {
+                        customAlert(json.Message, "Duplicate Validation");
+
+                        //customConfirm(json.Message, function () {
+                        //    customAlert(json.Message, "Duplicate Validation")
+                        //    //callback(null);
+                        //    /*CallWebMethod(data, method, callback);*/
+                        //});
+                    }
+                } else if (json.StatusID == -999) {
+                    showToast("Login Session Expired.", "Your login session has expired. You will be redirected to the login page in 10 seconds.", duration = 3000)
+
+                    delay(3000).then(() => document.location.href = baseUrl);
+
+                } else {
+                    callback(json);
+                }
+            } else {
+                console.error("Server did not return data for " + method);
+            }
+        },
+        error: function (e) {
+            ////////////////////console.log(e);
+        }
+    });
+}

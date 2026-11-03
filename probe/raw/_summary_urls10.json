@@ -1,0 +1,41 @@
+{
+ "tarrant_mapjs": {
+  "url": "https://gisit.tarrantcounty.com/tcvotingwaittime/js/map.js?version=12341234",
+  "status": 200,
+  "final_url": "https://gisit.tarrantcounty.com/tcvotingwaittime/js/map.js?version=12341234",
+  "ctype": "application/javascript",
+  "bytes": 50468,
+  "data_links": []
+ },
+ "tarrant_sitejs": {
+  "url": "https://gisit.tarrantcounty.com/tcvotingwaittime/js/site.js",
+  "status": 200,
+  "final_url": "https://gisit.tarrantcounty.com/tcvotingwaittime/js/site.js",
+  "ctype": "application/javascript",
+  "bytes": 2860,
+  "data_links": []
+ },
+ "tarrant_sharedjs": {
+  "url": "https://gisit.tarrantcounty.com/tcvotingwaittime/js/shared.js",
+  "status": 200,
+  "final_url": "https://gisit.tarrantcounty.com/tcvotingwaittime/js/shared.js",
+  "ctype": "application/javascript",
+  "bytes": 30559,
+  "data_links": []
+ },
+ "bexar_cfg": {
+  "url": "https://maps.bexar.org/ElectionWaitTimes/config.json",
+  "status": 404,
+  "final_url": "https://maps.bexar.org/ElectionWaitTimes/config.json",
+  "ctype": "text/html",
+  "bytes": 1245,
+  "data_links": []
+ },
+ "tarrant_ed_pdf2": {
+  "url": "https://www.tarrantcountytx.gov/content/dam/main/elections/2026/1126/reports/Election_Day_Voting_Totals.pdf",
+  "status": 200,
+  "final_url": "https://www.tarrantcountytx.gov/content/dam/main/elections/2026/1126/reports/Election_Day_Voting_Totals.pdf",
+  "ctype": "application/pdf",
+  "bytes": 78224
+ }
+}
