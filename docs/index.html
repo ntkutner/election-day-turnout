@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Election Day Turnout Monitor · Nov 3, 2026</title>
+<style>
+:root{
+  color-scheme: light;
+  --bg:#f6f6f4; --surface-1:#fcfcfb; --surface-2:#f0efec; --border:#e2e1dc;
+  --text-primary:#0b0b0b; --text-secondary:#52514e; --text-muted:#7a7974;
+  --series-1:#2a78d6; --series-2:#eb6834; --series-3:#1baf7a;
+  --good:#0ca30c; --warning:#fab219; --critical:#d03b3b;
+  --grid:#e8e7e2;
+}
+@media (prefers-color-scheme: dark){
+  :root{ color-scheme: dark;
+    --bg:#121211; --surface-1:#1a1a19; --surface-2:#242422; --border:#33332f;
+    --text-primary:#f0efec; --text-secondary:#c3c2b7; --text-muted:#8f8e86;
+    --series-1:#3987e5; --series-2:#d95926; --series-3:#199e70; --grid:#2c2c29; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text-primary);font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1240px;margin:0 auto;padding:20px 20px 60px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:8px 24px;margin-bottom:18px}
+h1{font-size:22px;margin:0;letter-spacing:-.01em}
+h2{font-size:16px;margin:0 0 4px}
+.sub{color:var(--text-secondary);font-size:13px}
+.muted{color:var(--text-muted)}
+.fresh{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--text-secondary)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--good)}
+.dot.stale{background:var(--warning)} .dot.err{background:var(--critical)}
+section{background:var(--surface-1);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:16px}
+.secthead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.kpi{background:var(--surface-1);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.kpi .label{font-size:12px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.04em}
+.kpi .val{font-size:28px;font-weight:650;letter-spacing:-.02em;margin-top:2px;font-variant-numeric:tabular-nums}
+.kpi .note{font-size:12px;color:var(--text-muted);margin-top:2px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
+.card{border:1px solid var(--border);border-radius:10px;padding:12px 14px;background:var(--surface-1);position:relative}
+.card .jur{font-weight:600}
+.card .big{font-size:26px;font-weight:650;font-variant-numeric:tabular-nums;margin:2px 0}
+.card .meta{font-size:12px;color:var(--text-muted)}
+.card a{color:inherit}
+.comp{display:flex;height:10px;border-radius:4px;overflow:hidden;gap:2px;margin:8px 0 4px;background:var(--surface-1)}
+.comp span{display:block;height:100%}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--text-secondary)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+.spark{display:block;width:100%;height:46px;margin-top:6px}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th,td{padding:6px 8px;text-align:right;border-bottom:1px solid var(--grid);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-size:12px;font-weight:600;color:var(--text-secondary);cursor:pointer;user-select:none;position:sticky;top:0;background:var(--surface-1)}
+th.sorted::after{content:" ▾"} th.sorted.asc::after{content:" ▴"}
+tbody tr:hover{background:var(--surface-2)}
+.tablewrap{overflow:auto;max-height:560px}
+.barcell{display:flex;align-items:center;gap:8px;justify-content:flex-end}
+.bar{height:8px;border-radius:0 4px 4px 0;background:var(--series-1);min-width:1px}
+.bartrack{width:110px;display:flex}
+.pill{display:inline-block;font-size:11px;padding:1px 7px;border-radius:999px;border:1px solid var(--border);color:var(--text-secondary)}
+.status-ok{color:var(--good)} .status-stale{color:#b07800} .status-error{color:var(--critical)}
+.filters{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+input[type=search]{font:inherit;padding:5px 9px;border:1px solid var(--border);border-radius:6px;background:var(--surface-1);color:var(--text-primary);width:180px}
+.tip{position:fixed;pointer-events:none;background:var(--text-primary);color:var(--surface-1);font-size:12px;padding:5px 8px;border-radius:6px;opacity:0;transition:opacity .1s;z-index:10;white-space:nowrap}
+footer{font-size:12px;color:var(--text-muted);margin-top:20px}
+footer a{color:inherit}
+.empty{color:var(--text-muted);font-size:13px;padding:6px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Election Day Turnout Monitor</h1>
+      <div class="sub">2026 general election · Nov 3 · publicly reported turnout, scraped every ~5 min</div>
+    </div>
+    <div class="fresh"><span class="dot" id="freshdot"></span><span id="freshtxt">Loading…</span></div>
+  </header>
+
+  <div class="kpis" id="kpis"></div>
+
+  <section>
+    <div class="secthead"><div><h2>Live: Election Day</h2>
+      <div class="sub">Jurisdictions that publish election-day counts during the day. Most other places post nothing until polls close.</div></div></div>
+    <div class="cards" id="live"></div>
+  </section>
+
+  <section>
+    <div class="secthead"><div><h2>Texas: large counties</h2>
+      <div class="sub">Texas SOS. Early vote is final (through Oct 30); counties report Election Day in-person votes to the SOS, mostly after polls close.</div></div></div>
+    <div class="tablewrap" id="tx"></div>
+  </section>
+
+  <section>
+    <div class="secthead"><div><h2>Early vote by state</h2>
+      <div class="sub">UF Election Lab. Early in-person votes + returned mail ballots, compared with each state's total 2022 midterm turnout. Party = registration, not vote choice.</div></div>
+      <div class="filters"><input type="search" id="stfilter" placeholder="Filter states…"></div></div>
+    <div class="tablewrap" id="states"></div>
+  </section>
+
+  <section>
+    <div class="secthead"><div><h2>House toss-up districts: early vote</h2>
+      <div class="sub">UF Election Lab's toss-up list. Early-vote counts only where the state reports by congressional district.</div></div></div>
+    <div class="tablewrap" id="tossups"></div>
+  </section>
+
+  <section>
+    <div class="secthead"><div><h2>Other county reports</h2>
+      <div class="sub">Early-vote totals and results-site ballot counts. Florida results sites fill in after 7pm ET.</div></div></div>
+    <div class="tablewrap" id="other"></div>
+  </section>
+
+  <section>
+    <div class="secthead"><div><h2>Sources</h2><div class="sub">Status of each scraper on its last run. Stale = the last fetch failed, so the previous good numbers are shown.</div></div></div>
+    <div class="tablewrap" id="sources"></div>
+  </section>
+
+  <footer>
+    Early-vote data: <a href="https://election.lab.ufl.edu/early-vote/2026-early-voting/">UF Election Lab</a> (Dr. Michael McDonald), used with attribution for non-commercial purposes.
+    County and state figures come from each official election site linked in Sources. All numbers are unofficial.
+    Code: <a href="https://github.com/ntkutner/election-day-turnout">github.com/ntkutner/election-day-turnout</a>
+  </footer>
+</div>
+<div class="tip" id="tip"></div>
+
+<script>
+const fmt = n => n == null || isNaN(n) ? "–" : Number(n).toLocaleString("en-US");
+const pct = (a,b,d=1) => (a==null||!b) ? "–" : (100*a/b).toFixed(d)+"%";
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+const tip = document.getElementById("tip");
+function showTip(e, html){ tip.innerHTML = html; tip.style.opacity = 1; tip.style.left = (e.clientX+12)+"px"; tip.style.top = (e.clientY-30)+"px"; }
+function hideTip(){ tip.style.opacity = 0; }
+function timeAgo(iso){ if(!iso) return "never"; const m = Math.round((Date.now()-new Date(iso))/60000); return m<1?"just now":m<60?m+" min ago":Math.round(m/60)+" hr ago"; }
+function fmtTime(iso){ return new Date(iso).toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit",timeZone:"America/New_York"})+" ET"; }
+
+// Generic sortable table
+function table(el, cols, rows, defaultSort){
+  let sortKey = defaultSort?.key, asc = defaultSort?.asc ?? false;
+  function render(){
+    const r = [...rows];
+    if (sortKey) r.sort((a,b)=>{ const va=a[sortKey], vb=b[sortKey];
+      if (va==null) return 1; if (vb==null) return -1;
+      return (typeof va==="string" ? va.localeCompare(vb) : va-vb) * (asc?1:-1); });
+    el.innerHTML = `<table><thead><tr>${cols.map(c=>`<th data-k="${c.key}" class="${c.key===sortKey?'sorted'+(asc?' asc':''):''}">${c.label}</th>`).join("")}</tr></thead>
+      <tbody>${r.map(row=>`<tr>${cols.map(c=>`<td>${c.render?c.render(row):esc(row[c.key])}</td>`).join("")}</tr>`).join("") || `<tr><td class="empty" colspan="${cols.length}">No data yet</td></tr>`}</tbody></table>`;
+    el.querySelectorAll("th").forEach(th=>th.onclick=()=>{ const k=th.dataset.k; if(k===sortKey) asc=!asc; else {sortKey=k; asc=false;} render(); });
+    el.querySelectorAll("[data-tip]").forEach(n=>{ n.onmousemove=e=>showTip(e,n.dataset.tip); n.onmouseleave=hideTip; });
+  }
+  render();
+  return { set(newRows){ rows = newRows; render(); } };
+}
+function barCell(v, max, label, tipText){
+  const w = max ? Math.max(1, 110*Math.min(v,max)/max) : 0;
+  return `<div class="barcell" data-tip="${esc(tipText||label)}"><span>${label}</span><span class="bartrack"><span class="bar" style="width:${v==null?0:w}px"></span></span></div>`;
+}
+
+// Sparkline with hover crosshair
+function sparkline(points){
+  if (!points || points.length < 2) return `<div class="meta">Trend appears after a second update.</div>`;
+  const W=260,H=46,p=4; const xs=points.map(d=>+new Date(d.t)), ys=points.map(d=>d.value);
+  const x0=Math.min(...xs), x1=Math.max(...xs), y0=Math.min(...ys), y1=Math.max(...ys);
+  const X=t=>p+(W-2*p)*(x1===x0?1:(t-x0)/(x1-x0)), Y=v=>H-p-(H-2*p)*(y1===y0?0.5:(v-y0)/(y1-y0));
+  const d=points.map((q,i)=>(i?"L":"M")+X(xs[i]).toFixed(1)+","+Y(q.value).toFixed(1)).join("");
+  const id="s"+Math.random().toString(36).slice(2);
+  setTimeout(()=>{ const svg=document.getElementById(id); if(!svg) return;
+    const cross=svg.querySelector(".x"), mk=svg.querySelector(".m");
+    svg.onmousemove=e=>{ const r=svg.getBoundingClientRect(); const tx=(e.clientX-r.left)/r.width*W;
+      let bi=0,bd=1e9; points.forEach((q,i)=>{const dd=Math.abs(X(xs[i])-tx); if(dd<bd){bd=dd;bi=i;}});
+      const q=points[bi]; cross.setAttribute("x1",X(xs[bi])); cross.setAttribute("x2",X(xs[bi])); cross.style.opacity=1;
+      mk.setAttribute("cx",X(xs[bi])); mk.setAttribute("cy",Y(q.value)); mk.style.opacity=1;
+      showTip(e, `<b>${fmt(q.value)}</b> · ${fmtTime(q.t)}`); };
+    svg.onmouseleave=()=>{ cross.style.opacity=0; mk.style.opacity=0; hideTip(); };
+  });
+  return `<svg class="spark" id="${id}" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Election Day count over time">
+    <line x1="${p}" x2="${W-p}" y1="${H-p}" y2="${H-p}" stroke="var(--grid)" stroke-width="1"/>
+    <path d="${d}" fill="none" stroke="var(--series-1)" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>
+    <line class="x" y1="0" y2="${H}" stroke="var(--text-muted)" stroke-width="1" vector-effect="non-scaling-stroke" style="opacity:0"/>
+    <circle class="m" r="4" fill="var(--series-1)" stroke="var(--surface-1)" stroke-width="2" style="opacity:0"/>
+    <rect width="${W}" height="${H}" fill="transparent"/></svg>`;
+}
+
+let T = {};
+async function load(){
+  const bust = "?t="+Date.now();
+  const latest = await fetch("data/latest.json"+bust).then(r=>r.json());
+  let hist = [];
+  try { hist = (await fetch("data/history.jsonl"+bust).then(r=>r.text())).trim().split("\n").filter(Boolean).map(l=>JSON.parse(l)); } catch(e){}
+  render(latest, hist);
+}
+
+function render(L, hist){
+  const S = L.sources, all = Object.values(S);
+  // freshness
+  const ageMin = (Date.now()-new Date(L.generated_at))/60000;
+  const dot = document.getElementById("freshdot");
+  dot.className = "dot" + (ageMin>40?" err":ageMin>15?" stale":"");
+  const nOk = all.filter(s=>s.status==="ok").length;
+  document.getElementById("freshtxt").textContent = `Updated ${fmtTime(L.generated_at)} (${timeAgo(L.generated_at)}) · ${nOk}/${all.length} sources OK`;
+
+  const O = id => (S[id]?.observations)||[];
+  const uf = O("uf_states");
+  const natEarly = uf.reduce((a,o)=>a+(o.value||0),0), nat22 = uf.reduce((a,o)=>a+(o.turnout_2022||0),0);
+  const statesToday = uf.filter(o=>o.updated_today).length;
+  const ufAsOf = uf.map(o=>o.as_of).filter(Boolean).sort((a,b)=>new Date(b)-new Date(a))[0];
+  const live = all.filter(s=>s.kind==="eday").flatMap(s=>s.observations.map(o=>({...o, src:s}))).filter(o=>o.metric==="eday_checkins");
+  const txEd = O("tx_eday").find(o=>o.jurisdiction.startsWith("Texas"));
+  const brow = O("fl_broward").find(o=>o.metric==="total_voted");
+  document.getElementById("kpis").innerHTML = [
+    {label:"Early votes nationally", val:fmt(natEarly), note:`UF Election Lab, ${uf.length} states · latest ${ufAsOf||"–"}`},
+    {label:"Early vote as % of 2022 total", val:pct(natEarly,nat22), note:`2022 midterm total in same states: ${fmt(nat22)}`},
+    {label:"Broward Co. turnout so far", val:brow?pct(brow.value,brow.registered):"–", note:brow?`${fmt(brow.value)} ballots · ${fmt(brow.eday)} on Election Day`:"waiting for data"},
+    {label:"Texas Election Day votes reported", val:fmt(txEd?.value), note:txEd?`${txEd.counties_reporting} of 254 counties reporting to SOS`:"waiting for data"},
+  ].map(k=>`<div class="kpi"><div class="label">${k.label}</div><div class="val">${k.val}</div><div class="note">${k.note}</div></div>`).join("");
+
+  // live cards
+  const series = key => hist.filter(h=>h.key===key).map(h=>({t:h.t,value:h.value}));
+  const liveCards = live.filter(o=>!(o.state==="TX" && !o.jurisdiction.startsWith("Texas"))).map(o=>{
+    const key = `${o.source}|${o.jurisdiction}|${o.metric}`;
+    const total = O(o.source).find(x=>x.metric==="total_voted" && x.jurisdiction===o.jurisdiction);
+    let comp = "";
+    if (total && total.value){
+      const parts = [["Mail",total.mail,"var(--series-1)"],["Early in-person",total.early,"var(--series-2)"],["Election Day",total.eday,"var(--series-3)"]];
+      comp = `<div class="comp">${parts.map(([n,v,c])=>`<span data-tip="${n}: ${fmt(v)} (${pct(v,total.value)})" style="flex:${v||0};background:${c}"></span>`).join("")}</div>
+      <div class="legend">${parts.map(([n,v,c])=>`<span><i style="background:${c}"></i>${n} ${pct(v,total.value,0)}</span>`).join("")}</div>
+      <div class="meta" style="margin-top:4px">${fmt(total.value)} ballots cast · ${pct(total.value,total.registered)} of ${fmt(total.registered)} registered</div>`;
+    }
+    const extra = o.boroughs ? `<div class="meta">${Object.entries(o.boroughs).map(([b,v])=>`${b} ${fmt(v)}`).join(" · ")}</div>` : "";
+    const txnote = o.counties_reporting!=null ? `<div class="meta">${o.counties_reporting}/254 counties have reported Election Day votes</div>` : "";
+    return `<div class="card"><div class="jur">${esc(o.jurisdiction)} <span class="pill">${esc(o.state)}</span></div>
+      <div class="big">${fmt(o.value)}</div><div class="meta">Election Day votes / check-ins${o.as_of?" · as of "+esc(o.as_of):""}</div>
+      ${comp}${extra}${txnote}${sparkline(series(key))}
+      <div class="meta" style="margin-top:4px"><a href="${esc(o.src.url)}" target="_blank" rel="noopener">${esc(o.src.name)}</a> · ${o.src.status==="ok"?"fetched "+timeAgo(o.src.fetched_at):"<span class='status-stale'>stale</span>"}</div></div>`;
+  });
+  // NYC: show Election Day placeholder card if BOE hasn't posted ED yet
+  if (!live.some(o=>o.state==="NY") && O("ny_nyc").length){
+    const ev = O("ny_nyc").find(o=>o.metric==="early_inperson");
+    liveCards.push(`<div class="card"><div class="jur">New York City <span class="pill">NY</span></div><div class="big muted">Not posted yet</div>
+      <div class="meta">BOE posts Election Day check-ins periodically; the card fills in when they appear on vote.nyc.</div>
+      <div class="meta" style="margin-top:6px">Early-voting check-ins (final): <b>${fmt(ev?.value)}</b></div>
+      <div class="meta">${ev?.boroughs?Object.entries(ev.boroughs).map(([b,v])=>`${b} ${fmt(v)}`).join(" · "):""}</div>
+      <div class="meta" style="margin-top:4px"><a href="https://vote.nyc/page/early-voting-check-ins" target="_blank" rel="noopener">NYC BOE</a></div></div>`);
+  }
+  document.getElementById("live").innerHTML = liveCards.join("") || `<div class="empty">No live sources yet.</div>`;
+  document.querySelectorAll("#live [data-tip]").forEach(n=>{ n.onmousemove=e=>showTip(e,n.dataset.tip); n.onmouseleave=hideTip; });
+
+  // Texas table
+  const txE = O("tx_early"), txD = O("tx_eday");
+  const txRows = txE.map(e=>{ const d = txD.find(x=>x.jurisdiction===e.jurisdiction);
+    const total = (e.value||0)+(d?.value||0);
+    return {j:e.jurisdiction, reg:e.registered, ip:e.inperson, mail:e.mail, early:e.value, ed:d?.value, total, to:e.registered?total/e.registered:null}; });
+  const maxTo = Math.max(...txRows.map(r=>r.to||0));
+  T.tx ? T.tx.set(txRows) : T.tx = table(document.getElementById("tx"), [
+    {key:"j",label:"County"},{key:"reg",label:"Registered",render:r=>fmt(r.reg)},
+    {key:"ip",label:"Early in-person",render:r=>fmt(r.ip)},{key:"mail",label:"Mail",render:r=>fmt(r.mail)},
+    {key:"ed",label:"Election Day (reported)",render:r=>fmt(r.ed)},{key:"total",label:"Total so far",render:r=>fmt(r.total)},
+    {key:"to",label:"Turnout of registered",render:r=>barCell(r.to,maxTo,pct(r.total,r.reg),`${r.j}: ${fmt(r.total)} of ${fmt(r.reg)}`)},
+  ], txRows, {key:"reg"});
+
+  // States table
+  const stRows = uf.map(o=>{ const party = (o.voted_dem||0)+(o.voted_rep||0)+(o.voted_none||0);
+    return {st:o.name||o.state, ab:o.state, early:o.value, ip:o.inperson, mail:o.mail_returned, req:o.mail_requested, t22:o.turnout_2022,
+      ratio:o.turnout_2022&&o.value?o.value/o.turnout_2022:null, dem:party?o.voted_dem/party:null, rep:party?o.voted_rep/party:null,
+      asof:o.as_of, today:o.updated_today}; });
+  const maxR = Math.max(...stRows.map(r=>r.ratio||0));
+  const stCols = [
+    {key:"st",label:"State",render:r=>`${esc(r.st)} <span class="muted">${esc(r.ab)}</span>`},
+    {key:"early",label:"Early votes",render:r=>fmt(r.early)},{key:"ip",label:"In-person",render:r=>fmt(r.ip)},
+    {key:"mail",label:"Mail returned",render:r=>fmt(r.mail)},{key:"req",label:"Mail requested",render:r=>fmt(r.req)},
+    {key:"t22",label:"2022 total turnout",render:r=>fmt(r.t22)},
+    {key:"ratio",label:"Early ÷ 2022 total",render:r=>barCell(r.ratio,maxR,r.ratio==null?"–":(100*r.ratio).toFixed(1)+"%",`${r.st}: ${fmt(r.early)} early vs ${fmt(r.t22)} total in 2022`)},
+    {key:"dem",label:"Reg. Dem share",render:r=>r.dem&&r.dem>0?pct(r.dem,1):"–"},{key:"rep",label:"Reg. Rep share",render:r=>r.rep&&r.rep>0?pct(r.rep,1):"–"},
+    {key:"asof",label:"Updated",render:r=>`${esc(r.asof||"–")}${r.today?' <span class="pill">today</span>':""}`},
+  ];
+  const fstr = (document.getElementById("stfilter").value||"").toLowerCase();
+  const stFiltered = stRows.filter(r=>!fstr || (r.st+" "+r.ab).toLowerCase().includes(fstr));
+  T.st ? T.st.set(stFiltered) : T.st = table(document.getElementById("states"), stCols, stFiltered, {key:"early"});
+  document.getElementById("stfilter").oninput = ()=>{ const f=document.getElementById("stfilter").value.toLowerCase(); T.st.set(stRows.filter(r=>(r.st+" "+r.ab).toLowerCase().includes(f))); };
+
+  // Toss-ups
+  const tu = O("uf_tossups").map(o=>{ const party=(o.voted_dem||0)+(o.voted_rep||0)+(o.voted_none||0);
+    return {cd:o.jurisdiction, n:o.n_tossup, cook:(o.ratings?.cook||"").replaceAll("|"," "), early:o.value, req:o.mail_requested,
+      dem:party?o.voted_dem/party:null, rep:party?o.voted_rep/party:null, margin:party?(o.voted_dem-o.voted_rep)/party:null}; });
+  T.tu ? T.tu.set(tu) : T.tu = table(document.getElementById("tossups"), [
+    {key:"cd",label:"District"},{key:"n",label:"Outlets rating toss-up",render:r=>fmt(r.n)},{key:"cook",label:"Cook rating"},
+    {key:"early",label:"Early votes",render:r=>r.early?fmt(r.early):'<span class="muted">not reported by CD</span>'},
+    {key:"dem",label:"Reg. Dem",render:r=>r.dem?pct(r.dem,1):"–"},{key:"rep",label:"Reg. Rep",render:r=>r.rep?pct(r.rep,1):"–"},
+    {key:"margin",label:"D − R (reg.)",render:r=>r.margin==null?"–":(r.margin>0?"D +":"R +")+Math.abs(100*r.margin).toFixed(1)},
+  ], tu, {key:"early"});
+
+  // Other county reports
+  const other = [];
+  for (const s of all){
+    if (["uf_states","uf_tossups","tx_early","tx_eday"].includes(s.id)) continue;
+    for (const o of s.observations){
+      if (s.kind==="eday" && o.metric==="eday_checkins") continue;
+      other.push({j:o.jurisdiction, st:o.state, metric:{early_inperson:"Early in-person",total_voted:"Ballots cast (total)",early_total:"Early total"}[o.metric]||o.metric,
+        v:o.value, reg:o.registered, asof:o.as_of, src:s});
+    }
+  }
+  T.ot ? T.ot.set(other) : T.ot = table(document.getElementById("other"), [
+    {key:"j",label:"Jurisdiction",render:r=>`${esc(r.j)} <span class="pill">${esc(r.st)}</span>`},{key:"metric",label:"Measure"},
+    {key:"v",label:"Count",render:r=>fmt(r.v)},{key:"reg",label:"Registered",render:r=>fmt(r.reg)},
+    {key:"asof",label:"As of",render:r=>esc(r.asof||"–")},
+    {key:"src",label:"Source",render:r=>`<a href="${esc(r.src.url)}" target="_blank" rel="noopener">${esc(r.src.name)}</a>`},
+  ], other);
+
+  // sources
+  const srows = all.map(s=>({name:s.name, st:s.state, kind:s.kind, status:s.status, f:s.fetched_at, err:s.error, url:s.url, note:s.note}));
+  T.src ? T.src.set(srows) : T.src = table(document.getElementById("sources"), [
+    {key:"name",label:"Source",render:r=>`<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.name)}</a>${r.note?`<div class="muted" style="white-space:normal;font-size:12px;max-width:520px">${esc(r.note)}</div>`:""}`},
+    {key:"st",label:"State"},{key:"kind",label:"Type",render:r=>({eday:"Live Election Day",early:"Early vote",total:"Results site"}[r.kind]||r.kind)},
+    {key:"status",label:"Status",render:r=>`<span class="status-${r.status}">${r.status==="ok"?"✓ OK":r.status==="stale"?"⚠ Stale":"✕ Error"}</span>${r.err?`<div class="muted" style="font-size:11px;white-space:normal;max-width:260px">${esc(r.err)}</div>`:""}`},
+    {key:"f",label:"Last good fetch",render:r=>r.f?fmtTime(r.f):"–"},
+  ], srows);
+}
+
+load().catch(e=>{ document.getElementById("freshtxt").textContent = "Could not load data: "+e; });
+setInterval(()=>load().catch(()=>{}), 120000);
+</script>
+</body>
+</html>
