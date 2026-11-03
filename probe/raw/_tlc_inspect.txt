@@ -1,0 +1,2595 @@
+## 2024 82066995 bytes
+   2012_City_General_2_Election_Returns.csv 75440
+   2012_City_General_2_Election_VRTO.csv 5632
+   2012_City_General_Election_Returns.csv 262738
+   2012_City_General_Election_VRTO.csv 14217
+   2012_Democratic_Primary_Election_Returns.csv 8443145
+   2012_Democratic_Primary_Election_VRTO.csv 452252
+   2012_Democratic_Runoff_Election_Returns.csv 1839315
+   2012_Democratic_Runoff_Election_VRTO.csv 447023
+   2012_General_Election_Returns.csv 30860050
+   2012_General_Election_VRTO.csv 464304
+   2012_Republican_Primary_Election_Returns.csv 25175456
+   2012_Republican_Primary_Election_VRTO.csv 455710
+   2012_Republican_Runoff_Election_Returns.csv 5451191
+   2012_Republican_Runoff_Election_VRTO.csv 453882
+   2013_City_General_2_Election_Returns.csv 1492052
+   2013_City_General_2_Election_VRTO.csv 52630
+   2013_Constitutional_Ame_Election_Returns.csv 13155493
+   2013_Constitutional_Ame_Election_VRTO.csv 455855
+   2013_House_Dist_50_Election_Returns.csv 14456
+   2013_House_Dist_50_Election_VRTO.csv 3030
+   2013_Senate_Dist_6_(2nd)_Election_Returns.csv 27559
+   2013_Senate_Dist_6_(2nd)_Election_VRTO.csv 11431
+   2013_Senate_Dist_6_Election_Returns.csv 106966
+   2013_Senate_Dist_6_Election_VRTO.csv 11423
+   2014_City_General_2_Election_Returns.csv 163590
+   2014_City_General_2_Election_VRTO.csv 19714
+   2014_City_General_Election_Returns.csv 59289
+   2014_City_General_Election_VRTO.csv 7900
+   2014_Constitutional_Ame_Election_Returns.csv 1485282
+   2014_Constitutional_Ame_Election_VRTO.csv 459468
+   2014_Democratic_Primary_Election_Returns.csv 12089488
+   2014_Democratic_Primary_Election_VRTO.csv 452628
+   2014_Democratic_Runoff_Election_Returns.csv 3000103
+   2014_Democratic_Runoff_Election_VRTO.csv 448446
+   2014_General_Election_Returns.csv 47529135
+   2014_General_Election_VRTO.csv 461939
+   2014_Republican_Primary_Election_Returns.csv 32003463
+   2014_Republican_Primary_Election_VRTO.csv 455954
+   2014_Republican_Runoff_Election_Returns.csv 5456302
+   2014_Republican_Runoff_Election_VRTO.csv 453455
+   2014_Senate_Dist_18_Election_Returns.csv 102496
+   2014_Senate_Dist_18_Election_VRTO.csv 17047
+   2014_Senate_Dist_28_Election_Returns.csv 161356
+   2014_Senate_Dist_28_Election_VRTO.csv 22187
+   2014_Senate_Dist_4_(2nd)_Election_Returns.csv 32754
+   2014_Senate_Dist_4_(2nd)_Election_VRTO.csv 13806
+   2014_Senate_Dist_4_Election_Returns.csv 64115
+   2014_Senate_Dist_4_Election_VRTO.csv 13845
+   2015_City_General_2_Election_Returns.csv 2500232
+   2015_City_General_2_Election_VRTO.csv 49278
+   2015_City_General_Election_Returns.csv 544458
+   2015_City_General_Election_VRTO.csv 48817
+   2015_City_Runoff_2_Election_Returns.csv 701171
+   2015_City_Runoff_2_Election_VRTO.csv 49083
+   2015_City_Runoff_Election_Returns.csv 73706
+   2015_City_Runoff_Election_VRTO.csv 26496
+   2015_House_Dist_123_(2nd)_Election_Returns.csv 10912
+   2015_House_Dist_123_(2nd)_Election_VRTO.csv 4251
+   2015_House_Dist_123_Election_Returns.csv 32338
+   2015_House_Dist_123_Election_VRTO.csv 4246
+   2015_House_Dist_124_(2nd)_Election_Returns.csv 6357
+   2015_House_Dist_124_(2nd)_Election_VRTO.csv 2545
+   2015_House_Dist_124_Election_Returns.csv 12284
+   2015_House_Dist_124_Election_VRTO.csv 2541
+   2015_House_Dist_13_(2nd)_Election_Returns.csv 11633
+   2015_House_Dist_13_(2nd)_Election_VRTO.csv 4550
+   2015_House_Dist_13_Election_Returns.csv 22398
+   2015_House_Dist_13_Election_VRTO.csv 4546
+   2015_House_Dist_17_(2nd)_Election_Returns.csv 10723
+   2015_House_Dist_17_(2nd)_Election_VRTO.csv 4437
+   2015_House_Dist_17_Election_Returns.csv 26626
+   2015_House_Dist_17_Election_VRTO.csv 4433
+   2015_House_District_118_Election_Returns.csv 25533
+   2015_House_District_118_Election_VRTO.csv 3410
+   2015_Senate_Dist_26_(2nd)_Election_Returns.csv 39595
+   2015_Senate_Dist_26_(2nd)_Election_VRTO.csv 14505
+   2015_Senate_Dist_26_Election_Returns.csv 95138
+   2015_Senate_Dist_26_Election_VRTO.csv 14475
+   2016_City_General_Election_Returns.csv 50749
+   2016_City_General_Election_VRTO.csv 4236
+   2016_Democratic_Primary_Election_Returns.csv 12837214
+   2016_Democratic_Primary_Election_VRTO.csv 457259
+   2016_Democratic_Runoff_Election_Returns.csv 2458484
+   2016_Democratic_Runoff_Election_VRTO.csv 448504
+   2016_General_Election_Returns.csv 28923237
+   2016_General_Election_VRTO.csv 465924
+   2016_House_Dist_118_(2nd)_Election_Returns.csv 8484
+   2016_House_Dist_118_(2nd)_Election_VRTO.csv 3393
+   2016_House_Dist_120_(2nd)_Election_Returns.csv 10307
+   2016_House_Dist_120_(2nd)_Election_VRTO.csv 4007
+   2016_House_Dist_120_Election_Returns.csv 20520
+   2016_House_Dist_120_Election_VRTO.csv 4023
+   2016_House_Dist_139_Election_Returns.csv 6331
+   2016_House_Dist_139_Election_VRTO.csv 2626
+   2016_Republican_Primary_Election_Returns.csv 24368624
+   2016_Republican_Primary_Election_VRTO.csv 459130
+   2016_Republican_Runoff_Election_Returns.csv 3833244
+   2016_Republican_Runoff_Election_VRTO.csv 450840
+   2018_Congress_Dist_27_Election_Returns.csv 151622
+   2018_Congress_Dist_27_Election_VRTO.csv 14510
+   2018_Democratic_Primary_Election_Returns.csv 22715781
+   2018_Democratic_Primary_Election_VRTO.csv 456223
+   2018_Democratic_Runoff_Election_Returns.csv 2682261
+   2018_Democratic_Runoff_Election_VRTO.csv 452086
+   2018_General_Election_Returns.csv 43220409
+   2018_General_Election_VRTO.csv 465745
+   2018_House_District_13_Election_Returns.csv 16577
+   2018_House_District_13_Election_VRTO.csv 4578
+   2018_House_District_52_Election_Returns.csv 8254
+   2018_House_District_52_Election_VRTO.csv 3503
+   2018_Republican_Primary_Election_Returns.csv 20930088
+   2018_Republican_Primary_Election_VRTO.csv 457293
+   2018_Republican_Runoff_Election_Returns.csv 1383277
+   2018_Republican_Runoff_Election_VRTO.csv 277337
+   2018_Senate_Dist_19_(2nd)_Election_Returns.csv 44597
+   2018_Senate_Dist_19_(2nd)_Election_VRTO.csv 18121
+   2018_Senate_Dist_19_Election_Returns.csv 176704
+   2018_Senate_Dist_19_Election_VRTO.csv 18033
+   2018_Senate_District_6_Election_Returns.csv 53822
+   2018_Senate_District_6_Election_VRTO.csv 11017
+   2019_City_General_2_Election_Returns.csv 3470225
+   2019_City_General_2_Election_VRTO.csv 55728
+   2019_City_General_Election_Returns.csv 600767
+   2019_City_General_Election_VRTO.csv 56930
+   2019_City_Runoff_2_Election_Returns.csv 820525
+   2019_City_Runoff_2_Election_VRTO.csv 49774
+   2019_City_Runoff_Election_Returns.csv 130336
+   2019_City_Runoff_Election_VRTO.csv 49657
+   2019_House_Dist_125_(2nd)_Election_Returns.csv 6404
+   2019_House_Dist_125_(2nd)_Election_VRTO.csv 2686
+   2019_House_Dist_145_(2nd)_Election_Returns.csv 5597
+   2019_House_Dist_145_(2nd)_Election_VRTO.csv 2279
+   2019_House_District_100_Election_Returns.csv 26149
+   2019_House_District_100_Election_VRTO.csv 4162
+   2019_House_District_125_Election_Returns.csv 16000
+   2019_House_District_125_Election_VRTO.csv 2674
+   2019_House_District_145_Election_Returns.csv 22026
+   2019_House_District_145_Election_VRTO.csv 2285
+   2019_House_District_148_Election_Returns.csv 49822
+   2019_House_District_148_Election_VRTO.csv 2788
+   2019_House_District_28_Election_Returns.csv 20001
+   2019_House_District_28_Election_VRTO.csv 2508
+   2019_House_District_79_Election_Returns.csv 7766
+   2019_House_District_79_Election_VRTO.csv 2220
+   2020_City_General_2_Election_Returns.csv 402970
+   2020_City_General_2_Election_VRTO.csv 39444
+   2020_City_Runoff_2_Election_Returns.csv 79541
+   2020_City_Runoff_2_Election_VRTO.csv 26366
+   2020_Democratic_Primary_Election_Returns.csv 33858584
+   2020_Democratic_Primary_Election_VRTO.csv 459150
+   2020_Democratic_Runoff_Election_Returns.csv 3547589
+   2020_Democratic_Runoff_Election_VRTO.csv 455897
+   2020_General_Election_Returns.csv 28732328
+   2020_General_Election_VRTO.csv 467636
+   2020_House_Dist_100_(2nd)_Election_Returns.csv 10525
+   2020_House_Dist_100_(2nd)_Election_VRTO.csv 4132
+   2020_House_Dist_148_(2nd)_Election_Returns.csv 6788
+   2020_House_Dist_148_(2nd)_Election_VRTO.csv 2769
+   2020_House_Dist_28_(2nd)_Election_Returns.csv 5878
+   2020_House_Dist_28_(2nd)_Election_VRTO.csv 2507
+   2020_Republican_Primary_Election_Returns.csv 13820383
+   2020_Republican_Primary_Election_VRTO.csv 458723
+   2020_Republican_Runoff_Election_Returns.csv 1125488
+   2020_Republican_Runoff_Election_VRTO.csv 285829
+   2020_Senate_Dist_30_(2nd)_Election_Returns.csv 45516
+   2020_Senate_Dist_30_(2nd)_Election_VRTO.csv 18400
+   2020_Senate_District_14_Election_Returns.csv 89970
+   2020_Senate_District_14_Election_VRTO.csv 12523
+   2020_Senate_District_30_Election_Returns.csv 133145
+   2020_Senate_District_30_Election_VRTO.csv 18414
+   2021_City_General_Election_Returns.csv 1276002
+   2021_City_General_Election_VRTO.csv 91038
+   2021_City_Runoff_Election_Returns.csv 139095
+   2021_City_Runoff_Election_VRTO.csv 40392
+   2021_Congress_Dist_6_Election_Returns.csv 387190
+   2021_Congress_Dist_6_Election_VRTO.csv 14505
+   2021_House_Dist_10_(2nd)_Election_Returns.csv 7203
+   2021_House_Dist_10_(2nd)_Election_VRTO.csv 3045
+   2021_House_Dist_118_(2nd)_Election_Returns.csv 8533
+   2021_House_Dist_118_(2nd)_Election_VRTO.csv 3462
+   2021_House_Dist_68_(2nd)_Election_Returns.csv 16271
+   2021_House_Dist_68_(2nd)_Election_VRTO.csv 6596
+   2021_House_District_10_Election_Returns.csv 28661
+   2021_House_District_10_Election_VRTO.csv 3045
+   2021_House_District_118_Election_Returns.csv 21159
+   2021_House_District_118_Election_VRTO.csv 3450
+   2021_House_District_68_Election_Returns.csv 40457
+   2021_House_District_68_Election_VRTO.csv 6604
+   2022_Congress_Dist_34_Election_Returns.csv 57454
+   2022_Congress_Dist_34_Election_VRTO.csv 11847
+   2022_Democratic_Primary_Election_Returns.csv 26055234
+   2022_Democratic_Primary_Election_VRTO.csv 456988
+   2022_Democratic_Runoff_Election_Returns.csv 6163707
+   2022_Democratic_Runoff_Election_VRTO.csv 453355
+   2022_General_Election_Returns.csv 40540388
+   2022_General_Election_VRTO.csv 466263
+   2022_House_District_147_Election_Returns.csv 6666
+   2022_House_District_147_Election_VRTO.csv 2746
+   2022_Republican_Primary_Election_Returns.csv 29315158
+   2022_Republican_Primary_Election_VRTO.csv 458957
+   2022_Republican_Runoff_Election_Returns.csv 4217923
+   2022_Republican_Runoff_Election_VRTO.csv 455924
+   2023_City_General_2_Election_Returns.csv 956756
+   2023_City_General_2_Election_VRTO.csv 44794
+   2023_City_Runoff_2_Election_Returns.csv 112983
+   2023_City_Runoff_2_Election_VRTO.csv 44632
+   2023_House_District_2_Election_Returns.csv 25530
+   2023_House_District_2_Election_VRTO.csv 3662
+   2024_Congress_Dist_18_Election_Returns.csv 40967
+   2024_Congress_Dist_18_Election_VRTO.csv 11572
+   2024_Democratic_Primary_Election_Returns.csv 20139619
+   2024_Democratic_Primary_Election_VRTO.csv 457042
+   2024_Democratic_Runoff_Election_Returns.csv 1086079
+   2024_Democratic_Runoff_Election_VRTO.csv 237210
+   2024_General_Election_Returns.csv 25786393
+   2024_General_Election_VRTO.csv 468154
+   2024_House_Dist_2_(2nd)_Election_Returns.csv 8453
+   2024_House_Dist_2_(2nd)_Election_VRTO.csv 3636
+   2024_House_District_56_Election_Returns.csv 7647
+   2024_House_District_56_Election_VRTO.csv 3324
+   2024_Republican_Primary_Election_Returns.csv 16638231
+   2024_Republican_Primary_Election_VRTO.csv 459975
+   2024_Republican_Runoff_Election_Returns.csv 549302
+   2024_Republican_Runoff_Election_VRTO.csv 185901
+   2024_Senate_Dist_15_Election_Returns.csv 29202
+   2024_Senate_Dist_15_Election_VRTO.csv 12279
+--- 2012_City_General_2_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Nueces,355,0001,3550001,7148,Corpus Christi Mayor,Adler,,N,165
+Nueces,355,0002,3550002,7149,Corpus Christi Mayor,Adler,,N,413
+Nueces,355,0003,3550003,7150,Corpus Christi Mayor,Adler,,N,728
+--- 2012_City_General_2_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Nueces,355,0001,3550001,7148,2495,1176,31.6,544
+Nueces,355,0002,3550002,7149,4043,2378,39.7,1276
+Nueces,355,0003,3550003,7150,5044,3217,38.2,2072
+--- 2012_City_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Hays,209,0125,2090125,5461,Austin Mayor,Leffingwell,,N,0
+Hays,209,0134,2090134,5464,Austin Mayor,Leffingwell,,N,0
+Hays,209,0227,2090227,5481,Austin Mayor,Leffingwell,,N,0
+--- 2012_City_General_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Hays,209,0125,2090125,5461,2339,492,44.3,0
+Hays,209,0134,2090134,5464,4289,1006,42.8,0
+Hays,209,0227,2090227,5481,5101,1191,38.1,0
+--- 2012_Democratic_Primary_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,President,Ely,D,N,2
+Anderson,1,0002,10002,2,President,Ely,D,N,5
+Anderson,1,0003,10003,3,President,Ely,D,N,1
+--- 2012_Democratic_Primary_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1660,4.9,25
+Anderson,1,0002,10002,2,3811,2184,2.7,48
+Anderson,1,0003,10003,3,1925,1093,4.7,28
+--- 2012_Democratic_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,U.S. Sen,Sadler,D,N,6
+Anderson,1,0002,10002,2,U.S. Sen,Sadler,D,N,16
+Anderson,1,0003,10003,3,U.S. Sen,Sadler,D,N,7
+--- 2012_Democratic_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1660,4.9,8
+Anderson,1,0002,10002,2,3811,2184,2.7,19
+Anderson,1,0003,10003,3,1925,1093,4.7,10
+--- 2012_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,President,Romney,R,N,754
+Anderson,1,0002,10002,2,President,Romney,R,N,1179
+Anderson,1,0003,10003,3,President,Romney,R,N,650
+--- 2012_General_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1629,5.3,1026
+Anderson,1,0002,10002,2,3811,2224,2.6,1418
+Anderson,1,0003,10003,3,1925,1116,4.7,765
+--- 2012_Republican_Primary_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,President,Bachmann,R,N,1
+Anderson,1,0002,10002,2,President,Bachmann,R,N,2
+Anderson,1,0003,10003,3,President,Bachmann,R,N,1
+--- 2012_Republican_Primary_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1660,4.9,328
+Anderson,1,0002,10002,2,3811,2184,2.7,380
+Anderson,1,0003,10003,3,1925,1093,4.7,257
+--- 2012_Republican_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,U.S. Sen,Cruz,R,N,45
+Anderson,1,0002,10002,2,U.S. Sen,Cruz,R,N,80
+Anderson,1,0003,10003,3,U.S. Sen,Cruz,R,N,40
+--- 2012_Republican_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1660,4.9,79
+Anderson,1,0002,10002,2,3811,2184,2.7,173
+Anderson,1,0003,10003,3,1925,1093,4.7,82
+--- 2013_City_General_2_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Fort Bend,157,2017,1572017,3663,Houston Mayor,Drab,,N,4
+Fort Bend,157,2023,1572023,3666,Houston Mayor,Drab,,N,2
+Fort Bend,157,2031,1572031,3669,Houston Mayor,Drab,,N,0
+--- 2013_City_General_2_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Fort Bend,157,2017,1572017,3663,4005,2584,7.3,416
+Fort Bend,157,2023,1572023,3666,5609,2760,38.6,205
+Fort Bend,157,2031,1572031,3669,4779,2879,14.0,360
+--- 2013_Constitutional_Ame_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,1-Tax exempt homestead,For Amend 01,,N,107
+Anderson,1,0001,10001,1,2-Eliminate State Med Brd,For Amend 02,,N,113
+Anderson,1,0001,10001,1,6-State Water Fund,For Amend 06,,N,79
+--- 2013_Constitutional_Ame_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1688,5.8,132
+Anderson,1,0002,10002,2,3811,2302,3.3,156
+Anderson,1,0003,10003,3,1925,1107,4.8,88
+--- 2013_House_Dist_50_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Travis,453,0121,4530121,8800,State Rep 50,Israel,,N,0
+Travis,453,0124,4530124,8803,State Rep 50,Israel,,N,0
+Travis,453,0132,4530132,8809,State Rep 50,Israel,,N,64
+--- 2013_House_Dist_50_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Travis,453,0121,4530121,8800,4435,1239,16.5,0
+Travis,453,0124,4530124,8803,6441,1447,25.1,0
+Travis,453,0132,4530132,8809,14486,3498,29.0,171
+--- 2013_Senate_Dist_6_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Harris,201,0001,2010001,4234,State Sen 6,Alvarado,D,N,39
+Harris,201,0002,2010002,4235,State Sen 6,Alvarado,D,N,89
+Harris,201,0009,2010009,4242,State Sen 6,Alvarado,D,N,58
+--- 2013_Senate_Dist_6_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Harris,201,0001,2010001,4234,1979,980,31.2,74
+Harris,201,0002,2010002,4235,4770,2843,24.9,179
+Harris,201,0009,2010009,4242,4044,1759,47.8,106
+--- 2013_Senate_Dist_6_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Harris,201,0001,2010001,4234,State Sen 6,Alvarado,D,N,23
+Harris,201,0002,2010002,4235,State Sen 6,Alvarado,D,N,67
+Harris,201,0009,2010009,4242,State Sen 6,Alvarado,D,N,42
+--- 2013_Senate_Dist_6_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Harris,201,0001,2010001,4234,1979,980,31.2,59
+Harris,201,0002,2010002,4235,4770,2843,24.9,150
+Harris,201,0009,2010009,4242,4044,1759,47.8,100
+--- 2014_City_General_2_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Hays,209,0125,2090125,5461,Austin Mayor,Krenek,,N,0
+Hays,209,0134,2090134,5464,Austin Mayor,Krenek,,N,0
+Hays,209,0227,2090227,5481,Austin Mayor,Krenek,,N,0
+--- 2014_City_General_2_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Hays,209,0125,2090125,5461,2339,607,46.6,0
+Hays,209,0134,2090134,5464,4289,1087,44.6,0
+Hays,209,0227,2090227,5481,5101,1688,37.1,0
+--- 2014_City_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bell,27,0101,270101,189,Killeen City Council,Mims-Owens,,N,11
+Bell,27,0102,270102,190,Killeen City Council,Mims-Owens,,N,9
+Bell,27,0103,270103,191,Killeen City Council,Mims-Owens,,N,2
+--- 2014_City_General_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bell,27,0101,270101,189,5847,2374,7.1,78
+Bell,27,0102,270102,190,7127,3388,8.6,101
+Bell,27,0103,270103,191,4551,1570,28.0,40
+--- 2014_Constitutional_Ame_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,1-Use money /st hwy fund,For Amend 01,,N,390
+Anderson,1,0002,10002,2,1-Use money /st hwy fund,For Amend 01,,N,511
+Anderson,1,0003,10003,3,1-Use money /st hwy fund,For Amend 01,,N,329
+--- 2014_Constitutional_Ame_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1712,6.2,477
+Anderson,1,0002,10002,2,3811,2389,3.5,662
+Anderson,1,0003,10003,3,1925,1137,4.9,409
+--- 2014_Democratic_Primary_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,U.S. Sen,Alameel,D,N,10
+Anderson,1,0002,10002,2,U.S. Sen,Alameel,D,N,11
+Anderson,1,0003,10003,3,U.S. Sen,Alameel,D,N,9
+--- 2014_Democratic_Primary_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1690,5.7,37
+Anderson,1,0002,10002,2,3811,2310,3.3,32
+Anderson,1,0003,10003,3,1925,1110,4.8,27
+--- 2014_Democratic_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,U.S. Sen,Alameel,D,N,7
+Anderson,1,0002,10002,2,U.S. Sen,Alameel,D,N,5
+Anderson,1,0003,10003,3,U.S. Sen,Alameel,D,N,4
+--- 2014_Democratic_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1690,5.7,10
+Anderson,1,0002,10002,2,3811,2310,3.3,8
+Anderson,1,0003,10003,3,1925,1110,4.8,4
+--- 2014_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,U.S. Sen,Cornyn,R,Y,441
+Anderson,1,0002,10002,2,U.S. Sen,Cornyn,R,Y,677
+Anderson,1,0003,10003,3,U.S. Sen,Cornyn,R,Y,433
+--- 2014_General_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1712,6.2,576
+Anderson,1,0002,10002,2,3811,2389,3.5,786
+Anderson,1,0003,10003,3,1925,1137,4.9,498
+--- 2014_Republican_Primary_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,U.S. Sen,Mapp,R,N,9
+Anderson,1,0002,10002,2,U.S. Sen,Mapp,R,N,3
+Anderson,1,0003,10003,3,U.S. Sen,Mapp,R,N,5
+--- 2014_Republican_Primary_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1690,5.7,435
+Anderson,1,0002,10002,2,3811,2310,3.3,502
+Anderson,1,0003,10003,3,1925,1110,4.8,352
+--- 2014_Republican_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,Lt. Governor,Dewhurst,R,Y,29
+Anderson,1,0002,10002,2,Lt. Governor,Dewhurst,R,Y,42
+Anderson,1,0003,10003,3,Lt. Governor,Dewhurst,R,Y,21
+--- 2014_Republican_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1690,5.7,104
+Anderson,1,0002,10002,2,3811,2310,3.3,147
+Anderson,1,0003,10003,3,1925,1110,4.8,67
+--- 2014_Senate_Dist_18_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Aransas,7,0001,70001,69,State Sen 18,Drabek,D,N,7
+Aransas,7,0002,70002,70,State Sen 18,Drabek,D,N,22
+Aransas,7,0003,70003,71,State Sen 18,Drabek,D,N,17
+--- 2014_Senate_Dist_18_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Aransas,7,0001,70001,69,3109,1985,12.2,124
+Aransas,7,0002,70002,70,5697,3496,31.7,159
+Aransas,7,0003,70003,71,5817,4053,9.7,445
+--- 2014_Senate_Dist_28_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Baylor,23,0001,230001,172,State Sen 28,Arrington,R,N,4
+Baylor,23,0002,230002,173,State Sen 28,Arrington,R,N,0
+Baylor,23,0003,230003,174,State Sen 28,Arrington,R,N,3
+--- 2014_Senate_Dist_28_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Baylor,23,0001,230001,172,863,642,6.9,15
+Baylor,23,0002,230002,173,870,640,7.5,15
+Baylor,23,0003,230003,174,861,633,9.2,12
+--- 2014_Senate_Dist_4_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Chambers,71,0001,710001,1555,State Sen 4,Creighton,R,N,15
+Chambers,71,0002,710002,1556,State Sen 4,Creighton,R,N,18
+Chambers,71,0003,710003,1557,State Sen 4,Creighton,R,N,7
+--- 2014_Senate_Dist_4_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Chambers,71,0001,710001,1555,697,562,5.3,19
+Chambers,71,0002,710002,1556,1016,846,5.6,25
+Chambers,71,0003,710003,1557,729,434,10.6,9
+--- 2014_Senate_Dist_4_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Chambers,71,0001,710001,1555,State Sen 4,Bunch,,N,3
+Chambers,71,0002,710002,1556,State Sen 4,Bunch,,N,2
+Chambers,71,0003,710003,1557,State Sen 4,Bunch,,N,4
+--- 2014_Senate_Dist_4_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Chambers,71,0001,710001,1555,697,562,5.3,8
+Chambers,71,0002,710002,1556,1016,846,5.6,17
+Chambers,71,0003,710003,1557,729,434,10.6,20
+--- 2015_City_General_2_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Fort Bend,157,2017,1572017,3663,Houston Mayor,Smith,,N,5
+Fort Bend,157,2023,1572023,3666,Houston Mayor,Smith,,N,3
+Fort Bend,157,2031,1572031,3669,Houston Mayor,Smith,,N,3
+--- 2015_City_General_2_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Fort Bend,157,2017,1572017,3663,4005,2621,0.0,664
+Fort Bend,157,2023,1572023,3666,5609,2820,0.0,464
+Fort Bend,157,2031,1572031,3669,4779,2905,0.0,691
+--- 2015_City_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1001,291001,254,San Antonio Mayor,Martinez,,N,0
+Bexar,29,1002,291002,255,San Antonio Mayor,Martinez,,N,5
+Bexar,29,1003,291003,256,San Antonio Mayor,Martinez,,N,2
+--- 2015_City_General_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1001,291001,254,605,420,51.0,104
+Bexar,29,1002,291002,255,1039,623,49.1,62
+Bexar,29,1003,291003,256,3399,1566,77.3,164
+--- 2015_City_Runoff_2_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Fort Bend,157,2017,1572017,3663,Houston Mayor,King,,N,25
+Fort Bend,157,2023,1572023,3666,Houston Mayor,King,,N,42
+Fort Bend,157,2031,1572031,3669,Houston Mayor,King,,N,31
+--- 2015_City_Runoff_2_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Fort Bend,157,2017,1572017,3663,4005,2621,0.0,562
+Fort Bend,157,2023,1572023,3666,5609,2820,0.0,331
+Fort Bend,157,2031,1572031,3669,4779,2905,0.0,607
+--- 2015_City_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1001,291001,254,San Antonio Mayor,Taylor,,N,21
+Bexar,29,1002,291002,255,San Antonio Mayor,Taylor,,N,36
+Bexar,29,1003,291003,256,San Antonio Mayor,Taylor,,N,43
+--- 2015_City_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1001,291001,254,605,420,51.0,97
+Bexar,29,1002,291002,255,1039,623,49.1,63
+Bexar,29,1003,291003,256,3399,1566,77.3,180
+--- 2015_House_Dist_123_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1001,291001,254,State Rep 123,Bernal,D,N,38
+Bexar,29,1003,291003,256,State Rep 123,Bernal,D,N,65
+Bexar,29,1008,291008,261,State Rep 123,Bernal,D,N,151
+--- 2015_House_Dist_123_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1001,291001,254,605,420,51.0,48
+Bexar,29,1003,291003,256,3399,1566,77.3,86
+Bexar,29,1008,291008,261,2587,1754,59.0,175
+--- 2015_House_Dist_123_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1001,291001,254,State Rep 123,Aguillon,D,N,12
+Bexar,29,1003,291003,256,State Rep 123,Aguillon,D,N,19
+Bexar,29,1008,291008,261,State Rep 123,Aguillon,D,N,25
+--- 2015_House_Dist_123_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1001,291001,254,605,420,51.0,50
+Bexar,29,1003,291003,256,3399,1566,77.3,84
+Bexar,29,1008,291008,261,2587,1754,59.0,158
+--- 2015_House_Dist_124_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1002,291002,255,State Rep 124,Minjarez,D,N,8
+Bexar,29,1009,291009,262,State Rep 124,Minjarez,D,N,2
+Bexar,29,1012,291012,265,State Rep 124,Minjarez,D,N,45
+--- 2015_House_Dist_124_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1002,291002,255,1039,623,49.1,9
+Bexar,29,1009,291009,262,3048,927,45.5,3
+Bexar,29,1012,291012,265,4222,2078,64.5,89
+--- 2015_House_Dist_124_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1002,291002,255,State Rep 124,Herrera,D,N,0
+Bexar,29,1009,291009,262,State Rep 124,Herrera,D,N,0
+Bexar,29,1012,291012,265,State Rep 124,Herrera,D,N,11
+--- 2015_House_Dist_124_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1002,291002,255,1039,623,49.1,3
+Bexar,29,1009,291009,262,3048,927,45.5,1
+Bexar,29,1012,291012,265,4222,2078,64.5,73
+--- 2015_House_Dist_13_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Austin,15,0101,150101,116,State Rep 13,Cerny Bilski,R,N,89
+Austin,15,0102,150102,117,State Rep 13,Cerny Bilski,R,N,89
+Austin,15,0103,150103,118,State Rep 13,Cerny Bilski,R,N,95
+--- 2015_House_Dist_13_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Austin,15,0101,150101,116,2253,1332,9.0,222
+Austin,15,0102,150102,117,1865,1306,8.3,222
+Austin,15,0103,150103,118,1960,1343,5.6,232
+--- 2015_House_Dist_13_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Austin,15,0101,150101,116,State Rep 13,Berger,R,N,18
+Austin,15,0102,150102,117,State Rep 13,Berger,R,N,21
+Austin,15,0103,150103,118,State Rep 13,Berger,R,N,20
+--- 2015_House_Dist_13_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Austin,15,0101,150101,116,2253,1332,9.0,162
+Austin,15,0102,150102,117,1865,1306,8.3,167
+Austin,15,0103,150103,118,1960,1343,5.6,169
+--- 2015_House_Dist_17_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bastrop,21,1001,211001,146,State Rep 17,Cyrier,R,N,10
+Bastrop,21,1002,211002,147,State Rep 17,Cyrier,R,N,14
+Bastrop,21,1003,211003,148,State Rep 17,Cyrier,R,N,57
+--- 2015_House_Dist_17_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bastrop,21,1001,211001,146,466,263,5.7,26
+Bastrop,21,1002,211002,147,807,427,8.4,44
+Bastrop,21,1003,211003,148,3183,1611,10.3,163
+--- 2015_House_Dist_17_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bastrop,21,1001,211001,146,State Rep 17,Cartier,D,N,1
+Bastrop,21,1002,211002,147,State Rep 17,Cartier,D,N,1
+Bastrop,21,1003,211003,148,State Rep 17,Cartier,D,N,5
+--- 2015_House_Dist_17_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bastrop,21,1001,211001,146,466,263,5.7,28
+Bastrop,21,1002,211002,147,807,427,8.4,44
+Bastrop,21,1003,211003,148,3183,1611,10.3,175
+--- 2015_House_District_118_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1011,291011,264,State Rep 118,Lujan,R,N,7
+Bexar,29,1014,291014,267,State Rep 118,Lujan,R,N,3
+Bexar,29,1015,291015,268,State Rep 118,Lujan,R,N,7
+--- 2015_House_District_118_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1011,291011,264,2169,856,0.0,51
+Bexar,29,1014,291014,267,2642,1361,0.0,52
+Bexar,29,1015,291015,268,2640,1441,0.0,36
+--- 2015_Senate_Dist_26_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1001,291001,254,State Sen 26,Martinez Fischer,D,N,31
+Bexar,29,1002,291002,255,State Sen 26,Martinez Fischer,D,N,0
+Bexar,29,1003,291003,256,State Sen 26,Martinez Fischer,D,N,47
+--- 2015_Senate_Dist_26_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1001,291001,254,605,420,51.0,48
+Bexar,29,1002,291002,255,1039,623,49.1,15
+Bexar,29,1003,291003,256,3399,1566,77.3,86
+--- 2015_Senate_Dist_26_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1001,291001,254,State Sen 26,Martinez Fischer,D,N,27
+Bexar,29,1002,291002,255,State Sen 26,Martinez Fischer,D,N,3
+Bexar,29,1003,291003,256,State Sen 26,Martinez Fischer,D,N,44
+--- 2015_Senate_Dist_26_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1001,291001,254,605,420,51.0,50
+Bexar,29,1002,291002,255,1039,623,49.1,7
+Bexar,29,1003,291003,256,3399,1566,77.3,84
+--- 2016_City_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bell,27,0101,270101,189,Killeen Mayor,Blackstone,,N,17
+Bell,27,0102,270102,190,Killeen Mayor,Blackstone,,N,14
+Bell,27,0103,270103,191,Killeen Mayor,Blackstone,,N,6
+--- 2016_City_General_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bell,27,0101,270101,189,5847,2551,7.1,79
+Bell,27,0102,270102,190,7127,3574,9.1,94
+Bell,27,0103,270103,191,4551,1666,28.8,39
+--- 2016_Democratic_Primary_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,President,Judd,D,N,0
+Anderson,1,0002,10002,2,President,Judd,D,N,0
+Anderson,1,0003,10003,3,President,Judd,D,N,0
+--- 2016_Democratic_Primary_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1738,7.2,74
+Anderson,1,0002,10002,2,3811,2411,3.6,69
+Anderson,1,0003,10003,3,1925,1169,4.8,47
+--- 2016_Democratic_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,RR Comm 1,Garrett,D,N,2
+Anderson,1,0002,10002,2,RR Comm 1,Garrett,D,N,1
+Anderson,1,0003,10003,3,RR Comm 1,Garrett,D,N,0
+--- 2016_Democratic_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1738,7.2,7
+Anderson,1,0002,10002,2,3811,2411,3.6,4
+Anderson,1,0003,10003,3,1925,1169,4.8,2
+--- 2016_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,President,Clinton,D,N,262
+Anderson,1,0002,10002,2,President,Clinton,D,N,181
+Anderson,1,0003,10003,3,President,Clinton,D,N,94
+--- 2016_General_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1799,7.2,1030
+Anderson,1,0002,10002,2,3811,2455,3.9,1532
+Anderson,1,0003,10003,3,1925,1195,4.4,776
+--- 2016_House_Dist_118_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1011,291011,264,State Rep 118,Lujan,R,N,8
+Bexar,29,1014,291014,267,State Rep 118,Lujan,R,N,1
+Bexar,29,1015,291015,268,State Rep 118,Lujan,R,N,11
+--- 2016_House_Dist_118_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1011,291011,264,2169,856,0.0,24
+Bexar,29,1014,291014,267,2642,1361,0.0,27
+Bexar,29,1015,291015,268,2640,1441,0.0,32
+--- 2016_House_Dist_120_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,3140,293140,749,State Rep 120,Thompson,D,N,0
+Bexar,29,3205,293205,814,State Rep 120,Thompson,D,N,0
+Bexar,29,4003,294003,817,State Rep 120,Thompson,D,N,7
+--- 2016_House_Dist_120_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,3140,293140,749,57,37,64.9,0
+Bexar,29,3205,293205,814,0,0,0.0,0
+Bexar,29,4003,294003,817,3002,1281,50.4,17
+--- 2016_House_Dist_120_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,3140,293140,749,State Rep 120,Thompson,I,N,0
+Bexar,29,3205,293205,814,State Rep 120,Thompson,I,N,0
+Bexar,29,4003,294003,817,State Rep 120,Thompson,I,N,5
+--- 2016_House_Dist_120_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,3140,293140,749,57,37,64.9,0
+Bexar,29,3205,293205,814,0,0,0.0,0
+Bexar,29,4003,294003,817,3002,1281,50.4,30
+--- 2016_House_Dist_139_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Harris,201,0073,2010073,4307,State Rep 139,Johnson,D,N,11
+Harris,201,0109,2010109,4343,State Rep 139,Johnson,D,N,71
+Harris,201,0122,2010122,4356,State Rep 139,Johnson,D,N,58
+--- 2016_House_Dist_139_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Harris,201,0073,2010073,4307,3305,1573,20.2,24
+Harris,201,0109,2010109,4343,4694,2493,5.2,78
+Harris,201,0122,2010122,4356,2846,1891,15.6,64
+--- 2016_Republican_Primary_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,President,Trump,R,N,143
+Anderson,1,0002,10002,2,President,Trump,R,N,222
+Anderson,1,0003,10003,3,President,Trump,R,N,119
+--- 2016_Republican_Primary_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1738,7.2,535
+Anderson,1,0002,10002,2,3811,2411,3.6,771
+Anderson,1,0003,10003,3,1925,1169,4.8,431
+--- 2016_Republican_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,RR Comm 1,Christian,R,N,17
+Anderson,1,0002,10002,2,RR Comm 1,Christian,R,N,18
+Anderson,1,0003,10003,3,RR Comm 1,Christian,R,N,8
+--- 2016_Republican_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1738,7.2,31
+Anderson,1,0002,10002,2,3811,2411,3.6,34
+Anderson,1,0003,10003,3,1925,1169,4.8,16
+--- 2018_Congress_Dist_27_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Aransas,7,0001,70001,69,U.S. Rep 27,Barrera,D,N,2
+Aransas,7,0002,70002,70,U.S. Rep 27,Barrera,D,N,14
+Aransas,7,0003,70003,71,U.S. Rep 27,Barrera,D,N,14
+--- 2018_Congress_Dist_27_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Aransas,7,0001,70001,69,3109,2165,13.0,197
+Aransas,7,0002,70002,70,5697,3749,31.6,265
+Aransas,7,0003,70003,71,5817,4301,9.6,605
+--- 2018_Democratic_Primary_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,U.S. Sen,Kimbrough,D,N,21
+Anderson,1,0002,10002,2,U.S. Sen,Kimbrough,D,N,17
+Anderson,1,0003,10003,3,U.S. Sen,Kimbrough,D,N,8
+--- 2018_Democratic_Primary_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1808,7.5,55
+Anderson,1,0002,10002,2,3811,2468,3.8,47
+Anderson,1,0003,10003,3,1925,1172,4.1,34
+--- 2018_Democratic_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,Governor,Valdez,D,N,8
+Anderson,1,0002,10002,2,Governor,Valdez,D,N,7
+Anderson,1,0003,10003,3,Governor,Valdez,D,N,4
+--- 2018_Democratic_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1808,7.5,14
+Anderson,1,0002,10002,2,3811,2468,3.8,11
+Anderson,1,0003,10003,3,1925,1172,4.1,7
+--- 2018_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,U.S. Sen,Cruz,R,Y,659
+Anderson,1,0002,10002,2,U.S. Sen,Cruz,R,Y,1062
+Anderson,1,0003,10003,3,U.S. Sen,Cruz,R,Y,571
+--- 2018_General_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1802,8.0,926
+Anderson,1,0002,10002,2,3811,2512,3.5,1237
+Anderson,1,0003,10003,3,1925,1195,4.3,675
+--- 2018_House_District_13_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Austin,15,0101,150101,116,State Rep 13,Wolfskill,R,N,124
+Austin,15,0102,150102,117,State Rep 13,Wolfskill,R,N,124
+Austin,15,0103,150103,118,State Rep 13,Wolfskill,R,N,132
+--- 2018_House_District_13_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Austin,15,0101,150101,116,2253,1342,10.8,210
+Austin,15,0102,150102,117,1865,1312,9.4,213
+Austin,15,0103,150103,118,1960,1400,5.4,228
+--- 2018_House_District_52_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Williamson,491,0119,4910119,9464,State Rep 52,Flores,R,N,931
+Williamson,491,0122,4910122,9465,State Rep 52,Flores,R,N,132
+Williamson,491,0123,4910123,9466,State Rep 52,Flores,R,N,656
+--- 2018_House_District_52_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Williamson,491,0119,4910119,9464,5802,3789,17.7,2255
+Williamson,491,0122,4910122,9465,682,447,13.2,308
+Williamson,491,0123,4910123,9466,8219,3958,26.6,1997
+--- 2018_Republican_Primary_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,U.S. Sen,Jacobson,R,N,19
+Anderson,1,0002,10002,2,U.S. Sen,Jacobson,R,N,26
+Anderson,1,0003,10003,3,U.S. Sen,Jacobson,R,N,18
+--- 2018_Republican_Primary_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1808,7.5,465
+Anderson,1,0002,10002,2,3811,2468,3.8,655
+Anderson,1,0003,10003,3,1925,1172,4.1,344
+--- 2018_Republican_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,U.S. Rep 5,Gooden,R,N,190
+Anderson,1,0002,10002,2,U.S. Rep 5,Gooden,R,N,260
+Anderson,1,0003,10003,3,U.S. Rep 5,Gooden,R,N,121
+--- 2018_Republican_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1808,7.5,327
+Anderson,1,0002,10002,2,3811,2468,3.8,436
+Anderson,1,0003,10003,3,1925,1172,4.1,205
+--- 2018_Senate_Dist_19_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Atascosa,13,0001,130001,96,State Sen 19,Flores,R,N,105
+Atascosa,13,0003,130003,97,State Sen 19,Flores,R,N,111
+Atascosa,13,0004,130004,98,State Sen 19,Flores,R,N,28
+--- 2018_Senate_Dist_19_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Atascosa,13,0001,130001,96,1305,811,38.7,135
+Atascosa,13,0003,130003,97,2719,1395,46.7,151
+Atascosa,13,0004,130004,98,2141,865,55.4,58
+--- 2018_Senate_Dist_19_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Atascosa,13,0001,130001,96,State Sen 19,Alaniz,R,N,1
+Atascosa,13,0003,130003,97,State Sen 19,Alaniz,R,N,0
+Atascosa,13,0004,130004,98,State Sen 19,Alaniz,R,N,2
+--- 2018_Senate_Dist_19_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Atascosa,13,0001,130001,96,1305,811,38.7,67
+Atascosa,13,0003,130003,97,2719,1395,46.7,86
+Atascosa,13,0004,130004,98,2141,865,55.4,28
+--- 2018_Senate_District_6_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Harris,201,0001,2010001,4234,State Sen 6,Alvarado,D,N,55
+Harris,201,0002,2010002,4235,State Sen 6,Alvarado,D,N,104
+Harris,201,0009,2010009,4242,State Sen 6,Alvarado,D,N,56
+--- 2018_Senate_District_6_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Harris,201,0001,2010001,4234,1979,1448,20.3,0
+Harris,201,0002,2010002,4235,4770,3543,19.4,0
+Harris,201,0009,2010009,4242,4044,2205,40.9,0
+--- 2019_City_General_2_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Fort Bend,157,2017,1572017,3663,Houston Mayor,Baker,,N,1
+Fort Bend,157,2023,1572023,3666,Houston Mayor,Baker,,N,1
+Fort Bend,157,2031,1572031,3669,Houston Mayor,Baker,,N,1
+--- 2019_City_General_2_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Fort Bend,157,2017,1572017,3663,4005,2646,11.2,608
+Fort Bend,157,2023,1572023,3666,5609,2880,40.8,385
+Fort Bend,157,2031,1572031,3669,4779,2948,17.2,594
+--- 2019_City_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1001,291001,254,San Antonio Mayor,Velasquez,,N,0
+Bexar,29,1002,291002,255,San Antonio Mayor,Velasquez,,N,0
+Bexar,29,1003,291003,256,San Antonio Mayor,Velasquez,,N,2
+--- 2019_City_General_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1001,291001,254,605,480,45.4,103
+Bexar,29,1002,291002,255,1039,673,50.7,56
+Bexar,29,1003,291003,256,3399,2050,64.2,229
+--- 2019_City_Runoff_2_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Fort Bend,157,2017,1572017,3663,Houston Mayor,Turner,,N,447
+Fort Bend,157,2023,1572023,3666,Houston Mayor,Turner,,N,217
+Fort Bend,157,2031,1572031,3669,Houston Mayor,Turner,,N,464
+--- 2019_City_Runoff_2_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Fort Bend,157,2017,1572017,3663,4005,2646,11.2,484
+Fort Bend,157,2023,1572023,3666,5609,2880,40.8,261
+Fort Bend,157,2031,1572031,3669,4779,2948,17.2,496
+--- 2019_City_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1001,291001,254,San Antonio Mayor,Nirenberg,,N,108
+Bexar,29,1002,291002,255,San Antonio Mayor,Nirenberg,,N,27
+Bexar,29,1003,291003,256,San Antonio Mayor,Nirenberg,,N,251
+--- 2019_City_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1001,291001,254,605,480,45.4,124
+Bexar,29,1002,291002,255,1039,673,50.7,77
+Bexar,29,1003,291003,256,3399,2050,64.2,308
+--- 2019_House_Dist_125_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1072,291072,325,State Rep 125,Rangel,R,N,33
+Bexar,29,1088,291088,341,State Rep 125,Rangel,R,N,14
+Bexar,29,2011,292011,426,State Rep 125,Rangel,R,N,13
+--- 2019_House_Dist_125_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1072,291072,325,3382,2049,47.3,110
+Bexar,29,1088,291088,341,1646,1026,88.3,58
+Bexar,29,2011,292011,426,3686,2065,81.7,119
+--- 2019_House_Dist_145_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Harris,201,0001,2010001,4234,State Rep 145,Noriega,D,N,48
+Harris,201,0002,2010002,4235,State Rep 145,Noriega,D,N,49
+Harris,201,0003,2010003,4236,State Rep 145,Noriega,D,N,74
+--- 2019_House_Dist_145_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Harris,201,0001,2010001,4234,1979,1448,20.3,86
+Harris,201,0002,2010002,4235,4770,3543,19.4,87
+Harris,201,0003,2010003,4236,4620,2862,11.7,118
+--- 2019_House_District_100_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Dallas,113,1050,1131050,2044,State Rep 100,Armstrong,D,N,9
+Dallas,113,1054,1131054,2047,State Rep 100,Armstrong,D,N,12
+Dallas,113,1057,1131057,2050,State Rep 100,Armstrong,D,N,30
+--- 2019_House_District_100_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Dallas,113,1050,1131050,2044,250,145,6.2,23
+Dallas,113,1054,1131054,2047,3920,1551,44.0,114
+Dallas,113,1057,1131057,2050,4145,1943,40.3,203
+--- 2019_House_District_125_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1072,291072,325,State Rep 125,Huerta,D,N,0
+Bexar,29,1088,291088,341,State Rep 125,Huerta,D,N,5
+Bexar,29,2011,292011,426,State Rep 125,Huerta,D,N,18
+--- 2019_House_District_125_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1072,291072,325,3382,2049,47.3,74
+Bexar,29,1088,291088,341,1646,1026,88.3,42
+Bexar,29,2011,292011,426,3686,2065,81.7,75
+--- 2019_House_District_145_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Harris,201,0001,2010001,4234,State Rep 145,Hunt,L,N,3
+Harris,201,0002,2010002,4235,State Rep 145,Hunt,L,N,0
+Harris,201,0003,2010003,4236,State Rep 145,Hunt,L,N,0
+--- 2019_House_District_145_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Harris,201,0001,2010001,4234,1979,1448,20.3,110
+Harris,201,0002,2010002,4235,4770,3543,19.4,107
+Harris,201,0003,2010003,4236,4620,2862,11.7,133
+--- 2019_House_District_148_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Harris,201,0003,2010003,4236,State Rep 148,Block,D,N,5
+Harris,201,0004,2010004,4237,State Rep 148,Block,D,N,14
+Harris,201,0005,2010005,4238,State Rep 148,Block,D,N,8
+--- 2019_House_District_148_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Harris,201,0003,2010003,4236,4620,2862,11.7,584
+Harris,201,0004,2010004,4237,2509,1832,11.8,815
+Harris,201,0005,2010005,4238,2016,1656,14.4,725
+--- 2019_House_District_28_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Fort Bend,157,1004,1571004,3629,State Rep 28,Allred,R,N,128
+Fort Bend,157,1005,1571005,3630,State Rep 28,Allred,R,N,37
+Fort Bend,157,1006,1571006,3631,State Rep 28,Allred,R,N,178
+--- 2019_House_District_28_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Fort Bend,157,1004,1571004,3629,5592,4287,8.3,1033
+Fort Bend,157,1005,1571005,3630,2084,1178,7.4,378
+Fort Bend,157,1006,1571006,3631,18190,7044,9.3,1793
+--- 2019_House_District_79_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+El Paso,141,0086,1410086,3416,State Rep 79,Sassenfeld,R,N,0
+El Paso,141,0087,1410087,3417,State Rep 79,Sassenfeld,R,N,0
+El Paso,141,0090,1410090,3420,State Rep 79,Sassenfeld,R,N,2
+--- 2019_House_District_79_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+El Paso,141,0086,1410086,3416,2236,756,13.0,0
+El Paso,141,0087,1410087,3417,1254,16,37.5,0
+El Paso,141,0090,1410090,3420,2339,1713,63.8,2
+--- 2020_City_General_2_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bell,27,0106,270106,194,Killeen City Council,Gukeisen,,N,209
+Bell,27,0109,270109,197,Killeen City Council,Gukeisen,,N,161
+Bell,27,0110,270110,198,Killeen City Council,Gukeisen,,N,0
+--- 2020_City_General_2_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bell,27,0106,270106,194,7834,4458,14.9,2265
+Bell,27,0109,270109,197,5373,3166,14.1,1434
+Bell,27,0110,270110,198,10130,3314,13.0,949
+--- 2020_City_Runoff_2_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Dallas,113,4518,1134518,2825,Irving City Council 3,Zeske,,N,0
+Dallas,113,4605,1134605,2857,Irving City Council 3,Zeske,,N,0
+Dallas,113,4608,1134608,2860,Irving City Council 3,Zeske,,N,191
+--- 2020_City_Runoff_2_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Dallas,113,4518,1134518,2825,6621,2117,33.7,25
+Dallas,113,4605,1134605,2857,5577,2589,30.6,0
+Dallas,113,4608,1134608,2860,8592,3735,16.2,297
+--- 2020_Democratic_Primary_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,President,Bennet,D,N,0
+Anderson,1,0002,10002,2,President,Bennet,D,N,0
+Anderson,1,0003,10003,3,President,Bennet,D,N,0
+--- 2020_Democratic_Primary_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1781,8.3,121
+Anderson,1,0002,10002,2,3811,2565,3.5,86
+Anderson,1,0003,10003,3,1925,1152,4.9,60
+--- 2020_Democratic_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,U.S. Sen,Hegar,D,N,10
+Anderson,1,0002,10002,2,U.S. Sen,Hegar,D,N,16
+Anderson,1,0003,10003,3,U.S. Sen,Hegar,D,N,5
+--- 2020_Democratic_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1781,8.3,18
+Anderson,1,0002,10002,2,3811,2565,3.5,33
+Anderson,1,0003,10003,3,1925,1152,4.9,13
+--- 2020_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,President,Biden,D,N,357
+Anderson,1,0002,10002,2,President,Biden,D,N,205
+Anderson,1,0003,10003,3,President,Biden,D,N,118
+--- 2020_General_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1847,8.8,1164
+Anderson,1,0002,10002,2,3811,2652,3.5,1769
+Anderson,1,0003,10003,3,1925,1203,4.7,873
+--- 2020_House_Dist_100_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Dallas,113,1050,1131050,2044,State Rep 100,Armstrong,D,N,4
+Dallas,113,1054,1131054,2047,State Rep 100,Armstrong,D,N,16
+Dallas,113,1057,1131057,2050,State Rep 100,Armstrong,D,N,15
+--- 2020_House_Dist_100_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Dallas,113,1050,1131050,2044,250,145,6.2,6
+Dallas,113,1054,1131054,2047,3920,1551,44.0,39
+Dallas,113,1057,1131057,2050,4145,1943,40.3,43
+--- 2020_House_Dist_148_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Harris,201,0003,2010003,4236,State Rep 148,Eastman,D,N,172
+Harris,201,0004,2010004,4237,State Rep 148,Eastman,D,N,271
+Harris,201,0005,2010005,4238,State Rep 148,Eastman,D,N,209
+--- 2020_House_Dist_148_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Harris,201,0003,2010003,4236,4620,2862,11.7,228
+Harris,201,0004,2010004,4237,2509,1832,11.8,332
+Harris,201,0005,2010005,4238,2016,1656,14.4,261
+--- 2020_House_Dist_28_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Fort Bend,157,1004,1571004,3629,State Rep 28,Gates,R,N,693
+Fort Bend,157,1005,1571005,3630,State Rep 28,Gates,R,N,288
+Fort Bend,157,1006,1571006,3631,State Rep 28,Gates,R,N,1427
+--- 2020_House_Dist_28_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Fort Bend,157,1004,1571004,3629,5592,4287,8.3,1021
+Fort Bend,157,1005,1571005,3630,2084,1178,7.4,360
+Fort Bend,157,1006,1571006,3631,18190,7044,9.3,2061
+--- 2020_Republican_Primary_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,President,De La Fuente,R,N,1
+Anderson,1,0002,10002,2,President,De La Fuente,R,N,0
+Anderson,1,0003,10003,3,President,De La Fuente,R,N,4
+--- 2020_Republican_Primary_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1781,8.3,436
+Anderson,1,0002,10002,2,3811,2565,3.5,788
+Anderson,1,0003,10003,3,1925,1152,4.9,381
+--- 2020_Republican_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Archer,9,0001,90001,75,U.S. Rep 13,Jackson,R,N,96
+Archer,9,0002,90002,76,U.S. Rep 13,Jackson,R,N,81
+Archer,9,0003,90003,77,U.S. Rep 13,Jackson,R,N,18
+--- 2020_Republican_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Archer,9,0001,90001,75,1984,1391,3.7,149
+Archer,9,0002,90002,76,1060,775,2.3,130
+Archer,9,0003,90003,77,528,380,6.1,45
+--- 2020_Senate_Dist_30_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Archer,9,0001,90001,75,State Sen 30,Luther,R,N,75
+Archer,9,0002,90002,76,State Sen 30,Luther,R,N,65
+Archer,9,0003,90003,77,State Sen 30,Luther,R,N,22
+--- 2020_Senate_Dist_30_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Archer,9,0001,90001,75,1984,1437,3.7,153
+Archer,9,0002,90002,76,1060,813,3.0,131
+Archer,9,0003,90003,77,528,385,6.2,52
+--- 2020_Senate_District_14_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bastrop,21,1001,211001,146,State Sen 14,Burns,R,N,3
+Bastrop,21,1002,211002,147,State Sen 14,Burns,R,N,4
+Bastrop,21,1003,211003,148,State Sen 14,Burns,R,N,20
+--- 2020_Senate_District_14_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bastrop,21,1001,211001,146,466,339,7.4,61
+Bastrop,21,1002,211002,147,807,565,9.9,108
+Bastrop,21,1003,211003,148,3183,2114,12.3,400
+--- 2020_Senate_District_30_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Archer,9,0001,90001,75,State Sen 30,Carter,R,N,10
+Archer,9,0002,90002,76,State Sen 30,Carter,R,N,7
+Archer,9,0003,90003,77,State Sen 30,Carter,R,N,4
+--- 2020_Senate_District_30_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Archer,9,0001,90001,75,1984,1391,3.7,166
+Archer,9,0002,90002,76,1060,775,2.3,136
+Archer,9,0003,90003,77,528,380,6.1,66
+--- 2021_City_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bell,27,0106,270106,194,Killeen City Council 1,Finley,,N,10
+Bell,27,0109,270109,197,Killeen City Council 1,Finley,,N,4
+Bell,27,0110,270110,198,Killeen City Council 1,Finley,,N,0
+--- 2021_City_General_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bell,27,0101,270101,189,5847,3168,8.0,12
+Bell,27,0102,270102,190,7127,4307,9.9,8
+Bell,27,0103,270103,191,4551,2379,27.7,2
+--- 2021_City_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Collin,85,0030,850030,1663,Frisco City Council 3,Pelham,,N,243
+Collin,85,0087,850087,1720,Frisco City Council 3,Pelham,,N,235
+Collin,85,0092,850092,1725,Frisco City Council 3,Pelham,,N,143
+--- 2021_City_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Collin,85,0030,850030,1663,6965,4632,12.0,472
+Collin,85,0087,850087,1720,6533,3142,1.7,386
+Collin,85,0092,850092,1725,6619,3752,12.0,238
+--- 2021_Congress_Dist_6_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Ellis,139,1001,1391001,3272,U.S. Rep 6,Ballantine,R,N,0
+Ellis,139,1002,1391002,3273,U.S. Rep 6,Ballantine,R,N,0
+Ellis,139,1003,1391003,3274,U.S. Rep 6,Ballantine,R,N,1
+--- 2021_Congress_Dist_6_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Ellis,139,1001,1391001,3272,3596,2131,15.0,219
+Ellis,139,1002,1391002,3273,168,128,6.3,22
+Ellis,139,1003,1391003,3274,3133,1964,19.7,383
+--- 2021_House_Dist_10_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Ellis,139,1001,1391001,3272,State Rep 10,Harrison,R,N,34
+Ellis,139,1002,1391002,3273,State Rep 10,Harrison,R,N,7
+Ellis,139,1003,1391003,3274,State Rep 10,Harrison,R,N,89
+--- 2021_House_Dist_10_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Ellis,139,1001,1391001,3272,3596,2131,15.0,65
+Ellis,139,1002,1391002,3273,168,128,6.3,14
+Ellis,139,1003,1391003,3274,3133,1964,19.7,191
+--- 2021_House_Dist_118_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1011,291011,264,State Rep 118,Ramirez,D,N,75
+Bexar,29,1014,291014,267,State Rep 118,Ramirez,D,N,72
+Bexar,29,1015,291015,268,State Rep 118,Ramirez,D,N,69
+--- 2021_House_Dist_118_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1011,291011,264,2169,1179,87.4,110
+Bexar,29,1014,291014,267,2642,1436,86.4,81
+Bexar,29,1015,291015,268,2640,1486,90.4,84
+--- 2021_House_Dist_68_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Childress,75,0101,750101,1599,State Rep 68,Carter,R,N,18
+Childress,75,0201,750201,1600,State Rep 68,Carter,R,N,28
+Childress,75,0301,750301,1601,State Rep 68,Carter,R,N,11
+--- 2021_House_Dist_68_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Childress,75,0101,750101,1599,2509,1181,20.8,47
+Childress,75,0201,750201,1600,1358,901,11.5,55
+Childress,75,0301,750301,1601,1439,629,13.7,27
+--- 2021_House_District_10_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Ellis,139,1001,1391001,3272,State Rep 10,Goodwin,I,N,0
+Ellis,139,1002,1391002,3273,State Rep 10,Goodwin,I,N,0
+Ellis,139,1003,1391003,3274,State Rep 10,Goodwin,I,N,4
+--- 2021_House_District_10_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Ellis,139,1001,1391001,3272,3596,2131,15.0,69
+Ellis,139,1002,1391002,3273,168,128,6.3,9
+Ellis,139,1003,1391003,3274,3133,1964,19.7,162
+--- 2021_House_District_118_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1011,291011,264,State Rep 118,Martinez,D,N,16
+Bexar,29,1014,291014,267,State Rep 118,Martinez,D,N,20
+Bexar,29,1015,291015,268,State Rep 118,Martinez,D,N,14
+--- 2021_House_District_118_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1011,291011,264,2169,1179,87.4,68
+Bexar,29,1014,291014,267,2642,1436,86.4,59
+Bexar,29,1015,291015,268,2640,1486,90.4,46
+--- 2021_House_District_68_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Childress,75,0101,750101,1599,State Rep 68,Berry,R,N,17
+Childress,75,0201,750201,1600,State Rep 68,Berry,R,N,24
+Childress,75,0301,750301,1601,State Rep 68,Berry,R,N,13
+--- 2021_House_District_68_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Childress,75,0101,750101,1599,2509,1181,20.8,85
+Childress,75,0201,750201,1600,1358,901,11.5,73
+Childress,75,0301,750301,1601,1439,629,13.7,49
+--- 2022_Congress_Dist_34_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bee,25,0001,250001,176,U.S. Rep 34,Cantu-Cabrera,R,N,2
+Bee,25,0002,250002,177,U.S. Rep 34,Cantu-Cabrera,R,N,4
+Bee,25,0003,250003,178,U.S. Rep 34,Cantu-Cabrera,R,N,5
+--- 2022_Congress_Dist_34_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bee,25,0001,250001,176,3209,2170,55.8,191
+Bee,25,0002,250002,177,619,528,37.3,47
+Bee,25,0003,250003,178,10625,1767,58.0,117
+--- 2022_Democratic_Primary_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,Governor,Barrientez,D,N,0
+Anderson,1,0002,10002,2,Governor,Barrientez,D,N,0
+Anderson,1,0003,10003,3,Governor,Barrientez,D,N,0
+--- 2022_Democratic_Primary_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1785,10.2,63
+Anderson,1,0002,10002,2,3811,2632,3.6,59
+Anderson,1,0003,10003,3,1925,1207,5.7,19
+--- 2022_Democratic_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,Lt. Governor,Beckley,D,N,12
+Anderson,1,0002,10002,2,Lt. Governor,Beckley,D,N,10
+Anderson,1,0003,10003,3,Lt. Governor,Beckley,D,N,4
+--- 2022_Democratic_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1785,10.2,26
+Anderson,1,0002,10002,2,3811,2632,3.6,25
+Anderson,1,0003,10003,3,1925,1207,5.7,6
+--- 2022_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,Governor,Abbott,R,Y,610
+Anderson,1,0002,10002,2,Governor,Abbott,R,Y,1165
+Anderson,1,0003,10003,3,Governor,Abbott,R,Y,573
+--- 2022_General_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1834,10.2,828
+Anderson,1,0002,10002,2,3811,2697,3.7,1317
+Anderson,1,0003,10003,3,1925,1228,6.0,658
+--- 2022_House_District_147_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Harris,201,0002,2010002,4235,State Rep 147,Keys Bess,D,N,26
+Harris,201,0016,2010016,4249,State Rep 147,Keys Bess,D,N,30
+Harris,201,0019,2010019,4252,State Rep 147,Keys Bess,D,N,17
+--- 2022_House_District_147_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Harris,201,0002,2010002,4235,4770,3767,18.0,45
+Harris,201,0016,2010016,4249,4819,2598,11.4,76
+Harris,201,0019,2010019,4252,2175,1579,13.3,32
+--- 2022_Republican_Primary_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,U.S. Rep 6,Buford,R,N,57
+Anderson,1,0002,10002,2,U.S. Rep 6,Buford,R,N,78
+Anderson,1,0003,10003,3,U.S. Rep 6,Buford,R,N,52
+--- 2022_Republican_Primary_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1785,10.2,436
+Anderson,1,0002,10002,2,3811,2632,3.6,668
+Anderson,1,0003,10003,3,1925,1207,5.7,377
+--- 2022_Republican_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,Attorney Gen,Bush,R,N,94
+Anderson,1,0002,10002,2,Attorney Gen,Bush,R,N,77
+Anderson,1,0003,10003,3,Attorney Gen,Bush,R,N,76
+--- 2022_Republican_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1785,10.2,248
+Anderson,1,0002,10002,2,3811,2632,3.6,414
+Anderson,1,0003,10003,3,1925,1207,5.7,232
+--- 2023_City_General_2_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Fort Bend,157,1004,1571004,3629,Houston Mayor,Caldwell,,N,0
+Fort Bend,157,1038,1571038,3636,Houston Mayor,Caldwell,,N,0
+Fort Bend,157,1057,1571057,3639,Houston Mayor,Caldwell,,N,0
+--- 2023_City_General_2_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Fort Bend,157,1004,1571004,3629,5592,3785,9.7,560
+Fort Bend,157,1038,1571038,3636,12075,6357,12.1,783
+Fort Bend,157,1057,1571057,3639,8892,5943,14.6,857
+--- 2023_City_Runoff_2_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Fort Bend,157,1004,1571004,3629,Houston Mayor,Whitmire,,N,2
+Fort Bend,157,1038,1571038,3636,Houston Mayor,Whitmire,,N,0
+Fort Bend,157,1057,1571057,3639,Houston Mayor,Whitmire,,N,0
+--- 2023_City_Runoff_2_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Fort Bend,157,1004,1571004,3629,5592,3785,9.7,3
+Fort Bend,157,1038,1571038,3636,12075,6357,12.1,0
+Fort Bend,157,1057,1571057,3639,8892,5943,14.6,0
+--- 2023_House_District_2_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Hopkins,223,0001,2230001,5878,State Rep 2,Roszhart,R,N,23
+Hopkins,223,0002,2230002,5879,State Rep 2,Roszhart,R,N,12
+Hopkins,223,0003,2230003,5880,State Rep 2,Roszhart,R,N,11
+--- 2023_House_District_2_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Hopkins,223,0001,2230001,5878,3583,2360,6.6,606
+Hopkins,223,0002,2230002,5879,3380,2343,8.3,584
+Hopkins,223,0003,2230003,5880,3245,2015,7.3,405
+--- 2024_Congress_Dist_18_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Harris,201,0001,2010001,4234,U.S. Rep 18,Lee Carter,D,N,848
+Harris,201,0002,2010002,4235,U.S. Rep 18,Lee Carter,D,N,1923
+Harris,201,0003,2010003,4236,U.S. Rep 18,Lee Carter,D,N,1611
+--- 2024_Congress_Dist_18_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Harris,201,0001,2010001,4234,1979,1672,18.4,1324
+Harris,201,0002,2010002,4235,4770,4554,17.5,3027
+Harris,201,0003,2010003,4236,4620,3475,11.2,2686
+--- 2024_Democratic_Primary_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,President,Biden,D,Y,39
+Anderson,1,0002,10002,2,President,Biden,D,Y,40
+Anderson,1,0003,10003,3,President,Biden,D,Y,19
+--- 2024_Democratic_Primary_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1827,11.2,46
+Anderson,1,0002,10002,2,3811,2762,4.0,49
+Anderson,1,0003,10003,3,1925,1251,6.7,21
+--- 2024_Democratic_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Archer,9,0001,90001,75,State Sen 30,Braxton,D,N,0
+Archer,9,0002,90002,76,State Sen 30,Braxton,D,N,1
+Archer,9,0003,90003,77,State Sen 30,Braxton,D,N,0
+--- 2024_Democratic_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Archer,9,0001,90001,75,1984,1448,3.1,2
+Archer,9,0002,90002,76,1060,893,2.9,1
+Archer,9,0003,90003,77,528,374,6.4,0
+--- 2024_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,President,Harris,D,N,325
+Anderson,1,0002,10002,2,President,Harris,D,N,182
+Anderson,1,0003,10003,3,President,Harris,D,N,110
+--- 2024_General_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1870,11.1,1118
+Anderson,1,0002,10002,2,3811,2850,4.2,1873
+Anderson,1,0003,10003,3,1925,1268,6.2,863
+--- 2024_House_Dist_2_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Hopkins,223,0001,2230001,5878,State Rep 2,Dutton,R,N,121
+Hopkins,223,0002,2230002,5879,State Rep 2,Dutton,R,N,150
+Hopkins,223,0003,2230003,5880,State Rep 2,Dutton,R,N,116
+--- 2024_House_Dist_2_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Hopkins,223,0001,2230001,5878,3583,2360,6.6,197
+Hopkins,223,0002,2230002,5879,3380,2343,8.3,241
+Hopkins,223,0003,2230003,5880,3245,2015,7.3,180
+--- 2024_House_District_56_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+McLennan,309,0001,3090001,6656,State Rep 56,Curry,R,N,55
+McLennan,309,0003,3090003,6658,State Rep 56,Curry,R,N,781
+McLennan,309,0004,3090004,6659,State Rep 56,Curry,R,N,50
+--- 2024_House_District_56_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+McLennan,309,0001,3090001,6656,804,377,11.9,152
+McLennan,309,0003,3090003,6658,10963,3172,11.4,1962
+McLennan,309,0004,3090004,6659,147,227,10.1,98
+--- 2024_Republican_Primary_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,President,Binkley,R,N,1
+Anderson,1,0002,10002,2,President,Binkley,R,N,1
+Anderson,1,0003,10003,3,President,Binkley,R,N,0
+--- 2024_Republican_Primary_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1827,11.2,417
+Anderson,1,0002,10002,2,3811,2762,4.0,933
+Anderson,1,0003,10003,3,1925,1251,6.7,439
+--- 2024_Republican_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,SBOE 10,Bone,R,N,9
+Anderson,1,0002,10002,2,SBOE 10,Bone,R,N,9
+Anderson,1,0003,10003,3,SBOE 10,Bone,R,N,8
+--- 2024_Republican_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1827,11.2,19
+Anderson,1,0002,10002,2,3811,2762,4.0,32
+Anderson,1,0003,10003,3,1925,1251,6.7,13
+--- 2024_Senate_Dist_15_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Harris,201,0003,2010003,4236,State Sen 15,Cook,D,N,187
+Harris,201,0004,2010004,4237,State Sen 15,Cook,D,N,128
+Harris,201,0005,2010005,4238,State Sen 15,Cook,D,N,119
+--- 2024_Senate_Dist_15_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Harris,201,0003,2010003,4236,4620,3390,11.4,248
+Harris,201,0004,2010004,4237,2509,1949,11.0,150
+Harris,201,0005,2010005,4238,2016,1750,13.5,137
+--- 2012_City_General_2_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Nueces,355,0001,3550001,7148,Corpus Christi Mayor,Adler,,N,165
+Nueces,355,0002,3550002,7149,Corpus Christi Mayor,Adler,,N,413
+--- 2012_City_General_2_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Nueces,355,0001,3550001,7148,2495,1176,31.6,544
+Nueces,355,0002,3550002,7149,4043,2378,39.7,1276
+--- 2012_City_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Hays,209,0125,2090125,5461,Austin Mayor,Leffingwell,,N,0
+Hays,209,0134,2090134,5464,Austin Mayor,Leffingwell,,N,0
+## 2022 72601351 bytes
+   2012_City_General_2_Election_Returns.csv 73425
+   2012_City_General_2_Election_VRTO.csv 5494
+   2012_City_General_Election_Returns.csv 262766
+   2012_City_General_Election_VRTO.csv 14219
+   2012_Democratic_Primary_Election_Returns.csv 8399393
+   2012_Democratic_Primary_Election_VRTO.csv 448662
+   2012_Democratic_Runoff_Election_Returns.csv 1829734
+   2012_Democratic_Runoff_Election_VRTO.csv 443461
+   2012_General_Election_Returns.csv 30641347
+   2012_General_Election_VRTO.csv 460617
+   2012_Republican_Primary_Election_Returns.csv 24974366
+   2012_Republican_Primary_Election_VRTO.csv 452071
+   2012_Republican_Runoff_Election_Returns.csv 5406957
+   2012_Republican_Runoff_Election_VRTO.csv 450253
+   2013_City_General_2_Election_Returns.csv 1485201
+   2013_City_General_2_Election_VRTO.csv 52394
+   2013_Constitutional_Ame_Election_Returns.csv 13048489
+   2013_Constitutional_Ame_Election_VRTO.csv 452223
+   2013_House_Dist_50_Election_Returns.csv 14456
+   2013_House_Dist_50_Election_VRTO.csv 3030
+   2013_Senate_Dist_6_(2nd)_Election_Returns.csv 27559
+   2013_Senate_Dist_6_(2nd)_Election_VRTO.csv 11431
+   2013_Senate_Dist_6_Election_Returns.csv 106966
+   2013_Senate_Dist_6_Election_VRTO.csv 11423
+   2014_City_General_2_Election_Returns.csv 162809
+   2014_City_General_2_Election_VRTO.csv 19580
+   2014_City_General_Election_Returns.csv 58058
+   2014_City_General_Election_VRTO.csv 7775
+   2014_Constitutional_Ame_Election_Returns.csv 1473206
+   2014_Constitutional_Ame_Election_VRTO.csv 455841
+   2014_Democratic_Primary_Election_Returns.csv 12028239
+   2014_Democratic_Primary_Election_VRTO.csv 449018
+   2014_Democratic_Runoff_Election_Returns.csv 2982794
+   2014_Democratic_Runoff_Election_VRTO.csv 444869
+   2014_General_Election_Returns.csv 47195194
+   2014_General_Election_VRTO.csv 458275
+   2014_Republican_Primary_Election_Returns.csv 31714313
+   2014_Republican_Primary_Election_VRTO.csv 452299
+   2014_Republican_Runoff_Election_Returns.csv 5402382
+   2014_Republican_Runoff_Election_VRTO.csv 449817
+   2014_Senate_Dist_18_Election_Returns.csv 102497
+   2014_Senate_Dist_18_Election_VRTO.csv 17047
+   2014_Senate_Dist_28_Election_Returns.csv 162010
+   2014_Senate_Dist_28_Election_VRTO.csv 22265
+   2014_Senate_Dist_4_(2nd)_Election_Returns.csv 31413
+   2014_Senate_Dist_4_(2nd)_Election_VRTO.csv 13260
+   2014_Senate_Dist_4_Election_Returns.csv 61486
+   2014_Senate_Dist_4_Election_VRTO.csv 13298
+   2015_City_General_2_Election_Returns.csv 2488663
+   2015_City_General_2_Election_VRTO.csv 49045
+   2015_City_General_Election_Returns.csv 544446
+   2015_City_General_Election_VRTO.csv 48816
+   2015_City_Runoff_2_Election_Returns.csv 697978
+   2015_City_Runoff_2_Election_VRTO.csv 48850
+   2015_City_Runoff_Election_Returns.csv 73704
+   2015_City_Runoff_Election_VRTO.csv 26496
+   2015_House_Dist_123_(2nd)_Election_Returns.csv 10913
+   2015_House_Dist_123_(2nd)_Election_VRTO.csv 4251
+   2015_House_Dist_123_Election_Returns.csv 32338
+   2015_House_Dist_123_Election_VRTO.csv 4246
+   2015_House_Dist_124_(2nd)_Election_Returns.csv 6247
+   2015_House_Dist_124_(2nd)_Election_VRTO.csv 2501
+   2015_House_Dist_124_Election_Returns.csv 12070
+   2015_House_Dist_124_Election_VRTO.csv 2497
+   2015_House_Dist_13_(2nd)_Election_Returns.csv 11633
+   2015_House_Dist_13_(2nd)_Election_VRTO.csv 4550
+   2015_House_Dist_13_Election_Returns.csv 22398
+   2015_House_Dist_13_Election_VRTO.csv 4546
+   2015_House_Dist_17_(2nd)_Election_Returns.csv 10723
+   2015_House_Dist_17_(2nd)_Election_VRTO.csv 4437
+   2015_House_Dist_17_Election_Returns.csv 26626
+   2015_House_Dist_17_Election_VRTO.csv 4433
+   2015_House_District_118_Election_Returns.csv 25527
+   2015_House_District_118_Election_VRTO.csv 3409
+   2015_Senate_Dist_26_(2nd)_Election_Returns.csv 39594
+   2015_Senate_Dist_26_(2nd)_Election_VRTO.csv 14502
+   2015_Senate_Dist_26_Election_Returns.csv 95132
+   2015_Senate_Dist_26_Election_VRTO.csv 14474
+   2016_City_General_Election_Returns.csv 49060
+   2016_City_General_Election_VRTO.csv 4111
+   2016_Democratic_Primary_Election_Returns.csv 12766748
+   2016_Democratic_Primary_Election_VRTO.csv 453611
+   2016_Democratic_Runoff_Election_Returns.csv 2445822
+   2016_Democratic_Runoff_Election_VRTO.csv 444917
+   2016_General_Election_Returns.csv 28712527
+   2016_General_Election_VRTO.csv 462198
+   2016_House_Dist_118_(2nd)_Election_Returns.csv 8482
+   2016_House_Dist_118_(2nd)_Election_VRTO.csv 3392
+   2016_House_Dist_120_(2nd)_Election_Returns.csv 10305
+   2016_House_Dist_120_(2nd)_Election_VRTO.csv 4006
+   2016_House_Dist_120_Election_Returns.csv 20516
+   2016_House_Dist_120_Election_VRTO.csv 4022
+   2016_House_Dist_139_Election_Returns.csv 6331
+   2016_House_Dist_139_Election_VRTO.csv 2626
+   2016_Republican_Primary_Election_Returns.csv 24140602
+   2016_Republican_Primary_Election_VRTO.csv 455444
+   2016_Republican_Runoff_Election_Returns.csv 3791606
+   2016_Republican_Runoff_Election_VRTO.csv 447194
+   2018_Congress_Dist_27_Election_Returns.csv 150073
+   2018_Congress_Dist_27_Election_VRTO.csv 14372
+   2018_Democratic_Primary_Election_Returns.csv 22578992
+   2018_Democratic_Primary_Election_VRTO.csv 452590
+   2018_Democratic_Runoff_Election_Returns.csv 2667750
+   2018_Democratic_Runoff_Election_VRTO.csv 448461
+   2018_General_Election_Returns.csv 42908628
+   2018_General_Election_VRTO.csv 462020
+   2018_House_District_13_Election_Returns.csv 16577
+   2018_House_District_13_Election_VRTO.csv 4578
+   2018_House_District_52_Election_Returns.csv 8254
+   2018_House_District_52_Election_VRTO.csv 3503
+   2018_Republican_Primary_Election_Returns.csv 20734148
+   2018_Republican_Primary_Election_VRTO.csv 453609
+   2018_Republican_Runoff_Election_Returns.csv 1367572
+   2018_Republican_Runoff_Election_VRTO.csv 274902
+   2018_Senate_Dist_19_(2nd)_Election_Returns.csv 44478
+   2018_Senate_Dist_19_(2nd)_Election_VRTO.csv 18070
+   2018_Senate_Dist_19_Election_Returns.csv 176232
+   2018_Senate_Dist_19_Election_VRTO.csv 17982
+   2018_Senate_District_6_Election_Returns.csv 53822
+   2018_Senate_District_6_Election_VRTO.csv 11017
+   2019_City_General_2_Election_Returns.csv 3429742
+   2019_City_General_2_Election_VRTO.csv 55095
+   2019_City_General_Election_Returns.csv 598809
+   2019_City_General_Election_VRTO.csv 56552
+   2019_City_Runoff_2_Election_Returns.csv 814939
+   2019_City_Runoff_2_Election_VRTO.csv 49442
+   2019_City_Runoff_Election_Returns.csv 130334
+   2019_City_Runoff_Election_VRTO.csv 49655
+   2019_House_Dist_125_(2nd)_Election_Returns.csv 6404
+   2019_House_Dist_125_(2nd)_Election_VRTO.csv 2687
+   2019_House_Dist_145_(2nd)_Election_Returns.csv 5597
+   2019_House_Dist_145_(2nd)_Election_VRTO.csv 2279
+   2019_House_District_100_Election_Returns.csv 26149
+   2019_House_District_100_Election_VRTO.csv 4162
+   2019_House_District_125_Election_Returns.csv 16001
+   2019_House_District_125_Election_VRTO.csv 2674
+   2019_House_District_145_Election_Returns.csv 22026
+   2019_House_District_145_Election_VRTO.csv 2285
+   2019_House_District_148_Election_Returns.csv 49822
+   2019_House_District_148_Election_VRTO.csv 2788
+   2019_House_District_28_Election_Returns.csv 20001
+   2019_House_District_28_Election_VRTO.csv 2508
+   2019_House_District_79_Election_Returns.csv 7766
+   2019_House_District_79_Election_VRTO.csv 2220
+   2020_City_General_2_Election_Returns.csv 396197
+   2020_City_General_2_Election_VRTO.csv 39011
+   2020_City_Runoff_2_Election_Returns.csv 78576
+   2020_City_Runoff_2_Election_VRTO.csv 26036
+   2020_Democratic_Primary_Election_Returns.csv 33621072
+   2020_Democratic_Primary_Election_VRTO.csv 455465
+   2020_Democratic_Runoff_Election_Returns.csv 3525841
+   2020_Democratic_Runoff_Election_VRTO.csv 452246
+   2020_General_Election_Returns.csv 28486730
+   2020_General_Election_VRTO.csv 463861
+   2020_House_Dist_100_(2nd)_Election_Returns.csv 10525
+   2020_House_Dist_100_(2nd)_Election_VRTO.csv 4132
+   2020_House_Dist_148_(2nd)_Election_Returns.csv 6788
+   2020_House_Dist_148_(2nd)_Election_VRTO.csv 2769
+   2020_House_Dist_28_(2nd)_Election_Returns.csv 5878
+   2020_House_Dist_28_(2nd)_Election_VRTO.csv 2507
+   2020_Republican_Primary_Election_Returns.csv 13707505
+   2020_Republican_Primary_Election_VRTO.csv 455017
+   2020_Republican_Runoff_Election_Returns.csv 1116142
+   2020_Republican_Runoff_Election_VRTO.csv 283207
+   2020_Senate_Dist_30_(2nd)_Election_Returns.csv 44836
+   2020_Senate_Dist_30_(2nd)_Election_VRTO.csv 18124
+   2020_Senate_District_14_Election_Returns.csv 89970
+   2020_Senate_District_14_Election_VRTO.csv 12523
+   2020_Senate_District_30_Election_Returns.csv 131150
+   2020_Senate_District_30_Election_VRTO.csv 18135
+   2021_City_General_Election_Returns.csv 1254199
+   2021_City_General_Election_VRTO.csv 89610
+   2021_City_Runoff_Election_Returns.csv 134863
+   2021_City_Runoff_Election_VRTO.csv 39185
+   2021_Congress_Dist_6_Election_Returns.csv 379464
+   2021_Congress_Dist_6_Election_VRTO.csv 14206
+   2021_House_Dist_10_(2nd)_Election_Returns.csv 7203
+   2021_House_Dist_10_(2nd)_Election_VRTO.csv 3045
+   2021_House_Dist_118_(2nd)_Election_Returns.csv 8531
+   2021_House_Dist_118_(2nd)_Election_VRTO.csv 3461
+   2021_House_Dist_68_(2nd)_Election_Returns.csv 16271
+   2021_House_Dist_68_(2nd)_Election_VRTO.csv 6596
+   2021_House_District_10_Election_Returns.csv 28661
+   2021_House_District_10_Election_VRTO.csv 3045
+   2021_House_District_118_Election_Returns.csv 21154
+   2021_House_District_118_Election_VRTO.csv 3449
+   2021_House_District_68_Election_Returns.csv 40457
+   2021_House_District_68_Election_VRTO.csv 6604
+   2022_Congress_Dist_34_Election_Returns.csv 57454
+   2022_Congress_Dist_34_Election_VRTO.csv 11847
+   2022_Democratic_Primary_Election_Returns.csv 25899617
+   2022_Democratic_Primary_Election_VRTO.csv 453346
+   2022_Democratic_Runoff_Election_Returns.csv 6121096
+   2022_Democratic_Runoff_Election_VRTO.csv 449717
+   2022_General_Election_Returns.csv 40232513
+   2022_General_Election_VRTO.csv 462497
+   2022_House_District_147_Election_Returns.csv 6666
+   2022_House_District_147_Election_VRTO.csv 2746
+   2022_Republican_Primary_Election_Returns.csv 29025714
+   2022_Republican_Primary_Election_VRTO.csv 455278
+   2022_Republican_Runoff_Election_Returns.csv 4178717
+   2022_Republican_Runoff_Election_VRTO.csv 452258
+   ReadMe_22G.txt 3907
+--- 2012_City_General_2_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Nueces,355,0001,3550001,7116,Corpus Christi Mayor,Adler,,N,165
+Nueces,355,0002,3550002,7117,Corpus Christi Mayor,Adler,,N,413
+Nueces,355,0003,3550003,7118,Corpus Christi Mayor,Adler,,N,728
+--- 2012_City_General_2_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Nueces,355,0001,3550001,7116,2495,1176,31.6,544
+Nueces,355,0002,3550002,7117,4043,2378,39.7,1276
+Nueces,355,0003,3550003,7118,5044,3217,38.2,2072
+--- 2012_City_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Hays,209,0125,2090125,5438,Austin Mayor,Leffingwell,,N,0
+Hays,209,0134,2090134,5441,Austin Mayor,Leffingwell,,N,0
+Hays,209,0227,2090227,5460,Austin Mayor,Leffingwell,,N,0
+--- 2012_City_General_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Hays,209,0125,2090125,5438,2381,501,44.5,0
+Hays,209,0134,2090134,5441,4289,1006,42.8,0
+Hays,209,0227,2090227,5460,5101,1191,38.1,0
+--- 2012_Democratic_Primary_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,President,Ely,D,N,2
+Anderson,1,0002,10002,2,President,Ely,D,N,5
+Anderson,1,0003,10003,3,President,Ely,D,N,1
+--- 2012_Democratic_Primary_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1660,4.9,25
+Anderson,1,0002,10002,2,3811,2184,2.7,48
+Anderson,1,0003,10003,3,1925,1093,4.7,28
+--- 2012_Democratic_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,U.S. Sen,Sadler,D,N,6
+Anderson,1,0002,10002,2,U.S. Sen,Sadler,D,N,16
+Anderson,1,0003,10003,3,U.S. Sen,Sadler,D,N,7
+--- 2012_Democratic_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1660,4.9,8
+Anderson,1,0002,10002,2,3811,2184,2.7,19
+Anderson,1,0003,10003,3,1925,1093,4.7,10
+--- 2012_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,President,Romney,R,N,754
+Anderson,1,0002,10002,2,President,Romney,R,N,1179
+Anderson,1,0003,10003,3,President,Romney,R,N,650
+--- 2012_General_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1629,5.3,1026
+Anderson,1,0002,10002,2,3811,2224,2.6,1418
+Anderson,1,0003,10003,3,1925,1116,4.7,765
+--- 2012_Republican_Primary_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,President,Bachmann,R,N,1
+Anderson,1,0002,10002,2,President,Bachmann,R,N,2
+Anderson,1,0003,10003,3,President,Bachmann,R,N,1
+--- 2012_Republican_Primary_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1660,4.9,328
+Anderson,1,0002,10002,2,3811,2184,2.7,380
+Anderson,1,0003,10003,3,1925,1093,4.7,257
+--- 2012_Republican_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,U.S. Sen,Cruz,R,N,45
+Anderson,1,0002,10002,2,U.S. Sen,Cruz,R,N,80
+Anderson,1,0003,10003,3,U.S. Sen,Cruz,R,N,40
+--- 2012_Republican_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1660,4.9,79
+Anderson,1,0002,10002,2,3811,2184,2.7,173
+Anderson,1,0003,10003,3,1925,1093,4.7,82
+--- 2013_City_General_2_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Fort Bend,157,2017,1572017,3646,Houston Mayor,Drab,,N,4
+Fort Bend,157,2023,1572023,3649,Houston Mayor,Drab,,N,2
+Fort Bend,157,2031,1572031,3652,Houston Mayor,Drab,,N,0
+--- 2013_City_General_2_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Fort Bend,157,2017,1572017,3646,4005,2584,7.3,416
+Fort Bend,157,2023,1572023,3649,5609,2760,38.6,205
+Fort Bend,157,2031,1572031,3652,4779,2879,14.0,360
+--- 2013_Constitutional_Ame_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,8-Repeal tax/Hidalgo HD,For Amend 08,,N,74
+Anderson,1,0001,10001,1,2-Eliminate State Med Brd,For Amend 02,,N,113
+Anderson,1,0001,10001,1,6-State Water Fund,For Amend 06,,N,79
+--- 2013_Constitutional_Ame_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1688,5.8,132
+Anderson,1,0002,10002,2,3811,2302,3.3,156
+Anderson,1,0003,10003,3,1925,1107,4.8,88
+--- 2013_House_Dist_50_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Travis,453,0121,4530121,8723,State Rep 50,Israel,,N,0
+Travis,453,0124,4530124,8726,State Rep 50,Israel,,N,0
+Travis,453,0132,4530132,8732,State Rep 50,Israel,,N,64
+--- 2013_House_Dist_50_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Travis,453,0121,4530121,8723,4435,1239,16.5,0
+Travis,453,0124,4530124,8726,6441,1447,25.1,0
+Travis,453,0132,4530132,8732,14486,3498,29.0,171
+--- 2013_Senate_Dist_6_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Harris,201,0001,2010001,4217,State Sen 6,Alvarado,D,N,39
+Harris,201,0002,2010002,4218,State Sen 6,Alvarado,D,N,89
+Harris,201,0009,2010009,4225,State Sen 6,Alvarado,D,N,58
+--- 2013_Senate_Dist_6_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Harris,201,0001,2010001,4217,1979,980,31.2,74
+Harris,201,0002,2010002,4218,4770,2843,24.9,179
+Harris,201,0009,2010009,4225,4044,1759,47.8,106
+--- 2013_Senate_Dist_6_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Harris,201,0001,2010001,4217,State Sen 6,Alvarado,D,N,23
+Harris,201,0002,2010002,4218,State Sen 6,Alvarado,D,N,67
+Harris,201,0009,2010009,4225,State Sen 6,Alvarado,D,N,42
+--- 2013_Senate_Dist_6_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Harris,201,0001,2010001,4217,1979,980,31.2,59
+Harris,201,0002,2010002,4218,4770,2843,24.9,150
+Harris,201,0009,2010009,4225,4044,1759,47.8,100
+--- 2014_City_General_2_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Hays,209,0125,2090125,5438,Austin Mayor,Krenek,,N,0
+Hays,209,0134,2090134,5441,Austin Mayor,Krenek,,N,0
+Hays,209,0227,2090227,5460,Austin Mayor,Krenek,,N,0
+--- 2014_City_General_2_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Hays,209,0125,2090125,5438,2381,617,46.8,0
+Hays,209,0134,2090134,5441,4289,1087,44.6,0
+Hays,209,0227,2090227,5460,5101,1688,37.1,0
+--- 2014_City_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bell,27,0101,270101,189,Killeen City Council,Mims-Owens,,N,16
+Bell,27,0102,270102,190,Killeen City Council,Mims-Owens,,N,9
+Bell,27,0103,270103,191,Killeen City Council,Mims-Owens,,N,6
+--- 2014_City_General_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bell,27,0101,270101,189,9266,3754,6.8,122
+Bell,27,0102,270102,190,7127,3388,8.6,101
+Bell,27,0103,270103,191,8657,3069,21.6,85
+--- 2014_Constitutional_Ame_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,1-Use money /st hwy fund,For Amend 01,,N,390
+Anderson,1,0002,10002,2,1-Use money /st hwy fund,For Amend 01,,N,511
+Anderson,1,0003,10003,3,1-Use money /st hwy fund,For Amend 01,,N,329
+--- 2014_Constitutional_Ame_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1712,6.2,477
+Anderson,1,0002,10002,2,3811,2389,3.5,662
+Anderson,1,0003,10003,3,1925,1137,4.9,409
+--- 2014_Democratic_Primary_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,U.S. Sen,Alameel,D,N,10
+Anderson,1,0002,10002,2,U.S. Sen,Alameel,D,N,11
+Anderson,1,0003,10003,3,U.S. Sen,Alameel,D,N,9
+--- 2014_Democratic_Primary_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1690,5.7,37
+Anderson,1,0002,10002,2,3811,2310,3.3,32
+Anderson,1,0003,10003,3,1925,1110,4.8,27
+--- 2014_Democratic_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,U.S. Sen,Alameel,D,N,7
+Anderson,1,0002,10002,2,U.S. Sen,Alameel,D,N,5
+Anderson,1,0003,10003,3,U.S. Sen,Alameel,D,N,4
+--- 2014_Democratic_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1690,5.7,10
+Anderson,1,0002,10002,2,3811,2310,3.3,8
+Anderson,1,0003,10003,3,1925,1110,4.8,4
+--- 2014_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,U.S. Sen,Cornyn,R,Y,441
+Anderson,1,0002,10002,2,U.S. Sen,Cornyn,R,Y,677
+Anderson,1,0003,10003,3,U.S. Sen,Cornyn,R,Y,433
+--- 2014_General_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1712,6.2,576
+Anderson,1,0002,10002,2,3811,2389,3.5,786
+Anderson,1,0003,10003,3,1925,1137,4.9,498
+--- 2014_Republican_Primary_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,U.S. Sen,Mapp,R,N,9
+Anderson,1,0002,10002,2,U.S. Sen,Mapp,R,N,3
+Anderson,1,0003,10003,3,U.S. Sen,Mapp,R,N,5
+--- 2014_Republican_Primary_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1690,5.7,435
+Anderson,1,0002,10002,2,3811,2310,3.3,502
+Anderson,1,0003,10003,3,1925,1110,4.8,352
+--- 2014_Republican_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,Lt. Governor,Dewhurst,R,Y,29
+Anderson,1,0002,10002,2,Lt. Governor,Dewhurst,R,Y,42
+Anderson,1,0003,10003,3,Lt. Governor,Dewhurst,R,Y,21
+--- 2014_Republican_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1690,5.7,104
+Anderson,1,0002,10002,2,3811,2310,3.3,147
+Anderson,1,0003,10003,3,1925,1110,4.8,67
+--- 2014_Senate_Dist_18_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Aransas,7,0001,70001,69,State Sen 18,Drabek,D,N,7
+Aransas,7,0002,70002,70,State Sen 18,Drabek,D,N,22
+Aransas,7,0003,70003,71,State Sen 18,Drabek,D,N,17
+--- 2014_Senate_Dist_18_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Aransas,7,0001,70001,69,3109,1985,12.2,124
+Aransas,7,0002,70002,70,5697,3496,31.7,159
+Aransas,7,0003,70003,71,5817,4053,9.7,445
+--- 2014_Senate_Dist_28_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Baylor,23,0001,230001,172,State Sen 28,Arrington,R,N,4
+Baylor,23,0002,230002,173,State Sen 28,Arrington,R,N,0
+Baylor,23,0003,230003,174,State Sen 28,Arrington,R,N,3
+--- 2014_Senate_Dist_28_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Baylor,23,0001,230001,172,863,642,6.9,15
+Baylor,23,0002,230002,173,870,640,7.5,15
+Baylor,23,0003,230003,174,861,633,9.2,12
+--- 2014_Senate_Dist_4_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Chambers,71,0001,710001,1552,State Sen 4,Creighton,R,N,15
+Chambers,71,0002,710002,1553,State Sen 4,Creighton,R,N,18
+Chambers,71,0003,710003,1554,State Sen 4,Creighton,R,N,7
+--- 2014_Senate_Dist_4_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Chambers,71,0001,710001,1552,697,562,5.3,19
+Chambers,71,0002,710002,1553,1016,846,5.6,25
+Chambers,71,0003,710003,1554,729,434,10.6,9
+--- 2014_Senate_Dist_4_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Chambers,71,0001,710001,1552,State Sen 4,Bunch,,N,3
+Chambers,71,0002,710002,1553,State Sen 4,Bunch,,N,2
+Chambers,71,0003,710003,1554,State Sen 4,Bunch,,N,4
+--- 2014_Senate_Dist_4_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Chambers,71,0001,710001,1552,697,562,5.3,8
+Chambers,71,0002,710002,1553,1016,846,5.6,17
+Chambers,71,0003,710003,1554,729,434,10.6,20
+--- 2015_City_General_2_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Fort Bend,157,2017,1572017,3646,Houston Mayor,Smith,,N,5
+Fort Bend,157,2023,1572023,3649,Houston Mayor,Smith,,N,3
+Fort Bend,157,2031,1572031,3652,Houston Mayor,Smith,,N,3
+--- 2015_City_General_2_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Fort Bend,157,2017,1572017,3646,4005,2621,0.0,664
+Fort Bend,157,2023,1572023,3649,5609,2820,0.0,464
+Fort Bend,157,2031,1572031,3652,4779,2905,0.0,691
+--- 2015_City_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1001,291001,251,San Antonio Mayor,Martinez,,N,0
+Bexar,29,1002,291002,252,San Antonio Mayor,Martinez,,N,5
+Bexar,29,1003,291003,253,San Antonio Mayor,Martinez,,N,2
+--- 2015_City_General_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1001,291001,251,1026,677,53.3,168
+Bexar,29,1002,291002,252,1039,623,49.1,62
+Bexar,29,1003,291003,253,3399,1566,77.3,164
+--- 2015_City_Runoff_2_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Fort Bend,157,2017,1572017,3646,Houston Mayor,King,,N,25
+Fort Bend,157,2023,1572023,3649,Houston Mayor,King,,N,42
+Fort Bend,157,2031,1572031,3652,Houston Mayor,King,,N,31
+--- 2015_City_Runoff_2_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Fort Bend,157,2017,1572017,3646,4005,2621,0.0,562
+Fort Bend,157,2023,1572023,3649,5609,2820,0.0,331
+Fort Bend,157,2031,1572031,3652,4779,2905,0.0,607
+--- 2015_City_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1001,291001,251,San Antonio Mayor,Taylor,,N,36
+Bexar,29,1002,291002,252,San Antonio Mayor,Taylor,,N,36
+Bexar,29,1003,291003,253,San Antonio Mayor,Taylor,,N,43
+--- 2015_City_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1001,291001,251,1026,677,53.3,158
+Bexar,29,1002,291002,252,1039,623,49.1,63
+Bexar,29,1003,291003,253,3399,1566,77.3,180
+--- 2015_House_Dist_123_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1001,291001,251,State Rep 123,Bernal,D,N,64
+Bexar,29,1003,291003,253,State Rep 123,Bernal,D,N,65
+Bexar,29,1008,291008,258,State Rep 123,Bernal,D,N,151
+--- 2015_House_Dist_123_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1001,291001,251,1026,677,53.3,81
+Bexar,29,1003,291003,253,3399,1566,77.3,86
+Bexar,29,1008,291008,258,2587,1754,59.0,175
+--- 2015_House_Dist_123_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1001,291001,251,State Rep 123,Aguillon,D,N,21
+Bexar,29,1003,291003,253,State Rep 123,Aguillon,D,N,19
+Bexar,29,1008,291008,258,State Rep 123,Aguillon,D,N,25
+--- 2015_House_Dist_123_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1001,291001,251,1026,677,53.3,83
+Bexar,29,1003,291003,253,3399,1566,77.3,84
+Bexar,29,1008,291008,258,2587,1754,59.0,158
+--- 2015_House_Dist_124_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1002,291002,252,State Rep 124,Minjarez,D,N,8
+Bexar,29,1009,291009,259,State Rep 124,Minjarez,D,N,2
+Bexar,29,1012,291012,262,State Rep 124,Minjarez,D,N,45
+--- 2015_House_Dist_124_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1002,291002,252,1039,623,49.1,9
+Bexar,29,1009,291009,259,3048,927,45.5,3
+Bexar,29,1012,291012,262,4222,2078,64.5,89
+--- 2015_House_Dist_124_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1002,291002,252,State Rep 124,Herrera,D,N,0
+Bexar,29,1009,291009,259,State Rep 124,Herrera,D,N,0
+Bexar,29,1012,291012,262,State Rep 124,Herrera,D,N,11
+--- 2015_House_Dist_124_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1002,291002,252,1039,623,49.1,3
+Bexar,29,1009,291009,259,3048,927,45.5,1
+Bexar,29,1012,291012,262,4222,2078,64.5,73
+--- 2015_House_Dist_13_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Austin,15,0101,150101,116,State Rep 13,Cerny Bilski,R,N,89
+Austin,15,0102,150102,117,State Rep 13,Cerny Bilski,R,N,89
+Austin,15,0103,150103,118,State Rep 13,Cerny Bilski,R,N,95
+--- 2015_House_Dist_13_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Austin,15,0101,150101,116,2253,1332,9.0,222
+Austin,15,0102,150102,117,1865,1306,8.3,222
+Austin,15,0103,150103,118,1960,1343,5.6,232
+--- 2015_House_Dist_13_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Austin,15,0101,150101,116,State Rep 13,Berger,R,N,18
+Austin,15,0102,150102,117,State Rep 13,Berger,R,N,21
+Austin,15,0103,150103,118,State Rep 13,Berger,R,N,20
+--- 2015_House_Dist_13_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Austin,15,0101,150101,116,2253,1332,9.0,162
+Austin,15,0102,150102,117,1865,1306,8.3,167
+Austin,15,0103,150103,118,1960,1343,5.6,169
+--- 2015_House_Dist_17_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bastrop,21,1001,211001,146,State Rep 17,Cyrier,R,N,10
+Bastrop,21,1002,211002,147,State Rep 17,Cyrier,R,N,14
+Bastrop,21,1003,211003,148,State Rep 17,Cyrier,R,N,57
+--- 2015_House_Dist_17_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bastrop,21,1001,211001,146,466,263,5.7,26
+Bastrop,21,1002,211002,147,807,427,8.4,44
+Bastrop,21,1003,211003,148,3183,1611,10.3,163
+--- 2015_House_Dist_17_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bastrop,21,1001,211001,146,State Rep 17,Cartier,D,N,1
+Bastrop,21,1002,211002,147,State Rep 17,Cartier,D,N,1
+Bastrop,21,1003,211003,148,State Rep 17,Cartier,D,N,5
+--- 2015_House_Dist_17_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bastrop,21,1001,211001,146,466,263,5.7,28
+Bastrop,21,1002,211002,147,807,427,8.4,44
+Bastrop,21,1003,211003,148,3183,1611,10.3,175
+--- 2015_House_District_118_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1011,291011,261,State Rep 118,Lujan,R,N,7
+Bexar,29,1014,291014,264,State Rep 118,Lujan,R,N,3
+Bexar,29,1015,291015,265,State Rep 118,Lujan,R,N,7
+--- 2015_House_District_118_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1011,291011,261,2169,856,0.0,51
+Bexar,29,1014,291014,264,2642,1361,0.0,52
+Bexar,29,1015,291015,265,2640,1441,0.0,36
+--- 2015_Senate_Dist_26_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1001,291001,251,State Sen 26,Martinez Fischer,D,N,52
+Bexar,29,1002,291002,252,State Sen 26,Martinez Fischer,D,N,0
+Bexar,29,1003,291003,253,State Sen 26,Martinez Fischer,D,N,47
+--- 2015_Senate_Dist_26_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1001,291001,251,1026,677,53.3,81
+Bexar,29,1002,291002,252,1039,623,49.1,15
+Bexar,29,1003,291003,253,3399,1566,77.3,86
+--- 2015_Senate_Dist_26_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1001,291001,251,State Sen 26,Martinez Fischer,D,N,43
+Bexar,29,1002,291002,252,State Sen 26,Martinez Fischer,D,N,3
+Bexar,29,1003,291003,253,State Sen 26,Martinez Fischer,D,N,44
+--- 2015_Senate_Dist_26_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1001,291001,251,1026,677,53.3,83
+Bexar,29,1002,291002,252,1039,623,49.1,7
+Bexar,29,1003,291003,253,3399,1566,77.3,84
+--- 2016_City_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bell,27,0101,270101,189,Killeen Mayor,Blackstone,,N,27
+Bell,27,0102,270102,190,Killeen Mayor,Blackstone,,N,14
+Bell,27,0103,270103,191,Killeen Mayor,Blackstone,,N,14
+--- 2016_City_General_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bell,27,0101,270101,189,9266,4030,6.8,122
+Bell,27,0102,270102,190,7127,3574,9.1,94
+Bell,27,0103,270103,191,8657,3256,22.1,84
+--- 2016_Democratic_Primary_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,President,Judd,D,N,0
+Anderson,1,0002,10002,2,President,Judd,D,N,0
+Anderson,1,0003,10003,3,President,Judd,D,N,0
+--- 2016_Democratic_Primary_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1738,7.2,74
+Anderson,1,0002,10002,2,3811,2411,3.6,69
+Anderson,1,0003,10003,3,1925,1169,4.8,47
+--- 2016_Democratic_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,RR Comm 1,Garrett,D,N,2
+Anderson,1,0002,10002,2,RR Comm 1,Garrett,D,N,1
+Anderson,1,0003,10003,3,RR Comm 1,Garrett,D,N,0
+--- 2016_Democratic_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1738,7.2,7
+Anderson,1,0002,10002,2,3811,2411,3.6,4
+Anderson,1,0003,10003,3,1925,1169,4.8,2
+--- 2016_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,President,Clinton,D,N,262
+Anderson,1,0002,10002,2,President,Clinton,D,N,181
+Anderson,1,0003,10003,3,President,Clinton,D,N,94
+--- 2016_General_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1799,7.2,1030
+Anderson,1,0002,10002,2,3811,2455,3.9,1532
+Anderson,1,0003,10003,3,1925,1195,4.4,776
+--- 2016_House_Dist_118_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1011,291011,261,State Rep 118,Lujan,R,N,8
+Bexar,29,1014,291014,264,State Rep 118,Lujan,R,N,1
+Bexar,29,1015,291015,265,State Rep 118,Lujan,R,N,11
+--- 2016_House_Dist_118_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1011,291011,261,2169,856,0.0,24
+Bexar,29,1014,291014,264,2642,1361,0.0,27
+Bexar,29,1015,291015,265,2640,1441,0.0,32
+--- 2016_House_Dist_120_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,3140,293140,746,State Rep 120,Thompson,D,N,0
+Bexar,29,3205,293205,811,State Rep 120,Thompson,D,N,0
+Bexar,29,4003,294003,814,State Rep 120,Thompson,D,N,7
+--- 2016_House_Dist_120_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,3140,293140,746,57,37,64.9,0
+Bexar,29,3205,293205,811,0,0,0.0,0
+Bexar,29,4003,294003,814,3002,1281,50.4,17
+--- 2016_House_Dist_120_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,3140,293140,746,State Rep 120,Thompson,I,N,0
+Bexar,29,3205,293205,811,State Rep 120,Thompson,I,N,0
+Bexar,29,4003,294003,814,State Rep 120,Thompson,I,N,5
+--- 2016_House_Dist_120_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,3140,293140,746,57,37,64.9,0
+Bexar,29,3205,293205,811,0,0,0.0,0
+Bexar,29,4003,294003,814,3002,1281,50.4,30
+--- 2016_House_Dist_139_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Harris,201,0073,2010073,4290,State Rep 139,Johnson,D,N,11
+Harris,201,0109,2010109,4326,State Rep 139,Johnson,D,N,71
+Harris,201,0122,2010122,4339,State Rep 139,Johnson,D,N,58
+--- 2016_House_Dist_139_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Harris,201,0073,2010073,4290,3305,1573,20.2,24
+Harris,201,0109,2010109,4326,4694,2493,5.2,78
+Harris,201,0122,2010122,4339,2846,1891,15.6,64
+--- 2016_Republican_Primary_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,President,Trump,R,N,143
+Anderson,1,0002,10002,2,President,Trump,R,N,222
+Anderson,1,0003,10003,3,President,Trump,R,N,119
+--- 2016_Republican_Primary_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1738,7.2,535
+Anderson,1,0002,10002,2,3811,2411,3.6,771
+Anderson,1,0003,10003,3,1925,1169,4.8,431
+--- 2016_Republican_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,RR Comm 1,Christian,R,N,17
+Anderson,1,0002,10002,2,RR Comm 1,Christian,R,N,18
+Anderson,1,0003,10003,3,RR Comm 1,Christian,R,N,8
+--- 2016_Republican_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1738,7.2,31
+Anderson,1,0002,10002,2,3811,2411,3.6,34
+Anderson,1,0003,10003,3,1925,1169,4.8,16
+--- 2018_Congress_Dist_27_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Aransas,7,0001,70001,69,U.S. Rep 27,Barrera,D,N,2
+Aransas,7,0002,70002,70,U.S. Rep 27,Barrera,D,N,14
+Aransas,7,0003,70003,71,U.S. Rep 27,Barrera,D,N,14
+--- 2018_Congress_Dist_27_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Aransas,7,0001,70001,69,3109,2165,13.0,197
+Aransas,7,0002,70002,70,5697,3749,31.6,265
+Aransas,7,0003,70003,71,5817,4301,9.6,605
+--- 2018_Democratic_Primary_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,U.S. Sen,Kimbrough,D,N,21
+Anderson,1,0002,10002,2,U.S. Sen,Kimbrough,D,N,17
+Anderson,1,0003,10003,3,U.S. Sen,Kimbrough,D,N,8
+--- 2018_Democratic_Primary_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1808,7.5,55
+Anderson,1,0002,10002,2,3811,2468,3.8,47
+Anderson,1,0003,10003,3,1925,1172,4.1,34
+--- 2018_Democratic_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,Governor,Valdez,D,N,8
+Anderson,1,0002,10002,2,Governor,Valdez,D,N,7
+Anderson,1,0003,10003,3,Governor,Valdez,D,N,4
+--- 2018_Democratic_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1808,7.5,14
+Anderson,1,0002,10002,2,3811,2468,3.8,11
+Anderson,1,0003,10003,3,1925,1172,4.1,7
+--- 2018_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,U.S. Sen,Cruz,R,Y,659
+Anderson,1,0002,10002,2,U.S. Sen,Cruz,R,Y,1062
+Anderson,1,0003,10003,3,U.S. Sen,Cruz,R,Y,571
+--- 2018_General_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1802,8.0,926
+Anderson,1,0002,10002,2,3811,2512,3.5,1237
+Anderson,1,0003,10003,3,1925,1195,4.3,675
+--- 2018_House_District_13_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Austin,15,0101,150101,116,State Rep 13,Wolfskill,R,N,124
+Austin,15,0102,150102,117,State Rep 13,Wolfskill,R,N,124
+Austin,15,0103,150103,118,State Rep 13,Wolfskill,R,N,132
+--- 2018_House_District_13_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Austin,15,0101,150101,116,2253,1342,10.8,210
+Austin,15,0102,150102,117,1865,1312,9.4,213
+Austin,15,0103,150103,118,1960,1400,5.4,228
+--- 2018_House_District_52_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Williamson,491,0119,4910119,9387,State Rep 52,Flores,R,N,931
+Williamson,491,0122,4910122,9388,State Rep 52,Flores,R,N,132
+Williamson,491,0123,4910123,9389,State Rep 52,Flores,R,N,656
+--- 2018_House_District_52_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Williamson,491,0119,4910119,9387,5802,3789,17.7,2255
+Williamson,491,0122,4910122,9388,682,447,13.2,308
+Williamson,491,0123,4910123,9389,8219,3958,26.6,1997
+--- 2018_Republican_Primary_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,U.S. Sen,Jacobson,R,N,19
+Anderson,1,0002,10002,2,U.S. Sen,Jacobson,R,N,26
+Anderson,1,0003,10003,3,U.S. Sen,Jacobson,R,N,18
+--- 2018_Republican_Primary_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1808,7.5,465
+Anderson,1,0002,10002,2,3811,2468,3.8,655
+Anderson,1,0003,10003,3,1925,1172,4.1,344
+--- 2018_Republican_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,U.S. Rep 5,Gooden,R,N,190
+Anderson,1,0002,10002,2,U.S. Rep 5,Gooden,R,N,260
+Anderson,1,0003,10003,3,U.S. Rep 5,Gooden,R,N,121
+--- 2018_Republican_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1808,7.5,327
+Anderson,1,0002,10002,2,3811,2468,3.8,436
+Anderson,1,0003,10003,3,1925,1172,4.1,205
+--- 2018_Senate_Dist_19_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Atascosa,13,0001,130001,96,State Sen 19,Flores,R,N,105
+Atascosa,13,0003,130003,97,State Sen 19,Flores,R,N,111
+Atascosa,13,0004,130004,98,State Sen 19,Flores,R,N,28
+--- 2018_Senate_Dist_19_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Atascosa,13,0001,130001,96,1305,811,38.7,135
+Atascosa,13,0003,130003,97,2719,1395,46.7,151
+Atascosa,13,0004,130004,98,2141,865,55.4,58
+--- 2018_Senate_Dist_19_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Atascosa,13,0001,130001,96,State Sen 19,Alaniz,R,N,1
+Atascosa,13,0003,130003,97,State Sen 19,Alaniz,R,N,0
+Atascosa,13,0004,130004,98,State Sen 19,Alaniz,R,N,2
+--- 2018_Senate_Dist_19_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Atascosa,13,0001,130001,96,1305,811,38.7,67
+Atascosa,13,0003,130003,97,2719,1395,46.7,86
+Atascosa,13,0004,130004,98,2141,865,55.4,28
+--- 2018_Senate_District_6_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Harris,201,0001,2010001,4217,State Sen 6,Alvarado,D,N,55
+Harris,201,0002,2010002,4218,State Sen 6,Alvarado,D,N,104
+Harris,201,0009,2010009,4225,State Sen 6,Alvarado,D,N,56
+--- 2018_Senate_District_6_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Harris,201,0001,2010001,4217,1979,1448,20.3,0
+Harris,201,0002,2010002,4218,4770,3543,19.4,0
+Harris,201,0009,2010009,4225,4044,2205,40.9,0
+--- 2019_City_General_2_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Fort Bend,157,2017,1572017,3646,Houston Mayor,Baker,,N,1
+Fort Bend,157,2023,1572023,3649,Houston Mayor,Baker,,N,1
+Fort Bend,157,2031,1572031,3652,Houston Mayor,Baker,,N,1
+--- 2019_City_General_2_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Fort Bend,157,2017,1572017,3646,4005,2646,11.2,608
+Fort Bend,157,2023,1572023,3649,5609,2880,40.8,385
+Fort Bend,157,2031,1572031,3652,4779,2948,17.2,594
+--- 2019_City_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1001,291001,251,San Antonio Mayor,Velasquez,,N,0
+Bexar,29,1002,291002,252,San Antonio Mayor,Velasquez,,N,0
+Bexar,29,1003,291003,253,San Antonio Mayor,Velasquez,,N,2
+--- 2019_City_General_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1001,291001,251,1026,766,48.4,166
+Bexar,29,1002,291002,252,1039,673,50.7,56
+Bexar,29,1003,291003,253,3399,2050,64.2,229
+--- 2019_City_Runoff_2_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Fort Bend,157,2017,1572017,3646,Houston Mayor,Turner,,N,447
+Fort Bend,157,2023,1572023,3649,Houston Mayor,Turner,,N,217
+Fort Bend,157,2031,1572031,3652,Houston Mayor,Turner,,N,464
+--- 2019_City_Runoff_2_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Fort Bend,157,2017,1572017,3646,4005,2646,11.2,484
+Fort Bend,157,2023,1572023,3649,5609,2880,40.8,261
+Fort Bend,157,2031,1572031,3652,4779,2948,17.2,496
+--- 2019_City_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1001,291001,251,San Antonio Mayor,Nirenberg,,N,172
+Bexar,29,1002,291002,252,San Antonio Mayor,Nirenberg,,N,27
+Bexar,29,1003,291003,253,San Antonio Mayor,Nirenberg,,N,251
+--- 2019_City_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1001,291001,251,1026,766,48.4,199
+Bexar,29,1002,291002,252,1039,673,50.7,77
+Bexar,29,1003,291003,253,3399,2050,64.2,308
+--- 2019_House_Dist_125_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1072,291072,322,State Rep 125,Rangel,R,N,33
+Bexar,29,1088,291088,338,State Rep 125,Rangel,R,N,14
+Bexar,29,2011,292011,423,State Rep 125,Rangel,R,N,13
+--- 2019_House_Dist_125_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1072,291072,322,3382,2049,47.3,110
+Bexar,29,1088,291088,338,1646,1026,88.3,58
+Bexar,29,2011,292011,423,3686,2065,81.7,119
+--- 2019_House_Dist_145_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Harris,201,0001,2010001,4217,State Rep 145,Noriega,D,N,48
+Harris,201,0002,2010002,4218,State Rep 145,Noriega,D,N,49
+Harris,201,0003,2010003,4219,State Rep 145,Noriega,D,N,74
+--- 2019_House_Dist_145_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Harris,201,0001,2010001,4217,1979,1448,20.3,86
+Harris,201,0002,2010002,4218,4770,3543,19.4,87
+Harris,201,0003,2010003,4219,4620,2862,11.7,118
+--- 2019_House_District_100_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Dallas,113,1050,1131050,2032,State Rep 100,Armstrong,D,N,9
+Dallas,113,1054,1131054,2035,State Rep 100,Armstrong,D,N,12
+Dallas,113,1057,1131057,2038,State Rep 100,Armstrong,D,N,30
+--- 2019_House_District_100_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Dallas,113,1050,1131050,2032,250,145,6.2,23
+Dallas,113,1054,1131054,2035,3920,1551,44.0,114
+Dallas,113,1057,1131057,2038,4145,1943,40.3,203
+--- 2019_House_District_125_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1072,291072,322,State Rep 125,Huerta,D,N,0
+Bexar,29,1088,291088,338,State Rep 125,Huerta,D,N,5
+Bexar,29,2011,292011,423,State Rep 125,Huerta,D,N,18
+--- 2019_House_District_125_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1072,291072,322,3382,2049,47.3,74
+Bexar,29,1088,291088,338,1646,1026,88.3,42
+Bexar,29,2011,292011,423,3686,2065,81.7,75
+--- 2019_House_District_145_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Harris,201,0001,2010001,4217,State Rep 145,Hunt,L,N,3
+Harris,201,0002,2010002,4218,State Rep 145,Hunt,L,N,0
+Harris,201,0003,2010003,4219,State Rep 145,Hunt,L,N,0
+--- 2019_House_District_145_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Harris,201,0001,2010001,4217,1979,1448,20.3,110
+Harris,201,0002,2010002,4218,4770,3543,19.4,107
+Harris,201,0003,2010003,4219,4620,2862,11.7,133
+--- 2019_House_District_148_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Harris,201,0003,2010003,4219,State Rep 148,Block,D,N,5
+Harris,201,0004,2010004,4220,State Rep 148,Block,D,N,14
+Harris,201,0005,2010005,4221,State Rep 148,Block,D,N,8
+--- 2019_House_District_148_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Harris,201,0003,2010003,4219,4620,2862,11.7,584
+Harris,201,0004,2010004,4220,2509,1832,11.8,815
+Harris,201,0005,2010005,4221,2016,1656,14.4,725
+--- 2019_House_District_28_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Fort Bend,157,1004,1571004,3612,State Rep 28,Allred,R,N,128
+Fort Bend,157,1005,1571005,3613,State Rep 28,Allred,R,N,37
+Fort Bend,157,1006,1571006,3614,State Rep 28,Allred,R,N,178
+--- 2019_House_District_28_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Fort Bend,157,1004,1571004,3612,5592,4287,8.3,1033
+Fort Bend,157,1005,1571005,3613,2084,1178,7.4,378
+Fort Bend,157,1006,1571006,3614,18190,7044,9.3,1793
+--- 2019_House_District_79_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+El Paso,141,0086,1410086,3399,State Rep 79,Sassenfeld,R,N,0
+El Paso,141,0087,1410087,3400,State Rep 79,Sassenfeld,R,N,0
+El Paso,141,0090,1410090,3403,State Rep 79,Sassenfeld,R,N,2
+--- 2019_House_District_79_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+El Paso,141,0086,1410086,3399,2236,756,13.0,0
+El Paso,141,0087,1410087,3400,1254,16,37.5,0
+El Paso,141,0090,1410090,3403,2339,1713,63.8,2
+--- 2020_City_General_2_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bell,27,0106,270106,194,Killeen City Council,Gukeisen,,N,209
+Bell,27,0109,270109,197,Killeen City Council,Gukeisen,,N,161
+Bell,27,0110,270110,198,Killeen City Council,Gukeisen,,N,0
+--- 2020_City_General_2_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bell,27,0106,270106,194,7834,4458,14.9,2265
+Bell,27,0109,270109,197,5373,3166,14.1,1434
+Bell,27,0110,270110,198,10130,3314,13.0,949
+--- 2020_City_Runoff_2_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Dallas,113,4518,1134518,2813,Irving City Council 3,Zeske,,N,0
+Dallas,113,4605,1134605,2845,Irving City Council 3,Zeske,,N,0
+Dallas,113,4608,1134608,2848,Irving City Council 3,Zeske,,N,191
+--- 2020_City_Runoff_2_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Dallas,113,4518,1134518,2813,6621,2117,33.7,25
+Dallas,113,4605,1134605,2845,5577,2589,30.6,0
+Dallas,113,4608,1134608,2848,8592,3735,16.2,297
+--- 2020_Democratic_Primary_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,President,Bennet,D,N,0
+Anderson,1,0002,10002,2,President,Bennet,D,N,0
+Anderson,1,0003,10003,3,President,Bennet,D,N,0
+--- 2020_Democratic_Primary_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1781,8.3,121
+Anderson,1,0002,10002,2,3811,2565,3.5,86
+Anderson,1,0003,10003,3,1925,1152,4.9,60
+--- 2020_Democratic_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,U.S. Sen,Hegar,D,N,10
+Anderson,1,0002,10002,2,U.S. Sen,Hegar,D,N,16
+Anderson,1,0003,10003,3,U.S. Sen,Hegar,D,N,5
+--- 2020_Democratic_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1781,8.3,18
+Anderson,1,0002,10002,2,3811,2565,3.5,33
+Anderson,1,0003,10003,3,1925,1152,4.9,13
+--- 2020_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,President,Biden,D,N,357
+Anderson,1,0002,10002,2,President,Biden,D,N,205
+Anderson,1,0003,10003,3,President,Biden,D,N,118
+--- 2020_General_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1847,8.8,1164
+Anderson,1,0002,10002,2,3811,2652,3.5,1769
+Anderson,1,0003,10003,3,1925,1203,4.7,873
+--- 2020_House_Dist_100_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Dallas,113,1050,1131050,2032,State Rep 100,Armstrong,D,N,4
+Dallas,113,1054,1131054,2035,State Rep 100,Armstrong,D,N,16
+Dallas,113,1057,1131057,2038,State Rep 100,Armstrong,D,N,15
+--- 2020_House_Dist_100_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Dallas,113,1050,1131050,2032,250,145,6.2,6
+Dallas,113,1054,1131054,2035,3920,1551,44.0,39
+Dallas,113,1057,1131057,2038,4145,1943,40.3,43
+--- 2020_House_Dist_148_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Harris,201,0003,2010003,4219,State Rep 148,Eastman,D,N,172
+Harris,201,0004,2010004,4220,State Rep 148,Eastman,D,N,271
+Harris,201,0005,2010005,4221,State Rep 148,Eastman,D,N,209
+--- 2020_House_Dist_148_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Harris,201,0003,2010003,4219,4620,2862,11.7,228
+Harris,201,0004,2010004,4220,2509,1832,11.8,332
+Harris,201,0005,2010005,4221,2016,1656,14.4,261
+--- 2020_House_Dist_28_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Fort Bend,157,1004,1571004,3612,State Rep 28,Gates,R,N,693
+Fort Bend,157,1005,1571005,3613,State Rep 28,Gates,R,N,288
+Fort Bend,157,1006,1571006,3614,State Rep 28,Gates,R,N,1427
+--- 2020_House_Dist_28_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Fort Bend,157,1004,1571004,3612,5592,4287,8.3,1021
+Fort Bend,157,1005,1571005,3613,2084,1178,7.4,360
+Fort Bend,157,1006,1571006,3614,18190,7044,9.3,2061
+--- 2020_Republican_Primary_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,President,De La Fuente,R,N,1
+Anderson,1,0002,10002,2,President,De La Fuente,R,N,0
+Anderson,1,0003,10003,3,President,De La Fuente,R,N,4
+--- 2020_Republican_Primary_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1781,8.3,436
+Anderson,1,0002,10002,2,3811,2565,3.5,788
+Anderson,1,0003,10003,3,1925,1152,4.9,381
+--- 2020_Republican_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Archer,9,0001,90001,75,U.S. Rep 13,Jackson,R,N,96
+Archer,9,0002,90002,76,U.S. Rep 13,Jackson,R,N,81
+Archer,9,0003,90003,77,U.S. Rep 13,Jackson,R,N,18
+--- 2020_Republican_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Archer,9,0001,90001,75,1984,1391,3.7,149
+Archer,9,0002,90002,76,1060,775,2.3,130
+Archer,9,0003,90003,77,528,380,6.1,45
+--- 2020_Senate_Dist_30_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Archer,9,0001,90001,75,State Sen 30,Luther,R,N,75
+Archer,9,0002,90002,76,State Sen 30,Luther,R,N,65
+Archer,9,0003,90003,77,State Sen 30,Luther,R,N,22
+--- 2020_Senate_Dist_30_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Archer,9,0001,90001,75,1984,1437,3.7,153
+Archer,9,0002,90002,76,1060,813,3.0,131
+Archer,9,0003,90003,77,528,385,6.2,52
+--- 2020_Senate_District_14_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bastrop,21,1001,211001,146,State Sen 14,Burns,R,N,3
+Bastrop,21,1002,211002,147,State Sen 14,Burns,R,N,4
+Bastrop,21,1003,211003,148,State Sen 14,Burns,R,N,20
+--- 2020_Senate_District_14_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bastrop,21,1001,211001,146,466,339,7.4,61
+Bastrop,21,1002,211002,147,807,565,9.9,108
+Bastrop,21,1003,211003,148,3183,2114,12.3,400
+--- 2020_Senate_District_30_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Archer,9,0001,90001,75,State Sen 30,Carter,R,N,10
+Archer,9,0002,90002,76,State Sen 30,Carter,R,N,7
+Archer,9,0003,90003,77,State Sen 30,Carter,R,N,4
+--- 2020_Senate_District_30_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Archer,9,0001,90001,75,1984,1391,3.7,166
+Archer,9,0002,90002,76,1060,775,2.3,136
+Archer,9,0003,90003,77,528,380,6.1,66
+--- 2021_City_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bell,27,0106,270106,194,Killeen City Council 1,Finley,,N,10
+Bell,27,0109,270109,197,Killeen City Council 1,Finley,,N,4
+Bell,27,0110,270110,198,Killeen City Council 1,Finley,,N,0
+--- 2021_City_General_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bell,27,0101,270101,189,9266,5004,7.6,17
+Bell,27,0102,270102,190,7127,4307,9.9,8
+Bell,27,0103,270103,191,8657,4652,21.3,8
+--- 2021_City_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Collin,85,0030,850030,1659,Frisco City Council 3,Pelham,,N,243
+Collin,85,0087,850087,1716,Frisco City Council 3,Pelham,,N,235
+Collin,85,0092,850092,1721,Frisco City Council 3,Pelham,,N,143
+--- 2021_City_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Collin,85,0030,850030,1659,6965,4632,12.0,472
+Collin,85,0087,850087,1716,6533,3142,1.7,386
+Collin,85,0092,850092,1721,6619,3752,12.0,238
+--- 2021_Congress_Dist_6_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Ellis,139,1001,1391001,3255,U.S. Rep 6,Ballantine,R,N,0
+Ellis,139,1002,1391002,3256,U.S. Rep 6,Ballantine,R,N,0
+Ellis,139,1003,1391003,3257,U.S. Rep 6,Ballantine,R,N,1
+--- 2021_Congress_Dist_6_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Ellis,139,1001,1391001,3255,3596,2131,15.0,219
+Ellis,139,1002,1391002,3256,168,128,6.3,22
+Ellis,139,1003,1391003,3257,3133,1964,19.7,383
+--- 2021_House_Dist_10_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Ellis,139,1001,1391001,3255,State Rep 10,Harrison,R,N,34
+Ellis,139,1002,1391002,3256,State Rep 10,Harrison,R,N,7
+Ellis,139,1003,1391003,3257,State Rep 10,Harrison,R,N,89
+--- 2021_House_Dist_10_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Ellis,139,1001,1391001,3255,3596,2131,15.0,65
+Ellis,139,1002,1391002,3256,168,128,6.3,14
+Ellis,139,1003,1391003,3257,3133,1964,19.7,191
+--- 2021_House_Dist_118_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1011,291011,261,State Rep 118,Ramirez,D,N,75
+Bexar,29,1014,291014,264,State Rep 118,Ramirez,D,N,72
+Bexar,29,1015,291015,265,State Rep 118,Ramirez,D,N,69
+--- 2021_House_Dist_118_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1011,291011,261,2169,1179,87.4,110
+Bexar,29,1014,291014,264,2642,1436,86.4,81
+Bexar,29,1015,291015,265,2640,1486,90.4,84
+--- 2021_House_Dist_68_(2nd)_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Childress,75,0101,750101,1595,State Rep 68,Carter,R,N,18
+Childress,75,0201,750201,1596,State Rep 68,Carter,R,N,28
+Childress,75,0301,750301,1597,State Rep 68,Carter,R,N,11
+--- 2021_House_Dist_68_(2nd)_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Childress,75,0101,750101,1595,2509,1181,20.8,47
+Childress,75,0201,750201,1596,1358,901,11.5,55
+Childress,75,0301,750301,1597,1439,629,13.7,27
+--- 2021_House_District_10_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Ellis,139,1001,1391001,3255,State Rep 10,Goodwin,I,N,0
+Ellis,139,1002,1391002,3256,State Rep 10,Goodwin,I,N,0
+Ellis,139,1003,1391003,3257,State Rep 10,Goodwin,I,N,4
+--- 2021_House_District_10_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Ellis,139,1001,1391001,3255,3596,2131,15.0,69
+Ellis,139,1002,1391002,3256,168,128,6.3,9
+Ellis,139,1003,1391003,3257,3133,1964,19.7,162
+--- 2021_House_District_118_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bexar,29,1011,291011,261,State Rep 118,Martinez,D,N,16
+Bexar,29,1014,291014,264,State Rep 118,Martinez,D,N,20
+Bexar,29,1015,291015,265,State Rep 118,Martinez,D,N,14
+--- 2021_House_District_118_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bexar,29,1011,291011,261,2169,1179,87.4,68
+Bexar,29,1014,291014,264,2642,1436,86.4,59
+Bexar,29,1015,291015,265,2640,1486,90.4,46
+--- 2021_House_District_68_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Childress,75,0101,750101,1595,State Rep 68,Berry,R,N,17
+Childress,75,0201,750201,1596,State Rep 68,Berry,R,N,24
+Childress,75,0301,750301,1597,State Rep 68,Berry,R,N,13
+--- 2021_House_District_68_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Childress,75,0101,750101,1595,2509,1181,20.8,85
+Childress,75,0201,750201,1596,1358,901,11.5,73
+Childress,75,0301,750301,1597,1439,629,13.7,49
+--- 2022_Congress_Dist_34_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Bee,25,0001,250001,176,U.S. Rep 34,Cantu-Cabrera,R,N,2
+Bee,25,0002,250002,177,U.S. Rep 34,Cantu-Cabrera,R,N,4
+Bee,25,0003,250003,178,U.S. Rep 34,Cantu-Cabrera,R,N,5
+--- 2022_Congress_Dist_34_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Bee,25,0001,250001,176,3209,2170,55.8,191
+Bee,25,0002,250002,177,619,528,37.3,47
+Bee,25,0003,250003,178,10625,1767,58.0,117
+--- 2022_Democratic_Primary_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,Governor,Barrientez,D,N,0
+Anderson,1,0002,10002,2,Governor,Barrientez,D,N,0
+Anderson,1,0003,10003,3,Governor,Barrientez,D,N,0
+--- 2022_Democratic_Primary_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1785,10.2,63
+Anderson,1,0002,10002,2,3811,2632,3.6,59
+Anderson,1,0003,10003,3,1925,1207,5.7,19
+--- 2022_Democratic_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,Lt. Governor,Beckley,D,N,12
+Anderson,1,0002,10002,2,Lt. Governor,Beckley,D,N,10
+Anderson,1,0003,10003,3,Lt. Governor,Beckley,D,N,4
+--- 2022_Democratic_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1785,10.2,26
+Anderson,1,0002,10002,2,3811,2632,3.6,25
+Anderson,1,0003,10003,3,1925,1207,5.7,6
+--- 2022_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,Governor,Abbott,R,Y,610
+Anderson,1,0002,10002,2,Governor,Abbott,R,Y,1165
+Anderson,1,0003,10003,3,Governor,Abbott,R,Y,573
+--- 2022_General_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1834,10.2,828
+Anderson,1,0002,10002,2,3811,2697,3.7,1317
+Anderson,1,0003,10003,3,1925,1228,6.0,658
+--- 2022_House_District_147_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Harris,201,0002,2010002,4218,State Rep 147,Keys Bess,D,N,26
+Harris,201,0016,2010016,4232,State Rep 147,Keys Bess,D,N,30
+Harris,201,0019,2010019,4235,State Rep 147,Keys Bess,D,N,17
+--- 2022_House_District_147_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Harris,201,0002,2010002,4218,4770,3767,18.0,45
+Harris,201,0016,2010016,4232,4819,2598,11.4,76
+Harris,201,0019,2010019,4235,2175,1579,13.3,32
+--- 2022_Republican_Primary_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,U.S. Rep 6,Buford,R,N,57
+Anderson,1,0002,10002,2,U.S. Rep 6,Buford,R,N,78
+Anderson,1,0003,10003,3,U.S. Rep 6,Buford,R,N,52
+--- 2022_Republican_Primary_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1785,10.2,436
+Anderson,1,0002,10002,2,3811,2632,3.6,668
+Anderson,1,0003,10003,3,1925,1207,5.7,377
+--- 2022_Republican_Runoff_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Anderson,1,0001,10001,1,Attorney Gen,Bush,R,N,94
+Anderson,1,0002,10002,2,Attorney Gen,Bush,R,N,77
+Anderson,1,0003,10003,3,Attorney Gen,Bush,R,N,76
+--- 2022_Republican_Runoff_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Anderson,1,0001,10001,1,3153,1785,10.2,248
+Anderson,1,0002,10002,2,3811,2632,3.6,414
+Anderson,1,0003,10003,3,1925,1207,5.7,232
+--- 2012_City_General_2_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Nueces,355,0001,3550001,7116,Corpus Christi Mayor,Adler,,N,165
+Nueces,355,0002,3550002,7117,Corpus Christi Mayor,Adler,,N,413
+--- 2012_City_General_2_Election_VRTO.csv
+County,FIPS,VTD,CNTYVTD,vtdkey,TotalPop,TotalVR,SpanishSurnamePercent,TotalTO
+Nueces,355,0001,3550001,7116,2495,1176,31.6,544
+Nueces,355,0002,3550002,7117,4043,2378,39.7,1276
+--- 2012_City_General_Election_Returns.csv
+County,FIPS,VTD,cntyvtd,vtdkeyvalue,Office,Name,Party,Incumbent,Votes
+Hays,209,0125,2090125,5438,Austin Mayor,Leffingwell,,N,0
+Hays,209,0134,2090134,5441,Austin Mayor,Leffingwell,,N,0
