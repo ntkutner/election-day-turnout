@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-03T15:57:15-05:00",
+ "generated_at": "2026-11-03T16:02:37-05:00",
  "sources": {
   "uf_states": {
    "id": "uf_states",
@@ -9,7 +9,7 @@
    "url": "https://election.lab.ufl.edu/early-vote/2026-early-voting/",
    "note": "Early in-person + returned mail ballots compiled by Dr. Michael McDonald, UF Election Lab (non-commercial use, attribution required). Party = party registration, not vote choice.",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:57:15-05:00",
+   "fetched_at": "2026-11-03T16:02:37-05:00",
    "observations": [
     {
      "jurisdiction": "AK",
@@ -904,7 +904,7 @@
    "url": "https://election.lab.ufl.edu/early-vote/2026-early-voting/",
    "note": "Early vote in House toss-up districts, from states that report early vote by congressional district. Ratings as compiled by UF Election Lab.",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:57:15-05:00",
+   "fetched_at": "2026-11-03T16:02:37-05:00",
    "observations": [
     {
      "jurisdiction": "AL-02",
@@ -1753,7 +1753,7 @@
    "url": "https://goelect.txelections.civixapps.com/ivis-evr-ui/evr",
    "note": "Cumulative in-person + mail early votes through the last day of early voting (Oct 30).",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:57:15-05:00",
+   "fetched_at": "2026-11-03T16:02:37-05:00",
    "observations": [
     {
      "jurisdiction": "Texas (statewide)",
@@ -1898,7 +1898,7 @@
    "url": "https://goelect.txelections.civixapps.com/ivis-evr-ui/evr",
    "note": "Counties report Election Day turnout to the SOS; often posts after polls close.",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:57:15-05:00",
+   "fetched_at": "2026-11-03T16:02:37-05:00",
    "observations": [
     {
      "jurisdiction": "Texas (statewide)",
@@ -2020,32 +2020,32 @@
    "url": "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/turnout-summary",
    "note": "",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:57:15-05:00",
+   "fetched_at": "2026-11-03T16:02:37-05:00",
    "observations": [
     {
      "jurisdiction": "Broward County",
      "metric": "eday_checkins",
-     "value": 133987,
+     "value": 135556,
      "as_of": null,
      "state": "FL",
      "registered": 1366692,
-     "mail": 151885,
+     "mail": 151886,
      "early": 314109,
-     "eday": 133987,
-     "provisional": 105,
+     "eday": 135556,
+     "provisional": 107,
      "source": "fl_broward"
     },
     {
      "jurisdiction": "Broward County",
      "metric": "total_voted",
-     "value": 599981,
+     "value": 601551,
      "as_of": null,
      "state": "FL",
      "registered": 1366692,
-     "mail": 151885,
+     "mail": 151886,
      "early": 314109,
-     "eday": 133987,
-     "provisional": 105,
+     "eday": 135556,
+     "provisional": 107,
      "source": "fl_broward"
     }
    ],
@@ -2059,7 +2059,7 @@
    "url": "https://vote.nyc/page/early-voting-check-ins",
    "note": "BOE posts cumulative check-ins; Election Day updates appear on this page / @BOENYC when released.",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:57:15-05:00",
+   "fetched_at": "2026-11-03T16:02:37-05:00",
    "observations": [
     {
      "jurisdiction": "New York City",
@@ -2087,7 +2087,7 @@
    "url": "https://elections.clarkcountynv.gov/ElectionResultsTV/evturnout.aspx",
    "note": "",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:57:15-05:00",
+   "fetched_at": "2026-11-03T16:02:37-05:00",
    "observations": [
     {
      "jurisdiction": "Clark County",
@@ -2108,7 +2108,7 @@
    "url": "https://enr.electionsfl.org/DAD/4087/Summary/",
    "note": "Ballots cast by method from the official results site; populates after polls close (7pm ET).",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:57:15-05:00",
+   "fetched_at": "2026-11-03T16:02:37-05:00",
    "observations": [
     {
      "jurisdiction": "Miami-Dade County",
@@ -2133,7 +2133,7 @@
    "url": "https://enr.electionsfl.org/DUV/4076/Summary/",
    "note": "Ballots cast by method from the official results site; populates after polls close (7pm ET).",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:57:15-05:00",
+   "fetched_at": "2026-11-03T16:02:37-05:00",
    "observations": [
     {
      "jurisdiction": "Duval County",
@@ -2158,76 +2158,76 @@
    "url": "https://tqv.vrswebapps.com/?state=FL&county=ORA&election=301",
    "note": "Live ballots cast by method and party registration, published by each county Supervisor of Elections via VR Systems. Party = registration, not vote choice.",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:57:15-05:00",
+   "fetched_at": "2026-11-03T16:02:37-05:00",
    "observations": [
     {
      "jurisdiction": "Florida (66 counties)",
      "metric": "eday_checkins",
-     "value": 1718609,
-     "as_of": "2026-11-03T21:00:01.084364+00:00",
+     "value": 1754553,
+     "as_of": "2026-11-03T21:00:13.9617775+00:00",
      "state": "FL",
      "counties": 66,
      "party": {
       "OTH": {
-       "Mail": 47617,
+       "Mail": 47646,
        "EarlyVoting": 83762,
-       "ElectionDay": 54113
+       "ElectionDay": 55306
       },
       "DEM": {
-       "Mail": 782390,
+       "Mail": 782602,
        "EarlyVoting": 1051351,
-       "ElectionDay": 433307
+       "ElectionDay": 442799
       },
       "NPA": {
-       "Mail": 375659,
+       "Mail": 375805,
        "EarlyVoting": 594866,
-       "ElectionDay": 355470
+       "ElectionDay": 363517
       },
       "REP": {
-       "Mail": 685032,
+       "Mail": 685257,
        "EarlyVoting": 1423711,
-       "ElectionDay": 875719
+       "ElectionDay": 892931
       }
      },
      "registered": 12597246,
-     "mail": 1890698,
+     "mail": 1891310,
      "early": 3153690,
-     "eday": 1718609,
-     "total": 6762997,
+     "eday": 1754553,
+     "total": 6799553,
      "source": "fl_tqv"
     },
     {
      "jurisdiction": "Miami-Dade County",
      "metric": "eday_checkins",
-     "value": 164752,
-     "as_of": "2026-11-03T20:50:03.2498575+00:00",
+     "value": 168093,
+     "as_of": "2026-11-03T21:00:01.6373422+00:00",
      "state": "FL",
      "county_code": "DAD",
      "registered": 1312818,
      "mail": 194289,
      "early": 354256,
-     "eday": 164752,
-     "total": 713297,
+     "eday": 168093,
+     "total": 716638,
      "party": {
       "OTH": {
        "Mail": 3700,
        "EarlyVoting": 7258,
-       "ElectionDay": 3952
+       "ElectionDay": 4037
       },
       "REP": {
        "Mail": 57928,
        "EarlyVoting": 134183,
-       "ElectionDay": 58207
-      },
-      "DEM": {
-       "Mail": 82664,
-       "EarlyVoting": 124014,
-       "ElectionDay": 54193
+       "ElectionDay": 59372
       },
       "NPA": {
        "Mail": 49997,
        "EarlyVoting": 88801,
-       "ElectionDay": 48400
+       "ElectionDay": 49430
+      },
+      "DEM": {
+       "Mail": 82664,
+       "EarlyVoting": 124014,
+       "ElectionDay": 55254
       }
      },
      "source": "fl_tqv"
@@ -2235,35 +2235,35 @@
     {
      "jurisdiction": "Palm Beach County",
      "metric": "eday_checkins",
-     "value": 137666,
-     "as_of": "2026-11-03T20:50:01.4831066+00:00",
+     "value": 140250,
+     "as_of": "2026-11-03T21:00:01.4461195+00:00",
      "state": "FL",
      "county_code": "PAL",
      "registered": 889214,
-     "mail": 157610,
+     "mail": 157738,
      "early": 222107,
-     "eday": 137666,
-     "total": 517383,
+     "eday": 140250,
+     "total": 520095,
      "party": {
       "OTH": {
-       "Mail": 4374,
+       "Mail": 4381,
        "EarlyVoting": 7139,
-       "ElectionDay": 4961
-      },
-      "DEM": {
-       "Mail": 81696,
-       "EarlyVoting": 88260,
-       "ElectionDay": 42087
-      },
-      "NPA": {
-       "Mail": 31861,
-       "EarlyVoting": 49184,
-       "ElectionDay": 33668
+       "ElectionDay": 5048
       },
       "REP": {
-       "Mail": 39679,
+       "Mail": 39715,
        "EarlyVoting": 77524,
-       "ElectionDay": 56950
+       "ElectionDay": 57924
+      },
+      "DEM": {
+       "Mail": 81743,
+       "EarlyVoting": 88260,
+       "ElectionDay": 42943
+      },
+      "NPA": {
+       "Mail": 31899,
+       "EarlyVoting": 49184,
+       "ElectionDay": 34335
       }
      },
      "source": "fl_tqv"
@@ -2271,35 +2271,35 @@
     {
      "jurisdiction": "Hillsborough County",
      "metric": "eday_checkins",
-     "value": 104942,
-     "as_of": "2026-11-03T20:50:01.513363+00:00",
+     "value": 107253,
+     "as_of": "2026-11-03T21:00:01.179496+00:00",
      "state": "FL",
      "county_code": "HIL",
      "registered": 823235,
-     "mail": 141777,
+     "mail": 141778,
      "early": 216747,
-     "eday": 104942,
-     "total": 463466,
+     "eday": 107253,
+     "total": 465778,
      "party": {
       "OTH": {
        "Mail": 3426,
        "EarlyVoting": 5688,
-       "ElectionDay": 3494
+       "ElectionDay": 3571
       },
       "DEM": {
-       "Mail": 63140,
+       "Mail": 63141,
        "EarlyVoting": 85541,
-       "ElectionDay": 31348
+       "ElectionDay": 32037
       },
       "NPA": {
        "Mail": 29336,
        "EarlyVoting": 45701,
-       "ElectionDay": 25464
+       "ElectionDay": 26079
       },
       "REP": {
        "Mail": 45875,
        "EarlyVoting": 79817,
-       "ElectionDay": 44636
+       "ElectionDay": 45566
       }
      },
      "source": "fl_tqv"
@@ -2307,35 +2307,35 @@
     {
      "jurisdiction": "Orange County",
      "metric": "eday_checkins",
-     "value": 93106,
-     "as_of": "2026-11-03T20:50:02.9762813+00:00",
+     "value": 95254,
+     "as_of": "2026-11-03T21:00:04.6232975+00:00",
      "state": "FL",
      "county_code": "ORA",
      "registered": 820194,
-     "mail": 103535,
+     "mail": 103537,
      "early": 223600,
-     "eday": 93106,
-     "total": 420241,
+     "eday": 95254,
+     "total": 422391,
      "party": {
       "OTH": {
        "Mail": 2530,
        "EarlyVoting": 6016,
-       "ElectionDay": 3207
-      },
-      "DEM": {
-       "Mail": 51078,
-       "EarlyVoting": 107443,
-       "ElectionDay": 33348
-      },
-      "NPA": {
-       "Mail": 22815,
-       "EarlyVoting": 50230,
-       "ElectionDay": 23938
+       "ElectionDay": 3290
       },
       "REP": {
        "Mail": 27112,
        "EarlyVoting": 59911,
-       "ElectionDay": 32613
+       "ElectionDay": 33312
+      },
+      "NPA": {
+       "Mail": 22816,
+       "EarlyVoting": 50230,
+       "ElectionDay": 24512
+      },
+      "DEM": {
+       "Mail": 51079,
+       "EarlyVoting": 107443,
+       "ElectionDay": 34140
       }
      },
      "source": "fl_tqv"
@@ -2343,35 +2343,35 @@
     {
      "jurisdiction": "Duval County",
      "metric": "eday_checkins",
-     "value": 76783,
-     "as_of": "2026-11-03T20:50:06.4838907+00:00",
+     "value": 79267,
+     "as_of": "2026-11-03T21:00:07.4690886+00:00",
      "state": "FL",
      "county_code": "DUV",
      "registered": 655219,
-     "mail": 38878,
+     "mail": 38993,
      "early": 195145,
-     "eday": 76783,
-     "total": 310806,
+     "eday": 79267,
+     "total": 313405,
      "party": {
       "OTH": {
-       "Mail": 901,
+       "Mail": 904,
        "EarlyVoting": 4877,
-       "ElectionDay": 2270
+       "ElectionDay": 2352
       },
       "DEM": {
-       "Mail": 18919,
+       "Mail": 18966,
        "EarlyVoting": 91342,
-       "ElectionDay": 23972
+       "ElectionDay": 24761
       },
       "NPA": {
-       "Mail": 6109,
+       "Mail": 6131,
        "EarlyVoting": 28678,
-       "ElectionDay": 13263
+       "ElectionDay": 13737
       },
       "REP": {
-       "Mail": 12949,
+       "Mail": 12992,
        "EarlyVoting": 70248,
-       "ElectionDay": 37278
+       "ElectionDay": 38417
       }
      },
      "source": "fl_tqv"
@@ -2379,35 +2379,35 @@
     {
      "jurisdiction": "Pinellas County",
      "metric": "eday_checkins",
-     "value": 93530,
-     "as_of": "2026-11-03T20:50:03.4283567+00:00",
+     "value": 95419,
+     "as_of": "2026-11-03T21:00:01.887864+00:00",
      "state": "FL",
      "county_code": "PIN",
      "registered": 613601,
-     "mail": 181379,
+     "mail": 181380,
      "early": 89648,
-     "eday": 93530,
-     "total": 364557,
+     "eday": 95419,
+     "total": 366447,
      "party": {
       "OTH": {
        "Mail": 4397,
        "EarlyVoting": 2745,
-       "ElectionDay": 3199
-      },
-      "REP": {
-       "Mail": 65074,
-       "EarlyVoting": 36775,
-       "ElectionDay": 44582
-      },
-      "DEM": {
-       "Mail": 74724,
-       "EarlyVoting": 31359,
-       "ElectionDay": 25000
+       "ElectionDay": 3272
       },
       "NPA": {
        "Mail": 37184,
        "EarlyVoting": 18769,
-       "ElectionDay": 20749
+       "ElectionDay": 21181
+      },
+      "REP": {
+       "Mail": 65075,
+       "EarlyVoting": 36775,
+       "ElectionDay": 45451
+      },
+      "DEM": {
+       "Mail": 74724,
+       "EarlyVoting": 31359,
+       "ElectionDay": 25515
       }
      },
      "source": "fl_tqv"
@@ -2415,35 +2415,35 @@
     {
      "jurisdiction": "Lee County",
      "metric": "eday_checkins",
-     "value": 49876,
-     "as_of": "2026-11-03T20:50:02.853942+00:00",
+     "value": 50787,
+     "as_of": "2026-11-03T21:00:04.196364+00:00",
      "state": "FL",
      "county_code": "LEE",
      "registered": 504450,
-     "mail": 124674,
+     "mail": 124757,
      "early": 108602,
-     "eday": 49876,
-     "total": 283152,
+     "eday": 50787,
+     "total": 284146,
      "party": {
       "OTH": {
-       "Mail": 3312,
+       "Mail": 3315,
        "EarlyVoting": 2979,
-       "ElectionDay": 1585
+       "ElectionDay": 1612
       },
       "DEM": {
-       "Mail": 36391,
+       "Mail": 36406,
        "EarlyVoting": 24784,
-       "ElectionDay": 8348
+       "ElectionDay": 8511
       },
       "NPA": {
-       "Mail": 26141,
+       "Mail": 26170,
        "EarlyVoting": 21537,
-       "ElectionDay": 10687
+       "ElectionDay": 10907
       },
       "REP": {
-       "Mail": 58830,
+       "Mail": 58866,
        "EarlyVoting": 59302,
-       "ElectionDay": 29256
+       "ElectionDay": 29757
       }
      },
      "source": "fl_tqv"
@@ -2451,35 +2451,35 @@
     {
      "jurisdiction": "Polk County",
      "metric": "eday_checkins",
-     "value": 79226,
-     "as_of": "2026-11-03T20:50:01.2407912+00:00",
+     "value": 80998,
+     "as_of": "2026-11-03T21:00:01.4959618+00:00",
      "state": "FL",
      "county_code": "POL",
      "registered": 459905,
-     "mail": 56125,
+     "mail": 56148,
      "early": 86289,
-     "eday": 79226,
-     "total": 221640,
+     "eday": 80998,
+     "total": 223435,
      "party": {
       "OTH": {
-       "Mail": 1334,
+       "Mail": 1336,
        "EarlyVoting": 2330,
-       "ElectionDay": 2515
-      },
-      "NPA": {
-       "Mail": 9681,
-       "EarlyVoting": 15574,
-       "ElectionDay": 15077
-      },
-      "DEM": {
-       "Mail": 23403,
-       "EarlyVoting": 32202,
-       "ElectionDay": 20413
+       "ElectionDay": 2574
       },
       "REP": {
-       "Mail": 21707,
+       "Mail": 21715,
        "EarlyVoting": 36183,
-       "ElectionDay": 41221
+       "ElectionDay": 42101
+      },
+      "NPA": {
+       "Mail": 9684,
+       "EarlyVoting": 15574,
+       "ElectionDay": 15457
+      },
+      "DEM": {
+       "Mail": 23413,
+       "EarlyVoting": 32202,
+       "ElectionDay": 20866
       }
      },
      "source": "fl_tqv"
@@ -2487,35 +2487,35 @@
     {
      "jurisdiction": "Brevard County",
      "metric": "eday_checkins",
-     "value": 64763,
-     "as_of": "2026-11-03T20:50:04.0396459+00:00",
+     "value": 65960,
+     "as_of": "2026-11-03T21:00:03.2595898+00:00",
      "state": "FL",
      "county_code": "BRE",
      "registered": 447098,
-     "mail": 62047,
+     "mail": 62051,
      "early": 118661,
-     "eday": 64763,
-     "total": 245471,
+     "eday": 65960,
+     "total": 246672,
      "party": {
       "OTH": {
        "Mail": 1762,
        "EarlyVoting": 3537,
-       "ElectionDay": 2274
+       "ElectionDay": 2316
       },
       "DEM": {
-       "Mail": 24285,
+       "Mail": 24289,
        "EarlyVoting": 33788,
-       "ElectionDay": 13527
+       "ElectionDay": 13805
       },
       "NPA": {
        "Mail": 11892,
        "EarlyVoting": 22292,
-       "ElectionDay": 13376
+       "ElectionDay": 13646
       },
       "REP": {
        "Mail": 24108,
        "EarlyVoting": 59044,
-       "ElectionDay": 35586
+       "ElectionDay": 36193
       }
      },
      "source": "fl_tqv"
@@ -2523,35 +2523,35 @@
     {
      "jurisdiction": "Pasco County",
      "metric": "eday_checkins",
-     "value": 68413,
-     "as_of": "2026-11-03T20:50:01.7948486+00:00",
+     "value": 69802,
+     "as_of": "2026-11-03T21:00:01.5621579+00:00",
      "state": "FL",
      "county_code": "PAS",
      "registered": 407550,
-     "mail": 51548,
+     "mail": 51550,
      "early": 90422,
-     "eday": 68413,
-     "total": 210383,
+     "eday": 69802,
+     "total": 211774,
      "party": {
       "OTH": {
        "Mail": 1535,
        "EarlyVoting": 2866,
-       "ElectionDay": 2317
+       "ElectionDay": 2370
       },
       "DEM": {
        "Mail": 20895,
        "EarlyVoting": 26062,
-       "ElectionDay": 14718
+       "ElectionDay": 15003
       },
       "NPA": {
        "Mail": 10999,
        "EarlyVoting": 18054,
-       "ElectionDay": 14602
+       "ElectionDay": 14953
       },
       "REP": {
-       "Mail": 18119,
+       "Mail": 18121,
        "EarlyVoting": 43440,
-       "ElectionDay": 36776
+       "ElectionDay": 37476
       }
      },
      "source": "fl_tqv"
@@ -2559,35 +2559,35 @@
     {
      "jurisdiction": "Volusia County",
      "metric": "eday_checkins",
-     "value": 55198,
-     "as_of": "2026-11-03T20:50:02.6495707+00:00",
+     "value": 56356,
+     "as_of": "2026-11-03T21:00:03.2086749+00:00",
      "state": "FL",
      "county_code": "VOL",
      "registered": 401544,
-     "mail": 63094,
+     "mail": 63101,
      "early": 94439,
-     "eday": 55198,
-     "total": 212731,
+     "eday": 56356,
+     "total": 213896,
      "party": {
       "OTH": {
        "Mail": 1930,
        "EarlyVoting": 2980,
-       "ElectionDay": 2025
-      },
-      "REP": {
-       "Mail": 23736,
-       "EarlyVoting": 45973,
-       "ElectionDay": 29184
-      },
-      "NPA": {
-       "Mail": 12684,
-       "EarlyVoting": 17758,
-       "ElectionDay": 11791
+       "ElectionDay": 2064
       },
       "DEM": {
-       "Mail": 24744,
+       "Mail": 24746,
        "EarlyVoting": 27728,
-       "ElectionDay": 12198
+       "ElectionDay": 12470
+      },
+      "REP": {
+       "Mail": 23738,
+       "EarlyVoting": 45973,
+       "ElectionDay": 29771
+      },
+      "NPA": {
+       "Mail": 12687,
+       "EarlyVoting": 17758,
+       "ElectionDay": 12051
       }
      },
      "source": "fl_tqv"
@@ -2595,35 +2595,35 @@
     {
      "jurisdiction": "Seminole County",
      "metric": "eday_checkins",
-     "value": 42342,
-     "as_of": "2026-11-03T20:50:03.4424631+00:00",
+     "value": 43289,
+     "as_of": "2026-11-03T21:00:04.9366911+00:00",
      "state": "FL",
      "county_code": "SEM",
      "registered": 343306,
-     "mail": 42460,
+     "mail": 42465,
      "early": 89972,
-     "eday": 42342,
-     "total": 174774,
+     "eday": 43289,
+     "total": 175726,
      "party": {
       "OTH": {
-       "Mail": 1094,
+       "Mail": 1095,
        "EarlyVoting": 2620,
-       "ElectionDay": 1508
+       "ElectionDay": 1545
       },
       "DEM": {
-       "Mail": 18492,
+       "Mail": 18494,
        "EarlyVoting": 33105,
-       "ElectionDay": 11240
+       "ElectionDay": 11491
       },
       "NPA": {
-       "Mail": 9011,
+       "Mail": 9012,
        "EarlyVoting": 20017,
-       "ElectionDay": 10108
+       "ElectionDay": 10357
       },
       "REP": {
-       "Mail": 13863,
+       "Mail": 13864,
        "EarlyVoting": 34230,
-       "ElectionDay": 19486
+       "ElectionDay": 19896
       }
      },
      "source": "fl_tqv"
@@ -2631,35 +2631,35 @@
     {
      "jurisdiction": "Sarasota County",
      "metric": "eday_checkins",
-     "value": 47975,
-     "as_of": "2026-11-03T20:50:01.5826175+00:00",
+     "value": 48866,
+     "as_of": "2026-11-03T21:00:01.6259928+00:00",
      "state": "FL",
      "county_code": "SAR",
      "registered": 334228,
      "mail": 77685,
      "early": 78679,
-     "eday": 47975,
-     "total": 204339,
+     "eday": 48866,
+     "total": 205230,
      "party": {
       "OTH": {
        "Mail": 2041,
        "EarlyVoting": 2244,
-       "ElectionDay": 1554
+       "ElectionDay": 1582
       },
       "REP": {
        "Mail": 28949,
        "EarlyVoting": 43361,
-       "ElectionDay": 29475
-      },
-      "DEM": {
-       "Mail": 32350,
-       "EarlyVoting": 18216,
-       "ElectionDay": 7726
+       "ElectionDay": 29991
       },
       "NPA": {
        "Mail": 14345,
        "EarlyVoting": 14858,
-       "ElectionDay": 9220
+       "ElectionDay": 9419
+      },
+      "DEM": {
+       "Mail": 32350,
+       "EarlyVoting": 18216,
+       "ElectionDay": 7874
       }
      },
      "source": "fl_tqv"
@@ -2667,35 +2667,35 @@
     {
      "jurisdiction": "Manatee County",
      "metric": "eday_checkins",
-     "value": 41584,
-     "as_of": "2026-11-03T20:50:01.0906349+00:00",
+     "value": 42362,
+     "as_of": "2026-11-03T21:00:00.834463+00:00",
      "state": "FL",
      "county_code": "MAN",
      "registered": 287882,
-     "mail": 51164,
+     "mail": 51193,
      "early": 72245,
-     "eday": 41584,
-     "total": 164993,
+     "eday": 42362,
+     "total": 165800,
      "party": {
       "OTH": {
-       "Mail": 1242,
+       "Mail": 1244,
        "EarlyVoting": 1935,
-       "ElectionDay": 1254
+       "ElectionDay": 1277
       },
       "DEM": {
-       "Mail": 18842,
+       "Mail": 18850,
        "EarlyVoting": 17442,
-       "ElectionDay": 8245
+       "ElectionDay": 8413
       },
       "NPA": {
-       "Mail": 9835,
+       "Mail": 9843,
        "EarlyVoting": 12955,
-       "ElectionDay": 7953
+       "ElectionDay": 8108
       },
       "REP": {
-       "Mail": 21245,
+       "Mail": 21256,
        "EarlyVoting": 39913,
-       "ElectionDay": 24132
+       "ElectionDay": 24564
       }
      },
      "source": "fl_tqv"
@@ -2704,7 +2704,7 @@
      "jurisdiction": "Lake County",
      "metric": "eday_checkins",
      "value": 0,
-     "as_of": "2026-11-03T20:50:07.951172+00:00",
+     "as_of": "2026-11-03T21:00:12.358673+00:00",
      "state": "FL",
      "county_code": "LAK",
      "registered": 283644,
@@ -2739,35 +2739,35 @@
     {
      "jurisdiction": "Marion County",
      "metric": "eday_checkins",
-     "value": 52401,
-     "as_of": "2026-11-03T20:50:02.915691+00:00",
+     "value": 53385,
+     "as_of": "2026-11-03T21:00:05.0650361+00:00",
      "state": "FL",
      "county_code": "MRN",
      "registered": 271264,
-     "mail": 30908,
+     "mail": 30910,
      "early": 62143,
-     "eday": 52401,
-     "total": 145452,
+     "eday": 53385,
+     "total": 146438,
      "party": {
       "OTH": {
        "Mail": 863,
        "EarlyVoting": 1734,
-       "ElectionDay": 1573
+       "ElectionDay": 1614
       },
       "DEM": {
        "Mail": 12938,
        "EarlyVoting": 17319,
-       "ElectionDay": 10452
+       "ElectionDay": 10655
       },
       "NPA": {
-       "Mail": 4717,
+       "Mail": 4718,
        "EarlyVoting": 8987,
-       "ElectionDay": 7823
+       "ElectionDay": 7966
       },
       "REP": {
-       "Mail": 12390,
+       "Mail": 12391,
        "EarlyVoting": 34103,
-       "ElectionDay": 32553
+       "ElectionDay": 33150
       }
      },
      "source": "fl_tqv"
@@ -2775,35 +2775,35 @@
     {
      "jurisdiction": "Collier County",
      "metric": "eday_checkins",
-     "value": 38866,
-     "as_of": "2026-11-03T20:50:02.0959017+00:00",
+     "value": 39563,
+     "as_of": "2026-11-03T21:00:02.8171961+00:00",
      "state": "FL",
      "county_code": "CLL",
      "registered": 265688,
      "mail": 52677,
      "early": 67301,
-     "eday": 38866,
-     "total": 158844,
+     "eday": 39563,
+     "total": 159541,
      "party": {
       "OTH": {
        "Mail": 1299,
        "EarlyVoting": 1603,
-       "ElectionDay": 1079
+       "ElectionDay": 1097
       },
       "DEM": {
        "Mail": 13832,
        "EarlyVoting": 14048,
-       "ElectionDay": 6167
+       "ElectionDay": 6291
       },
       "NPA": {
        "Mail": 10028,
        "EarlyVoting": 11726,
-       "ElectionDay": 7437
+       "ElectionDay": 7582
       },
       "REP": {
        "Mail": 27518,
        "EarlyVoting": 39924,
-       "ElectionDay": 24183
+       "ElectionDay": 24593
       }
      },
      "source": "fl_tqv"
@@ -2811,35 +2811,35 @@
     {
      "jurisdiction": "St. Lucie County",
      "metric": "eday_checkins",
-     "value": 28846,
-     "as_of": "2026-11-03T20:50:02.5239588+00:00",
+     "value": 29383,
+     "as_of": "2026-11-03T21:00:07.2616342+00:00",
      "state": "FL",
      "county_code": "STL",
      "registered": 246078,
-     "mail": 33653,
+     "mail": 33681,
      "early": 64788,
-     "eday": 28846,
-     "total": 127287,
+     "eday": 29383,
+     "total": 127852,
      "party": {
       "OTH": {
-       "Mail": 993,
+       "Mail": 996,
        "EarlyVoting": 2068,
-       "ElectionDay": 1070
+       "ElectionDay": 1095
       },
       "DEM": {
-       "Mail": 15502,
+       "Mail": 15512,
        "EarlyVoting": 24654,
-       "ElectionDay": 7977
+       "ElectionDay": 8147
       },
       "NPA": {
-       "Mail": 6420,
+       "Mail": 6427,
        "EarlyVoting": 11508,
-       "ElectionDay": 5640
+       "ElectionDay": 5762
       },
       "REP": {
-       "Mail": 10738,
+       "Mail": 10746,
        "EarlyVoting": 26558,
-       "ElectionDay": 14159
+       "ElectionDay": 14379
       }
      },
      "source": "fl_tqv"
@@ -2847,35 +2847,35 @@
     {
      "jurisdiction": "St. Johns County",
      "metric": "eday_checkins",
-     "value": 41133,
-     "as_of": "2026-11-03T20:50:01.757362+00:00",
+     "value": 41952,
+     "as_of": "2026-11-03T21:00:01.9136137+00:00",
      "state": "FL",
      "county_code": "STJ",
      "registered": 243704,
-     "mail": 22716,
+     "mail": 22745,
      "early": 75963,
-     "eday": 41133,
-     "total": 139812,
+     "eday": 41952,
+     "total": 140660,
      "party": {
       "OTH": {
-       "Mail": 558,
+       "Mail": 559,
        "EarlyVoting": 1710,
-       "ElectionDay": 1141
+       "ElectionDay": 1164
       },
       "DEM": {
-       "Mail": 8951,
+       "Mail": 8959,
        "EarlyVoting": 17732,
-       "ElectionDay": 6325
+       "ElectionDay": 6461
       },
       "NPA": {
-       "Mail": 4217,
+       "Mail": 4225,
        "EarlyVoting": 12412,
-       "ElectionDay": 7171
+       "ElectionDay": 7312
       },
       "REP": {
-       "Mail": 8990,
+       "Mail": 9002,
        "EarlyVoting": 44109,
-       "ElectionDay": 26496
+       "ElectionDay": 27015
       }
      },
      "source": "fl_tqv"
@@ -2883,35 +2883,35 @@
     {
      "jurisdiction": "Osceola County",
      "metric": "eday_checkins",
-     "value": 26813,
-     "as_of": "2026-11-03T20:50:03.3870527+00:00",
+     "value": 27396,
+     "as_of": "2026-11-03T21:00:02.5852689+00:00",
      "state": "FL",
      "county_code": "OSC",
      "registered": 238028,
      "mail": 31333,
      "early": 59878,
-     "eday": 26813,
-     "total": 118024,
+     "eday": 27396,
+     "total": 118607,
      "party": {
       "OTH": {
        "Mail": 752,
        "EarlyVoting": 1558,
-       "ElectionDay": 909
+       "ElectionDay": 932
       },
       "REP": {
        "Mail": 8147,
        "EarlyVoting": 18232,
-       "ElectionDay": 9349
+       "ElectionDay": 9525
       },
       "DEM": {
        "Mail": 14815,
        "EarlyVoting": 25280,
-       "ElectionDay": 9176
+       "ElectionDay": 9364
       },
       "NPA": {
        "Mail": 7619,
        "EarlyVoting": 14808,
-       "ElectionDay": 7379
+       "ElectionDay": 7575
       }
      },
      "source": "fl_tqv"
@@ -2919,35 +2919,35 @@
     {
      "jurisdiction": "Escambia County",
      "metric": "eday_checkins",
-     "value": 28919,
-     "as_of": "2026-11-03T20:50:04.960794+00:00",
+     "value": 29535,
+     "as_of": "2026-11-03T21:00:07.2846963+00:00",
      "state": "FL",
      "county_code": "ESC",
      "registered": 207353,
      "mail": 21181,
      "early": 46194,
-     "eday": 28919,
-     "total": 96294,
+     "eday": 29535,
+     "total": 96910,
      "party": {
       "OTH": {
        "Mail": 444,
        "EarlyVoting": 1071,
-       "ElectionDay": 770
+       "ElectionDay": 803
       },
       "DEM": {
        "Mail": 8724,
        "EarlyVoting": 15510,
-       "ElectionDay": 7854
+       "ElectionDay": 8027
       },
       "NPA": {
        "Mail": 2980,
        "EarlyVoting": 6075,
-       "ElectionDay": 4182
+       "ElectionDay": 4282
       },
       "REP": {
        "Mail": 9033,
        "EarlyVoting": 23538,
-       "ElectionDay": 16113
+       "ElectionDay": 16423
       }
      },
      "source": "fl_tqv"
@@ -2955,35 +2955,35 @@
     {
      "jurisdiction": "Leon County",
      "metric": "eday_checkins",
-     "value": 29131,
-     "as_of": "2026-11-03T20:50:03.2362055+00:00",
+     "value": 29798,
+     "as_of": "2026-11-03T21:00:03.1239713+00:00",
      "state": "FL",
      "county_code": "LEO",
      "registered": 184522,
-     "mail": 29088,
+     "mail": 29106,
      "early": 51958,
-     "eday": 29131,
-     "total": 110177,
+     "eday": 29798,
+     "total": 110862,
      "party": {
       "OTH": {
-       "Mail": 508,
+       "Mail": 509,
        "EarlyVoting": 1173,
-       "ElectionDay": 756
+       "ElectionDay": 774
       },
       "DEM": {
-       "Mail": 17387,
+       "Mail": 17400,
        "EarlyVoting": 28334,
-       "ElectionDay": 13088
+       "ElectionDay": 13409
       },
       "NPA": {
-       "Mail": 4135,
+       "Mail": 4138,
        "EarlyVoting": 8254,
-       "ElectionDay": 5026
+       "ElectionDay": 5151
       },
       "REP": {
-       "Mail": 7058,
+       "Mail": 7059,
        "EarlyVoting": 14197,
-       "ElectionDay": 10261
+       "ElectionDay": 10464
       }
      },
      "source": "fl_tqv"
@@ -2991,35 +2991,35 @@
     {
      "jurisdiction": "Alachua County",
      "metric": "eday_checkins",
-     "value": 21740,
-     "as_of": "2026-11-03T20:50:01.5812473+00:00",
+     "value": 22290,
+     "as_of": "2026-11-03T21:00:01.2032255+00:00",
      "state": "FL",
      "county_code": "ALA",
      "registered": 166906,
-     "mail": 23301,
+     "mail": 23302,
      "early": 48617,
-     "eday": 21740,
-     "total": 93658,
+     "eday": 22290,
+     "total": 94209,
      "party": {
       "OTH": {
        "Mail": 502,
        "EarlyVoting": 1125,
-       "ElectionDay": 628
+       "ElectionDay": 643
       },
       "DEM": {
        "Mail": 13981,
        "EarlyVoting": 25904,
-       "ElectionDay": 8580
+       "ElectionDay": 8816
       },
       "NPA": {
-       "Mail": 3854,
+       "Mail": 3855,
        "EarlyVoting": 8826,
-       "ElectionDay": 4370
+       "ElectionDay": 4488
       },
       "REP": {
        "Mail": 4964,
        "EarlyVoting": 12762,
-       "ElectionDay": 8162
+       "ElectionDay": 8343
       }
      },
      "source": "fl_tqv"
@@ -3027,35 +3027,35 @@
     {
      "jurisdiction": "Clay County",
      "metric": "eday_checkins",
-     "value": 23422,
-     "as_of": "2026-11-03T20:50:03.718558+00:00",
+     "value": 23976,
+     "as_of": "2026-11-03T21:00:04.1419604+00:00",
      "state": "FL",
      "county_code": "CLA",
      "registered": 156154,
-     "mail": 14212,
+     "mail": 14215,
      "early": 43782,
-     "eday": 23422,
-     "total": 81416,
+     "eday": 23976,
+     "total": 81973,
      "party": {
       "OTH": {
        "Mail": 378,
        "EarlyVoting": 1071,
-       "ElectionDay": 705
+       "ElectionDay": 718
       },
       "DEM": {
-       "Mail": 4547,
+       "Mail": 4548,
        "EarlyVoting": 10421,
-       "ElectionDay": 3924
+       "ElectionDay": 4020
       },
       "NPA": {
-       "Mail": 2446,
+       "Mail": 2448,
        "EarlyVoting": 5684,
-       "ElectionDay": 3579
+       "ElectionDay": 3679
       },
       "REP": {
        "Mail": 6841,
        "EarlyVoting": 26606,
-       "ElectionDay": 15214
+       "ElectionDay": 15559
       }
      },
      "source": "fl_tqv"
@@ -3063,35 +3063,35 @@
     {
      "jurisdiction": "Charlotte County",
      "metric": "eday_checkins",
-     "value": 21783,
-     "as_of": "2026-11-03T20:50:09.2381144+00:00",
+     "value": 22194,
+     "as_of": "2026-11-03T21:00:04.9596505+00:00",
      "state": "FL",
      "county_code": "CHA",
      "registered": 155846,
      "mail": 30708,
      "early": 40585,
-     "eday": 21783,
-     "total": 93076,
+     "eday": 22194,
+     "total": 93487,
      "party": {
       "OTH": {
        "Mail": 1130,
        "EarlyVoting": 1394,
-       "ElectionDay": 882
+       "ElectionDay": 895
       },
       "DEM": {
        "Mail": 9786,
        "EarlyVoting": 7294,
-       "ElectionDay": 2946
+       "ElectionDay": 3019
       },
       "NPA": {
        "Mail": 5986,
        "EarlyVoting": 6862,
-       "ElectionDay": 3941
+       "ElectionDay": 4027
       },
       "REP": {
        "Mail": 13806,
        "EarlyVoting": 25035,
-       "ElectionDay": 14014
+       "ElectionDay": 14253
       }
      },
      "source": "fl_tqv"
@@ -3099,35 +3099,35 @@
     {
      "jurisdiction": "Okaloosa County",
      "metric": "eday_checkins",
-     "value": 18994,
-     "as_of": "2026-11-03T20:50:02.6934751+00:00",
+     "value": 19427,
+     "as_of": "2026-11-03T21:00:02.7890317+00:00",
      "state": "FL",
      "county_code": "OKA",
      "registered": 148377,
      "mail": 10625,
      "early": 34699,
-     "eday": 18994,
-     "total": 64318,
+     "eday": 19427,
+     "total": 64751,
      "party": {
       "OTH": {
        "Mail": 258,
        "EarlyVoting": 784,
-       "ElectionDay": 523
+       "ElectionDay": 536
       },
       "DEM": {
        "Mail": 3432,
        "EarlyVoting": 6479,
-       "ElectionDay": 2726
+       "ElectionDay": 2791
       },
       "NPA": {
        "Mail": 1836,
        "EarlyVoting": 4688,
-       "ElectionDay": 2882
+       "ElectionDay": 2954
       },
       "REP": {
        "Mail": 5099,
        "EarlyVoting": 22748,
-       "ElectionDay": 12863
+       "ElectionDay": 13146
       }
      },
      "source": "fl_tqv"
@@ -3135,35 +3135,35 @@
     {
      "jurisdiction": "Santa Rosa County",
      "metric": "eday_checkins",
-     "value": 20221,
-     "as_of": "2026-11-03T20:50:01.6483892+00:00",
+     "value": 20673,
+     "as_of": "2026-11-03T21:00:01.39242+00:00",
      "state": "FL",
      "county_code": "SAN",
      "registered": 144240,
      "mail": 7657,
      "early": 33499,
-     "eday": 20221,
-     "total": 61377,
+     "eday": 20673,
+     "total": 61829,
      "party": {
       "OTH": {
        "Mail": 197,
        "EarlyVoting": 758,
-       "ElectionDay": 525
+       "ElectionDay": 535
       },
       "DEM": {
        "Mail": 2458,
        "EarlyVoting": 5905,
-       "ElectionDay": 2467
+       "ElectionDay": 2529
       },
       "NPA": {
        "Mail": 1138,
        "EarlyVoting": 4080,
-       "ElectionDay": 2623
+       "ElectionDay": 2703
       },
       "REP": {
        "Mail": 3864,
        "EarlyVoting": 22756,
-       "ElectionDay": 14606
+       "ElectionDay": 14906
       }
      },
      "source": "fl_tqv"
@@ -3171,35 +3171,35 @@
     {
      "jurisdiction": "Hernando County",
      "metric": "eday_checkins",
-     "value": 22945,
-     "as_of": "2026-11-03T20:50:03.9887712+00:00",
+     "value": 23434,
+     "as_of": "2026-11-03T21:00:03.0783265+00:00",
      "state": "FL",
      "county_code": "HER",
      "registered": 138036,
      "mail": 20495,
      "early": 26833,
-     "eday": 22945,
-     "total": 70273,
+     "eday": 23434,
+     "total": 70762,
      "party": {
       "OTH": {
        "Mail": 508,
        "EarlyVoting": 794,
-       "ElectionDay": 760
+       "ElectionDay": 778
       },
       "DEM": {
        "Mail": 7719,
        "EarlyVoting": 6447,
-       "ElectionDay": 4050
+       "ElectionDay": 4142
       },
       "NPA": {
        "Mail": 3791,
        "EarlyVoting": 4210,
-       "ElectionDay": 4053
+       "ElectionDay": 4144
       },
       "REP": {
        "Mail": 8477,
        "EarlyVoting": 15382,
-       "ElectionDay": 14082
+       "ElectionDay": 14370
       }
      },
      "source": "fl_tqv"
@@ -3207,35 +3207,35 @@
     {
      "jurisdiction": "Sumter County",
      "metric": "eday_checkins",
-     "value": 18605,
-     "as_of": "2026-11-03T20:50:02.9614253+00:00",
+     "value": 18910,
+     "as_of": "2026-11-03T21:00:02.1009892+00:00",
      "state": "FL",
      "county_code": "SUM",
      "registered": 130019,
-     "mail": 28994,
+     "mail": 29010,
      "early": 43100,
-     "eday": 18605,
-     "total": 90699,
+     "eday": 18910,
+     "total": 91020,
      "party": {
       "OTH": {
        "Mail": 728,
        "EarlyVoting": 1078,
-       "ElectionDay": 546
+       "ElectionDay": 563
       },
       "DEM": {
-       "Mail": 9260,
+       "Mail": 9264,
        "EarlyVoting": 5810,
-       "ElectionDay": 2216
+       "ElectionDay": 2259
       },
       "NPA": {
-       "Mail": 5206,
+       "Mail": 5210,
        "EarlyVoting": 5943,
-       "ElectionDay": 2816
+       "ElectionDay": 2860
       },
       "REP": {
-       "Mail": 13800,
+       "Mail": 13808,
        "EarlyVoting": 30269,
-       "ElectionDay": 13027
+       "ElectionDay": 13228
       }
      },
      "source": "fl_tqv"
@@ -3243,35 +3243,35 @@
     {
      "jurisdiction": "Bay County",
      "metric": "eday_checkins",
-     "value": 13955,
-     "as_of": "2026-11-03T20:50:04.5912161+00:00",
+     "value": 14288,
+     "as_of": "2026-11-03T21:00:04.3717641+00:00",
      "state": "FL",
      "county_code": "BAY",
      "registered": 128622,
-     "mail": 10975,
+     "mail": 11009,
      "early": 35348,
-     "eday": 13955,
-     "total": 60278,
+     "eday": 14288,
+     "total": 60645,
      "party": {
       "OTH": {
-       "Mail": 270,
+       "Mail": 272,
        "EarlyVoting": 919,
-       "ElectionDay": 466
+       "ElectionDay": 480
       },
       "DEM": {
-       "Mail": 3446,
+       "Mail": 3459,
        "EarlyVoting": 7102,
-       "ElectionDay": 2205
+       "ElectionDay": 2257
       },
       "NPA": {
-       "Mail": 1582,
+       "Mail": 1587,
        "EarlyVoting": 4327,
-       "ElectionDay": 2098
+       "ElectionDay": 2162
       },
       "REP": {
-       "Mail": 5677,
+       "Mail": 5691,
        "EarlyVoting": 23000,
-       "ElectionDay": 9186
+       "ElectionDay": 9389
       }
      },
      "source": "fl_tqv"
@@ -3279,35 +3279,35 @@
     {
      "jurisdiction": "Citrus County",
      "metric": "eday_checkins",
-     "value": 20193,
-     "as_of": "2026-11-03T20:50:02.9715319+00:00",
+     "value": 20564,
+     "as_of": "2026-11-03T21:00:01.4298157+00:00",
      "state": "FL",
      "county_code": "CIT",
      "registered": 121391,
      "mail": 19336,
      "early": 28201,
-     "eday": 20193,
-     "total": 67730,
+     "eday": 20564,
+     "total": 68101,
      "party": {
       "OTH": {
        "Mail": 589,
        "EarlyVoting": 863,
-       "ElectionDay": 654
+       "ElectionDay": 671
       },
       "DEM": {
        "Mail": 5820,
        "EarlyVoting": 4735,
-       "ElectionDay": 2535
+       "ElectionDay": 2599
       },
       "NPA": {
        "Mail": 3466,
        "EarlyVoting": 3925,
-       "ElectionDay": 3080
+       "ElectionDay": 3137
       },
       "REP": {
        "Mail": 9461,
        "EarlyVoting": 18678,
-       "ElectionDay": 13924
+       "ElectionDay": 14157
       }
      },
      "source": "fl_tqv"
@@ -3315,35 +3315,35 @@
     {
      "jurisdiction": "Indian River County",
      "metric": "eday_checkins",
-     "value": 17364,
-     "as_of": "2026-11-03T20:50:01.9754214+00:00",
+     "value": 17651,
+     "as_of": "2026-11-03T21:00:01.5901158+00:00",
      "state": "FL",
      "county_code": "IND",
      "registered": 119741,
-     "mail": 22641,
+     "mail": 22657,
      "early": 32203,
-     "eday": 17364,
-     "total": 72208,
+     "eday": 17651,
+     "total": 72511,
      "party": {
       "OTH": {
-       "Mail": 731,
+       "Mail": 732,
        "EarlyVoting": 1048,
-       "ElectionDay": 773
+       "ElectionDay": 780
       },
       "DEM": {
-       "Mail": 7885,
+       "Mail": 7887,
        "EarlyVoting": 7065,
-       "ElectionDay": 3053
+       "ElectionDay": 3105
       },
       "NPA": {
-       "Mail": 4001,
+       "Mail": 4004,
        "EarlyVoting": 5173,
-       "ElectionDay": 3027
+       "ElectionDay": 3076
       },
       "REP": {
-       "Mail": 10024,
+       "Mail": 10034,
        "EarlyVoting": 18917,
-       "ElectionDay": 10511
+       "ElectionDay": 10690
       }
      },
      "source": "fl_tqv"
@@ -3351,35 +3351,35 @@
     {
      "jurisdiction": "Martin County",
      "metric": "eday_checkins",
-     "value": 18604,
-     "as_of": "2026-11-03T20:50:02.1449073+00:00",
+     "value": 18936,
+     "as_of": "2026-11-03T21:00:03.0814601+00:00",
      "state": "FL",
      "county_code": "MRT",
      "registered": 117228,
      "mail": 18615,
      "early": 33326,
-     "eday": 18604,
-     "total": 70545,
+     "eday": 18936,
+     "total": 70877,
      "party": {
       "OTH": {
        "Mail": 588,
        "EarlyVoting": 1157,
-       "ElectionDay": 736
+       "ElectionDay": 748
       },
       "DEM": {
        "Mail": 6637,
        "EarlyVoting": 7000,
-       "ElectionDay": 2891
+       "ElectionDay": 2953
       },
       "NPA": {
        "Mail": 3033,
        "EarlyVoting": 5222,
-       "ElectionDay": 3320
+       "ElectionDay": 3390
       },
       "REP": {
        "Mail": 8357,
        "EarlyVoting": 19947,
-       "ElectionDay": 11657
+       "ElectionDay": 11845
       }
      },
      "source": "fl_tqv"
@@ -3387,35 +3387,35 @@
     {
      "jurisdiction": "Flagler County",
      "metric": "eday_checkins",
-     "value": 12596,
-     "as_of": "2026-11-03T20:50:12.8970313+00:00",
+     "value": 12829,
+     "as_of": "2026-11-03T21:00:09.3255911+00:00",
      "state": "FL",
      "county_code": "FLA",
      "registered": 100526,
      "mail": 16256,
      "early": 30606,
-     "eday": 12596,
-     "total": 59458,
+     "eday": 12829,
+     "total": 59691,
      "party": {
       "OTH": {
        "Mail": 416,
        "EarlyVoting": 847,
-       "ElectionDay": 467
-      },
-      "REP": {
-       "Mail": 6439,
-       "EarlyVoting": 17705,
-       "ElectionDay": 7442
+       "ElectionDay": 475
       },
       "DEM": {
        "Mail": 6527,
        "EarlyVoting": 7050,
-       "ElectionDay": 2357
+       "ElectionDay": 2404
       },
       "NPA": {
        "Mail": 2874,
        "EarlyVoting": 5004,
-       "ElectionDay": 2330
+       "ElectionDay": 2380
+      },
+      "REP": {
+       "Mail": 6439,
+       "EarlyVoting": 17705,
+       "ElectionDay": 7570
       }
      },
      "source": "fl_tqv"
@@ -3423,35 +3423,35 @@
     {
      "jurisdiction": "Nassau County",
      "metric": "eday_checkins",
-     "value": 11096,
-     "as_of": "2026-11-03T20:50:07.2802961+00:00",
+     "value": 11337,
+     "as_of": "2026-11-03T21:00:13.9617775+00:00",
      "state": "FL",
      "county_code": "NAS",
      "registered": 82005,
      "mail": 8801,
      "early": 25631,
-     "eday": 11096,
-     "total": 45528,
+     "eday": 11337,
+     "total": 45769,
      "party": {
       "OTH": {
        "Mail": 307,
        "EarlyVoting": 803,
-       "ElectionDay": 353
+       "ElectionDay": 361
       },
       "DEM": {
        "Mail": 2751,
        "EarlyVoting": 4682,
-       "ElectionDay": 1420
+       "ElectionDay": 1448
       },
       "REP": {
        "Mail": 4182,
        "EarlyVoting": 16689,
-       "ElectionDay": 7620
+       "ElectionDay": 7786
       },
       "NPA": {
        "Mail": 1561,
        "EarlyVoting": 3457,
-       "ElectionDay": 1703
+       "ElectionDay": 1742
       }
      },
      "source": "fl_tqv"
@@ -3459,35 +3459,35 @@
     {
      "jurisdiction": "Walton County",
      "metric": "eday_checkins",
-     "value": 9902,
-     "as_of": "2026-11-03T20:50:01.1946659+00:00",
+     "value": 10102,
+     "as_of": "2026-11-03T21:00:01.5956916+00:00",
      "state": "FL",
      "county_code": "WAL",
      "registered": 63917,
      "mail": 4422,
      "early": 15139,
-     "eday": 9902,
-     "total": 29463,
+     "eday": 10102,
+     "total": 29663,
      "party": {
       "OTH": {
        "Mail": 124,
        "EarlyVoting": 315,
-       "ElectionDay": 291
+       "ElectionDay": 297
       },
       "DEM": {
        "Mail": 1188,
        "EarlyVoting": 1976,
-       "ElectionDay": 1039
+       "ElectionDay": 1057
       },
       "NPA": {
        "Mail": 589,
        "EarlyVoting": 1614,
-       "ElectionDay": 1159
+       "ElectionDay": 1182
       },
       "REP": {
        "Mail": 2521,
        "EarlyVoting": 11234,
-       "ElectionDay": 7413
+       "ElectionDay": 7566
       }
      },
      "source": "fl_tqv"
@@ -3495,35 +3495,35 @@
     {
      "jurisdiction": "Highlands County",
      "metric": "eday_checkins",
-     "value": 11689,
-     "as_of": "2026-11-03T20:50:02.3557776+00:00",
+     "value": 11881,
+     "as_of": "2026-11-03T21:00:01.8376636+00:00",
      "state": "FL",
      "county_code": "HIG",
      "registered": 63355,
-     "mail": 7068,
+     "mail": 7100,
      "early": 17284,
-     "eday": 11689,
-     "total": 36041,
+     "eday": 11881,
+     "total": 36265,
      "party": {
       "OTH": {
-       "Mail": 219,
+       "Mail": 221,
        "EarlyVoting": 467,
-       "ElectionDay": 350
+       "ElectionDay": 355
       },
       "DEM": {
-       "Mail": 2683,
+       "Mail": 2695,
        "EarlyVoting": 3607,
-       "ElectionDay": 2196
+       "ElectionDay": 2238
       },
       "NPA": {
-       "Mail": 1155,
+       "Mail": 1157,
        "EarlyVoting": 2410,
-       "ElectionDay": 1833
+       "ElectionDay": 1877
       },
       "REP": {
-       "Mail": 3011,
+       "Mail": 3027,
        "EarlyVoting": 10800,
-       "ElectionDay": 7310
+       "ElectionDay": 7411
       }
      },
      "source": "fl_tqv"
@@ -3531,35 +3531,35 @@
     {
      "jurisdiction": "Monroe County",
      "metric": "eday_checkins",
-     "value": 8424,
-     "as_of": "2026-11-03T20:50:02.7107507+00:00",
+     "value": 8581,
+     "as_of": "2026-11-03T21:00:03.1074341+00:00",
      "state": "FL",
      "county_code": "MON",
      "registered": 54683,
      "mail": 9650,
      "early": 11216,
-     "eday": 8424,
-     "total": 29290,
+     "eday": 8581,
+     "total": 29447,
      "party": {
       "OTH": {
        "Mail": 217,
        "EarlyVoting": 287,
-       "ElectionDay": 310
+       "ElectionDay": 318
       },
       "DEM": {
        "Mail": 3804,
        "EarlyVoting": 3437,
-       "ElectionDay": 2149
+       "ElectionDay": 2191
       },
       "NPA": {
        "Mail": 1472,
        "EarlyVoting": 1978,
-       "ElectionDay": 1694
+       "ElectionDay": 1727
       },
       "REP": {
        "Mail": 4157,
        "EarlyVoting": 5514,
-       "ElectionDay": 4271
+       "ElectionDay": 4345
       }
      },
      "source": "fl_tqv"
@@ -3567,35 +3567,35 @@
     {
      "jurisdiction": "Putnam County",
      "metric": "eday_checkins",
-     "value": 8206,
-     "as_of": "2026-11-03T20:50:04.1372508+00:00",
+     "value": 8373,
+     "as_of": "2026-11-03T21:00:02.7452721+00:00",
      "state": "FL",
      "county_code": "PUT",
      "registered": 45212,
-     "mail": 3404,
+     "mail": 3405,
      "early": 10968,
-     "eday": 8206,
-     "total": 22578,
+     "eday": 8373,
+     "total": 22746,
      "party": {
       "OTH": {
        "Mail": 66,
        "EarlyVoting": 202,
-       "ElectionDay": 182
+       "ElectionDay": 185
       },
       "DEM": {
        "Mail": 1325,
        "EarlyVoting": 2883,
-       "ElectionDay": 1635
+       "ElectionDay": 1664
       },
       "NPA": {
-       "Mail": 373,
+       "Mail": 374,
        "EarlyVoting": 1080,
-       "ElectionDay": 958
+       "ElectionDay": 979
       },
       "REP": {
        "Mail": 1640,
        "EarlyVoting": 6803,
-       "ElectionDay": 5431
+       "ElectionDay": 5545
       }
      },
      "source": "fl_tqv"
@@ -3603,35 +3603,35 @@
     {
      "jurisdiction": "Columbia County",
      "metric": "eday_checkins",
-     "value": 5565,
-     "as_of": "2026-11-03T20:50:01.630717+00:00",
+     "value": 5701,
+     "as_of": "2026-11-03T21:00:01.4926497+00:00",
      "state": "FL",
      "county_code": "CLM",
      "registered": 41614,
      "mail": 3791,
      "early": 10836,
-     "eday": 5565,
-     "total": 20192,
+     "eday": 5701,
+     "total": 20328,
      "party": {
       "OTH": {
        "Mail": 69,
        "EarlyVoting": 165,
-       "ElectionDay": 132
+       "ElectionDay": 136
       },
       "DEM": {
        "Mail": 1326,
        "EarlyVoting": 2677,
-       "ElectionDay": 1141
+       "ElectionDay": 1183
       },
       "NPA": {
        "Mail": 461,
        "EarlyVoting": 982,
-       "ElectionDay": 635
+       "ElectionDay": 649
       },
       "REP": {
        "Mail": 1935,
        "EarlyVoting": 7012,
-       "ElectionDay": 3657
+       "ElectionDay": 3733
       }
      },
      "source": "fl_tqv"
@@ -3639,35 +3639,35 @@
     {
      "jurisdiction": "Levy County",
      "metric": "eday_checkins",
-     "value": 6516,
-     "as_of": "2026-11-03T20:50:01.3472899+00:00",
+     "value": 6660,
+     "as_of": "2026-11-03T21:00:01.7914583+00:00",
      "state": "FL",
      "county_code": "LEV",
      "registered": 30440,
-     "mail": 3867,
+     "mail": 3869,
      "early": 5224,
-     "eday": 6516,
-     "total": 15607,
+     "eday": 6660,
+     "total": 15753,
      "party": {
       "OTH": {
        "Mail": 115,
        "EarlyVoting": 148,
-       "ElectionDay": 181
+       "ElectionDay": 186
       },
       "DEM": {
        "Mail": 1226,
        "EarlyVoting": 1066,
-       "ElectionDay": 1208
+       "ElectionDay": 1239
       },
       "NPA": {
-       "Mail": 364,
+       "Mail": 366,
        "EarlyVoting": 528,
-       "ElectionDay": 626
+       "ElectionDay": 641
       },
       "REP": {
        "Mail": 2162,
        "EarlyVoting": 3482,
-       "ElectionDay": 4501
+       "ElectionDay": 4594
       }
      },
      "source": "fl_tqv"
@@ -3675,35 +3675,35 @@
     {
      "jurisdiction": "Jackson County",
      "metric": "eday_checkins",
-     "value": 3803,
-     "as_of": "2026-11-03T20:50:01.6591707+00:00",
+     "value": 3875,
+     "as_of": "2026-11-03T21:00:01.4118534+00:00",
      "state": "FL",
      "county_code": "JAC",
      "registered": 27498,
      "mail": 2429,
      "early": 6583,
-     "eday": 3803,
-     "total": 12815,
+     "eday": 3875,
+     "total": 12887,
      "party": {
       "OTH": {
        "Mail": 27,
        "EarlyVoting": 82,
-       "ElectionDay": 64
+       "ElectionDay": 65
       },
       "DEM": {
        "Mail": 1049,
        "EarlyVoting": 1916,
-       "ElectionDay": 1037
+       "ElectionDay": 1057
       },
       "NPA": {
        "Mail": 121,
        "EarlyVoting": 353,
-       "ElectionDay": 242
+       "ElectionDay": 250
       },
       "REP": {
        "Mail": 1232,
        "EarlyVoting": 4232,
-       "ElectionDay": 2460
+       "ElectionDay": 2503
       }
      },
      "source": "fl_tqv"
@@ -3711,35 +3711,35 @@
     {
      "jurisdiction": "Suwannee County",
      "metric": "eday_checkins",
-     "value": 4715,
-     "as_of": "2026-11-03T20:50:02.9825485+00:00",
+     "value": 4813,
+     "as_of": "2026-11-03T21:00:02.5615839+00:00",
      "state": "FL",
      "county_code": "SUW",
      "registered": 27003,
-     "mail": 2509,
+     "mail": 2510,
      "early": 6468,
-     "eday": 4715,
-     "total": 13692,
+     "eday": 4813,
+     "total": 13791,
      "party": {
       "OTH": {
        "Mail": 60,
        "EarlyVoting": 119,
-       "ElectionDay": 115
+       "ElectionDay": 119
       },
       "DEM": {
-       "Mail": 753,
+       "Mail": 754,
        "EarlyVoting": 1325,
-       "ElectionDay": 774
+       "ElectionDay": 786
       },
       "NPA": {
        "Mail": 213,
        "EarlyVoting": 529,
-       "ElectionDay": 491
+       "ElectionDay": 503
       },
       "REP": {
        "Mail": 1483,
        "EarlyVoting": 4495,
-       "ElectionDay": 3335
+       "ElectionDay": 3405
       }
      },
      "source": "fl_tqv"
@@ -3783,35 +3783,35 @@
     {
      "jurisdiction": "Wakulla County",
      "metric": "eday_checkins",
-     "value": 4545,
-     "as_of": "2026-11-03T20:50:01.3915694+00:00",
+     "value": 4656,
+     "as_of": "2026-11-03T21:00:01.4194225+00:00",
      "state": "FL",
      "county_code": "WAK",
      "registered": 25929,
-     "mail": 1963,
+     "mail": 1964,
      "early": 6446,
-     "eday": 4545,
-     "total": 12954,
+     "eday": 4656,
+     "total": 13066,
      "party": {
       "OTH": {
        "Mail": 43,
        "EarlyVoting": 146,
-       "ElectionDay": 139
+       "ElectionDay": 141
       },
       "DEM": {
        "Mail": 788,
        "EarlyVoting": 1825,
-       "ElectionDay": 1061
+       "ElectionDay": 1089
       },
       "NPA": {
        "Mail": 210,
        "EarlyVoting": 689,
-       "ElectionDay": 562
+       "ElectionDay": 575
       },
       "REP": {
-       "Mail": 922,
+       "Mail": 923,
        "EarlyVoting": 3786,
-       "ElectionDay": 2783
+       "ElectionDay": 2851
       }
      },
      "source": "fl_tqv"
@@ -3819,35 +3819,35 @@
     {
      "jurisdiction": "Okeechobee County",
      "metric": "eday_checkins",
-     "value": 3681,
-     "as_of": "2026-11-03T20:50:02.037168+00:00",
+     "value": 3763,
+     "as_of": "2026-11-03T21:00:01.4576122+00:00",
      "state": "FL",
      "county_code": "OKE",
      "registered": 20872,
      "mail": 1640,
      "early": 4261,
-     "eday": 3681,
-     "total": 9582,
+     "eday": 3763,
+     "total": 9664,
      "party": {
       "OTH": {
        "Mail": 43,
        "EarlyVoting": 103,
-       "ElectionDay": 87
+       "ElectionDay": 88
       },
       "DEM": {
        "Mail": 593,
        "EarlyVoting": 963,
-       "ElectionDay": 693
+       "ElectionDay": 706
       },
       "NPA": {
        "Mail": 174,
        "EarlyVoting": 416,
-       "ElectionDay": 423
+       "ElectionDay": 438
       },
       "REP": {
        "Mail": 830,
        "EarlyVoting": 2779,
-       "ElectionDay": 2478
+       "ElectionDay": 2531
       }
      },
      "source": "fl_tqv"
@@ -3855,15 +3855,15 @@
     {
      "jurisdiction": "Hendry County",
      "metric": "eday_checkins",
-     "value": 2566,
-     "as_of": "2026-11-03T20:50:01.734309+00:00",
+     "value": 2642,
+     "as_of": "2026-11-03T21:00:02.1418855+00:00",
      "state": "FL",
      "county_code": "HEN",
      "registered": 19437,
      "mail": 1267,
      "early": 4858,
-     "eday": 2566,
-     "total": 8691,
+     "eday": 2642,
+     "total": 8767,
      "party": {
       "OTH": {
        "Mail": 38,
@@ -3873,17 +3873,17 @@
       "DEM": {
        "Mail": 480,
        "EarlyVoting": 1689,
-       "ElectionDay": 819
+       "ElectionDay": 838
       },
       "NPA": {
        "Mail": 136,
        "EarlyVoting": 582,
-       "ElectionDay": 367
+       "ElectionDay": 380
       },
       "REP": {
        "Mail": 613,
        "EarlyVoting": 2508,
-       "ElectionDay": 1328
+       "ElectionDay": 1372
       }
      },
      "source": "fl_tqv"
@@ -3891,15 +3891,15 @@
     {
      "jurisdiction": "Baker County",
      "metric": "eday_checkins",
-     "value": 2686,
-     "as_of": "2026-11-03T20:50:01.3297052+00:00",
+     "value": 2768,
+     "as_of": "2026-11-03T21:00:01.205642+00:00",
      "state": "FL",
      "county_code": "BAK",
      "registered": 17886,
      "mail": 1048,
      "early": 4457,
-     "eday": 2686,
-     "total": 8191,
+     "eday": 2768,
+     "total": 8273,
      "party": {
       "OTH": {
        "Mail": 16,
@@ -3909,17 +3909,17 @@
       "DEM": {
        "Mail": 259,
        "EarlyVoting": 623,
-       "ElectionDay": 475
+       "ElectionDay": 484
       },
       "REP": {
        "Mail": 700,
        "EarlyVoting": 3490,
-       "ElectionDay": 1981
+       "ElectionDay": 2049
       },
       "NPA": {
        "Mail": 73,
        "EarlyVoting": 285,
-       "ElectionDay": 188
+       "ElectionDay": 193
       }
      },
      "source": "fl_tqv"
@@ -3927,35 +3927,35 @@
     {
      "jurisdiction": "Bradford County",
      "metric": "eday_checkins",
-     "value": 3133,
-     "as_of": "2026-11-03T20:50:02.9300231+00:00",
+     "value": 3216,
+     "as_of": "2026-11-03T21:00:04.6091416+00:00",
      "state": "FL",
      "county_code": "BRA",
      "registered": 16908,
      "mail": 1061,
      "early": 3803,
-     "eday": 3133,
-     "total": 7997,
+     "eday": 3216,
+     "total": 8080,
      "party": {
       "OTH": {
        "Mail": 17,
        "EarlyVoting": 78,
-       "ElectionDay": 69
+       "ElectionDay": 71
       },
       "DEM": {
        "Mail": 394,
        "EarlyVoting": 909,
-       "ElectionDay": 577
+       "ElectionDay": 594
       },
       "NPA": {
        "Mail": 85,
        "EarlyVoting": 276,
-       "ElectionDay": 234
+       "ElectionDay": 244
       },
       "REP": {
        "Mail": 565,
        "EarlyVoting": 2540,
-       "ElectionDay": 2253
+       "ElectionDay": 2307
       }
      },
      "source": "fl_tqv"
@@ -3963,15 +3963,15 @@
     {
      "jurisdiction": "DeSoto County",
      "metric": "eday_checkins",
-     "value": 2804,
-     "as_of": "2026-11-03T20:50:02.6255471+00:00",
+     "value": 2851,
+     "as_of": "2026-11-03T21:00:02.4587534+00:00",
      "state": "FL",
      "county_code": "DES",
      "registered": 16075,
      "mail": 1298,
      "early": 3924,
-     "eday": 2804,
-     "total": 8026,
+     "eday": 2851,
+     "total": 8073,
      "party": {
       "OTH": {
        "Mail": 25,
@@ -3981,17 +3981,17 @@
       "DEM": {
        "Mail": 441,
        "EarlyVoting": 1196,
-       "ElectionDay": 689
+       "ElectionDay": 703
       },
       "REP": {
        "Mail": 605,
        "EarlyVoting": 2155,
-       "ElectionDay": 1617
+       "ElectionDay": 1645
       },
       "NPA": {
        "Mail": 227,
        "EarlyVoting": 497,
-       "ElectionDay": 428
+       "ElectionDay": 433
       }
      },
      "source": "fl_tqv"
@@ -3999,35 +3999,35 @@
     {
      "jurisdiction": "Washington County",
      "metric": "eday_checkins",
-     "value": 2679,
-     "as_of": "2026-11-03T20:50:02.2117914+00:00",
+     "value": 2746,
+     "as_of": "2026-11-03T21:00:01.7366611+00:00",
      "state": "FL",
      "county_code": "WAS",
      "registered": 14961,
      "mail": 1029,
      "early": 3190,
-     "eday": 2679,
-     "total": 6898,
+     "eday": 2746,
+     "total": 6965,
      "party": {
       "OTH": {
        "Mail": 21,
        "EarlyVoting": 28,
-       "ElectionDay": 34
+       "ElectionDay": 36
       },
       "DEM": {
        "Mail": 293,
        "EarlyVoting": 590,
-       "ElectionDay": 447
+       "ElectionDay": 456
       },
       "NPA": {
        "Mail": 61,
        "EarlyVoting": 232,
-       "ElectionDay": 239
+       "ElectionDay": 246
       },
       "REP": {
        "Mail": 654,
        "EarlyVoting": 2340,
-       "ElectionDay": 1959
+       "ElectionDay": 2008
       }
      },
      "source": "fl_tqv"
@@ -4035,15 +4035,15 @@
     {
      "jurisdiction": "Gilchrist County",
      "metric": "eday_checkins",
-     "value": 2952,
-     "as_of": "2026-11-03T20:50:01.2271885+00:00",
+     "value": 3034,
+     "as_of": "2026-11-03T21:00:01.1732449+00:00",
      "state": "FL",
      "county_code": "GIL",
      "registered": 12992,
      "mail": 1131,
      "early": 2415,
-     "eday": 2952,
-     "total": 6498,
+     "eday": 3034,
+     "total": 6580,
      "party": {
       "OTH": {
        "Mail": 21,
@@ -4053,17 +4053,17 @@
       "DEM": {
        "Mail": 293,
        "EarlyVoting": 313,
-       "ElectionDay": 356
+       "ElectionDay": 366
       },
       "NPA": {
        "Mail": 107,
        "EarlyVoting": 209,
-       "ElectionDay": 223
+       "ElectionDay": 227
       },
       "REP": {
        "Mail": 710,
        "EarlyVoting": 1826,
-       "ElectionDay": 2279
+       "ElectionDay": 2347
       }
      },
      "source": "fl_tqv"
@@ -4071,35 +4071,35 @@
     {
      "jurisdiction": "Taylor County",
      "metric": "eday_checkins",
-     "value": 2147,
-     "as_of": "2026-11-03T20:50:02.058515+00:00",
+     "value": 2186,
+     "as_of": "2026-11-03T21:00:01.590488+00:00",
      "state": "FL",
      "county_code": "TAY",
      "registered": 11743,
      "mail": 976,
      "early": 2840,
-     "eday": 2147,
-     "total": 5963,
+     "eday": 2186,
+     "total": 6002,
      "party": {
       "OTH": {
        "Mail": 10,
        "EarlyVoting": 36,
-       "ElectionDay": 32
+       "ElectionDay": 33
       },
       "DEM": {
        "Mail": 346,
        "EarlyVoting": 685,
-       "ElectionDay": 455
+       "ElectionDay": 463
       },
       "REP": {
        "Mail": 572,
        "EarlyVoting": 1993,
-       "ElectionDay": 1524
+       "ElectionDay": 1552
       },
       "NPA": {
        "Mail": 48,
        "EarlyVoting": 126,
-       "ElectionDay": 136
+       "ElectionDay": 138
       }
      },
      "source": "fl_tqv"
@@ -4107,35 +4107,35 @@
     {
      "jurisdiction": "Hardee County",
      "metric": "eday_checkins",
-     "value": 1898,
-     "as_of": "2026-11-03T20:50:02.0468797+00:00",
+     "value": 1934,
+     "as_of": "2026-11-03T21:00:01.5746943+00:00",
      "state": "FL",
      "county_code": "HAR",
      "registered": 11526,
-     "mail": 552,
+     "mail": 574,
      "early": 2656,
-     "eday": 1898,
-     "total": 5106,
+     "eday": 1934,
+     "total": 5164,
      "party": {
       "OTH": {
-       "Mail": 3,
+       "Mail": 4,
        "EarlyVoting": 61,
-       "ElectionDay": 40
+       "ElectionDay": 42
       },
       "DEM": {
-       "Mail": 180,
+       "Mail": 189,
        "EarlyVoting": 604,
-       "ElectionDay": 430
+       "ElectionDay": 437
       },
       "NPA": {
-       "Mail": 67,
+       "Mail": 69,
        "EarlyVoting": 233,
-       "ElectionDay": 237
+       "ElectionDay": 243
       },
       "REP": {
-       "Mail": 302,
+       "Mail": 312,
        "EarlyVoting": 1758,
-       "ElectionDay": 1191
+       "ElectionDay": 1212
       }
      },
      "source": "fl_tqv"
@@ -4143,35 +4143,35 @@
     {
      "jurisdiction": "Holmes County",
      "metric": "eday_checkins",
-     "value": 1903,
-     "as_of": "2026-11-03T20:50:02.1492313+00:00",
+     "value": 1961,
+     "as_of": "2026-11-03T21:00:02.2151207+00:00",
      "state": "FL",
      "county_code": "HOL",
      "registered": 11446,
      "mail": 766,
      "early": 1862,
-     "eday": 1903,
-     "total": 4531,
+     "eday": 1961,
+     "total": 4589,
      "party": {
       "OTH": {
        "Mail": 6,
        "EarlyVoting": 23,
-       "ElectionDay": 34
+       "ElectionDay": 35
       },
       "DEM": {
        "Mail": 169,
        "EarlyVoting": 195,
-       "ElectionDay": 226
+       "ElectionDay": 236
       },
       "NPA": {
        "Mail": 52,
        "EarlyVoting": 97,
-       "ElectionDay": 132
+       "ElectionDay": 138
       },
       "REP": {
        "Mail": 539,
        "EarlyVoting": 1547,
-       "ElectionDay": 1511
+       "ElectionDay": 1552
       }
      },
      "source": "fl_tqv"
@@ -4179,35 +4179,35 @@
     {
      "jurisdiction": "Gulf County",
      "metric": "eday_checkins",
-     "value": 1784,
-     "as_of": "2026-11-03T20:50:02.4916945+00:00",
+     "value": 1821,
+     "as_of": "2026-11-03T21:00:02.5598192+00:00",
      "state": "FL",
      "county_code": "GUL",
      "registered": 11196,
      "mail": 921,
      "early": 3295,
-     "eday": 1784,
-     "total": 6000,
+     "eday": 1821,
+     "total": 6037,
      "party": {
       "OTH": {
        "Mail": 32,
        "EarlyVoting": 71,
-       "ElectionDay": 42
+       "ElectionDay": 43
       },
       "DEM": {
        "Mail": 268,
        "EarlyVoting": 623,
-       "ElectionDay": 302
+       "ElectionDay": 308
       },
       "REP": {
        "Mail": 530,
        "EarlyVoting": 2391,
-       "ElectionDay": 1270
+       "ElectionDay": 1295
       },
       "NPA": {
        "Mail": 91,
        "EarlyVoting": 210,
-       "ElectionDay": 170
+       "ElectionDay": 175
       }
      },
      "source": "fl_tqv"
@@ -4215,15 +4215,15 @@
     {
      "jurisdiction": "Madison County",
      "metric": "eday_checkins",
-     "value": 1715,
-     "as_of": "2026-11-03T20:50:03.0442646+00:00",
+     "value": 1769,
+     "as_of": "2026-11-03T21:00:03.09853+00:00",
      "state": "FL",
      "county_code": "MAD",
      "registered": 10543,
      "mail": 749,
      "early": 3583,
-     "eday": 1715,
-     "total": 6047,
+     "eday": 1769,
+     "total": 6101,
      "party": {
       "OTH": {
        "Mail": 6,
@@ -4233,17 +4233,17 @@
       "DEM": {
        "Mail": 385,
        "EarlyVoting": 1344,
-       "ElectionDay": 614
+       "ElectionDay": 645
       },
       "REP": {
        "Mail": 291,
        "EarlyVoting": 1940,
-       "ElectionDay": 937
+       "ElectionDay": 958
       },
       "NPA": {
        "Mail": 67,
        "EarlyVoting": 273,
-       "ElectionDay": 148
+       "ElectionDay": 150
       }
      },
      "source": "fl_tqv"
@@ -4251,15 +4251,15 @@
     {
      "jurisdiction": "Dixie County",
      "metric": "eday_checkins",
-     "value": 1767,
-     "as_of": "2026-11-03T20:50:02.9949073+00:00",
+     "value": 1803,
+     "as_of": "2026-11-03T21:00:03.2265419+00:00",
      "state": "FL",
      "county_code": "DIX",
      "registered": 10055,
      "mail": 1082,
      "early": 2049,
-     "eday": 1767,
-     "total": 4898,
+     "eday": 1803,
+     "total": 4934,
      "party": {
       "OTH": {
        "Mail": 19,
@@ -4269,17 +4269,17 @@
       "DEM": {
        "Mail": 230,
        "EarlyVoting": 261,
-       "ElectionDay": 235
+       "ElectionDay": 241
       },
       "NPA": {
        "Mail": 99,
        "EarlyVoting": 188,
-       "ElectionDay": 187
+       "ElectionDay": 192
       },
       "REP": {
        "Mail": 734,
        "EarlyVoting": 1567,
-       "ElectionDay": 1314
+       "ElectionDay": 1339
       }
      },
      "source": "fl_tqv"
@@ -4287,35 +4287,35 @@
     {
      "jurisdiction": "Jefferson County",
      "metric": "eday_checkins",
-     "value": 2114,
-     "as_of": "2026-11-03T20:50:02.3586624+00:00",
+     "value": 2157,
+     "as_of": "2026-11-03T21:00:01.4243565+00:00",
      "state": "FL",
      "county_code": "JEF",
      "registered": 10026,
      "mail": 914,
      "early": 2883,
-     "eday": 2114,
-     "total": 5911,
+     "eday": 2157,
+     "total": 5954,
      "party": {
       "OTH": {
        "Mail": 20,
        "EarlyVoting": 48,
-       "ElectionDay": 27
+       "ElectionDay": 31
       },
       "DEM": {
        "Mail": 536,
        "EarlyVoting": 985,
-       "ElectionDay": 830
+       "ElectionDay": 846
       },
       "NPA": {
        "Mail": 82,
        "EarlyVoting": 251,
-       "ElectionDay": 216
+       "ElectionDay": 218
       },
       "REP": {
        "Mail": 276,
        "EarlyVoting": 1599,
-       "ElectionDay": 1041
+       "ElectionDay": 1062
       }
      },
      "source": "fl_tqv"
@@ -4323,15 +4323,15 @@
     {
      "jurisdiction": "Franklin County",
      "metric": "eday_checkins",
-     "value": 1665,
-     "as_of": "2026-11-03T20:50:01.987609+00:00",
+     "value": 1700,
+     "as_of": "2026-11-03T21:00:02.237013+00:00",
      "state": "FL",
      "county_code": "FRA",
      "registered": 7604,
      "mail": 909,
      "early": 1901,
-     "eday": 1665,
-     "total": 4475,
+     "eday": 1700,
+     "total": 4510,
      "party": {
       "OTH": {
        "Mail": 35,
@@ -4341,17 +4341,17 @@
       "DEM": {
        "Mail": 364,
        "EarlyVoting": 549,
-       "ElectionDay": 388
+       "ElectionDay": 397
       },
       "NPA": {
        "Mail": 119,
        "EarlyVoting": 228,
-       "ElectionDay": 218
+       "ElectionDay": 222
       },
       "REP": {
        "Mail": 391,
        "EarlyVoting": 1069,
-       "ElectionDay": 996
+       "ElectionDay": 1018
       }
      },
      "source": "fl_tqv"
@@ -4359,15 +4359,15 @@
     {
      "jurisdiction": "Calhoun County",
      "metric": "eday_checkins",
-     "value": 1093,
-     "as_of": "2026-11-03T20:50:02.7129567+00:00",
+     "value": 1117,
+     "as_of": "2026-11-03T21:00:02.3840968+00:00",
      "state": "FL",
      "county_code": "CAL",
      "registered": 7602,
      "mail": 592,
      "early": 1723,
-     "eday": 1093,
-     "total": 3408,
+     "eday": 1117,
+     "total": 3432,
      "party": {
       "OTH": {
        "Mail": 4,
@@ -4377,7 +4377,7 @@
       "DEM": {
        "Mail": 187,
        "EarlyVoting": 326,
-       "ElectionDay": 279
+       "ElectionDay": 287
       },
       "NPA": {
        "Mail": 22,
@@ -4387,7 +4387,7 @@
       "REP": {
        "Mail": 379,
        "EarlyVoting": 1285,
-       "ElectionDay": 737
+       "ElectionDay": 753
       }
      },
      "source": "fl_tqv"
@@ -4395,15 +4395,15 @@
     {
      "jurisdiction": "Union County",
      "metric": "eday_checkins",
-     "value": 1300,
-     "as_of": "2026-11-03T20:50:04.329723+00:00",
+     "value": 1331,
+     "as_of": "2026-11-03T21:00:04.1373133+00:00",
      "state": "FL",
      "county_code": "UNI",
      "registered": 7311,
      "mail": 396,
      "early": 1746,
-     "eday": 1300,
-     "total": 3442,
+     "eday": 1331,
+     "total": 3473,
      "party": {
       "OTH": {
        "Mail": 5,
@@ -4413,17 +4413,17 @@
       "DEM": {
        "Mail": 126,
        "EarlyVoting": 306,
-       "ElectionDay": 292
+       "ElectionDay": 301
       },
       "NPA": {
        "Mail": 23,
        "EarlyVoting": 81,
-       "ElectionDay": 92
+       "ElectionDay": 93
       },
       "REP": {
        "Mail": 242,
        "EarlyVoting": 1336,
-       "ElectionDay": 890
+       "ElectionDay": 911
       }
      },
      "source": "fl_tqv"
@@ -4431,15 +4431,15 @@
     {
      "jurisdiction": "Hamilton County",
      "metric": "eday_checkins",
-     "value": 1413,
-     "as_of": "2026-11-03T20:50:02.7474282+00:00",
+     "value": 1444,
+     "as_of": "2026-11-03T21:00:03.2860437+00:00",
      "state": "FL",
      "county_code": "HAM",
      "registered": 7162,
-     "mail": 653,
+     "mail": 659,
      "early": 1356,
-     "eday": 1413,
-     "total": 3422,
+     "eday": 1444,
+     "total": 3459,
      "party": {
       "OTH": {
        "Mail": 7,
@@ -4447,19 +4447,19 @@
        "ElectionDay": 34
       },
       "DEM": {
-       "Mail": 268,
+       "Mail": 270,
        "EarlyVoting": 455,
-       "ElectionDay": 452
+       "ElectionDay": 470
       },
       "NPA": {
        "Mail": 43,
        "EarlyVoting": 87,
-       "ElectionDay": 112
+       "ElectionDay": 114
       },
       "REP": {
-       "Mail": 335,
+       "Mail": 339,
        "EarlyVoting": 791,
-       "ElectionDay": 815
+       "ElectionDay": 826
       }
      },
      "source": "fl_tqv"
@@ -4504,7 +4504,7 @@
      "jurisdiction": "Liberty County",
      "metric": "eday_checkins",
      "value": 641,
-     "as_of": "2026-11-03T20:50:03.4665371+00:00",
+     "as_of": "2026-11-03T21:00:04.3429365+00:00",
      "state": "FL",
      "county_code": "LIB",
      "registered": 4611,
@@ -4539,15 +4539,15 @@
     {
      "jurisdiction": "Lafayette County",
      "metric": "eday_checkins",
-     "value": 1044,
-     "as_of": "2026-11-03T20:50:02.1524124+00:00",
+     "value": 1074,
+     "as_of": "2026-11-03T21:00:02.5118327+00:00",
      "state": "FL",
      "county_code": "LAF",
      "registered": 4271,
      "mail": 247,
      "early": 859,
-     "eday": 1044,
-     "total": 2150,
+     "eday": 1074,
+     "total": 2180,
      "party": {
       "OTH": {
        "Mail": 3,
@@ -4557,17 +4557,17 @@
       "DEM": {
        "Mail": 58,
        "EarlyVoting": 86,
-       "ElectionDay": 136
+       "ElectionDay": 138
       },
       "NPA": {
        "Mail": 5,
        "EarlyVoting": 29,
-       "ElectionDay": 44
+       "ElectionDay": 46
       },
       "REP": {
        "Mail": 181,
        "EarlyVoting": 735,
-       "ElectionDay": 844
+       "ElectionDay": 870
       }
      },
      "source": "fl_tqv"
@@ -4583,7 +4583,7 @@
    "url": "https://experience.arcgis.com/experience/8204fc2e36cd4fac8729efcedd4fda7f/page/Page?views=Election-Day",
    "note": "Sum of today's voter counts at every active Election Day vote center (IDs V*), same filter as the county's wait-time map.",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:57:15-05:00",
+   "fetched_at": "2026-11-03T16:02:37-05:00",
    "observations": [
     {
      "jurisdiction": "Dallas County",
@@ -4607,7 +4607,7 @@
    "url": "https://www.harrisvotes.com/Vote-Centers",
    "note": "Estimated wait and voters in line at each Election Day vote center, from the HarrisVotes wait-time map. Harris posts hourly check-in totals only on social media.",
    "status": "ok",
-   "fetched_at": "2026-11-03T15:57:15-05:00",
+   "fetched_at": "2026-11-03T16:02:37-05:00",
    "observations": [
     {
      "jurisdiction": "Harris County",
@@ -5436,7 +5436,7 @@
        "lat": 29.7164451,
        "lon": -95.4377234,
        "addr": "6104 Auden Street",
-       "in_line": 5,
+       "in_line": 10,
        "wait_text": "About 0-14 minutes.",
        "wait_min": 0,
        "icon": "fa-location-dot green"
@@ -7273,7 +7273,7 @@
        "lat": 29.7260972,
        "lon": -95.5534713,
        "addr": "3599 Westcenter Drive",
-       "in_line": 5,
+       "in_line": 10,
        "wait_text": "About 0-14 minutes.",
        "wait_min": 0,
        "icon": "fa-location-dot green"
@@ -8318,7 +8318,7 @@
        "lat": 29.5754755,
        "lon": -95.2453488,
        "addr": "1801 Riverstone Ranch Road",
-       "in_line": 5,
+       "in_line": 10,
        "wait_text": "About 0-14 minutes.",
        "wait_min": 0,
        "icon": "fa-location-dot green"
@@ -8758,7 +8758,7 @@
        "lat": 29.7344075,
        "lon": -95.641045,
        "addr": "14411 Westheimer Road",
-       "in_line": 5,
+       "in_line": 10,
        "wait_text": "About 0-14 minutes.",
        "wait_min": 0,
        "icon": "fa-location-dot green"
@@ -8890,7 +8890,7 @@
        "lat": 29.9173079,
        "lon": -95.1512592,
        "addr": "12303 Sonnier Street",
-       "in_line": 5,
+       "in_line": 10,
        "wait_text": "About 0-14 minutes.",
        "wait_min": 0,
        "icon": "fa-location-dot green"
@@ -9033,7 +9033,7 @@
        "lat": 29.8933931,
        "lon": -95.6216463,
        "addr": "7939 Jackrabbit Road",
-       "in_line": 10,
+       "in_line": 5,
        "wait_text": "About 0-14 minutes.",
        "wait_min": 0,
        "icon": "fa-location-dot green"
@@ -9374,10 +9374,10 @@
        "lat": 29.794923,
        "lon": -95.683671,
        "addr": "1830 Hollyoak Drive",
-       "in_line": 5,
-       "wait_text": "About 0-14 minutes.",
-       "wait_min": 0,
-       "icon": "fa-location-dot green"
+       "in_line": 20,
+       "wait_text": "About 15-29 minutes.",
+       "wait_min": 15,
+       "icon": "fa-location-dot yellow"
       },
       {
        "code": "12176",
@@ -9429,7 +9429,7 @@
        "lat": 29.867378,
        "lon": -95.0749636,
        "addr": "808 1/2 Magnolia Avenue",
-       "in_line": 5,
+       "in_line": 10,
        "wait_text": "About 0-14 minutes.",
        "wait_min": 0,
        "icon": "fa-location-dot green"
@@ -9869,7 +9869,7 @@
        "lat": 29.9044445,
        "lon": -95.6687209,
        "addr": "8500 Queenston Boulevard",
-       "in_line": 5,
+       "in_line": 10,
        "wait_text": "About 0-14 minutes.",
        "wait_min": 0,
        "icon": "fa-location-dot green"
@@ -10342,10 +10342,10 @@
        "lat": 30.0634852,
        "lon": -95.4748251,
        "addr": "20820 Ella Boulevard",
-       "in_line": 5,
-       "wait_text": "About 0-14 minutes.",
-       "wait_min": 0,
-       "icon": "fa-location-dot green"
+       "in_line": 30,
+       "wait_text": "About 30+ minutes.",
+       "wait_min": 30,
+       "icon": "fa-location-dot red"
       },
       {
        "code": "52061",
@@ -10584,7 +10584,7 @@
        "lat": 29.8708412,
        "lon": -95.7302106,
        "addr": "6424 Settlers Village Drive",
-       "in_line": 15,
+       "in_line": 5,
        "wait_text": "About 0-14 minutes.",
        "wait_min": 0,
        "icon": "fa-location-dot green"
@@ -10826,7 +10826,7 @@
        "lat": 30.0598672,
        "lon": -95.5665684,
        "addr": "9225 Crescent Clover Drive",
-       "in_line": 5,
+       "in_line": 10,
        "wait_text": "About 0-14 minutes.",
        "wait_min": 0,
        "icon": "fa-location-dot green"
@@ -11277,10 +11277,10 @@
        "lat": 29.802334,
        "lon": -95.8174507,
        "addr": "5414 Franz Road",
-       "in_line": 30,
-       "wait_text": "About 30+ minutes.",
-       "wait_min": 30,
-       "icon": "fa-location-dot red"
+       "in_line": 20,
+       "wait_text": "About 15-29 minutes.",
+       "wait_min": 15,
+       "icon": "fa-location-dot yellow"
       },
       {
        "code": "21009",
@@ -11288,10 +11288,10 @@
        "lat": 30.0906863,
        "lon": -95.6154863,
        "addr": "501B James Street",
-       "in_line": 5,
-       "wait_text": "About 0-14 minutes.",
-       "wait_min": 0,
-       "icon": "fa-location-dot green"
+       "in_line": 25,
+       "wait_text": "About 30+ minutes.",
+       "wait_min": 30,
+       "icon": "fa-location-dot red"
       },
       {
        "code": "12109",
@@ -11471,8 +11471,8 @@
       }
      ],
      "median_wait": 0,
-     "sites_30plus": 12,
-     "total_in_line": 3075,
+     "sites_30plus": 13,
+     "total_in_line": 3150,
      "source": "tx_harris_wait"
     }
    ],
