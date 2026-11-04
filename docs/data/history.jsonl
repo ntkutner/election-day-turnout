@@ -762,3 +762,4 @@
 {"t": "2026-11-03T20:10:51-05:00", "key": "fl_tqv|Bay County|eday_checkins", "source": "fl_tqv", "state": "FL", "jurisdiction": "Bay County", "metric": "eday_checkins", "value": 24003, "as_of": "2026-11-04T01:10:02.2219647+00:00"}
 {"t": "2026-11-03T20:10:51-05:00", "key": "fl_tqv|Walton County|eday_checkins", "source": "fl_tqv", "state": "FL", "jurisdiction": "Walton County", "metric": "eday_checkins", "value": 15800, "as_of": "2026-11-04T01:10:00.8277215+00:00"}
 {"t": "2026-11-03T20:10:51-05:00", "key": "fl_tqv|Jackson County|eday_checkins", "source": "fl_tqv", "state": "FL", "jurisdiction": "Jackson County", "metric": "eday_checkins", "value": 6613, "as_of": "2026-11-04T01:10:01.2904504+00:00"}
+{"t": "2026-11-03T20:16:05-05:00", "key": "fl_enr_duval|Duval County|total_voted", "source": "fl_enr_duval", "state": "FL", "jurisdiction": "Duval County", "metric": "total_voted", "value": 354141, "as_of": "11/03/2026 8:13:11 pm"}

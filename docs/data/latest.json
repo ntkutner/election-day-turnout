@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-03T20:10:51-05:00",
+ "generated_at": "2026-11-03T20:16:05-05:00",
  "sources": {
   "uf_states": {
    "id": "uf_states",
@@ -9,7 +9,7 @@
    "url": "https://election.lab.ufl.edu/early-vote/2026-early-voting/",
    "note": "Early in-person + returned mail ballots compiled by Dr. Michael McDonald, UF Election Lab (non-commercial use, attribution required). Party = party registration, not vote choice.",
    "status": "ok",
-   "fetched_at": "2026-11-03T20:10:51-05:00",
+   "fetched_at": "2026-11-03T20:16:05-05:00",
    "observations": [
     {
      "jurisdiction": "AK",
@@ -904,7 +904,7 @@
    "url": "https://election.lab.ufl.edu/early-vote/2026-early-voting/",
    "note": "Early vote in House toss-up districts, from states that report early vote by congressional district. Ratings as compiled by UF Election Lab.",
    "status": "ok",
-   "fetched_at": "2026-11-03T20:10:51-05:00",
+   "fetched_at": "2026-11-03T20:16:05-05:00",
    "observations": [
     {
      "jurisdiction": "AL-02",
@@ -1753,7 +1753,7 @@
    "url": "https://goelect.txelections.civixapps.com/ivis-evr-ui/evr",
    "note": "Cumulative in-person + mail early votes through the last day of early voting (Oct 30).",
    "status": "ok",
-   "fetched_at": "2026-11-03T20:10:51-05:00",
+   "fetched_at": "2026-11-03T20:16:05-05:00",
    "observations": [
     {
      "jurisdiction": "Texas (statewide)",
@@ -1898,7 +1898,7 @@
    "url": "https://goelect.txelections.civixapps.com/ivis-evr-ui/evr",
    "note": "Counties report Election Day turnout to the SOS; often posts after polls close.",
    "status": "ok",
-   "fetched_at": "2026-11-03T20:10:51-05:00",
+   "fetched_at": "2026-11-03T20:16:05-05:00",
    "observations": [
     {
      "jurisdiction": "Texas (statewide)",
@@ -2020,7 +2020,7 @@
    "url": "https://my.browardvotes.gov/TEDElectionLink/TurnOutWidget/dashboard/view/turnout-summary",
    "note": "",
    "status": "ok",
-   "fetched_at": "2026-11-03T20:10:51-05:00",
+   "fetched_at": "2026-11-03T20:16:05-05:00",
    "observations": [
     {
      "jurisdiction": "Broward County",
@@ -2032,7 +2032,7 @@
      "mail": 154031,
      "early": 314109,
      "eday": 196975,
-     "provisional": 225,
+     "provisional": 227,
      "source": "fl_broward"
     },
     {
@@ -2045,7 +2045,7 @@
      "mail": 154031,
      "early": 314109,
      "eday": 196975,
-     "provisional": 225,
+     "provisional": 227,
      "source": "fl_broward"
     }
    ],
@@ -2059,7 +2059,7 @@
    "url": "https://vote.nyc/page/early-voting-check-ins",
    "note": "BOE posts cumulative check-ins; Election Day updates appear on this page / @BOENYC when released.",
    "status": "ok",
-   "fetched_at": "2026-11-03T20:10:51-05:00",
+   "fetched_at": "2026-11-03T20:16:05-05:00",
    "observations": [
     {
      "jurisdiction": "New York City",
@@ -2087,7 +2087,7 @@
    "url": "https://elections.clarkcountynv.gov/ElectionResultsTV/evturnout.aspx",
    "note": "",
    "status": "ok",
-   "fetched_at": "2026-11-03T20:10:51-05:00",
+   "fetched_at": "2026-11-03T20:16:05-05:00",
    "observations": [
     {
      "jurisdiction": "Clark County",
@@ -2108,7 +2108,7 @@
    "url": "https://enr.electionsfl.org/DAD/4087/Summary/",
    "note": "Ballots cast by method from the official results site; populates after polls close (7pm ET).",
    "status": "ok",
-   "fetched_at": "2026-11-03T20:10:51-05:00",
+   "fetched_at": "2026-11-03T20:16:05-05:00",
    "observations": [
     {
      "jurisdiction": "Miami-Dade County",
@@ -2133,13 +2133,13 @@
    "url": "https://enr.electionsfl.org/DUV/4076/Summary/",
    "note": "Ballots cast by method from the official results site; populates after polls close (7pm ET).",
    "status": "ok",
-   "fetched_at": "2026-11-03T20:10:51-05:00",
+   "fetched_at": "2026-11-03T20:16:05-05:00",
    "observations": [
     {
      "jurisdiction": "Duval County",
      "metric": "total_voted",
-     "value": 352126,
-     "as_of": "11/03/2026 8:02:25 pm",
+     "value": 354141,
+     "as_of": "11/03/2026 8:13:11 pm",
      "state": "FL",
      "registered": 655219,
      "eday": null,
@@ -2158,13 +2158,13 @@
    "url": "https://tqv.vrswebapps.com/?state=FL&county=ORA&election=301",
    "note": "Live ballots cast by method and party registration, published by each county Supervisor of Elections via VR Systems. Party = registration, not vote choice.",
    "status": "ok",
-   "fetched_at": "2026-11-03T20:10:51-05:00",
+   "fetched_at": "2026-11-03T20:16:05-05:00",
    "observations": [
     {
      "jurisdiction": "Florida (66 counties)",
      "metric": "eday_checkins",
      "value": 2518434,
-     "as_of": "2026-11-04T01:10:13.2725226+00:00",
+     "as_of": "2026-11-04T01:20:00.699473+00:00",
      "state": "FL",
      "counties": 66,
      "party": {
@@ -3352,7 +3352,7 @@
      "jurisdiction": "Martin County",
      "metric": "eday_checkins",
      "value": 24763,
-     "as_of": "2026-11-04T01:00:02.7817703+00:00",
+     "as_of": "2026-11-04T01:10:02.0175757+00:00",
      "state": "FL",
      "county_code": "MRT",
      "registered": 117228,
@@ -4252,7 +4252,7 @@
      "jurisdiction": "Dixie County",
      "metric": "eday_checkins",
      "value": 2497,
-     "as_of": "2026-11-04T01:00:03.5325952+00:00",
+     "as_of": "2026-11-04T01:10:01.770667+00:00",
      "state": "FL",
      "county_code": "DIX",
      "registered": 10055,
@@ -4468,7 +4468,7 @@
      "jurisdiction": "Glades County",
      "metric": "eday_checkins",
      "value": 2231,
-     "as_of": "2026-11-04T01:10:00.9107858+00:00",
+     "as_of": "2026-11-04T01:20:00.699473+00:00",
      "state": "FL",
      "county_code": "GLA",
      "registered": 6870,
@@ -4583,7 +4583,7 @@
    "url": "https://experience.arcgis.com/experience/8204fc2e36cd4fac8729efcedd4fda7f/page/Page?views=Election-Day",
    "note": "Sum of today's voter counts at every active Election Day vote center (IDs V*), same filter as the county's wait-time map.",
    "status": "ok",
-   "fetched_at": "2026-11-03T20:10:51-05:00",
+   "fetched_at": "2026-11-03T20:16:05-05:00",
    "observations": [
     {
      "jurisdiction": "Dallas County",
@@ -4607,7 +4607,7 @@
    "url": "https://www.harrisvotes.com/Vote-Centers",
    "note": "Estimated wait and voters in line at each Election Day vote center, from the HarrisVotes wait-time map. Harris posts hourly check-in totals only on social media.",
    "status": "ok",
-   "fetched_at": "2026-11-03T20:10:51-05:00",
+   "fetched_at": "2026-11-03T20:16:05-05:00",
    "observations": [
     {
      "jurisdiction": "Harris County",
@@ -5117,7 +5117,7 @@
        "lat": 29.8044971,
        "lon": -95.3978767,
        "addr": "139 E 20th St",
-       "in_line": 5,
+       "in_line": 10,
        "wait_text": "About 0-14 minutes.",
        "wait_min": 0,
        "icon": "fa-location-dot green"
@@ -5546,7 +5546,7 @@
        "lat": 29.6976729,
        "lon": -95.3144561,
        "addr": "6301 South Loop 610 East",
-       "in_line": 10,
+       "in_line": 5,
        "wait_text": "About 0-14 minutes.",
        "wait_min": 0,
        "icon": "fa-location-dot green"
@@ -5998,9 +5998,9 @@
        "lon": -95.490965,
        "addr": "6145 San Felipe Street",
        "in_line": 25,
-       "wait_text": "About 15-29 minutes.",
-       "wait_min": 15,
-       "icon": "fa-location-dot yellow"
+       "wait_text": "About 30+ minutes.",
+       "wait_min": 30,
+       "icon": "fa-location-dot red"
       },
       {
        "code": "22069",
@@ -7394,7 +7394,7 @@
        "lat": 29.8488975,
        "lon": -95.2077281,
        "addr": "8540 C E King Parkway",
-       "in_line": 30,
+       "in_line": 25,
        "wait_text": "About 30+ minutes.",
        "wait_min": 30,
        "icon": "fa-location-dot red"
@@ -7504,7 +7504,7 @@
        "lat": 29.5895707,
        "lon": -95.3535345,
        "addr": "15108 Cullen Boulevard",
-       "in_line": 10,
+       "in_line": 5,
        "wait_text": "About 0-14 minutes.",
        "wait_min": 0,
        "icon": "fa-location-dot green"
@@ -7614,7 +7614,7 @@
        "lat": 29.6280615,
        "lon": -95.5107009,
        "addr": "14919 South Main",
-       "in_line": 0,
+       "in_line": 5,
        "wait_text": "About 0-14 minutes.",
        "wait_min": 0,
        "icon": "fa-location-dot green"
@@ -7625,7 +7625,7 @@
        "lat": 29.733821,
        "lon": -95.574858,
        "addr": "2811 Hayes Road",
-       "in_line": 100,
+       "in_line": 50,
        "wait_text": "About 30+ minutes.",
        "wait_min": 30,
        "icon": "fa-location-dot red"
@@ -7790,7 +7790,7 @@
        "lat": 29.6671495,
        "lon": -95.1830352,
        "addr": "3003 Dabney Drive",
-       "in_line": 10,
+       "in_line": 5,
        "wait_text": "About 0-14 minutes.",
        "wait_min": 0,
        "icon": "fa-location-dot green"
@@ -8098,10 +8098,10 @@
        "lat": 29.9295079,
        "lon": -95.501801,
        "addr": "10410 Kansack Lane",
-       "in_line": 20,
-       "wait_text": "About 15-29 minutes.",
-       "wait_min": 15,
-       "icon": "fa-location-dot yellow"
+       "in_line": 5,
+       "wait_text": "About 0-14 minutes.",
+       "wait_min": 0,
+       "icon": "fa-location-dot green"
       },
       {
        "code": "22073",
@@ -8164,10 +8164,10 @@
        "lat": 29.966346,
        "lon": -95.403433,
        "addr": "18655 Imperial Valley Drive",
-       "in_line": 30,
-       "wait_text": "About 30+ minutes.",
-       "wait_min": 30,
-       "icon": "fa-location-dot red"
+       "in_line": 20,
+       "wait_text": "About 15-29 minutes.",
+       "wait_min": 15,
+       "icon": "fa-location-dot yellow"
       },
       {
        "code": "82099",
@@ -8263,10 +8263,10 @@
        "lat": 29.945053,
        "lon": -95.2506525,
        "addr": "4400 Wilson Road",
-       "in_line": 5,
-       "wait_text": "About 0-14 minutes.",
-       "wait_min": 0,
-       "icon": "fa-location-dot green"
+       "in_line": 25,
+       "wait_text": "About 30+ minutes.",
+       "wait_min": 30,
+       "icon": "fa-location-dot red"
       },
       {
        "code": "62010",
@@ -8329,7 +8329,7 @@
        "lat": 29.7538903,
        "lon": -95.6156144,
        "addr": "12909 Briar Forest Drive",
-       "in_line": 10,
+       "in_line": 5,
        "wait_text": "About 0-14 minutes.",
        "wait_min": 0,
        "icon": "fa-location-dot green"
@@ -9066,10 +9066,10 @@
        "lat": 30.0130867,
        "lon": -95.3061664,
        "addr": "7903 Forest Point Drive",
-       "in_line": 25,
-       "wait_text": "About 30+ minutes.",
-       "wait_min": 30,
-       "icon": "fa-location-dot red"
+       "in_line": 15,
+       "wait_text": "About 15-29 minutes.",
+       "wait_min": 15,
+       "icon": "fa-location-dot yellow"
       },
       {
        "code": "12005",
@@ -9594,10 +9594,10 @@
        "lat": 30.040187,
        "lon": -95.43787,
        "addr": "19034 Joan Leigh Drive",
-       "in_line": 20,
-       "wait_text": "About 15-29 minutes.",
-       "wait_min": 15,
-       "icon": "fa-location-dot yellow"
+       "in_line": 10,
+       "wait_text": "About 0-14 minutes.",
+       "wait_min": 0,
+       "icon": "fa-location-dot green"
       },
       {
        "code": "32115",
@@ -9825,10 +9825,10 @@
        "lat": 29.8856874,
        "lon": -95.6764889,
        "addr": "7315 Hudson Oaks Drive",
-       "in_line": 5,
-       "wait_text": "About 0-14 minutes.",
-       "wait_min": 0,
-       "icon": "fa-location-dot green"
+       "in_line": 25,
+       "wait_text": "About 30+ minutes.",
+       "wait_min": 30,
+       "icon": "fa-location-dot red"
       },
       {
        "code": "51038",
@@ -10210,7 +10210,7 @@
        "lat": 30.0161669,
        "lon": -95.5747526,
        "addr": "10201 Spring Cypress Road",
-       "in_line": 10,
+       "in_line": 5,
        "wait_text": "About 0-14 minutes.",
        "wait_min": 0,
        "icon": "fa-location-dot green"
@@ -10342,10 +10342,10 @@
        "lat": 30.0634852,
        "lon": -95.4748251,
        "addr": "20820 Ella Boulevard",
-       "in_line": 20,
-       "wait_text": "About 15-29 minutes.",
-       "wait_min": 15,
-       "icon": "fa-location-dot yellow"
+       "in_line": 5,
+       "wait_text": "About 0-14 minutes.",
+       "wait_min": 0,
+       "icon": "fa-location-dot green"
       },
       {
        "code": "52061",
@@ -10584,7 +10584,7 @@
        "lat": 29.8708412,
        "lon": -95.7302106,
        "addr": "6424 Settlers Village Drive",
-       "in_line": 35,
+       "in_line": 30,
        "wait_text": "About 30+ minutes.",
        "wait_min": 30,
        "icon": "fa-location-dot red"
@@ -10760,7 +10760,7 @@
        "lat": 30.056436,
        "lon": -95.172725,
        "addr": "2920 Forest Garden Drive",
-       "in_line": 5,
+       "in_line": 10,
        "wait_text": "About 0-14 minutes.",
        "wait_min": 0,
        "icon": "fa-location-dot green"
@@ -11277,7 +11277,7 @@
        "lat": 29.802334,
        "lon": -95.8174507,
        "addr": "5414 Franz Road",
-       "in_line": 200,
+       "in_line": 35,
        "wait_text": "About 30+ minutes.",
        "wait_min": 30,
        "icon": "fa-location-dot red"
@@ -11471,8 +11471,8 @@
       }
      ],
      "median_wait": 0,
-     "sites_30plus": 32,
-     "total_in_line": 4690,
+     "sites_30plus": 33,
+     "total_in_line": 4435,
      "source": "tx_harris_wait"
     }
    ],
