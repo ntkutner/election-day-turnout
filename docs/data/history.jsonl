@@ -911,3 +911,6 @@
 {"t": "2026-11-04T21:20:41-05:00", "key": "uf_states|CA|early_total", "source": "uf_states", "state": "CA", "jurisdiction": "CA", "metric": "early_total", "value": 9939609, "as_of": "11/4/2026"}
 {"t": "2026-11-04T21:20:41-05:00", "key": "uf_states|CO|early_total", "source": "uf_states", "state": "CO", "jurisdiction": "CO", "metric": "early_total", "value": 2716018, "as_of": "11/4/2026"}
 {"t": "2026-11-04T21:20:41-05:00", "key": "uf_tossups|CA-22|early_total", "source": "uf_tossups", "state": "CA", "jurisdiction": "CA-22", "metric": "early_total", "value": 89561, "as_of": null}
+{"t": "2026-11-04T21:25:58-05:00", "key": "uf_states|HI|early_total", "source": "uf_states", "state": "HI", "jurisdiction": "HI", "metric": "early_total", "value": 369385, "as_of": "11/4/2026"}
+{"t": "2026-11-04T21:25:58-05:00", "key": "uf_states|WA|early_total", "source": "uf_states", "state": "WA", "jurisdiction": "WA", "metric": "early_total", "value": 2885474, "as_of": "11/4/2026"}
+{"t": "2026-11-04T21:25:58-05:00", "key": "uf_tossups|WA-03|early_total", "source": "uf_tossups", "state": "WA", "jurisdiction": "WA-03", "metric": "early_total", "value": 346332, "as_of": null}
