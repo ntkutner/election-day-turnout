@@ -908,3 +908,6 @@
 {"t": "2026-11-04T21:04:48-05:00", "key": "fl_tqv|Polk County|eday_checkins", "source": "fl_tqv", "state": "FL", "jurisdiction": "Polk County", "metric": "eday_checkins", "value": 117162, "as_of": "2026-11-05T02:00:01.3042934+00:00"}
 {"t": "2026-11-04T21:10:05-05:00", "key": "fl_tqv|Florida (66 counties)|eday_checkins", "source": "fl_tqv", "state": "FL", "jurisdiction": "Florida (66 counties)", "metric": "eday_checkins", "value": 2521264, "as_of": "2026-11-05T02:10:06.0679553+00:00"}
 {"t": "2026-11-04T21:10:05-05:00", "key": "fl_tqv|Polk County|eday_checkins", "source": "fl_tqv", "state": "FL", "jurisdiction": "Polk County", "metric": "eday_checkins", "value": 117163, "as_of": "2026-11-05T02:10:01.1712948+00:00"}
+{"t": "2026-11-04T21:20:41-05:00", "key": "uf_states|CA|early_total", "source": "uf_states", "state": "CA", "jurisdiction": "CA", "metric": "early_total", "value": 9939609, "as_of": "11/4/2026"}
+{"t": "2026-11-04T21:20:41-05:00", "key": "uf_states|CO|early_total", "source": "uf_states", "state": "CO", "jurisdiction": "CO", "metric": "early_total", "value": 2716018, "as_of": "11/4/2026"}
+{"t": "2026-11-04T21:20:41-05:00", "key": "uf_tossups|CA-22|early_total", "source": "uf_tossups", "state": "CA", "jurisdiction": "CA-22", "metric": "early_total", "value": 89561, "as_of": null}
