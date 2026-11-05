@@ -914,3 +914,5 @@
 {"t": "2026-11-04T21:25:58-05:00", "key": "uf_states|HI|early_total", "source": "uf_states", "state": "HI", "jurisdiction": "HI", "metric": "early_total", "value": 369385, "as_of": "11/4/2026"}
 {"t": "2026-11-04T21:25:58-05:00", "key": "uf_states|WA|early_total", "source": "uf_states", "state": "WA", "jurisdiction": "WA", "metric": "early_total", "value": 2885474, "as_of": "11/4/2026"}
 {"t": "2026-11-04T21:25:58-05:00", "key": "uf_tossups|WA-03|early_total", "source": "uf_tossups", "state": "WA", "jurisdiction": "WA-03", "metric": "early_total", "value": 346332, "as_of": null}
+{"t": "2026-11-05T03:45:04-05:00", "key": "fl_tqv|Florida (66 counties)|eday_checkins", "source": "fl_tqv", "state": "FL", "jurisdiction": "Florida (66 counties)", "metric": "eday_checkins", "value": 2521211, "as_of": "2026-11-05T08:50:00.8557712+00:00"}
+{"t": "2026-11-05T03:45:04-05:00", "key": "fl_tqv|Polk County|eday_checkins", "source": "fl_tqv", "state": "FL", "jurisdiction": "Polk County", "metric": "eday_checkins", "value": 117110, "as_of": "2026-11-05T08:40:01.0385987+00:00"}
